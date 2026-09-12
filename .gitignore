@@ -1,39 +1,76 @@
-# 数据文件（大文件不入库）
-data/
-*.mp4
-*.mp3
-*.wav
-*.m4a
+# ============================================================
+# .gitignore — 本仓库「不入库产物」清单
+# 原则：Git只放代码+文档+配置；视频/转写稿/文章正文等大文件不入库
+# ============================================================
 
-# 日志
-logs/
-*.log
-
-# 临时文件
-/tmp/
-*.tmp
-*.temp
-
-# 系统文件
+# --- 操作系统 / 编辑器 ---
 .DS_Store
-Thumbs.db
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.egg-info/
-.venv/
-venv/
-
-# 编辑器
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# 密钥和敏感信息
-*.key
-*.pem
+# --- 依赖与虚拟环境 ---
+node_modules/
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# --- 环境变量与密钥（明文不入库；.secrets下.enc加密件显式放行）---
 .env
+.secrets/*.json
+.secrets/*.txt
+.secrets/*.key
+.secrets/*.pem
+!*.enc
+
+# --- 视频/音频/转写产物（大文件，走网盘不入库）---
+*.mp4
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.flv
+*.ts
+*.m3u8
+segments/
+
+# --- 文档原件（成品走网盘，不入库）---
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+
+# --- 图片（文章配图走网盘，不入库）---
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.bmp
+
+# --- 数据目录（整体不入库：原料+成品+过程件）---
+data/
+
+# --- 运行时工作区（过程件，不入库不传网盘）---
+_workspace/
+
+# --- 日志 ---
+logs/
+*.log
+
+# --- 临时 / 备份 / 合并冲突 ---
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# --- 本地配置 ---
 config.local.json
