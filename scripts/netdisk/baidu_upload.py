@@ -29,7 +29,7 @@ UPLOAD_BASE = "https://d.pcs.baidu.com/rest/2.0/pcs/superfile2"
 def get_token():
     """从加密文件解密获取 access_token"""
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_dir = os.path.dirname(script_dir)
+    project_dir = os.path.dirname(os.path.dirname(script_dir))  # scripts/netdisk/ -> 项目根
     enc_file = os.path.join(project_dir, ".secrets", "baidu_credentials.enc")
 
     password = os.environ.get("BAIDU_ENC_PASS", "")
