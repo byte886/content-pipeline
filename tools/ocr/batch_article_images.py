@@ -28,6 +28,7 @@ import urllib.request
 
 
 OCR_SCRIPT = "/Users/wenjiechen/Doubao/skills/work-doc-extract/scripts/ocr_vision.swift"
+OCR_BINARY = "/tmp/ocr_vision_bin"  # 编译后的二进制，速度快10倍
 
 
 def url_to_filename(url):
@@ -74,8 +75,14 @@ def download_image(url, output_path, max_retries=3):
 def ocr_image(image_path):
     """对单张图片进行OCR"""
     try:
+        # 优先使用编译后的二进制（速度快10倍）
+        if os.path.exists(OCR_BINARY):
+            cmd = [OCR_BINARY, image_path]
+        else:
+            cmd = ['swift', OCR_SCRIPT, image_path]
+
         result = subprocess.run(
-            ['swift', OCR_SCRIPT, image_path],
+            cmd,
             capture_output=True, text=True, timeout=30
         )
         if result.returncode == 0:
