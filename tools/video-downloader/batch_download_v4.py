@@ -13,8 +13,16 @@ import subprocess
 import sys
 import time
 
-def download_video(url, output, max_retries=3):
-    """下载视频"""
+def download_video(url, output, max_retries=3, quality='default'):
+    """下载视频
+    quality: default(默认), max(最大xWT111), min(最小xWT128)
+    """
+    # 根据质量参数修改URL
+    if quality == 'max' and 'X-snsvideoflag' not in url:
+        url += '&X-snsvideoflag=xWT111'
+    elif quality == 'min' and 'X-snsvideoflag' not in url:
+        url += '&X-snsvideoflag=xWT128'
+    
     for attempt in range(max_retries):
         cmd = [
             'curl', '-L', '-s', '-o', output,
@@ -65,13 +73,14 @@ def sanitize_filename(name):
 
 def main():
     if len(sys.argv) < 4:
-        print("用法: python3 batch_download_v4.py <json文件> <输出目录> <类型:live/short> [起始序号]")
+        print("用法: python3 batch_download_v4.py <json文件> <输出目录> <类型:live/short> [起始序号] [质量:default/max/min]")
         sys.exit(1)
     
     json_file = sys.argv[1]
     output_dir = sys.argv[2]
     video_type = sys.argv[3]
     start_idx = int(sys.argv[4]) if len(sys.argv) > 4 else 1
+    quality = sys.argv[5] if len(sys.argv) > 5 else 'default'
     
     os.makedirs(output_dir, exist_ok=True)
     
@@ -103,11 +112,11 @@ def main():
             results.append({'idx': idx, 'title': title, 'status': 'skipped', 'size': os.path.getsize(output)})
             continue
         
-        print(f"\n[{idx}/{len(videos)}] 下载: {title[:40]} ({expected_size/1024/1024:.1f}MB)")
+        print(f"\n[{idx}/{len(videos)}] 下载: {title[:40]} ({expected_size/1024/1024:.1f}MB) [质量:{quality}]")
         print(f"  DecodeKey: {decode_key or '无'}")
         
         # 使用原始URL下载
-        success = download_video(url, output)
+        success = download_video(url, output, quality=quality)
         
         if success:
             actual_size = os.path.getsize(output)

@@ -103,6 +103,34 @@ Field 9 (varint): 127            ← 未知参数
 - 结果：待验证
 - 推测：dotrans=1可能请求转码后的高清版本
 
+### 4.3 X-snsvideoflag参数（已验证有效）
+
+**发现来源**：RES Downloader源码 `core/resource.go` 第128-140行
+
+**原理**：在URL后添加 `&X-snsvideoflag=<格式标识>` 来选择不同清晰度
+
+**测试结果**（视频原始大小48.5MB）：
+
+| 格式标识 | 下载大小 | 相对默认 |
+|----------|---------|---------|
+| xWT111 | 3.92MB | +69% |
+| xWT112 | 3.01MB | +30% |
+| xWT126 | 2.68MB | +15% |
+| xWT113 | 2.32MB | 默认（当前） |
+| xWT127 | 2.15MB | -7% |
+| xWT128 | 1.63MB | -30% |
+
+**结论**：
+- xWT111是最大的格式，比默认大69%
+- 但所有格式都远小于原始48.5MB，说明这些都是转码后的版本
+- 原始版本可能需要Quality=1方式（只保留encfilekey+token）
+
+**RES Downloader的Quality映射**：
+- Quality=1: 只保留encfilekey+token（推测为原始版本）
+- Quality=2: X-snsvideoflag=format[0]（xWT111，最大）
+- Quality=3: X-snsvideoflag=format[len/2]（xWT113，中间）
+- Quality=4: X-snsvideoflag=format[len-1]（xWT128，最小）
+
 ---
 
 ## 五、获取高质量URL的可能方案
