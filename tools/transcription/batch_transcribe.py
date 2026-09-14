@@ -50,7 +50,9 @@ def find_videos(directory):
 def transcribe_video(video_path, output_dir, lang='auto'):
     """转写单个视频"""
     video_name = Path(video_path).stem
-    output_file = os.path.join(output_dir, f"{video_name}.md")
+    # transcribe.py 输出在子目录中: {output_dir}/{video_name}/transcript.md
+    output_subdir = os.path.join(output_dir, video_name)
+    output_file = os.path.join(output_subdir, 'transcript.md')
 
     # 检查是否已转写
     if os.path.exists(output_file) and os.path.getsize(output_file) > 0:
