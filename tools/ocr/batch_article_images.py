@@ -83,13 +83,15 @@ def ocr_image(image_path):
 
         result = subprocess.run(
             cmd,
-            capture_output=True, text=True, timeout=30
+            capture_output=True, text=True, timeout=15
         )
         if result.returncode == 0:
             text = result.stdout.strip()
             if text and text != "未识别到文字":
                 return text
         return ""
+    except subprocess.TimeoutExpired:
+        return "OCR超时"
     except Exception as e:
         return f"OCR错误: {e}"
 
@@ -178,12 +180,12 @@ def main():
 
             ocr_count += 1
             text = ocr_image(str(image_path))
-            if text:
+            if text and not text.startswith("OCR"):
                 ocr_results[filename] = text
                 ocr_success += 1
 
-            if ocr_count % 50 == 0:
-                print(f"  进度: {ocr_count} - 有文字:{ocr_success}")
+            if ocr_count % 10 == 0:
+                print(f"  进度: {ocr_count}/{len(all_images)} - 有文字:{ocr_success}", flush=True)
 
         print(f"OCR完成: 处理={ocr_count} 有文字={ocr_success}")
 
