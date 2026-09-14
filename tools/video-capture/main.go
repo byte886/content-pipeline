@@ -10,13 +10,14 @@ import (
 )
 
 var (
-	port         int
-	outputFile   string
-	autoDownload bool
-	downloadDir  string
-	caCertPath   string
-	caKeyPath    string
-	noAutoProxy  bool
+	port          int
+	outputFile    string
+	autoDownload  bool
+	downloadDir   string
+	caCertPath    string
+	caKeyPath     string
+	noAutoProxy   bool
+	upstreamProxy string
 )
 
 func main() {
@@ -27,6 +28,7 @@ func main() {
 	flag.StringVar(&caCertPath, "ca-cert", "", "CA证书路径(留空则自动生成)")
 	flag.StringVar(&caKeyPath, "ca-key", "", "CA私钥路径(留空则自动生成)")
 	flag.BoolVar(&noAutoProxy, "no-auto-proxy", false, "不自动设置系统代理(需手动配置)")
+	flag.StringVar(&upstreamProxy, "upstream", "", "上游代理地址(如 http://127.0.0.1:7890，用于ClashX规则路由)")
 	flag.Parse()
 
 	fmt.Println("========================================")
@@ -36,6 +38,11 @@ func main() {
 	fmt.Printf("输出文件: %s\n", outputFile)
 	fmt.Printf("自动下载: %v\n", autoDownload)
 	fmt.Printf("自动设置代理: %v\n", !noAutoProxy)
+	if upstreamProxy != "" {
+		fmt.Printf("上游代理: %s (ClashX规则路由)\n", upstreamProxy)
+	} else {
+		fmt.Printf("上游代理: 无 (直连)\n")
+	}
 	if autoDownload {
 		fmt.Printf("下载目录: %s\n", downloadDir)
 	}
@@ -52,7 +59,7 @@ func main() {
 	}
 
 	// 初始化捕获器
-	captor, err := NewCaptor(port, outputFile, autoDownload, downloadDir)
+	captor, err := NewCaptor(port, outputFile, autoDownload, downloadDir, upstreamProxy)
 	if err != nil {
 		// 退出前清除代理
 		if !noAutoProxy {

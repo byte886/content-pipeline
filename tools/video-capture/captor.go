@@ -15,6 +15,7 @@ import (
 	"math/big"
 	"net"
 	"net/http"
+	"net/url"
 	"os"
 	"regexp"
 	"strings"
@@ -40,16 +41,17 @@ type VideoInfo struct {
 
 // Captor 视频捕获器
 type Captor struct {
-	port         int
-	outputFile   string
-	autoDownload bool
-	downloadDir  string
-	proxy        *goproxy.ProxyHttpServer
-	server       *http.Server
-	videos       map[string]*VideoInfo
-	videosMux    sync.RWMutex
-	mediaMark    sync.Map
-	version      string
+	port          int
+	outputFile    string
+	autoDownload  bool
+	downloadDir   string
+	upstreamProxy string
+	proxy         *goproxy.ProxyHttpServer
+	server        *http.Server
+	videos        map[string]*VideoInfo
+	videosMux     sync.RWMutex
+	mediaMark     sync.Map
+	version       string
 }
 
 var (
@@ -58,14 +60,15 @@ var (
 )
 
 // NewCaptor 创建捕获器
-func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir string) (*Captor, error) {
+func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir string, upstreamProxy string) (*Captor, error) {
 	c := &Captor{
-		port:         port,
-		outputFile:   outputFile,
-		autoDownload: autoDownload,
-		downloadDir:  downloadDir,
-		videos:       make(map[string]*VideoInfo),
-		version:      "1.0.0",
+		port:          port,
+		outputFile:    outputFile,
+		autoDownload:  autoDownload,
+		downloadDir:   downloadDir,
+		upstreamProxy: upstreamProxy,
+		videos:        make(map[string]*VideoInfo),
+		version:       "1.0.0",
 	}
 
 	// 加载已有视频
@@ -108,6 +111,18 @@ func (c *Captor) initProxy() error {
 		ResponseHeaderTimeout: 60 * time.Second,
 		IdleConnTimeout:       30 * time.Second,
 	}
+
+	// 设置上游代理（如ClashX），实现规则路由
+	if c.upstreamProxy != "" {
+		proxyURL, err := url.Parse(c.upstreamProxy)
+		if err != nil {
+			log.Printf("上游代理URL解析失败(%s)，将直连: %v", c.upstreamProxy, err)
+		} else {
+			transport.Proxy = http.ProxyURL(proxyURL)
+			fmt.Printf("上游代理已设置: %s (国内直连/国外自动VPN)\n", c.upstreamProxy)
+		}
+	}
+
 	c.proxy.Tr = transport
 
 	// 对所有HTTPS进行MITM
