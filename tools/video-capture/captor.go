@@ -83,10 +83,10 @@ func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir strin
 
 // initProxy 初始化代理
 func (c *Captor) initProxy() error {
-	// 生成CA证书
-	ca, err := c.generateCA()
+	// 加载或生成CA证书（优先使用已有证书，避免每次启动都变导致信任失效）
+	ca, err := c.loadOrGenerateCA()
 	if err != nil {
-		return fmt.Errorf("生成CA证书失败: %w", err)
+		return fmt.Errorf("加载/生成CA证书失败: %w", err)
 	}
 
 	goproxy.GoproxyCa = *ca
@@ -96,7 +96,7 @@ func (c *Captor) initProxy() error {
 	goproxy.RejectConnect = &goproxy.ConnectAction{Action: goproxy.ConnectReject, TLSConfig: goproxy.TLSConfigFromCA(ca)}
 
 	c.proxy = goproxy.NewProxyHttpServer()
-	c.proxy.Verbose = false
+	c.proxy.Verbose = true
 
 	// 设置传输
 	transport := &http.Transport{
@@ -121,6 +121,28 @@ func (c *Captor) initProxy() error {
 	c.proxy.OnResponse().DoFunc(c.onResponse)
 
 	return nil
+}
+
+// loadOrGenerateCA 加载已有CA证书，不存在则生成新的
+func (c *Captor) loadOrGenerateCA() (*tls.Certificate, error) {
+	// 尝试加载已有证书
+	if _, err := os.Stat("ca.crt"); err == nil {
+		if _, err := os.Stat("ca.key"); err == nil {
+			certPEM, err1 := os.ReadFile("ca.crt")
+			keyPEM, err2 := os.ReadFile("ca.key")
+			if err1 == nil && err2 == nil {
+				cert, err := tls.X509KeyPair(certPEM, keyPEM)
+				if err == nil {
+					if cert.Leaf, err = x509.ParseCertificate(cert.Certificate[0]); err == nil {
+						fmt.Println("已加载已有CA证书: ca.crt, ca.key")
+						return &cert, nil
+					}
+				}
+			}
+		}
+	}
+	// 不存在或加载失败，生成新证书
+	return c.generateCA()
 }
 
 // generateCA 生成自签名CA证书
