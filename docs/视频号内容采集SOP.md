@@ -81,14 +81,33 @@ networksetup -setsecurewebproxy "Wi-Fi" 127.0.0.1 8899
 
 **使用方法**：
 ```bash
-# 直连模式（禁用上游代理）
-./video-capture -port 8899 -output videos.json -upstream ""
-
 # 默认模式（自动使用ClashX，国内直连/国外自动VPN）
 ./video-capture -port 8899 -output videos.json
 
+# 直连模式（禁用上游代理）
+./video-capture -port 8899 -output videos.json -upstream ""
+
+# 自定义上游代理地址
+./video-capture -port 8899 -output videos.json -upstream http://127.0.0.1:1080
+
 # 不自动设置系统代理（需手动配置）
 ./video-capture -port 8899 -output videos.json -no-auto-proxy
+```
+
+**上游代理健康检查**：
+- 启动时自动检查上游代理（默认ClashX 7890端口）是否可用
+- 如果ClashX未启动或端口不通，**自动降级为直连模式**并打印警告
+- 警告示例：`⚠️ 上游代理不可用 (http://127.0.0.1:7890)，将自动降级为直连模式`
+- 降级后国内视频号仍可正常采集，国外资源可能无法访问
+
+**启动前检查清单**：
+```bash
+# 1. 检查ClashX是否运行
+nc -z 127.0.0.1 7890 && echo "ClashX正常" || echo "ClashX未运行"
+
+# 2. 如果ClashX未运行，可选择：
+#    a) 启动ClashX后再运行捕获工具
+#    b) 使用 -upstream "" 直连模式（国内视频号足够）
 ```
 
 **上游代理说明**：

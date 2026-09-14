@@ -114,12 +114,18 @@ func (c *Captor) initProxy() error {
 
 	// 设置上游代理（如ClashX），实现规则路由
 	if c.upstreamProxy != "" {
-		proxyURL, err := url.Parse(c.upstreamProxy)
-		if err != nil {
-			log.Printf("上游代理URL解析失败(%s)，将直连: %v", c.upstreamProxy, err)
+		// 先检查上游代理是否可用
+		if !checkProxyAvailable(c.upstreamProxy) {
+			log.Printf("⚠️  上游代理不可用 (%s)，将自动降级为直连模式", c.upstreamProxy)
+			log.Printf("   请确认ClashX已启动并监听对应端口，或使用 -upstream \"\" 禁用上游代理")
 		} else {
-			transport.Proxy = http.ProxyURL(proxyURL)
-			fmt.Printf("上游代理已设置: %s (国内直连/国外自动VPN)\n", c.upstreamProxy)
+			proxyURL, err := url.Parse(c.upstreamProxy)
+			if err != nil {
+				log.Printf("上游代理URL解析失败(%s)，将直连: %v", c.upstreamProxy, err)
+			} else {
+				transport.Proxy = http.ProxyURL(proxyURL)
+				fmt.Printf("上游代理已设置: %s (国内直连/国外自动VPN)\n", c.upstreamProxy)
+			}
 		}
 	}
 
@@ -557,4 +563,29 @@ func truncate(s string, maxLen int) string {
 		return s
 	}
 	return string([]rune(s)[:maxLen]) + "..."
+}
+
+// checkProxyAvailable 检查上游代理是否可用
+func checkProxyAvailable(proxyURL string) bool {
+	u, err := url.Parse(proxyURL)
+	if err != nil {
+		return false
+	}
+
+	host := u.Host
+	if u.Port() == "" {
+		if u.Scheme == "https" {
+			host += ":443"
+		} else {
+			host += ":80"
+		}
+	}
+
+	// 尝试TCP连接，超时2秒
+	conn, err := net.DialTimeout("tcp", host, 2*time.Second)
+	if err != nil {
+		return false
+	}
+	conn.Close()
+	return true
 }
