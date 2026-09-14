@@ -81,11 +81,11 @@ networksetup -setsecurewebproxy "Wi-Fi" 127.0.0.1 8899
 
 **使用方法**：
 ```bash
-# 基础用法（直连，国内视频号足够）
-./video-capture -port 8899 -output videos.json
+# 直连模式（禁用上游代理）
+./video-capture -port 8899 -output videos.json -upstream ""
 
-# 带上游代理（推荐，国内直连/国外自动VPN）
-./video-capture -port 8899 -output videos.json -upstream http://127.0.0.1:7890
+# 默认模式（自动使用ClashX，国内直连/国外自动VPN）
+./video-capture -port 8899 -output videos.json
 
 # 不自动设置系统代理（需手动配置）
 ./video-capture -port 8899 -output videos.json -no-auto-proxy
@@ -112,7 +112,7 @@ networksetup -setsecurewebproxy "Wi-Fi" 127.0.0.1 8899
 **使用方法**：
 ```bash
 cd tools/video-capture
-./video-capture -port 8899 -output videos.json
+./video-capture -port 8899 -output videos.json -upstream ""
 # 按 Ctrl+C 停止，会自动清除代理
 ```
 
@@ -150,7 +150,7 @@ python3 tools/video-downloader/batch_download_v4.py <视频列表.json> <输出�
 
 1. 启动捕获工具（推荐带上游代理）：
    ```bash
-   ./video-capture -port 8899 -output videos.json -upstream http://127.0.0.1:7890
+   ./video-capture -port 8899 -output videos.json
    ```
 2. 在微信中搜索「交易的游戏」，进入视频号主页
 3. 切换到「视频」标签，滚动列表到底部

@@ -28,7 +28,7 @@ func main() {
 	flag.StringVar(&caCertPath, "ca-cert", "", "CA证书路径(留空则自动生成)")
 	flag.StringVar(&caKeyPath, "ca-key", "", "CA私钥路径(留空则自动生成)")
 	flag.BoolVar(&noAutoProxy, "no-auto-proxy", false, "不自动设置系统代理(需手动配置)")
-	flag.StringVar(&upstreamProxy, "upstream", "", "上游代理地址(如 http://127.0.0.1:7890，用于ClashX规则路由)")
+	flag.StringVar(&upstreamProxy, "upstream", "http://127.0.0.1:7890", "上游代理地址(默认ClashX，传空字符串禁用上游代理直连)")
 	flag.Parse()
 
 	fmt.Println("========================================")
