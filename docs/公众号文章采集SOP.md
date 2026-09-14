@@ -262,24 +262,55 @@ print(f"新增文章: {len(new_articles)}篇")
 | ClashX TUN+mitmproxy | ❌ | 导致ClashX端口冲突，翻墙中断 |
 | tcpdump/Wireshark | ❌ | 微信保持长连接无新TLS握手，无法解密 |
 
-## 8. 文章正文获取
+## 8. 文章正文获取（UA伪装法，已验证）
 
-拿到URL列表后，直接用requests获取正文（不需要代理）：
+### 8.1 核心原理
 
-```python
-import requests
-from bs4 import BeautifulSoup
+微信公众号文章的反爬策略主要检查User-Agent中是否包含`MicroMessenger`关键字。只要UA声明自己是微信客户端，服务器就放行，**不需要Cookie、不需要登录、不需要代理**。
 
-def fetch_article(url):
-    headers = {"User-Agent": "Mozilla/5.0 ..."}
-    resp = requests.get(url, headers=headers, timeout=30)
-    soup = BeautifulSoup(resp.text, 'html.parser')
-    title = soup.find('h1', id='activity-name').text.strip()
-    content = soup.find('div', id='js_content').text.strip()
-    return {"title": title, "content": content}
+### 8.2 关键UA（微信内置浏览器标识）
+
 ```
+Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.34(0x16082222) NetType/WIFI Language/zh_CN
+```
+
+### 8.3 采集脚本
+
+脚本位置：`scripts/fetch_articles.py`
+
+```bash
+# 运行批量采集
+python3 scripts/fetch_articles.py
+```
+
+**功能特性**：
+- 断点续传：采集进度保存在`采集进度.json`，中断后可继续
+- 自动重试：每篇最多重试3次
+- 随机延迟：2-4秒间隔，避免触发风控
+- 完整保存：标题、正文（纯文本+HTML）、图片URL、发布时间、公众号名称
+- 输出格式：每篇文章一个JSON文件
+
+### 8.4 输出目录结构
+
+```
+knowledge-base/02-公众号文章/
+├── 文章URL列表.json          # 277篇文章URL
+├── 采集进度.json             # 断点续传进度
+└── 正文/
+    ├── 001_文章标题.json
+    ├── 002_文章标题.json
+    └── ...
+```
+
+### 8.5 注意事项
+
+1. **请求频率**：2-4秒间隔，不要太快，避免IP被限制
+2. **图片处理**：文章中的图片URL已提取，后续可下载并OCR解析
+3. **去重**：按URL去重，已完成的不会重复采集
+4. **时效性**：UA伪装法目前有效，微信可能随时升级反爬策略
 
 ---
 
 *文档创建：2026-09-12*
-*采集方案验证：mitmproxy捕获cookie + profile_ext API直接调用*
+*最后更新：2026-09-14（新增UA伪装法，已验证277篇文章可稳定采集）*
+*采集方案验证：mitmproxy捕获cookie + profile_ext API直接调用 + UA伪装法获取正文*
