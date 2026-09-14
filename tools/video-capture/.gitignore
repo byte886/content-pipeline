@@ -1,0 +1,14 @@
+# 编译产物
+video-capture
+*.exe
+
+# CA证书和私钥
+ca.crt
+ca.key
+
+# 视频输出
+videos.json
+downloads/
+
+# 测试文件
+test_*.json
