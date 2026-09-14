@@ -77,6 +77,37 @@ networksetup -setsecurewebproxy "Wi-Fi" 127.0.0.1 8899
 - 退出时自动清除系统代理
 - 通过 MITM 代理注入 JS Hook，捕获视频号视频 URL
 - 支持自动下载（可选）
+- 支持上游代理（如 ClashX），实现国内直连/国外自动VPN
+
+**使用方法**：
+```bash
+# 基础用法（直连，国内视频号足够）
+./video-capture -port 8899 -output videos.json
+
+# 带上游代理（推荐，国内直连/国外自动VPN）
+./video-capture -port 8899 -output videos.json -upstream http://127.0.0.1:7890
+
+# 不自动设置系统代理（需手动配置）
+./video-capture -port 8899 -output videos.json -no-auto-proxy
+```
+
+**上游代理说明**：
+- `-upstream` 参数指定上游代理地址（通常是 ClashX 的 `http://127.0.0.1:7890`）
+- 设置后，所有上游请求走 ClashX，由 ClashX 根据规则自动选择直连或 VPN
+- 国内域名（finder.video.qq.com、mp.weixin.qq.com 等）自动直连
+- 国外域名自动走 VPN 节点
+- 不影响 iTerm 的 Shell 环境变量和 TUN 模式
+
+**代理影响范围**：
+| 程序 | 是否受影响 | 原因 |
+|------|-----------|------|
+| Chrome（无代理扩展） | ✅ 受影响 | 读系统代理 |
+| Chrome（SwitchyOmega） | ❌ 不受影响 | 扩展覆盖系统代理 |
+| iTerm 命令行工具 | ❌ 不受影响 | 读 Shell 环境变量，不读系统代理 |
+| TUN 模式下的程序 | ❌ 基本不受影响 | TUN 在网络层接管，绕过本地回环 |
+| 微信 | ✅ 受影响（正是需要的） | 读系统代理 |
+
+> **注意**：仅捕获 URL 阶段需要代理（几分钟），下载阶段完全不走代理。捕获工具退出时自动清除系统代理。
 
 **使用方法**：
 ```bash
@@ -117,7 +148,10 @@ python3 tools/video-downloader/batch_download_v4.py <视频列表.json> <输出�
 
 ### 4.1 捕获视频URL
 
-1. 启动捕获工具：`./video-capture -port 8899 -output videos.json`
+1. 启动捕获工具（推荐带上游代理）：
+   ```bash
+   ./video-capture -port 8899 -output videos.json -upstream http://127.0.0.1:7890
+   ```
 2. 在微信中搜索「交易的游戏」，进入视频号主页
 3. 切换到「视频」标签，滚动列表到底部
 4. 切换到「直播回放」标签，滚动列表到底部
@@ -173,6 +207,12 @@ A: 不需要。直播回放没有 DecodeKey，下载后可直接播放。
 
 ### Q5: 下载的视频很小（2-5MB）是怎么回事？
 A: 原始URL返回的是低分辨率版本。高质量URL（只保留encfilekey+token）当前测试不工作，待进一步研究。
+
+### Q6: 设置全局代理会不会影响其他程序？
+A: 影响有限。仅捕获URL阶段（几分钟）设置全局代理，下载阶段完全不走代理。iTerm命令行工具（读Shell环境变量）和TUN模式下的程序不受影响，只有Chrome等读系统代理的GUI程序会受影响。工具退出时自动清除代理。如需完全隔离，可使用`-upstream`参数走ClashX规则路由。
+
+### Q7: 上游代理和ClashX是什么关系？
+A: `-upstream http://127.0.0.1:7890` 把ClashX作为上游代理。我们的MITM代理负责解密HTTPS和注入JS，ClashX负责根据规则选择直连或VPN。国内域名（视频号、公众号）自动直连，国外域名自动走VPN。
 
 ---
 
