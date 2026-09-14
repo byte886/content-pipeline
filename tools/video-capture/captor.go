@@ -52,6 +52,7 @@ type Captor struct {
 	videosMux     sync.RWMutex
 	mediaMark     sync.Map
 	version       string
+	apiLogFile    *os.File
 }
 
 var (
@@ -74,6 +75,19 @@ func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir strin
 	// 加载已有视频
 	if err := c.loadVideos(); err != nil {
 		log.Printf("加载已有视频失败: %v", err)
+	}
+
+	// 打开API日志文件
+	apiLogPath := strings.Replace(outputFile, ".json", "_api.log", 1)
+	if apiLogPath == outputFile {
+		apiLogPath = outputFile + "_api.log"
+	}
+	f, err := os.OpenFile(apiLogPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+	if err != nil {
+		log.Printf("打开API日志文件失败: %v", err)
+	} else {
+		c.apiLogFile = f
+		log.Printf("API日志: %s", apiLogPath)
 	}
 
 	// 初始化代理
@@ -230,16 +244,56 @@ func (c *Captor) Stop() {
 	if c.server != nil {
 		c.server.Close()
 	}
+	if c.apiLogFile != nil {
+		c.apiLogFile.Close()
+	}
 	c.saveVideos()
 }
 
 // onRequest 请求处理
 func (c *Captor) onRequest(r *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+	// 记录视频号API请求（方案B研究）
+	if strings.HasSuffix(r.Host, "channels.weixin.qq.com") && strings.Contains(r.URL.Path, "/web/api/") {
+		c.logAPIRequest(r)
+	}
+
 	// 处理微信视频号的回调请求
 	if strings.Contains(r.Host, "qq.com") && strings.Contains(r.URL.Path, "/res-downloader/wechat") {
 		return c.handleWechatRequest(r)
 	}
 	return r, nil
+}
+
+// logAPIRequest 记录API请求
+func (c *Captor) logAPIRequest(r *http.Request) {
+	if c.apiLogFile == nil {
+		return
+	}
+
+	entry := fmt.Sprintf("[%s] %s %s%s\n",
+		time.Now().Format("2006-01-02 15:04:05"),
+		r.Method,
+		r.Host,
+		r.URL.RequestURI(),
+	)
+
+	// 记录请求头
+	entry += fmt.Sprintf("  Headers: %v\n", r.Header)
+
+	// 记录请求体（如果是POST）
+	if r.Method == "POST" && r.Body != nil {
+		body, err := io.ReadAll(r.Body)
+		if err == nil && len(body) > 0 {
+			entry += fmt.Sprintf("  Body: %s\n", string(body))
+			// 恢复请求体
+			r.Body = io.NopCloser(strings.NewReader(string(body)))
+		}
+	}
+
+	entry += "\n"
+
+	c.apiLogFile.WriteString(entry)
+	c.apiLogFile.Sync()
 }
 
 // onResponse 响应处理
