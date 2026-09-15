@@ -20,6 +20,8 @@
 | 文档 | 用途 |
 |------|------|
 | [AGENTS.md](AGENTS.md) | AI操作手册（命令式、可执行） |
+| [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | 项目需求与决策溯源 |
+| [docs/WORKFLOW.md](docs/WORKFLOW.md) | 整体工作流（四阶段流水线） |
 | [docs/DOCUMENTATION_MAP.md](docs/DOCUMENTATION_MAP.md) | **文档地图**（所有文档的快速入口） |
 | [docs/DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md) | 目录结构与存储分工 |
 | [project-management/active/TASK_STATUS.md](project-management/active/TASK_STATUS.md) | 当前进度、下一步 |

@@ -24,10 +24,12 @@
 ### 2.1 冷启动（首次接触/跨阶段切换）
 按序读：
 1. `docs/DOCUMENTATION_MAP.md` — 文档地图（快速入口，先读这个）
-2. `docs/DIRECTORY_STRUCTURE.md` — 目录结构与存储分工
-3. `docs/project-management/memory/index.md` — 工程记忆（跨会话稳定结论）
-4. `project-management/active/TASK_STATUS.md` + `active/ISSUES.md` — 当前状态
-5. 对应环节的SOP：
+2. `docs/REQUIREMENTS.md` — 项目需求与决策溯源
+3. `docs/WORKFLOW.md` — 整体工作流（四阶段流水线）
+4. `docs/DIRECTORY_STRUCTURE.md` — 目录结构与存储分工
+5. `docs/project-management/memory/index.md` — 工程记忆（跨会话稳定结论）
+6. `project-management/active/TASK_STATUS.md` + `active/ISSUES.md` — 当前状态
+7. 对应环节的SOP：
    - 视频采集：`docs/视频号内容采集SOP.md`
    - 文章采集：`docs/公众号文章采集SOP.md`
    - 高质量URL：`docs/高质量URL研究.md`

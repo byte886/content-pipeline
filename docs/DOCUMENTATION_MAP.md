@@ -58,6 +58,8 @@
 | 项目介绍 | `README.md` | 项目目标、存储分工、快速开始 |
 | AI操作手册 | `AGENTS.md` | 全局执行规则、核心约束、常见问题 |
 | 文档地图 | `docs/DOCUMENTATION_MAP.md` | 本文档 |
+| 项目需求 | `docs/REQUIREMENTS.md` | 需求与决策溯源、已关闭方案留痕 |
+| 整体工作流 | `docs/WORKFLOW.md` | 四阶段流水线 + 各阶段校验门 |
 | 目录结构 | `docs/DIRECTORY_STRUCTURE.md` | 四地存储分工、目录说明 |
 
 ### 一、操作指南（SOP — 怎么做）
