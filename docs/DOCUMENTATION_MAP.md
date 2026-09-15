@@ -91,11 +91,12 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 任务状态 | `project-management/active/TASK_STATUS.md` | 当前进度、下一步 |
+| 任务状态 | `project-management/active/TASK_STATUS.md` | 当前进度、下一步（单一进度真相） |
 | 问题清单 | `project-management/active/ISSUES.md` | 已知问题、阻塞项 |
 | ADR决策 | `docs/project-management/decisions/` | 架构决策记录（只增不改，3条） |
 | 工程记忆 | `docs/project-management/memory/` | 跨会话稳定结论编译层 |
-| 运行时工作区 | `data/_workspace/README.md` | 过程件管理规范（logs/tmp/sniff/manifest/run/tickets） |
+| 规范文档 | `docs/project-management/standards/` | 文档同步检查清单、批量任务执行规范 |
+| 运行时工作区 | `data/_workspace/README.md` | 过程件管理规范（logs/tmp/capture） |
 
 ---
 
