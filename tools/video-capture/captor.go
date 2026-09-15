@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"sync"
@@ -24,6 +25,15 @@ import (
 
 	"github.com/elazarl/goproxy"
 )
+
+// getCertDir 返回可执行文件所在目录，证书与二进制同目录
+func getCertDir() string {
+	exe, err := os.Executable()
+	if err != nil {
+		return "."
+	}
+	return filepath.Dir(exe)
+}
 
 // VideoInfo 视频信息
 type VideoInfo struct {
@@ -159,17 +169,22 @@ func (c *Captor) initProxy() error {
 }
 
 // loadOrGenerateCA 加载已有CA证书，不存在则生成新的
+// 证书路径：相对于可执行文件的目录（与二进制同目录），避免从项目根目录运行时生成新证书
 func (c *Captor) loadOrGenerateCA() (*tls.Certificate, error) {
+	certDir := getCertDir()
+	certPath := filepath.Join(certDir, "ca.crt")
+	keyPath := filepath.Join(certDir, "ca.key")
+
 	// 尝试加载已有证书
-	if _, err := os.Stat("ca.crt"); err == nil {
-		if _, err := os.Stat("ca.key"); err == nil {
-			certPEM, err1 := os.ReadFile("ca.crt")
-			keyPEM, err2 := os.ReadFile("ca.key")
+	if _, err := os.Stat(certPath); err == nil {
+		if _, err := os.Stat(keyPath); err == nil {
+			certPEM, err1 := os.ReadFile(certPath)
+			keyPEM, err2 := os.ReadFile(keyPath)
 			if err1 == nil && err2 == nil {
 				cert, err := tls.X509KeyPair(certPEM, keyPEM)
 				if err == nil {
 					if cert.Leaf, err = x509.ParseCertificate(cert.Certificate[0]); err == nil {
-						fmt.Println("已加载已有CA证书: ca.crt, ca.key")
+						fmt.Printf("已加载CA证书: %s\n", certPath)
 						return &cert, nil
 					}
 				}
@@ -180,7 +195,7 @@ func (c *Captor) loadOrGenerateCA() (*tls.Certificate, error) {
 	return c.generateCA()
 }
 
-// generateCA 生成自签名CA证书
+// generateCA 生成自签名CA证书，保存在可执行文件同目录
 func (c *Captor) generateCA() (*tls.Certificate, error) {
 	priv, err := rsa.GenerateKey(rand.Reader, 2048)
 	if err != nil {
@@ -209,11 +224,14 @@ func (c *Captor) generateCA() (*tls.Certificate, error) {
 	certPEM := pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: derBytes})
 	keyPEM := pem.EncodeToMemory(&pem.Block{Type: "RSA PRIVATE KEY", Bytes: x509.MarshalPKCS1PrivateKey(priv)})
 
-	// 保存CA证书到文件
-	os.WriteFile("ca.crt", certPEM, 0644)
-	os.WriteFile("ca.key", keyPEM, 0600)
-	fmt.Println("CA证书已生成: ca.crt, ca.key")
-	fmt.Println("请在系统钥匙串中信任 ca.crt 证书")
+	// 保存CA证书到可执行文件同目录
+	certDir := getCertDir()
+	certPath := filepath.Join(certDir, "ca.crt")
+	keyPath := filepath.Join(certDir, "ca.key")
+	os.WriteFile(certPath, certPEM, 0644)
+	os.WriteFile(keyPath, keyPEM, 0600)
+	fmt.Printf("CA证书已生成: %s\n", certPath)
+	fmt.Println("请在系统钥匙串中信任此证书")
 
 	cert, err := tls.X509KeyPair(certPEM, keyPEM)
 	if err != nil {
