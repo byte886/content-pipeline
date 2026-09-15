@@ -30,8 +30,11 @@ import time
 from pathlib import Path
 
 
-# multiplatform-media-fetch 技能路径
-TRANSCRIBE_SCRIPT = "/Users/wenjiechen/Doubao/skills/multiplatform-media-fetch/scripts/transcribe.py"
+# multiplatform-media-fetch 技能路径（可通过环境变量覆盖）
+TRANSCRIBE_SCRIPT = os.environ.get(
+    "TRANSCRIBE_SCRIPT",
+    os.path.expanduser("~/Doubao/skills/multiplatform-media-fetch/scripts/transcribe.py")
+)
 
 # 支持的视频格式
 VIDEO_EXTENSIONS = {'.mp4', '.mov', '.avi', '.mkv', '.flv', '.wmv', '.webm'}

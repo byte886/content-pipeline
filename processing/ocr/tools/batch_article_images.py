@@ -27,8 +27,11 @@ from urllib.parse import urlparse
 import urllib.request
 
 
-OCR_SCRIPT = "/Users/wenjiechen/Doubao/skills/work-doc-extract/scripts/ocr_vision.swift"
-OCR_BINARY = "/tmp/ocr_vision_bin"  # 编译后的二进制，速度快10倍
+OCR_SCRIPT = os.environ.get(
+    "OCR_SCRIPT",
+    os.path.expanduser("~/Doubao/skills/work-doc-extract/scripts/ocr_vision.swift")
+)
+OCR_BINARY = os.environ.get("OCR_BINARY", "/tmp/ocr_vision_bin")  # 编译后的二进制，速度快10倍
 
 
 def url_to_filename(url):

@@ -84,16 +84,24 @@ fetched_at: {datetime.now().isoformat()}
         return filepath
 
 def main():
-    output = "/Users/wenjiechen/Doubao/chats/2026-09-11/new-chat/stock-knowledge-base/knowledge-base/02-公众号文章"
+    import argparse
+    parser = argparse.ArgumentParser(description='微信公众号文章采集')
+    parser.add_argument('--output', '-o', default=os.environ.get('ARTICLE_OUTPUT_DIR', 'library/06_articles/wechat_official'),
+                        help='输出目录（默认: library/06_articles/wechat_official）')
+    parser.add_argument('--account', '-a', default='顶底之王', help='公众号名称')
+    parser.add_argument('--pages', '-p', type=int, default=3, help='搜索页数')
+    args = parser.parse_args()
+
+    output = args.output
     fetcher = WeChatArticleFetcher(output)
     
-    print("=== 搜狗微信搜索: 顶底之王 ===")
-    articles = fetcher.search_sogou("顶底之王", max_pages=3)
+    print(f"=== 搜狗微信搜索: {args.account} ===")
+    articles = fetcher.search_sogou(args.account, max_pages=args.pages)
     print(f"共找到 {len(articles)} 篇文章")
     
-    # 过滤顶底之王的文章
-    target = [a for a in articles if '顶底' in a.get('account','') or '顶底' in a.get('title','')]
-    print(f"其中顶底之王: {len(target)} 篇")
+    # 过滤目标公众号的文章
+    target = [a for a in articles if args.account[:2] in a.get('account','') or args.account[:2] in a.get('title','')]
+    print(f"其中{args.account}: {len(target)} 篇")
     
     # 保存元数据
     meta_path = fetcher.save_metadata(target, "顶底之王_文章列表.json")

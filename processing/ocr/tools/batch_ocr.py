@@ -29,8 +29,11 @@ import time
 from pathlib import Path
 
 
-# work-doc-extract 技能路径
-EXTRACT_SCRIPT = "/Users/wenjiechen/Doubao/skills/work-doc-extract/scripts/extract_text.py"
+# work-doc-extract 技能路径（可通过环境变量覆盖）
+EXTRACT_SCRIPT = os.environ.get(
+    "EXTRACT_SCRIPT",
+    os.path.expanduser("~/Doubao/skills/work-doc-extract/scripts/extract_text.py")
+)
 
 # 支持的文件格式
 SUPPORTED_EXTENSIONS = {
