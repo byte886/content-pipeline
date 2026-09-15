@@ -48,8 +48,8 @@
 | T-17 | 书籍精华提取 | feature | T-03 | **todo** | 文章中推荐的书籍 → 查找内容 → 形成文稿 |
 | T-18 | 架构重构阶段1：改名+代码迁移 | refactor | 无 | **done** | multiplatform-content-pipeline，commit bd45204，见ADR-004 |
 | T-19 | 架构重构阶段2：数据迁移 | refactor | T-18 | **done** | commit 782ba97：data/videos→library/01_video，data/transcripts→library/04_transcript，knowledge-base→library/06_articles，清理空目录，更新5个脚本+5个文档路径 |
-| T-20 | 架构重构阶段3：接入B站采集 | feature | T-18 | **todo** | 复用珠宝项目bili_list.py等脚本，platforms/bilibili/ |
-| T-21 | 架构重构阶段4：接入抖音/YouTube | feature | T-18 | **todo** | 复用multiplatform-media-fetch，platforms/douyin/、platforms/youtube/ |
+| T-20 | 架构重构阶段3：接入B站采集 | feature | T-19 | **done** | commit a24d70a：迁移bili_list.py（wbi+dynamic双通道），适配可配置UID，输出library/00_manifest/bilibili/，dynamic通道测试验证通过 |
+| T-21 | 架构重构阶段4：接入抖音/YouTube | feature | T-20 | **done** | 复用multiplatform-media-fetch技能media_downloader.py，创建platforms/douyin/README.md和platforms/youtube/README.md |
 | T-22 | 方法提炼（MethodNote）LLM深度分析 | feature | T-18 | **todo** | processing/method_extraction/框架已搭，待接入LLM深度分析 |
 | T-23 | GitHub仓库改名 | ops | 无 | **todo** | API token问题，可手动在网页改名（旧URL自动重定向） |
 | T-24 | 评审改进批次1：清理与修正（P0） | refactor | 无 | **done** | commit b5044eb：删旧脚本+修数量+更新状态+建workspace+更新文档地图 |
