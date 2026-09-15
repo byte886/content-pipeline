@@ -26,9 +26,8 @@ class Pipeline:
 
     def _register_platforms(self):
         """注册所有平台插件（延迟导入，避免依赖问题）"""
-        # 平台插件在需要时动态导入
-        # 已实现：wechat_official, wechat_channels
-        # 待实现：bilibili, douyin, youtube
+        # 已实现：wechat_official, wechat_channels, bilibili
+        # 待实现：douyin, youtube（目前只有单视频下载，无列表采集）
         pass
 
     def _get_platform(self, platform_id: str) -> Optional[PlatformFetcher]:
@@ -42,9 +41,14 @@ class Pipeline:
                 elif platform_id == "wechat_official":
                     from platforms.wechat_official.fetcher import WechatOfficialFetcher
                     self.platforms[platform_id] = WechatOfficialFetcher()
-                # TODO: bilibili, douyin, youtube
+                elif platform_id == "bilibili":
+                    from platforms.bilibili.fetcher import BilibiliFetcher
+                    self.platforms[platform_id] = BilibiliFetcher(use_dynamic=True)
+                elif platform_id in ("douyin", "youtube"):
+                    print(f"[INFO] 平台 {platform_id} 目前仅支持单视频下载，列表采集待实现")
+                    return None
             except ImportError as e:
-                print(f"[WARN] 平台 {platform_id} 插件未实现: {e}")
+                print(f"[WARN] 平台 {platform_id} 插件导入失败: {e}")
                 return None
         return self.platforms.get(platform_id)
 
