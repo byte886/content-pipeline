@@ -70,7 +70,8 @@ library/08_sources/*/raw/
 library/08_sources/*/cleaned/
 
 # --- 运行时工作区（过程件，不入库不传网盘）---
-workspace/
+workspace/*
+!workspace/README.md
 _workspace/
 
 # --- 日志 ---
