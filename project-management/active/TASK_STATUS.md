@@ -47,7 +47,7 @@
 | T-16 | 百度网盘同步 | feature | 无 | **todo** | 股票知识库应用，`scripts/netdisk/sync_stock.sh` |
 | T-17 | 书籍精华提取 | feature | T-03 | **todo** | 文章中推荐的书籍 → 查找内容 → 形成文稿 |
 | T-18 | 架构重构阶段1：改名+代码迁移 | refactor | 无 | **done** | multiplatform-content-pipeline，commit bd45204，见ADR-004 |
-| T-19 | 架构重构阶段2：数据迁移 | refactor | T-18 | **todo** | data/videos→library/01_video，data/transcripts→library/04_transcript，knowledge-base→library/05_knowledge |
+| T-19 | 架构重构阶段2：数据迁移 | refactor | T-18 | **done** | commit 782ba97：data/videos→library/01_video，data/transcripts→library/04_transcript，knowledge-base→library/06_articles，清理空目录，更新5个脚本+5个文档路径 |
 | T-20 | 架构重构阶段3：接入B站采集 | feature | T-18 | **todo** | 复用珠宝项目bili_list.py等脚本，platforms/bilibili/ |
 | T-21 | 架构重构阶段4：接入抖音/YouTube | feature | T-18 | **todo** | 复用multiplatform-media-fetch，platforms/douyin/、platforms/youtube/ |
 | T-22 | 方法提炼（MethodNote）LLM深度分析 | feature | T-18 | **todo** | processing/method_extraction/框架已搭，待接入LLM深度分析 |
