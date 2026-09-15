@@ -261,26 +261,117 @@ class Pipeline:
                 results.append(result)
         return results
 
-    def incremental_update(self, platform: str, account: str) -> dict:
+    def incremental_update(self, platform: str, account: str,
+                           content_type: str = "videos", limit: int = None) -> dict:
         """
         增量更新：只采集水位之后的新内容。
+
         设计参考：珠宝项目的水位（watermark）机制
+        原则：先成功落地、再推进水位（at-least-once，崩溃不丢，重复可去重）
+
+        Args:
+            platform: 平台标识
+            account: 账号标识
+            content_type: 内容类型（videos/articles）
+            limit: 最多采集多少条新内容（None表示全部）
+
+        Returns:
+            增量更新结果，包含新采集的内容数量和水位变化
         """
+        from core.watermark import WatermarkManager
+
         platform_inst = self._get_platform(platform)
         if not platform_inst:
             return {"status": "error", "error": f"平台 {platform} 未实现"}
 
-        # 读取水位
-        watermark = platform_inst.get_watermark()
-        print(f"当前水位: {watermark}")
+        # 初始化水位管理器
+        wm = WatermarkManager()
 
-        # 采集新内容（水位之后的）
-        # ...
+        # 读取当前水位
+        old_watermark = wm.get(platform, account, content_type)
+        print(f"当前水位: {old_watermark}")
 
-        # 更新水位
-        # platform_inst.set_watermark(new_watermark)
+        # 采集全部内容（平台插件返回按时间倒序的列表）
+        print(f"采集 {platform}/{account} 的 {content_type}...")
+        items = platform_inst.fetch_urls(account)
+        print(f"  共采集到 {len(items)} 条内容")
 
-        return {"status": "success", "watermark": watermark}
+        # 过滤出新内容（水位之后的）
+        new_items = []
+        if old_watermark and old_watermark.get('last_max_created'):
+            last_time = old_watermark['last_max_created']
+            for item in items:
+                item_time = self._get_item_timestamp(item)
+                if item_time and item_time > last_time:
+                    new_items.append(item)
+                elif not item_time:
+                    # 没有时间戳的内容也标记为新（保守处理）
+                    new_items.append(item)
+        else:
+            # 首次采集，全部都是新内容
+            new_items = items
+
+        # 限制数量
+        if limit:
+            new_items = new_items[:limit]
+
+        print(f"  其中新内容: {len(new_items)} 条")
+
+        if not new_items:
+            print("  没有新内容，无需更新")
+            return {
+                "status": "success",
+                "new_count": 0,
+                "watermark": old_watermark,
+                "message": "没有新内容"
+            }
+
+        # 下载新内容
+        print(f"\n下载 {len(new_items)} 条新内容...")
+        download_dir = f"library/01_video/{platform}/{account}"
+        if content_type == "articles":
+            download_dir = f"library/06_articles/{platform}/{account}/正文"
+        os.makedirs(download_dir, exist_ok=True)
+
+        downloaded = 0
+        max_created = 0
+        for item in new_items:
+            try:
+                platform_inst.download(item, download_dir)
+                downloaded += 1
+                item_time = self._get_item_timestamp(item)
+                if item_time and item_time > max_created:
+                    max_created = item_time
+            except Exception as e:
+                print(f"  ⚠️ 下载失败 {item.title[:30]}: {e}")
+
+        # 先成功落地、再推进水位
+        if downloaded > 0:
+            known_count = (old_watermark.get('known_count', 0) if old_watermark else 0) + downloaded
+            wm.update(platform, account, content_type, max_created, known_count)
+            print(f"  水位已更新: last_max_created={max_created}, known_count={known_count}")
+
+        return {
+            "status": "success",
+            "new_count": len(new_items),
+            "downloaded_count": downloaded,
+            "old_watermark": old_watermark,
+            "new_watermark": wm.get(platform, account, content_type)
+        }
+
+    def _get_item_timestamp(self, item) -> Optional[int]:
+        """从ContentItem中提取时间戳（unix秒）"""
+        if not item.published_at:
+            return None
+        try:
+            # 尝试解析ISO格式
+            from datetime import datetime as dt
+            if isinstance(item.published_at, (int, float)):
+                return int(item.published_at)
+            parsed = dt.fromisoformat(str(item.published_at).replace('Z', '+00:00'))
+            return int(parsed.timestamp())
+        except (ValueError, TypeError):
+            return None
 
 
 if __name__ == "__main__":
