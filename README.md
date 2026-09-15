@@ -185,7 +185,7 @@ python3 -c "from core.watermark import WatermarkManager; wm = WatermarkManager()
 ## 下一步
 
 按 [docs/ROADMAP.md](docs/ROADMAP.md)：
-1. 阶段1完成：架构重构+代码迁移（进行中）
+1. 阶段1完成：架构重构+代码迁移（commit bd45204）
 2. 阶段2：数据迁移到library/新结构
 3. 阶段3：接入B站采集（复用珠宝项目脚本）
 4. 阶段4：接入抖音/YouTube

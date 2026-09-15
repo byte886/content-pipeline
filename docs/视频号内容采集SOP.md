@@ -204,7 +204,7 @@ python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <视频�
 
 | 类型 | 数量 | 说明 |
 |------|------|------|
-| 短视频 | 314个（有效标题） | 需解密，低分辨率版本 |
+| 短视频 | 313个（有效标题） | 需解密，低分辨率版本 |
 | 直播回放 | 23个（无DecodeKey） | 无需解密 |
 | 公众号文章 | 277篇 | 已采集完成 |
 

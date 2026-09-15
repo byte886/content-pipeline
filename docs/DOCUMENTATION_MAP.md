@@ -24,7 +24,7 @@
 
 ### 公众号文章采集
 1. `docs/公众号文章采集SOP.md` — 文章采集流程
-2. 工具：`platforms/wechat_official/article/`（待迁移到tools/）
+2. 工具：`platforms/wechat_official/article/`
 
 ### 视频转文字 / 图文OCR
 1. 转写工具：`processing/transcription/tools/batch_transcribe.py`（FunASR本地离线）
@@ -93,7 +93,7 @@
 |------|------|------|
 | 任务状态 | `project-management/active/TASK_STATUS.md` | 当前进度、下一步（单一进度真相） |
 | 问题清单 | `project-management/active/ISSUES.md` | 已知问题、阻塞项 |
-| ADR决策 | `docs/project-management/decisions/` | 架构决策记录（只增不改，3条） |
+| ADR决策 | `docs/project-management/decisions/` | 架构决策记录（只增不改，4条） |
 | 工程记忆 | `docs/project-management/memory/` | 跨会话稳定结论编译层 |
 | 规范文档 | `docs/project-management/standards/` | 文档同步检查清单、批量任务执行规范 |
 | 运行时工作区 | `workspace/README.md` | 过程件管理规范（logs/tmp/capture） |
@@ -106,7 +106,7 @@
 
 | 任务 | 工具 | 位置 | 运行目录 |
 |------|------|------|---------|
-| 视频捕获(MITM) | video-capture | `platforms/wechat_channels/video-capture/` | platforms/wechat_channels/video-capture/ |
+| 视频捕获(MITM) | video-capture | `platforms/wechat_channels/video-capture/` | 任意目录（证书相对于可执行文件） |
 | 视频下载+解密 | batch_download_v4.py | `platforms/wechat_channels/video-downloader/` | 项目根目录 |
 | 自动化采集 | auto_capture.py | `platforms/wechat_channels/auto-capture/` | 项目根目录 |
 | 增量采集 | incremental_collect.py | `platforms/wechat_channels/auto-capture/` | 项目根目录 |
@@ -114,7 +114,7 @@
 | 图文OCR | batch_article_images.py | `processing/ocr/tools/` | 项目根目录 |
 | 知识提取 | extract_knowledge.py | `processing/knowledge_extraction/tools/` | 项目根目录 |
 | 知识库查询 | knowledge_base.py | `processing/knowledge_extraction/tools/` | 项目根目录 |
-| 文章采集 | fetch_articles_*.py | `platforms/wechat_official/article/`（待迁移） | 项目根目录 |
+| 文章采集 | fetch_articles_*.py | `platforms/wechat_official/article/` | 项目根目录 |
 | 网盘同步 | sync_stock.sh | `scripts/netdisk/` | 项目根目录 |
 
 ---
