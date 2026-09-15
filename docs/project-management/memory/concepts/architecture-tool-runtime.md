@@ -9,14 +9,14 @@ verified: machine
 
 ## 结论
 
-**捕获工具必须从`platforms/wechat_channels/video-capture/`目录运行**，否则会生成新的未信任证书，导致TLS握手失败、全网阻断。
+**捕获工具可从任意目录运行**（证书路径已修复为相对于可执行文件的路径，`os.Executable()+filepath.Dir()`）。证书与二进制同目录，不会因运行目录不同而生成新证书。
 
 ## 关键规则
 
-1. **证书路径**：`platforms/wechat_channels/video-capture/ca.crt`（已在系统钥匙串信任）
-2. **运行目录**：必须在`platforms/wechat_channels/video-capture/`下执行`./video-capture`
-3. **禁止**：从项目根目录运行`./platforms/wechat_channels/video-capture/video-capture`（会在根目录生成新ca.crt）
-4. **检查**：启动前确认项目根目录**没有**ca.crt/ca.key（如果有说明运行目录错了）
+1. **证书位置**：`platforms/wechat_channels/video-capture/ca.crt`（与二进制同目录，已在系统钥匙串信任）
+2. **运行目录**：任意目录均可，执行 `./platforms/wechat_channels/video-capture/video-capture`
+3. **禁止**：删除或替换 `ca.crt/ca.key`（会导致TLS握手失败）
+4. **检查**：启动前确认 `ca.crt` 存在且与二进制同目录
 
 ## 紧急恢复（全网阻断时）
 
@@ -30,6 +30,7 @@ done
 
 ## 来源与下钻
 
-- 证书问题详细：`project-management/active/ISSUES.md` ISSUE-001
+- 证书问题历史：`project-management/active/ISSUES.md` ISSUE-001（已解决）
 - 代理设置：`platforms/wechat_channels/video-capture/proxy_darwin.go`
 - 捕获工具SOP：`docs/视频号内容采集SOP.md`
+- ADR决策：`docs/project-management/decisions/ADR-002-视频号采集的证书与代理方案.md`
