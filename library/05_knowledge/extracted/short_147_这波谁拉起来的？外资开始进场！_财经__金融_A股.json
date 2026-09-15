@@ -1,0 +1,36 @@
+{
+  "video_id": "short_147_这波谁拉起来的？外资开始进场！_财经__金融_A股",
+  "title": "short_147_这波谁拉起来的？外资开始进场！_财经__金融_A股",
+  "extracted_at": "2026-09-16T05:26:55.180614",
+  "transcript_length": 470,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 3,
+    "bearish_signals": 6,
+    "summary": "再加上港股券商的利好消息已经兑现，前期埋伏的获利盘也会出货，所以短线先看能不能回调3400点，但中线上升指数的上涨其实已经成了"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "本线有回调需求，但回调就是补仓良机，大盘今天再次放量，但却收了十字星，券商也是放量滞涨"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能"
+  ]
+}

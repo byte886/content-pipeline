@@ -1,0 +1,33 @@
+{
+  "video_id": "short_291_4月15日A股收评，数据说话！",
+  "title": "short_291_4月15日A股收评，数据说话！",
+  "extracted_at": "2026-09-16T05:26:55.164322",
+  "transcript_length": 711,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 3,
+    "bearish_signals": 2,
+    "summary": "先看红利指数，今天拉升又创了新高，技术面毫无疑问是上涨趋势良好，而估值主要看股息率，红利策略的股息率从最高点的6.8%，回落到现在是5%，其中走的强的像四大行两桶油等等都翻倍了"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "虽然5%的股息率还是很高啊，但是对比其他跌到地板的票，估值上红利已经不要"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

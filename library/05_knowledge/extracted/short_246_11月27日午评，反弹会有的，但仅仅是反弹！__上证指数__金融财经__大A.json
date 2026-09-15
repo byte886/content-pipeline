@@ -1,0 +1,41 @@
+{
+  "video_id": "short_246_11月27日午评，反弹会有的，但仅仅是反弹！__上证指数__金融财经__大A",
+  "title": "short_246_11月27日午评，反弹会有的，但仅仅是反弹！__上证指数__金融财经__大A",
+  "extracted_at": "2026-09-16T05:26:55.193501",
+  "transcript_length": 635,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 5,
+    "bearish_signals": 2,
+    "summary": "A股跳水后V型反转，当你绝望时反弹如期而至，当你兴奋时，下跌应运而生，来一起看看盘面"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "食品",
+      "context": "第一呢不仅是今天昨天前天也能看到食品白水这些核心资产是不是在上涨，是大盘股在涨，这些呢是机构"
+    },
+    {
+      "name": "银行",
+      "context": "然后配置银行、红利等大盘股"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "操作策略",
+    "市场情绪"
+  ]
+}

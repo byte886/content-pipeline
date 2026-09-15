@@ -1,0 +1,43 @@
+{
+  "video_id": "short_273_下周会先震荡反弹，但券商别追_财经_金融_牛市来了吗",
+  "title": "short_273_下周会先震荡反弹，但券商别追_财经_金融_牛市来了吗",
+  "extracted_at": "2026-09-16T05:26:55.126973",
+  "transcript_length": 940,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 14,
+    "bearish_signals": 6,
+    "summary": "A股下周会先震荡反弹，短期暂时不用太担心，但反弹幅度有限，板块上可以先做做轮动机会，但切记别追券商就行了"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "这个我们直播里在说，我今天就简单讲两个，一个是半导体，一个是券商，这两个是千万别追啊"
+    },
+    {
+      "name": "券商",
+      "context": "A股下周会先震荡反弹，短期暂时不用太担心，但反弹幅度有限，板块上可以先做做轮动机会，但切记别追券商就行了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "A股下周会先震荡反弹，短期暂时不用太担心，但反弹幅度有限，板块上可以先做做轮动机会，但切记别追券商就行了"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

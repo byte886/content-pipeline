@@ -1,0 +1,39 @@
+{
+  "video_id": "short_186_震荡企稳等反弹，但只看反弹。_财经__金融__A股",
+  "title": "short_186_震荡企稳等反弹，但只看反弹。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.273005",
+  "transcript_length": 375,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 7,
+    "bearish_signals": 3,
+    "summary": "上证指数缩量十字星，大小盘继续分化，大盘指数企稳，小盘指数继续下跌"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "我们观点不变，中线仍然看空，3到4月份仍然建议做银行红利等大盘价值幅，但短线这个位置反弹的概率还是很高的，不仅各大指数到了颈线支撑，不少板块随着上周五的下跌也到支撑了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "如果行情能出现大反弹，支撑位置必须是缩量企稳，就跟3月4号和1月13号一样，不能是放量"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

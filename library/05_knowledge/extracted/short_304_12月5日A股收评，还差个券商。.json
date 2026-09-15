@@ -1,0 +1,41 @@
+{
+  "video_id": "short_304_12月5日A股收评，还差个券商。",
+  "title": "short_304_12月5日A股收评，还差个券商。",
+  "extracted_at": "2026-09-16T05:26:55.256586",
+  "transcript_length": 518,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 4,
+    "bearish_signals": 5,
+    "summary": "A股今天继续上涨，这个底部区域相信大家都不会怀疑"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "但现在很多板块走势还都挺正常，比如券商还没加速，而复盘历时每次大盘见顶的时候，券商都会冲一波比如20年7月、21年5月、9月、12月和今年6月都是这样"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "我们来逐个分析，以今天成交量是放量了，放量只存在于两种情况，一种是继续放量，连续上涨，另主就是要先回调"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

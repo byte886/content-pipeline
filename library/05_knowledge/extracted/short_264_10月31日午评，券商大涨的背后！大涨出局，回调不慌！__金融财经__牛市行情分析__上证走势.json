@@ -1,0 +1,36 @@
+{
+  "video_id": "short_264_10月31日午评，券商大涨的背后！大涨出局，回调不慌！__金融财经__牛市行情分析__上证走势",
+  "title": "short_264_10月31日午评，券商大涨的背后！大涨出局，回调不慌！__金融财经__牛市行情分析__上证走势",
+  "extracted_at": "2026-09-16T05:26:55.262547",
+  "transcript_length": 449,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 6,
+    "bearish_signals": 2,
+    "summary": "今天券商突然上涨，券商这种上涨一般有两种情况，一种是它连续上涨，带动指数也往上冲一波"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "今天券商突然上涨，券商这种上涨一般有两种情况，一种是它连续上涨，带动指数也往上冲一波"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能"
+  ]
+}

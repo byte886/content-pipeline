@@ -1,0 +1,33 @@
+{
+  "video_id": "short_055_A股支撑已到！_财经_行情_股票_股民",
+  "title": "short_055_A股支撑已到！_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.260307",
+  "transcript_length": 388,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "高",
+    "bullish_signals": 0,
+    "bearish_signals": 1,
+    "summary": "因为1月月线放量太大，新开户数量暴涨，散户进场太多，所以这个位置很可能先横盘震荡或反"
+  },
+  "technical_levels": {
+    "support": [
+      "3900"
+    ],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

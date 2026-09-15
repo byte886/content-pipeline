@@ -1,0 +1,50 @@
+{
+  "video_id": "short_022_科技进场只看两点，老登存在底部潜在条件_财经_行情_股票_股民",
+  "title": "short_022_科技进场只看两点，老登存在底部潜在条件_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.133177",
+  "transcript_length": 368,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "高",
+    "bullish_signals": 0,
+    "bearish_signals": 2,
+    "summary": "低估值老头满挂是具备底部条件的"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "医药",
+      "context": "医药恒科是大支撑，而且今天的农业养殖甚至房地产量价关系都正常"
+    },
+    {
+      "name": "地产",
+      "context": "医药恒科是大支撑，而且今天的农业养殖甚至房地产量价关系都正常"
+    },
+    {
+      "name": "房地产",
+      "context": "医药恒科是大支撑，而且今天的农业养殖甚至房地产量价关系都正常"
+    },
+    {
+      "name": "农业",
+      "context": "医药恒科是大支撑，而且今天的农业养殖甚至房地产量价关系都正常"
+    },
+    {
+      "name": "养殖",
+      "context": "医药恒科是大支撑，而且今天的农业养殖甚至房地产量价关系都正常"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "至于要不要做科技，我觉得还是思考两个问题"
+  ],
+  "tags": [
+    "技术分析"
+  ]
+}

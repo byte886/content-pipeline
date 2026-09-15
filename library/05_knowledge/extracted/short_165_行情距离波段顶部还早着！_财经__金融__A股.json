@@ -1,0 +1,35 @@
+{
+  "video_id": "short_165_行情距离波段顶部还早着！_财经__金融__A股",
+  "title": "short_165_行情距离波段顶部还早着！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.292373",
+  "transcript_length": 480,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 3,
+    "bearish_signals": 2,
+    "summary": "今天还是指数震荡板块轮动上涨，只要不是拿着业绩爆雷的小盘股，总有轮到你的那一天"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "继续持股以不变应万变，不要轻易叫出筹码"
+  },
+  "key_quotes": [
+    "继续持股以不变应万变，不要轻易叫出筹码"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

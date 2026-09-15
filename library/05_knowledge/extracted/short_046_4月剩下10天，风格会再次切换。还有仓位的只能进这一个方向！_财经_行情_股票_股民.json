@@ -1,0 +1,43 @@
+{
+  "video_id": "short_046_4月剩下10天，风格会再次切换。还有仓位的只能进这一个方向！_财经_行情_股票_股民",
+  "title": "short_046_4月剩下10天，风格会再次切换。还有仓位的只能进这一个方向！_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.167110",
+  "transcript_length": 452,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 6,
+    "bearish_signals": 9,
+    "summary": "4月剩下的10天会出现风格再次切换，创业板、科创板、中证1000等回调震荡，红利相关的防御型板块在反弹"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": [
+      "4080"
+    ]
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "煤炭银行上涨科技相关回调，但我判断本周甚至下周还会延续"
+    },
+    {
+      "name": "煤炭",
+      "context": "煤炭银行上涨科技相关回调，但我判断本周甚至下周还会延续"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

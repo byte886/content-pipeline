@@ -1,0 +1,37 @@
+{
+  "video_id": "short_236_美股大跌带崩A股，短线反弹不改下跌趋势！_财经__金融__A股",
+  "title": "short_236_美股大跌带崩A股，短线反弹不改下跌趋势！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.115921",
+  "transcript_length": 956,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 12,
+    "bearish_signals": 5,
+    "summary": "我们一直提示美股随时会出现像今天这种大跌，现在终于出现A股上这个位置中线顶部趋域仍然不变，但短线利空消息兑现可能会出现反弹，来一起看看盘面"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "啊，正微型颈线，而且昨天它是缩量，包括券商一些板块都跟上证指数走势差不多"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "video_id": "short_099_提前分析，事后验证，10月9日直播。_财经__金融__A股",
+  "title": "short_099_提前分析，事后验证，10月9日直播。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.264856",
+  "transcript_length": 445,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "高",
+    "bullish_signals": 0,
+    "bearish_signals": 1,
+    "summary": "科技这个位置我明确的跟你说啊，科技这个位置是最高点，科创50就最高点，有可能不会见大顶，但是它起码会出现像9月1号那样的创业板那种大回调"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "就是他要出单日大阴线，信不信各位技术面这个位置非常确定科创五0半导体之类的科技什么的，马上要出大阴线"
+    },
+    {
+      "name": "银行",
+      "context": "科技如果跌的话，就红利涨啊，科技和银行红利的都是反着来的"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "调整"
+  ]
+}

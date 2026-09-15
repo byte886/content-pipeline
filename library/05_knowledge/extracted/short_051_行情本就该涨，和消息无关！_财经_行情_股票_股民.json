@@ -1,0 +1,30 @@
+{
+  "video_id": "short_051_行情本就该涨，和消息无关！_财经_行情_股票_股民",
+  "title": "short_051_行情本就该涨，和消息无关！_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.147906",
+  "transcript_length": 423,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 2,
+    "bearish_signals": 1,
+    "summary": "如果是真实消息导致的上涨，反而不会持续"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "板块轮动"
+  ]
+}

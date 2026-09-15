@@ -1,0 +1,36 @@
+{
+  "video_id": "short_194_小盘继续大涨？银行红利需要耐心。_财经__金融__A股",
+  "title": "short_194_小盘继续大涨？银行红利需要耐心。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.198542",
+  "transcript_length": 382,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 1,
+    "bearish_signals": 2,
+    "summary": "指数继续震荡，也是预期之中"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "如果想赚快钱的，第二天就见红的，就不要看银行红利了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "如果想赚快钱的，第二天就见红的，就不要看银行红利了"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "video_id": "short_200_突然缩量，又要变盘了！_财经__金融__A股",
+  "title": "short_200_突然缩量，又要变盘了！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.243283",
+  "transcript_length": 365,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 4,
+    "bearish_signals": 1,
+    "summary": "突然缩量突破前的信号，但是向哪个方向突破呢"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "后面要么就不做，要做还是建议往银行、基建等大盘房型板块靠"
+    },
+    {
+      "name": "基建",
+      "context": "后面要么就不做，要做还是建议往银行、基建等大盘房型板块靠"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "video_id": "short_305_11月25日A股周评，银行基建短线别追，保险光伏半导体有机会_技术分析_大盘",
+  "title": "short_305_11月25日A股周评，银行基建短线别追，保险光伏半导体有机会_技术分析_大盘",
+  "extracted_at": "2026-09-16T05:26:55.173706",
+  "transcript_length": 589,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 1,
+    "bearish_signals": 2,
+    "summary": "今年又是低无值大涨，小盘股下跌，行情会持续吗"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "其他的光伏半导体今天是下跌的"
+    },
+    {
+      "name": "半导体",
+      "context": "其他的光伏半导体今天是下跌的"
+    },
+    {
+      "name": "券商",
+      "context": "短线看保险最近的量最稳，券商也还可以"
+    },
+    {
+      "name": "银行",
+      "context": "昨天也都分析了，像银行地产这种缩量整理，就是进场信号"
+    },
+    {
+      "name": "保险",
+      "context": "短线看保险最近的量最稳，券商也还可以"
+    },
+    {
+      "name": "地产",
+      "context": "昨天也都分析了，像银行地产这种缩量整理，就是进场信号"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "拿一部分仓位做高抛低吸就可以了"
+  },
+  "key_quotes": [
+    "布局顶底，一定要记住，成交量是越小越好，放量"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动",
+    "操作策略"
+  ]
+}

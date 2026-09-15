@@ -1,0 +1,45 @@
+{
+  "video_id": "short_287_恒生指数回调的时间空间都不会短_恒生指数_技术分析",
+  "title": "short_287_恒生指数回调的时间空间都不会短_恒生指数_技术分析",
+  "extracted_at": "2026-09-16T05:26:55.168067",
+  "transcript_length": 1015,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 11,
+    "bearish_signals": 8,
+    "summary": "A股再跌1%到1.5%会到一个支撑，而恒生指数这个大阻力调整的时间和空间都不会小"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "地产",
+      "context": "现在散户关注度比较高的房地产"
+    },
+    {
+      "name": "房地产",
+      "context": "现在散户关注度比较高的房地产"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "仓位80%",
+    "action": ""
+  },
+  "key_quotes": [
+    "短期内如果回调的话，不要去轻易抄底"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

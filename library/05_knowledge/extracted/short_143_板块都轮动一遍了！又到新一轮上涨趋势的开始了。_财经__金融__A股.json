@@ -1,0 +1,39 @@
+{
+  "video_id": "short_143_板块都轮动一遍了！又到新一轮上涨趋势的开始了。_财经__金融__A股",
+  "title": "short_143_板块都轮动一遍了！又到新一轮上涨趋势的开始了。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.251295",
+  "transcript_length": 361,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 5,
+    "bearish_signals": 5,
+    "summary": "今天又轮到光伏白酒红利相关的上涨，这都是前段时间没涨的，也是最后没涨的一批了"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "今天又轮到光伏白酒红利相关的上涨，这都是前段时间没涨的，也是最后没涨的一批了"
+    },
+    {
+      "name": "白酒",
+      "context": "今天又轮到光伏白酒红利相关的上涨，这都是前段时间没涨的，也是最后没涨的一批了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "第二，如果你非要做个人建议，现阶段是以高抛低吸为主，把一些短期涨得多的放量的出掉，布局一些低位缩量的耐心等风来"
+  },
+  "key_quotes": [],
+  "tags": [
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

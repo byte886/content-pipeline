@@ -1,0 +1,31 @@
+{
+  "video_id": "short_049_A股波段上涨只是开始，但短线马上到阻力，你现在追涨又要被套_财经_行情_股票_股民",
+  "title": "short_049_A股波段上涨只是开始，但短线马上到阻力，你现在追涨又要被套_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.139515",
+  "transcript_length": 959,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 3,
+    "bearish_signals": 2,
+    "summary": "A股的上涨和消息无关，行情缩量到16000亿地量就具备大涨的条件"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "video_id": "short_179_美股暴跌，冷静分析如何应对_A股_美股",
+  "title": "short_179_美股暴跌，冷静分析如何应对_A股_美股",
+  "extracted_at": "2026-09-16T05:26:55.109795",
+  "transcript_length": 599,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 5,
+    "bearish_signals": 7,
+    "summary": "其次技术面看，上证指数月线超强只剩3000点附近沪深300月线强只剩3500点，下跌的极限空间也就10%左右"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "最后我们本来是只持有银行一直空仓等下跌的，但是3月14号假突破，上证指数形成小WD底部形态，再加上高位没放量，所以判断可能从WD颈线反弹，放量之后出双顶再跌，但行情没反弹，直接下跌，给大家说声抱歉"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "这个要不要调仓换股到大盘价值股里自己把握"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能"
+  ]
+}

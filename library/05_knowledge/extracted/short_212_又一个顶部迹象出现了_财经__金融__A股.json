@@ -1,0 +1,30 @@
+{
+  "video_id": "short_212_又一个顶部迹象出现了_财经__金融__A股",
+  "title": "short_212_又一个顶部迹象出现了_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.196371",
+  "transcript_length": 362,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 2,
+    "bearish_signals": 4,
+    "summary": "如果大盘上涨，贵金属板块跟着上涨，那非常正常"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "板块轮动"
+  ]
+}

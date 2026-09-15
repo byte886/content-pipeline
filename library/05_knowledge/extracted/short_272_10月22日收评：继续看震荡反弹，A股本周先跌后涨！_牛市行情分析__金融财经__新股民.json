@@ -1,0 +1,35 @@
+{
+  "video_id": "short_272_10月22日收评：继续看震荡反弹，A股本周先跌后涨！_牛市行情分析__金融财经__新股民",
+  "title": "short_272_10月22日收评：继续看震荡反弹，A股本周先跌后涨！_牛市行情分析__金融财经__新股民",
+  "extracted_at": "2026-09-16T05:26:55.152722",
+  "transcript_length": 294,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 3,
+    "bearish_signals": 2,
+    "summary": "如果后两天没有连续大涨，就要回调震荡了"
+  },
+  "technical_levels": {
+    "support": [
+      "3220"
+    ],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "最近其实只要记住一点，就是买阴不买阳，卖阳不卖阴，就能超过绝大多数股民"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能"
+  ]
+}

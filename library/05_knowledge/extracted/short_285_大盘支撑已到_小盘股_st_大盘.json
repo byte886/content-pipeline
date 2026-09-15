@@ -1,0 +1,28 @@
+{
+  "video_id": "short_285_大盘支撑已到_小盘股_st_大盘",
+  "title": "short_285_大盘支撑已到_小盘股_st_大盘",
+  "extracted_at": "2026-09-16T05:26:55.195997",
+  "transcript_length": 215,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 0,
+    "bearish_signals": 0,
+    "summary": "进行大盘道支撑了是吧"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "技术分析"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "short_172_每天看盘，不如躺着盈利。_财经__金融_A股",
+  "title": "short_172_每天看盘，不如躺着盈利。_财经__金融_A股",
+  "extracted_at": "2026-09-16T05:26:55.200709",
+  "transcript_length": 398,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 4,
+    "bearish_signals": 0,
+    "summary": "大盘又是缩量十字星，其实短线不用太多关注一个上涨波段不是天天都在涨"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "第二，4月大盘股银行红利表现都比指数强，配置的是大盘股或大盘指数也不用担心，银行今天也是继续上涨"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "而我们分析上周低点3040是具备中长线底部条件的，所以持股不动是最佳选择"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "量能",
+    "操作策略"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "video_id": "short_080_回调下跌计划之内，对大盘未来两种走势做相应应对即可。_财经__金融__A股",
+  "title": "short_080_回调下跌计划之内，对大盘未来两种走势做相应应对即可。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.285630",
+  "transcript_length": 489,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 4,
+    "bearish_signals": 2,
+    "summary": "之前我们分析过，大盘接下来只有两种走势，第一种是持续震荡等缩量之后再涨"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "消费",
+      "context": "今天消费就很强势，所以并不用一跌就恐慌"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "大盘杀出了重阴线，不要慌，现在仍然是对未来会出现的两种情况，分别做两手准备就可以了"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "市场情绪"
+  ]
+}

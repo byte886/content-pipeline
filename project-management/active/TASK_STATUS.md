@@ -33,10 +33,10 @@
 | T-02 | 视频号直播回放采集 | feature | 无 | **done** | 23个直播回放，`data/videos/直播回放/` |
 | T-03 | 公众号文章采集 | feature | 无 | **done** | 277篇文章，`knowledge-base/02-公众号文章/` |
 | T-04 | 短视频转文字 | feature | T-01 | **done** | 313个转写稿，`data/transcripts/短视频/` |
-| T-05 | 直播回放转文字 | feature | T-02 | **todo** | 23个转写稿，`data/transcripts/直播回放/`（每个1-3小时，转写时间更长） |
+| T-05 | 直播回放转文字 | feature | T-02 | **doing** | 23个转写稿，`library/04_transcript/wechat_channels/直播回放/`（后台运行，PID见workspace/logs） |
 | T-06 | 公众号图片OCR | feature | T-03 | **done** | 910张图片OCR，更新236篇文章 |
 | T-07 | 知识提取工具开发 | feature | T-04/T-06 | **done** | `processing/knowledge_extraction/tools/extract_knowledge.py` |
-| T-08 | 知识提取批量运行 | feature | T-07 | **todo** | 313个短视频 + 277篇文章的知识提取 |
+| T-08 | 知识提取批量运行 | feature | T-07 | **done** | 313个短视频知识提取完成，`library/05_knowledge/extracted/`（看涨145/看跌50/震荡118） |
 | T-09 | 高质量URL研究 | research | 无 | **done** | xWT111比默认大69%，`docs/高质量URL研究.md` |
 | T-10 | 视频号API研究（方案B） | research | 无 | **todo** | 证书路径已修复，可重新测试 |
 | T-11 | 项目治理与文档架构 | refactor | 无 | **done** | DOCUMENTATION_MAP、DIRECTORY_STRUCTURE、ADR、工程记忆、WORKFLOW、REQUIREMENTS |
@@ -74,15 +74,16 @@
 
 ## 下一步（按优先级）
 
-> **评审改进6个批次（T-24~T-29）已全部完成，现在推进架构重构阶段2~4（T-19~T-21、T-23）**
+> **2026-09-16 更新：直播回放转写后台运行中，知识提取已完成，推进方法提炼和架构完善**
 
-1. **架构重构阶段2：数据迁移**（T-19，data/videos→library/01_video，data/transcripts→library/04_transcript，knowledge-base→library/05_knowledge）
-2. **GitHub仓库改名**（T-23，stock-knowledge-base→multiplatform-content-pipeline，可手动在网页操作）
-3. **架构重构阶段3：接入B站采集**（T-20，复用珠宝项目bili_list.py等脚本）
-4. **架构重构阶段4：接入抖音/YouTube**（T-21，复用multiplatform-media-fetch）
-5. **直播回放转写**（T-05，23个，可后台运行）
-6. **知识提取批量运行**（T-08）
-7. **方法提炼LLM深度分析**（T-22）
+1. **直播回放转写**（T-05，23个，后台运行中，预计5小时）
+2. **方法提炼LLM深度分析**（T-22，需用户指定目标博主）
+3. **架构完善：PlatformFetcher接口实现**（微信两个平台继承base.py）
+4. **架构完善：处理链打通**（core/pipeline.py采集→转写→OCR→知识提取）
+5. **增量采集机制完善**（core/watermark.py接入采集流程）
+6. **GitHub仓库改名**（T-23，需用户手动在网页操作）
+7. **百度网盘同步**（T-16）
+8. **书籍精华提取**（T-17）
 
 ---
 
@@ -104,4 +105,4 @@
 
 ---
 
-*最后更新：2026-09-15*
+*最后更新：2026-09-16*

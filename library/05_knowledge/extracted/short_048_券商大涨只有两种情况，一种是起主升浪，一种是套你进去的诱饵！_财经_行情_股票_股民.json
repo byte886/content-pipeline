@@ -1,0 +1,36 @@
+{
+  "video_id": "short_048_券商大涨只有两种情况，一种是起主升浪，一种是套你进去的诱饵！_财经_行情_股票_股民",
+  "title": "short_048_券商大涨只有两种情况，一种是起主升浪，一种是套你进去的诱饵！_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.222680",
+  "transcript_length": 932,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 6,
+    "bearish_signals": 5,
+    "summary": "这个位置呢回调震荡，要么呢可能再往上冲一下，从这个位置再回调震荡，也就这两个区间了"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "复盘历史，券商大涨一般只有两种情况，一种是行情要起主升浪了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

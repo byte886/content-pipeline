@@ -1,0 +1,30 @@
+{
+  "video_id": "short_309_A股处于什么位置？半个月之内会怎么走？_技术分析",
+  "title": "short_309_A股处于什么位置？半个月之内会怎么走？_技术分析",
+  "extracted_at": "2026-09-16T05:26:55.174307",
+  "transcript_length": 600,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 6,
+    "bearish_signals": 2,
+    "summary": "一时间空间，最近20年，A股一共走了5轮牛熊转换，每次下跌的时间平均12个月，跌幅平均38%"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "市场情绪"
+  ]
+}

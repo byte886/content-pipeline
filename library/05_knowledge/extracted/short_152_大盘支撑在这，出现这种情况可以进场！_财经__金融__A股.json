@@ -1,0 +1,35 @@
+{
+  "video_id": "short_152_大盘支撑在这，出现这种情况可以进场！_财经__金融__A股",
+  "title": "short_152_大盘支撑在这，出现这种情况可以进场！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.150053",
+  "transcript_length": 870,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "高",
+    "bullish_signals": 3,
+    "bearish_signals": 18,
+    "summary": "大盘今天出现了回调，它是从这个位置出现的下跌，这个点呢是具备出大回调的可能的"
+  },
+  "technical_levels": {
+    "support": [
+      "3300",
+      "3310"
+    ],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "仓位进上了，甚至可以考虑满仓",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "操作策略"
+  ]
+}

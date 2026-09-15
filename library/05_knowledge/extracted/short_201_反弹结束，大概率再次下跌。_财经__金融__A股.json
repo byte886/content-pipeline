@@ -1,0 +1,33 @@
+{
+  "video_id": "short_201_反弹结束，大概率再次下跌。_财经__金融__A股",
+  "title": "short_201_反弹结束，大概率再次下跌。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.208039",
+  "transcript_length": 420,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 2,
+    "bearish_signals": 4,
+    "summary": "A股技术面已经破位，不要对反包有太高期望"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "A股技术面已经破位，不要对反包有太高期望"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能"
+  ]
+}

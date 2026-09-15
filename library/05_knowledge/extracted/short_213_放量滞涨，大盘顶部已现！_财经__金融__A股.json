@@ -1,0 +1,31 @@
+{
+  "video_id": "short_213_放量滞涨，大盘顶部已现！_财经__金融__A股",
+  "title": "short_213_放量滞涨，大盘顶部已现！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.271816",
+  "transcript_length": 387,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 4,
+    "bearish_signals": 2,
+    "summary": "年前看涨的时候说过，有几个顶部迹象，只要出现其中之一就表明这波反弹结束了"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

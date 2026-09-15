@@ -1,0 +1,35 @@
+{
+  "video_id": "short_008_消息导致的下跌，往往不是真跌_财经_大盘分析_股票_证券",
+  "title": "short_008_消息导致的下跌，往往不是真跌_财经_大盘分析_股票_证券",
+  "extracted_at": "2026-09-16T05:26:55.169952",
+  "transcript_length": 308,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "高",
+    "bullish_signals": 0,
+    "bearish_signals": 3,
+    "summary": "今年科技大跌带领指数下跌，但第一，前天的高点并不算强阻力，只是阻力区域"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "第三，情绪也不亢奋，顶部条件都不太满足，只有一个因素就是昨天美债利率飙升的消息被各大媒体报道，沸城半导体指数大跌"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "调整",
+    "量能",
+    "板块轮动",
+    "市场情绪"
+  ]
+}

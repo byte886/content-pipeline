@@ -1,0 +1,33 @@
+{
+  "video_id": "short_069_放量滞涨，大盘即将走回调段。_财经__金融__A股",
+  "title": "short_069_放量滞涨，大盘即将走回调段。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.188708",
+  "transcript_length": 310,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 2,
+    "bearish_signals": 2,
+    "summary": "A股放巨量震荡要开启回调段了，放量要连续上涨才能持续"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "个人建议不要在乎日内走势，不管这短线再怎么折腾，就算后两天还能报上去，也别轻易追涨"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "操作策略"
+  ]
+}

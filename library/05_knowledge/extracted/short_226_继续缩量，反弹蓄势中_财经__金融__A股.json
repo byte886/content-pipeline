@@ -1,0 +1,31 @@
+{
+  "video_id": "short_226_继续缩量，反弹蓄势中_财经__金融__A股",
+  "title": "short_226_继续缩量，反弹蓄势中_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.125576",
+  "transcript_length": 390,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 5,
+    "bearish_signals": 1,
+    "summary": "大盘再次缩量，反弹前的征兆了，现在大盘短线超跌，随时会出现反弹"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "技术分析",
+    "量能",
+    "市场情绪"
+  ]
+}

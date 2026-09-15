@@ -1,0 +1,31 @@
+{
+  "video_id": "short_203_低开高走？强弩之末_财经_金融__A股",
+  "title": "short_203_低开高走？强弩之末_财经_金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.155527",
+  "transcript_length": 436,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 6,
+    "bearish_signals": 2,
+    "summary": "时间上前面发过统计，2月份大盘上涨概率很高"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能"
+  ]
+}

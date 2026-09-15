@@ -1,0 +1,29 @@
+{
+  "video_id": "short_210_先震荡再下跌，不用一惊一乍。_财经_金融_A股",
+  "title": "short_210_先震荡再下跌，不用一惊一乍。_财经_金融_A股",
+  "extracted_at": "2026-09-16T05:26:55.283618",
+  "transcript_length": 404,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 4,
+    "bearish_signals": 5,
+    "summary": "先震荡再下跌，单根K线不必过分解读"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整"
+  ]
+}

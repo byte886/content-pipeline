@@ -1,0 +1,60 @@
+{
+  "video_id": "short_192_A股放量大涨，板块轮动需要水平！_财经__金融__A股",
+  "title": "short_192_A股放量大涨，板块轮动需要水平！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.118327",
+  "transcript_length": 357,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 4,
+    "bearish_signals": 1,
+    "summary": "而这个均值回归现在还不到位，所以仍然建议继续布局低位大盘板块，但是低位板块也会轮动上涨，量放的太大的就要回一下"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "光伏、物流、环保、水泥等等"
+    },
+    {
+      "name": "券商",
+      "context": "比如昨天大涨的煤炭电力今天回调，券商白水、旅游等接力上涨"
+    },
+    {
+      "name": "地产",
+      "context": "A股放量大涨，继续高低切换，涨的是金融地产、白水等大牌白马股"
+    },
+    {
+      "name": "煤炭",
+      "context": "比如昨天大涨的煤炭电力今天回调，券商白水、旅游等接力上涨"
+    },
+    {
+      "name": "旅游",
+      "context": "比如昨天大涨的煤炭电力今天回调，券商白水、旅游等接力上涨"
+    },
+    {
+      "name": "电力",
+      "context": "比如昨天大涨的煤炭电力今天回调，券商白水、旅游等接力上涨"
+    },
+    {
+      "name": "环保",
+      "context": "光伏、物流、环保、水泥等等"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

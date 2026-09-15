@@ -1,0 +1,39 @@
+{
+  "video_id": "short_097_科技方向反弹后大概率继续下跌__财经__金融__A股",
+  "title": "short_097_科技方向反弹后大概率继续下跌__财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.131540",
+  "transcript_length": 929,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 10,
+    "bearish_signals": 3,
+    "summary": "周末又处理好，但高开只能按反弹看，或最多是震荡，尤其是科技方向直接拉起来概率非常低"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "而且像半导体啊和里面的龙头，大家也可以去看一下，都是这是支撑，这儿呢是强阻力"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "向上突破的话，必须是下方缩量"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "video_id": "short_111_这次下跌跟之前不同！大阴线不要轻易进场。_财经__金融__A股",
+  "title": "short_111_这次下跌跟之前不同！大阴线不要轻易进场。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.289693",
+  "transcript_length": 729,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 5,
+    "bearish_signals": 3,
+    "summary": "第一，第一次出现大阴线之后，一般都会先给反弹，就是刚才说的一些场外空仓资金等回调之后刚开始进场，没来得及出的不用太着急"
+  },
+  "technical_levels": {
+    "support": [
+      "3600"
+    ],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "消费",
+      "context": "在上周白酒消费补涨"
+    },
+    {
+      "name": "白酒",
+      "context": "在上周白酒消费补涨"
+    },
+    {
+      "name": "券商",
+      "context": "而这次斜率明显加速，上次券商没有大涨，而这次券商大涨，券商大涨就是顶部迹象之一，上次大盘回调正好到颈线，而这次上证指数"
+    },
+    {
+      "name": "农业",
+      "context": "昨天，农业养殖也补涨完毕之后，所有主线板块已经全轮了一遍，指数终于见顶，个人观点仅供参考"
+    },
+    {
+      "name": "养殖",
+      "context": "昨天，农业养殖也补涨完毕之后，所有主线板块已经全轮了一遍，指数终于见顶，个人观点仅供参考"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

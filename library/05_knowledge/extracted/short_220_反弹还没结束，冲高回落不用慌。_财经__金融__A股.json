@@ -1,0 +1,29 @@
+{
+  "video_id": "short_220_反弹还没结束，冲高回落不用慌。_财经__金融__A股",
+  "title": "short_220_反弹还没结束，冲高回落不用慌。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.234783",
+  "transcript_length": 341,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 5,
+    "bearish_signals": 3,
+    "summary": "反弹还没结束，冲高回落不用慌，今天上午大盘一开盘就拉升，后面慢慢回落，这种走势除非是高位，否则大多数都不用担心"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整"
+  ]
+}

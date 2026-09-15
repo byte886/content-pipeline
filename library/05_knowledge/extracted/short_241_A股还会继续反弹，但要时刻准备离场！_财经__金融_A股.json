@@ -1,0 +1,29 @@
+{
+  "video_id": "short_241_A股还会继续反弹，但要时刻准备离场！_财经__金融_A股",
+  "title": "short_241_A股还会继续反弹，但要时刻准备离场！_财经__金融_A股",
+  "extracted_at": "2026-09-16T05:26:55.124351",
+  "transcript_length": 349,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 4,
+    "bearish_signals": 1,
+    "summary": "大盘短线还有上涨空间，甚至不排除反包前天假阴线，但因为中线顶部区域，所以不管短线再怎么涨，都看成是反弹"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "video_id": "short_263_11月1日午评，接下来该轮到银行、保险、红利等权重股表现了！__牛市行情分析__金融财经__投资理财",
+  "title": "short_263_11月1日午评，接下来该轮到银行、保险、红利等权重股表现了！__牛市行情分析__金融财经__投资理财",
+  "extracted_at": "2026-09-16T05:26:55.135420",
+  "transcript_length": 436,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 3,
+    "bearish_signals": 1,
+    "summary": "还有一种情况就是在高点下方来回震荡，倒一下就跌下来，倒一下就跌下来"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "接下来该轮到银行保险、煤贷红利等全重国的表现了"
+    },
+    {
+      "name": "保险",
+      "context": "接下来该轮到银行保险、煤贷红利等全重国的表现了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "如果快速冲破就必须放比10月8号更大的量，就以现在的情况再放天量很困难"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

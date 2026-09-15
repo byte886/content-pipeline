@@ -1,0 +1,41 @@
+{
+  "video_id": "short_037_大盘和科技见顶了吗？还是数据说话！_财经_行情_股票_股民",
+  "title": "short_037_大盘和科技见顶了吗？还是数据说话！_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.148371",
+  "transcript_length": 460,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 2,
+    "bearish_signals": 0,
+    "summary": "首先，上证指数4110点是下方小波段正背型颈线，上周连续出中阴线达到支撑，起码会显出反弹"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": [
+      "4400"
+    ]
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "同时，半导体板块吸收率也达到极时，说明散户现在都集中在科技上"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "操作上个人建议只能减仓，不能"
+  },
+  "key_quotes": [
+    "要模糊的正确，不要精确的错误"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "市场情绪"
+  ]
+}

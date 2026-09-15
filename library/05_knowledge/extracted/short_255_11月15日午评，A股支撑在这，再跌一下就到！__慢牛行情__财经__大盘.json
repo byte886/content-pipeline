@@ -1,0 +1,40 @@
+{
+  "video_id": "short_255_11月15日午评，A股支撑在这，再跌一下就到！__慢牛行情__财经__大盘",
+  "title": "short_255_11月15日午评，A股支撑在这，再跌一下就到！__慢牛行情__财经__大盘",
+  "extracted_at": "2026-09-16T05:26:55.170722",
+  "transcript_length": 978,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 24,
+    "bearish_signals": 13,
+    "summary": "A股继续下跌，但不用慌，再跌一下，支撑马上就到了"
+  },
+  "technical_levels": {
+    "support": [
+      "2235"
+    ],
+    "resistance": [
+      "3700"
+    ]
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "今天A股又是全面回调，银行红利等大盘股企稳"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "操作策略"
+  ]
+}

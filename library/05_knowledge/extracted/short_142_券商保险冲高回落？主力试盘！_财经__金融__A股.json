@@ -1,0 +1,40 @@
+{
+  "video_id": "short_142_券商保险冲高回落？主力试盘！_财经__金融__A股",
+  "title": "short_142_券商保险冲高回落？主力试盘！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.110494",
+  "transcript_length": 509,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 4,
+    "bearish_signals": 1,
+    "summary": "第二继续震荡，以时间换空间，也是为了洗出前期获利盘"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "不过现在不管是券商保险，多元金融还是TMT方向"
+    },
+    {
+      "name": "保险",
+      "context": "不过现在不管是券商保险，多元金融还是TMT方向"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

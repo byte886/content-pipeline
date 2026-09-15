@@ -1,0 +1,32 @@
+{
+  "video_id": "short_310_美股大跌，是给A股挖黄金坑的机会。_大盘",
+  "title": "short_310_美股大跌，是给A股挖黄金坑的机会。_大盘",
+  "extracted_at": "2026-09-16T05:26:55.283041",
+  "transcript_length": 766,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 4,
+    "bearish_signals": 3,
+    "summary": "首先上证指数这个位置呢是一个高点不破高，低点不破低的收敛三角形震荡，短线是无法判断方向的"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "video_id": "short_225_反弹未必失败，涨跌两手准备。_财经_金融_A股",
+  "title": "short_225_反弹未必失败，涨跌两手准备。_财经_金融_A股",
+  "extracted_at": "2026-09-16T05:26:55.219043",
+  "transcript_length": 388,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 10,
+    "bearish_signals": 5,
+    "summary": "大盘反弹之后，今天又再次下跌，给人一种反弹失败，要继续透下去的感觉"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "video_id": "short_278_10月10日午评，A股如期反弹，但只是反弹！_牛市行情分析__金融财经__炒股",
+  "title": "short_278_10月10日午评，A股如期反弹，但只是反弹！_牛市行情分析__金融财经__炒股",
+  "extracted_at": "2026-09-16T05:26:55.220625",
+  "transcript_length": 446,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 3,
+    "bearish_signals": 0,
+    "summary": "A股如期反弹，节前的计划就是节后开盘减仓，等出第一根大阴线的时候进查"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "第二，今天涨得多的是银行红利等防御型板块，就是主力把涨得多的票出货之后切换过来的"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "主要就是解套卖出的散户和节假日新开户的散户，他们进场会让行情再反弹两天，但很难冲破高点，综上所述"
+  },
+  "key_quotes": [
+    "月份大概率就是剧烈震荡，切记是买阴不买阳，只做短线"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "板块轮动",
+    "操作策略"
+  ]
+}

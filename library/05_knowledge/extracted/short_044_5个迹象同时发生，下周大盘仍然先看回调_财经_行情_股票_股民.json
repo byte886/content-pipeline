@@ -1,0 +1,50 @@
+{
+  "video_id": "short_044_5个迹象同时发生，下周大盘仍然先看回调_财经_行情_股票_股民",
+  "title": "short_044_5个迹象同时发生，下周大盘仍然先看回调_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.247115",
+  "transcript_length": 415,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "高",
+    "bullish_signals": 4,
+    "bearish_signals": 9,
+    "summary": "四个迹象显示，下周大盘仍然先看回调整理，一方面，创业板通信光模块已经加速"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "如果你只想做双创高弹性方向的，也可以把吸引目光太多的创业板通信光模块调到相对冷静一些的科创板新片半导体里，并不是说建议进科创，只是在这两个之间做选择，以当下的位置看科创板更好一点"
+    },
+    {
+      "name": "银行",
+      "context": "同时煤炭银行"
+    },
+    {
+      "name": "煤炭",
+      "context": "同时煤炭银行"
+    },
+    {
+      "name": "通信",
+      "context": "四个迹象显示，下周大盘仍然先看回调整理，一方面，创业板通信光模块已经加速"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "下一次回调之后，把握低点，再抓住主线，这个市场永远不缺机会"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

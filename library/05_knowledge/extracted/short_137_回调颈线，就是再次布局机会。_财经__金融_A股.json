@@ -1,0 +1,45 @@
+{
+  "video_id": "short_137_回调颈线，就是再次布局机会。_财经__金融_A股",
+  "title": "short_137_回调颈线，就是再次布局机会。_财经__金融_A股",
+  "extracted_at": "2026-09-16T05:26:55.190132",
+  "transcript_length": 475,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 5,
+    "bearish_signals": 5,
+    "summary": "A股放量下跌，但种种迹象表明，上周五的高点并不是顶部，只要判断不是以顶部的位置出现下跌，都不用担心"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "今天跌幅大的像地产光伏、银行多元金融等等，也都是上周涨得多的，放量大的，正常的上涨都是涨一段冲一下，放个量"
+    },
+    {
+      "name": "银行",
+      "context": "今天跌幅大的像地产光伏、银行多元金融等等，也都是上周涨得多的，放量大的，正常的上涨都是涨一段冲一下，放个量"
+    },
+    {
+      "name": "地产",
+      "context": "今天跌幅大的像地产光伏、银行多元金融等等，也都是上周涨得多的，放量大的，正常的上涨都是涨一段冲一下，放个量"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

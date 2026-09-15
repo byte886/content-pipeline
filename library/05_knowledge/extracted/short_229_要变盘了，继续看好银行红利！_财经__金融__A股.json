@@ -1,0 +1,36 @@
+{
+  "video_id": "short_229_要变盘了，继续看好银行红利！_财经__金融__A股",
+  "title": "short_229_要变盘了，继续看好银行红利！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.144228",
+  "transcript_length": 403,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 3,
+    "bearish_signals": 2,
+    "summary": "原因以下几点，第一，A股30多年历史统计，每个月的月末的那几天和月初的那几天上涨概率都比较高，而月中下跌概率比较高啊，现在正好是12月月末，这个不知道是什么原因，但确实有一个规律"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "个人判断大概率还是先上后下，但先上也是银行红利等大盘股跟小盘股没啥关系"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

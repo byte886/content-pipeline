@@ -1,0 +1,45 @@
+{
+  "video_id": "short_040_踏空科技焦虑怎么办？大盘上方阻力在这！_财经_行情_股票_大盘指数",
+  "title": "short_040_踏空科技焦虑怎么办？大盘上方阻力在这！_财经_行情_股票_大盘指数",
+  "extracted_at": "2026-09-16T05:26:55.116578",
+  "transcript_length": 489,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 0,
+    "bearish_signals": 0,
+    "summary": "踏空科技的焦虑怎么办"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": [
+      "4400",
+      "4450"
+    ]
+  },
+  "sector_opportunities": [
+    {
+      "name": "钢铁",
+      "context": "如果现在非要做板块，以我的交易系统来看，还是煤炭、石油、钢铁等资源股最稳，主要是先看下方有没有空间，并不是只看它能涨多高"
+    },
+    {
+      "name": "煤炭",
+      "context": "如果现在非要做板块，以我的交易系统来看，还是煤炭、石油、钢铁等资源股最稳，主要是先看下方有没有空间，并不是只看它能涨多高"
+    },
+    {
+      "name": "石油",
+      "context": "如果现在非要做板块，以我的交易系统来看，还是煤炭、石油、钢铁等资源股最稳，主要是先看下方有没有空间，并不是只看它能涨多高"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "第二带好1比1的止损止盈"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "技术分析",
+    "板块轮动"
+  ]
+}

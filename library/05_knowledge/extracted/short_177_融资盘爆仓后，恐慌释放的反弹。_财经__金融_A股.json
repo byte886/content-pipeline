@@ -1,0 +1,35 @@
+{
+  "video_id": "short_177_融资盘爆仓后，恐慌释放的反弹。_财经__金融_A股",
+  "title": "short_177_融资盘爆仓后，恐慌释放的反弹。_财经__金融_A股",
+  "extracted_at": "2026-09-16T05:26:55.163482",
+  "transcript_length": 416,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 4,
+    "bearish_signals": 1,
+    "summary": "再加上昨天1000多家跌停出不来，所以今天还是恐慌情绪释放的一天，这种非理性的杀跌之后肯定会有反弹，至少把多杀多的踩踏下跌修复"
+  },
+  "technical_levels": {
+    "support": [
+      "3000"
+    ],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "昨天融资余额和融资买入占比都出现了急速下滑"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "操作策略",
+    "市场情绪"
+  ]
+}

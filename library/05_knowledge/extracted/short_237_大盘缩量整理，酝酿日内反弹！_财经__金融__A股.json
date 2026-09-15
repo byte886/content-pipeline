@@ -1,0 +1,39 @@
+{
+  "video_id": "short_237_大盘缩量整理，酝酿日内反弹！_财经__金融__A股",
+  "title": "short_237_大盘缩量整理，酝酿日内反弹！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.263204",
+  "transcript_length": 401,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 6,
+    "bearish_signals": 1,
+    "summary": "A股缩量整理在酝酿日内反弹，还记得上一次是101月26号，成交量缩到13000亿，行情见底出现了一波不小的拉升啊"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": [
+      "3500"
+    ]
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "那么今天成交量也是13100，而且昨天也是跟上一次一样，中小盘大阴线，200多家跌停，恐慌情绪宣泄了一波，再加上历次大盘见顶都是券商带头冲一下，把散户吸引进来再跌"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "市场情绪"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "video_id": "short_016_下跌不用担心，回调就是进场机会_财经__行情__股票__股民",
+  "title": "short_016_下跌不用担心，回调就是进场机会_财经__行情__股票__股民",
+  "extracted_at": "2026-09-16T05:26:55.255299",
+  "transcript_length": 988,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 9,
+    "bearish_signals": 9,
+    "summary": "下跌不用过于担心，A股这是底部区域啊，回调就是进场机会，技术面拆解一目了然"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能"
+  ]
+}

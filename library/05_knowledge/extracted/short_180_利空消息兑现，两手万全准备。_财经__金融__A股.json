@@ -1,0 +1,44 @@
+{
+  "video_id": "short_180_利空消息兑现，两手万全准备。_财经__金融__A股",
+  "title": "short_180_利空消息兑现，两手万全准备。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.225289",
+  "transcript_length": 352,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 4,
+    "bearish_signals": 4,
+    "summary": "A股低开反弹后再次下跌"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "首先今天大盘股没怎么跌，上证50平盘，券商地产白水都是收红的，跌的多的是小V盘"
+    },
+    {
+      "name": "银行",
+      "context": "所以我们大仓略银行红利的撤略没有任何问题，整个4月都是这个配置，而且要规避小盘股，其次，今天是利空消息兑现，一般情况之下，顶部是利好消息打出来的，利空往往会先出现反弹"
+    },
+    {
+      "name": "地产",
+      "context": "首先今天大盘股没怎么跌，上证50平盘，券商地产白水都是收红的，跌的多的是小V盘"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "因为大多数散户被消息影响，而股市的本质是散户的对立面，所以虽然今天走势很弱，但在利空消息之后，割肉不是一个明"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整"
+  ]
+}

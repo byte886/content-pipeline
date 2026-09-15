@@ -1,0 +1,30 @@
+{
+  "video_id": "short_183_下周反弹是高概率事件！数据说话！_财经__金融__A股",
+  "title": "short_183_下周反弹是高概率事件！数据说话！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.236776",
+  "transcript_length": 488,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 6,
+    "bearish_signals": 2,
+    "summary": "A股反弹是高概率事件，数据说话，下图是中证1000，就是小盘指数"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "过年这段时间放假是白给利息，所以都持币观望"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析"
+  ]
+}

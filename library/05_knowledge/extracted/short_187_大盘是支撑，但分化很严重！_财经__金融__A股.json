@@ -1,0 +1,37 @@
+{
+  "video_id": "short_187_大盘是支撑，但分化很严重！_财经__金融__A股",
+  "title": "short_187_大盘是支撑，但分化很严重！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.142737",
+  "transcript_length": 387,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 7,
+    "bearish_signals": 3,
+    "summary": "今天行情分化很严重，银行红利上涨，小微盘大跌，再次强调，整个3到4月份仍然建议做银行红利为主"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "今天行情分化很严重，银行红利上涨，小微盘大跌，再次强调，整个3到4月份仍然建议做银行红利为主"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "市场情绪"
+  ]
+}

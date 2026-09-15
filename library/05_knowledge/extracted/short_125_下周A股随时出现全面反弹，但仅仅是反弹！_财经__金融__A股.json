@@ -1,0 +1,49 @@
+{
+  "video_id": "short_125_下周A股随时出现全面反弹，但仅仅是反弹！_财经__金融__A股",
+  "title": "short_125_下周A股随时出现全面反弹，但仅仅是反弹！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.177139",
+  "transcript_length": 544,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 7,
+    "bearish_signals": 3,
+    "summary": "下周大盘随时出现全面反弹，但要进早进"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "军工",
+      "context": "而今天继续调整的过程当中，又有军工、农业、恒生指数等更多板块也到位了"
+    },
+    {
+      "name": "有色",
+      "context": "同时，昨天到位的非银金融、有色煤炭今天也都出现缩量，这就是随时酝酿一波大反弹了"
+    },
+    {
+      "name": "煤炭",
+      "context": "同时，昨天到位的非银金融、有色煤炭今天也都出现缩量，这就是随时酝酿一波大反弹了"
+    },
+    {
+      "name": "农业",
+      "context": "而今天继续调整的过程当中，又有军工、农业、恒生指数等更多板块也到位了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "但在没有把前两周追进来的这批融资盘洗出去之前，这个区域还是要留一份小心，要做的话也是低吸不是追高"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

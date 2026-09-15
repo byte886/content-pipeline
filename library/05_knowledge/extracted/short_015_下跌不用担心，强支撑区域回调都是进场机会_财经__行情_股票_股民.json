@@ -1,0 +1,44 @@
+{
+  "video_id": "short_015_下跌不用担心，强支撑区域回调都是进场机会_财经__行情_股票_股民",
+  "title": "short_015_下跌不用担心，强支撑区域回调都是进场机会_财经__行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.252290",
+  "transcript_length": 347,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 7,
+    "bearish_signals": 6,
+    "summary": "但之前视频已经详细分析，现在A股多个底部迹象同时出现，可能不会马上拉升，或者有一个震荡助理的过程，但短期要再大跌，概率很低"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "美股沸城半导体板块上涨趋势已经结束，刚打出M头顶部形态，盘股早领先一步破位"
+    },
+    {
+      "name": "芯片",
+      "context": "A股像芯片半导体、电子通信等科技板块，前一波下跌也都跌穿了低点"
+    },
+    {
+      "name": "通信",
+      "context": "A股像芯片半导体、电子通信等科技板块，前一波下跌也都跌穿了低点"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "板块轮动"
+  ]
+}

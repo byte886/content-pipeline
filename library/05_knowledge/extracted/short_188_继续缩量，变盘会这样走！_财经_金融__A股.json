@@ -1,0 +1,45 @@
+{
+  "video_id": "short_188_继续缩量，变盘会这样走！_财经_金融__A股",
+  "title": "short_188_继续缩量，变盘会这样走！_财经_金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.205888",
+  "transcript_length": 345,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 6,
+    "bearish_signals": 2,
+    "summary": "又是个缩量十字星变盘在即，不用去猜会是往哪个方向突破"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "最近券商地产一些板块也是缩量整理，就等大盘同步到位"
+    },
+    {
+      "name": "银行",
+      "context": "今天银行红利又是回调，小盘科技又开始反弹"
+    },
+    {
+      "name": "地产",
+      "context": "最近券商地产一些板块也是缩量整理，就等大盘同步到位"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "video_id": "short_239_大盘红利大涨，这个风格未来还会延续！_财经__金融__A股",
+  "title": "short_239_大盘红利大涨，这个风格未来还会延续！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.159132",
+  "transcript_length": 358,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 2,
+    "bearish_signals": 3,
+    "summary": "今天明显是大盘股，而且是其中的高分红股票上涨，比如四大行、两桶油、运营商这些导致上证指数是微涨，而其他指数都是下跌"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整"
+  ]
+}

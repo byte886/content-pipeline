@@ -1,0 +1,44 @@
+{
+  "video_id": "short_130_良性回调，继续看涨！_财经__金融__A股",
+  "title": "short_130_良性回调，继续看涨！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.280907",
+  "transcript_length": 553,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 5,
+    "bearish_signals": 8,
+    "summary": "现在的盘面是涨多了就要回调，放量就见顶，哪怕像券商这种一旦启动就停不下来的板块，最近也是进二退一，每次刚涨破高点就回调震荡"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "今天上证指数小阴线，也主要是亚下相关板块回调带的，其他低位板块走势都很好，比如半导体、教育、文化传媒等等"
+    },
+    {
+      "name": "券商",
+      "context": "现在的盘面是涨多了就要回调，放量就见顶，哪怕像券商这种一旦启动就停不下来的板块，最近也是进二退一，每次刚涨破高点就回调震荡"
+    },
+    {
+      "name": "传媒",
+      "context": "今天上证指数小阴线，也主要是亚下相关板块回调带的，其他低位板块走势都很好，比如半导体、教育、文化传媒等等"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "如果你等阴线的时候，低吸还有利润"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "video_id": "short_033_科技顶部区域，切换低位红利_财经_行情_股票_股民",
+  "title": "short_033_科技顶部区域，切换低位红利_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.208918",
+  "transcript_length": 427,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 3,
+    "bearish_signals": 5,
+    "summary": "参考去年9月份和今年1月份都出现了起码两个月的回调，创业板虽然还是上涨趋势，但双创走势都是同步的，科创板下跌，创业板也很难独立上"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "这两天，科创宗指和半导体芯片都跌破了小波段低点"
+    },
+    {
+      "name": "芯片",
+      "context": "这两天，科创宗指和半导体芯片都跌破了小波段低点"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "板块轮动"
+  ]
+}

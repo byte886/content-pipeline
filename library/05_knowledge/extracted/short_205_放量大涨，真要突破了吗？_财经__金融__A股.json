@@ -1,0 +1,30 @@
+{
+  "video_id": "short_205_放量大涨，真要突破了吗？_财经__金融__A股",
+  "title": "short_205_放量大涨，真要突破了吗？_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.181485",
+  "transcript_length": 318,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 6,
+    "bearish_signals": 2,
+    "summary": "今天大盘再次放量大涨，科创50创了新高，现在所有指数包括上证指数沪深300，上证50创业板虽然突破颈线，但是前面下跌波段高点并没有涨破，上证指数小高点是3420点，颈线只是阻力，而高点才是多空转换点"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

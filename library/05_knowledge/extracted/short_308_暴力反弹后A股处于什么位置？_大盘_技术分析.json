@@ -1,0 +1,34 @@
+{
+  "video_id": "short_308_暴力反弹后A股处于什么位置？_大盘_技术分析",
+  "title": "short_308_暴力反弹后A股处于什么位置？_大盘_技术分析",
+  "extracted_at": "2026-09-16T05:26:55.133649",
+  "transcript_length": 509,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 2,
+    "bearish_signals": 4,
+    "summary": "暴利反弹和A股处于什么位置，再看风险溢价率，这是市盈率的倒数减去国债利息的差，是判断顶底最重要的指标之一"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "数值越高表明，股市比银行理财越有吸引力"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整"
+  ]
+}

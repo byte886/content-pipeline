@@ -1,0 +1,29 @@
+{
+  "video_id": "short_102_节前下跌，节后上涨，数据说话！_财经__金融__A股",
+  "title": "short_102_节前下跌，节后上涨，数据说话！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.270705",
+  "transcript_length": 510,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 5,
+    "bearish_signals": 4,
+    "summary": "国庆节前大概率下跌，节后上涨还是数据说话"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整"
+  ]
+}

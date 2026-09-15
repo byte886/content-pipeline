@@ -1,0 +1,39 @@
+{
+  "video_id": "short_224_资金开始进场，正在酝酿反弹。_财经__金融__A股",
+  "title": "short_224_资金开始进场，正在酝酿反弹。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.242258",
+  "transcript_length": 332,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 8,
+    "bearish_signals": 2,
+    "summary": "A股震荡十字星还是在为反弹蓄势啊，现在大盘连续下跌，均线怪离指标超卖，同时也出现缩量十字星企稳信号，反弹概率是很高的"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "开盘这种快速上冲是主力行为概率很高，而且一些游资票最近几天也是连续涨停，说明情绪开始回暖，先知先觉的资金已经提前进仓，同时券商板块今天也再次缩量，今天量能应该是最近几个月的最低水平，缩量企温也在酝酿反"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

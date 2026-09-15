@@ -1,0 +1,40 @@
+{
+  "video_id": "short_230_小盘反弹接近尾声，指数要波动起来了！_财经__金融__A股",
+  "title": "short_230_小盘反弹接近尾声，指数要波动起来了！_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.210938",
+  "transcript_length": 896,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 10,
+    "bearish_signals": 5,
+    "summary": "今天小盘股是冲高回落，银行是探底回升，现在市场没有增量资金啊，所以大小盘就是反着来，一个涨一个跌，但是看今天呢中证2000为代表的小盘指数，这个位置是个倒微型，行情今天反弹是正好反弹上方颈线"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "券商",
+      "context": "包括券商也是一样，券商这个板块很多人说它是跟着指数同步的，其实不是券商板块，是跟着小盘股同涨通跌，大概率"
+    },
+    {
+      "name": "银行",
+      "context": "小盘股冲高回落，银行探底回升，最近风格转换的很快，而且大盘连续十字星下周马上就要变盘了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "量能",
+    "板块轮动"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "video_id": "short_047_还在看美伊谈判的全都是新手、菜鸟_财经_行情_股票_股民",
+  "title": "short_047_还在看美伊谈判的全都是新手、菜鸟_财经_行情_股票_股民",
+  "extracted_at": "2026-09-16T05:26:55.279264",
+  "transcript_length": 417,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 1,
+    "bearish_signals": 2,
+    "summary": "4月1号凌晨利好，开盘高开1%，但是后面连续下跌，你选择忽略"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "市场情绪"
+  ]
+}

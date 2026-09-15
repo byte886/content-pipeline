@@ -1,0 +1,35 @@
+{
+  "video_id": "short_065_大盘会继续震荡，现在如何精选板块个股。",
+  "title": "short_065_大盘会继续震荡，现在如何精选板块个股。",
+  "extracted_at": "2026-09-16T05:26:55.274134",
+  "transcript_length": 479,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 8,
+    "bearish_signals": 5,
+    "summary": "未来一段时间，仍然是指数震荡板块轮动，不用太关注大盘，但板块个股有很多机会"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": [
+      "4400"
+    ]
+  },
+  "sector_opportunities": [],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "所以现在是一个精选个股板块的时候，四个口诀，上涨趋势，稳量慢涨可以追，别怕高，放量大涨登上涨幅排行榜就等回调，回调颈线是机会，一旦缩量及时进场，位置太高，要严格止损，下跌破位及时出，最佳选择就是拿大仓"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略"
+  ]
+}

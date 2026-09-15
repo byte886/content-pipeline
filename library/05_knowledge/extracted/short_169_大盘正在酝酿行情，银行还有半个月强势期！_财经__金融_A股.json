@@ -1,0 +1,38 @@
+{
+  "video_id": "short_169_大盘正在酝酿行情，银行还有半个月强势期！_财经__金融_A股",
+  "title": "short_169_大盘正在酝酿行情，银行还有半个月强势期！_财经__金融_A股",
+  "extracted_at": "2026-09-16T05:26:55.151271",
+  "transcript_length": 458,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 3,
+    "bearish_signals": 3,
+    "summary": "如果你手里的票一跌就烦躁焦虑，晚上睡不着觉，那说明要么你的仓位超出了你的承受范围，要么你对你的票中线没有足够信心，下跌拿不住，上涨也拿不住，根本赚不到钱"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "银行",
+      "context": "如果行情不回调，缩量整理同样是补仓机会，但日线缩量还不够啊，月线级别缩量才能起第波牛市，板块上银行继续大涨，3到4月份是银行红利的强势月份，我们也是从3月份开始布局银行"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略"
+  ]
+}

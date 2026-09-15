@@ -1,0 +1,30 @@
+{
+  "video_id": "short_313_我出手，必顶底！",
+  "title": "short_313_我出手，必顶底！",
+  "extracted_at": "2026-09-16T05:26:55.233154",
+  "transcript_length": 215,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 0,
+    "bearish_signals": 0,
+    "summary": "半导体我不是说了吗"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "半导体我不是说了吗"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": []
+}

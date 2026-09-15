@@ -1,0 +1,36 @@
+{
+  "video_id": "short_100_科技方向大概率见顶！风格转换正式开始。_财经__金融__A股",
+  "title": "short_100_科技方向大概率见顶！风格转换正式开始。_财经__金融__A股",
+  "extracted_at": "2026-09-16T05:26:55.137689",
+  "transcript_length": 553,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "高",
+    "bullish_signals": 6,
+    "bearish_signals": 2,
+    "summary": "科创板科技方向大概率见顶，手里有的要小心了，但短线马上到小支撑会先有个反弹"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "半导体",
+      "context": "同时，科创50半导体昨天都出现了放量滞涨的顶部迹象，而且看融资盘也能看出，节前三天离场的500亿融资盘，在昨天上午全部都买回来了，都被套在了高位"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动"
+  ]
+}
