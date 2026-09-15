@@ -43,14 +43,14 @@
 | T-12 | 捕获工具证书路径修复 | bugfix | 无 | **done** | 改为相对于可执行文件的路径，已验证 |
 | T-13 | _workspace运行时工作区设计 | refactor | 无 | **done** | logs/tmp/capture(manifest,state)，`workspace/README.md` |
 | T-14 | 知识库汇总生成 | feature | T-08 | **todo** | 按主题组织的知识库汇总 |
-| T-15 | 增量采集机制完善 | feature | T-01/T-02/T-03 | **todo** | URL清单对比，只采集新内容 |
+| T-15 | 增量采集机制完善 | feature | T-01/T-02/T-03 | **done** | watermark接入pipeline，at-least-once，commit 3438e05 |
 | T-16 | 百度网盘同步 | feature | 无 | **todo** | 股票知识库应用，`scripts/netdisk/sync_stock.sh` |
-| T-17 | 书籍精华提取 | feature | T-03 | **todo** | 文章中推荐的书籍 → 查找内容 → 形成文稿 |
+| T-17 | 书籍精华提取 | feature | T-03 | **doing** | 书籍清单已提取（4本核心交易书），`library/07_books/recommended_books.json`，待找电子书内容形成文稿 |
 | T-18 | 架构重构阶段1：改名+代码迁移 | refactor | 无 | **done** | multiplatform-content-pipeline，commit bd45204，见ADR-004 |
 | T-19 | 架构重构阶段2：数据迁移 | refactor | T-18 | **done** | commit 782ba97：data/videos→library/01_video，data/transcripts→library/04_transcript，knowledge-base→library/06_articles，清理空目录，更新5个脚本+5个文档路径 |
 | T-20 | 架构重构阶段3：接入B站采集 | feature | T-19 | **done** | commit a24d70a：迁移bili_list.py（wbi+dynamic双通道），适配可配置UID，输出library/00_manifest/bilibili/，dynamic通道测试验证通过 |
 | T-21 | 架构重构阶段4：接入抖音/YouTube | feature | T-20 | **done** | 复用multiplatform-media-fetch技能media_downloader.py，创建platforms/douyin/README.md和platforms/youtube/README.md |
-| T-22 | 方法提炼（MethodNote）LLM深度分析 | feature | T-18 | **todo** | processing/method_extraction/框架已搭，待接入LLM深度分析 |
+| T-22 | 方法提炼（MethodNote）LLM深度分析 | feature | T-18 | **blocked** | 框架已搭（processing/method_extraction/），目标博主「原来是陶阿狗君」，抖音反爬403无法下载视频，用户说暂时跳过，等有时间手动下载视频后继续 |
 | T-23 | GitHub仓库改名 | ops | 无 | **todo** | API token问题，可手动在网页改名（旧URL自动重定向） |
 | T-24 | 评审改进批次1：清理与修正（P0） | refactor | 无 | **done** | commit b5044eb：删旧脚本+修数量+更新状态+建workspace+更新文档地图 |
 | T-25 | 评审改进批次2：文档精简 | refactor | 无 | **done** | commit ee3630f：退役执行计划.md+技术方案.md+修复.gitignore |
@@ -74,16 +74,16 @@
 
 ## 下一步（按优先级）
 
-> **2026-09-16 更新：直播回放转写后台运行中，知识提取已完成，推进方法提炼和架构完善**
+> **2026-09-16 更新：架构完善（PlatformFetcher+处理链+增量采集）已完成，直播回放转写后台运行中**
 
-1. **直播回放转写**（T-05，23个，后台运行中，预计5小时）
-2. **方法提炼LLM深度分析**（T-22，需用户指定目标博主）
-3. **架构完善：PlatformFetcher接口实现**（微信两个平台继承base.py）
-4. **架构完善：处理链打通**（core/pipeline.py采集→转写→OCR→知识提取）
-5. **增量采集机制完善**（core/watermark.py接入采集流程）
-6. **GitHub仓库改名**（T-23，需用户手动在网页操作）
-7. **百度网盘同步**（T-16）
-8. **书籍精华提取**（T-17）
+1. **直播回放转写**（T-05，23个，后台运行中，4/23完成，预计还需1.5小时）
+2. **GitHub仓库改名**（T-23，需用户手动在网页Settings→Rename操作）
+3. **百度网盘同步**（T-16，脚本已存在，待正式运行）
+4. **书籍精华提取**（T-17，4本书清单已提取，待找电子书内容）
+5. **方法提炼**（T-22，blocked，等用户手动下载抖音视频后继续）
+6. **知识库汇总生成**（T-14，按主题组织的知识库汇总）
+7. **2篇公众号文章补采**（"每年12月哪个板块涨的最好？"和"冬至快乐"无正文）
+8. **高质量URL原始版本研究**（当前2-5MB/个，真正原始48.5MB待找）
 
 ---
 
