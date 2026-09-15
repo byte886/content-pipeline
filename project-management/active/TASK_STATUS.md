@@ -14,13 +14,14 @@
 
 ## 依赖与并行前沿
 
+- **架构重构阶段1**：✅ 完成（改名+新目录结构+代码迁移+文档更新，commit bd45204）
 - **阶段① 资源采集**：已完成（313短视频 + 23直播回放 + 277篇文章）
 - **阶段② 内容处理**：短视频转写✅、图文OCR✅、直播回放转写⏳（进行中/待启动）
 - **阶段③ 知识提取**：工具已开发，待批量运行
 - **阶段④ 知识库组织**：方案已设计，待执行
-- **项目治理**：文档架构重构✅、证书路径修复✅、_workspace设计✅、WORKFLOW/REQUIREMENTS✅
+- **项目治理**：文档架构重构✅、证书路径修复✅、workspace设计✅、WORKFLOW/REQUIREMENTS✅、架构重构✅
 
-可并行：直播回放转写（后台运行）与知识提取工具优化可同时进行。
+可并行：直播回放转写（后台运行）与架构重构阶段2（数据迁移）可同时进行。
 
 ---
 
@@ -45,6 +46,12 @@
 | T-15 | 增量采集机制完善 | feature | T-01/T-02/T-03 | **todo** | URL清单对比，只采集新内容 |
 | T-16 | 百度网盘同步 | feature | 无 | **todo** | 股票知识库应用，`scripts/netdisk/sync_stock.sh` |
 | T-17 | 书籍精华提取 | feature | T-03 | **todo** | 文章中推荐的书籍 → 查找内容 → 形成文稿 |
+| T-18 | 架构重构阶段1：改名+代码迁移 | refactor | 无 | **done** | multiplatform-content-pipeline，commit bd45204，见ADR-004 |
+| T-19 | 架构重构阶段2：数据迁移 | refactor | T-18 | **todo** | data/videos→library/01_video，data/transcripts→library/04_transcript，knowledge-base→library/05_knowledge |
+| T-20 | 架构重构阶段3：接入B站采集 | feature | T-18 | **todo** | 复用珠宝项目bili_list.py等脚本，platforms/bilibili/ |
+| T-21 | 架构重构阶段4：接入抖音/YouTube | feature | T-18 | **todo** | 复用multiplatform-media-fetch，platforms/douyin/、platforms/youtube/ |
+| T-22 | 方法提炼（MethodNote）LLM深度分析 | feature | T-18 | **todo** | processing/method_extraction/框架已搭，待接入LLM深度分析 |
+| T-23 | GitHub仓库改名 | ops | 无 | **todo** | API token问题，可手动在网页改名（旧URL自动重定向） |
 
 ---
 
@@ -61,10 +68,11 @@
 
 ## 下一步（按优先级）
 
-1. **启动直播回放转写**（T-05，后台运行，耗时较长）
-2. **测试方案B（视频号API）**（T-10，证书路径已修复）
-3. **批量运行知识提取**（T-08，可与转写并行）
-4. **完善增量采集机制**（T-15）
+1. **架构重构阶段2：数据迁移**（T-19，把现有数据迁移到library/新结构）
+2. **启动直播回放转写**（T-05，后台运行，耗时较长）
+3. **接入B站采集**（T-20，复用珠宝项目脚本）
+4. **批量运行知识提取**（T-08，可与转写并行）
+5. **方法提炼LLM深度分析**（T-22，框架已搭好）
 
 ---
 

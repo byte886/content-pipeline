@@ -8,6 +8,7 @@
 
 # 架构（Architecture）
 
+* [多平台内容流水线架构](concepts/architecture-multiplatform-pipeline.md) - 五层架构、平台插件化、行业隔离、方法提炼、library/00-08编号目录（ADR-004）
 * [四地存储分工与仓库版图](concepts/architecture-storage-layout.md) - Git/本地data/网盘/飞书各放什么、什么才入库
 * [工具运行目录与证书信任](concepts/architecture-tool-runtime.md) - 捕获工具必须从platforms/wechat_channels/video-capture/运行、证书路径坑、代理设置
 
