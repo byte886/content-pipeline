@@ -14,7 +14,7 @@ verified: machine
 
 ## 关键规则
 
-1. **转写输出格式**：`data/transcripts/短视频/{视频名}/transcript.md`（子目录，不是直接md文件）
+1. **转写输出格式**：`library/04_transcript/wechat_channels/短视频/{视频名}/transcript.md`（子目录，不是直接md文件）
 2. **OCR提速**：必须先用`swiftc -O`编译为二进制，不能用swift解释执行（每次都要编译，极慢）
 3. **OCR二进制位置**：`/tmp/ocr_vision_bin`（38K，1.5秒/张）
 4. **有文本层不OCR**：PDF/DOCX等有文本层的直接解析，不OCR

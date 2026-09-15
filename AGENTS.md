@@ -149,11 +149,11 @@ done
 | 位置 | 内容 | 说明 |
 |------|------|------|
 | GitHub仓库 | 代码+文档+清洗后知识成品 | **禁止**放视频、PDF、逐字转写、原文、凭证 |
-| `library/01_video/` | 视频原始文件 | gitignore忽略（待从data/videos/迁移） |
-| `library/04_transcript/` | 转写稿 | gitignore忽略（待从data/transcripts/迁移） |
+| `library/01_video/` | 视频原始文件 | gitignore忽略（已从data/videos/迁移） |
+| `library/04_transcript/` | 转写稿 | gitignore忽略（已从data/transcripts/迁移） |
 | `library/05_knowledge/` | 结构化知识成品 | 入库（仅stable状态） |
-| `library/06_articles/` | 图文原文 | gitignore忽略（待从knowledge-base/迁移） |
-| `workspace/` | 过程件 | gitignore忽略 |
+| `library/06_articles/` | 图文原文 | gitignore忽略（已从knowledge-base/迁移） |
+| `workspace/` | 过程件 | gitignore忽略（仅README.md入库） |
 | 百度网盘 | 成品镜像 | 备份+跨设备访问 |
 
 ### 3.10 运行时工作区（workspace）

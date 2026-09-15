@@ -9,13 +9,13 @@
 
 用法：
     # 批量提取知识
-    python3 knowledge_base.py extract --transcripts data/transcripts --output data/knowledge
+    python3 knowledge_base.py extract --transcripts library/04_transcript/wechat_channels --output library/05_knowledge
 
     # 生成汇总
-    python3 knowledge_base.py summarize --knowledge-dir data/knowledge
+    python3 knowledge_base.py summarize --knowledge-dir library/05_knowledge
 
     # 查询
-    python3 knowledge_base.py query --keyword "反弹" --knowledge-dir data/knowledge
+    python3 knowledge_base.py query --keyword "反弹" --knowledge-dir library/05_knowledge
 """
 
 import argparse
@@ -183,8 +183,8 @@ def main():
     parser = argparse.ArgumentParser(description='知识库汇总与查询工具')
     parser.add_argument('action', choices=['extract', 'summarize', 'query'],
                         help='操作类型')
-    parser.add_argument('--transcripts', default='data/transcripts', help='转写稿目录')
-    parser.add_argument('--knowledge-dir', default='data/knowledge', help='知识库目录')
+    parser.add_argument('--transcripts', default='library/04_transcript/wechat_channels', help='转写稿目录')
+    parser.add_argument('--knowledge-dir', default='library/05_knowledge', help='知识库目录')
     parser.add_argument('--keyword', help='查询关键词')
     parser.add_argument('--tag', help='筛选标签')
     parser.add_argument('--direction', choices=['看涨', '看跌', '震荡'], help='筛选方向')

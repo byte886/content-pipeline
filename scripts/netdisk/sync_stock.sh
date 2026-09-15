@@ -5,8 +5,8 @@
 #   bash scripts/netdisk/sync_stock.sh <本地子目录> <网盘子目录> [并发数=2]
 #
 # 示例:
-#   bash scripts/netdisk/sync_stock.sh "01-视频号短视频/转写稿" "01-视频号短视频/转写稿"
-#   bash scripts/netdisk/sync_stock.sh "03-公众号文章/正文" "03-公众号文章/正文"
+#   bash scripts/netdisk/sync_stock.sh "01_video/wechat_channels/短视频" "01_video/wechat_channels/短视频"
+#   bash scripts/netdisk/sync_stock.sh "06_articles/wechat_official/正文" "06_articles/wechat_official/正文"
 #
 # 特性:
 #   - 递归上传目录下所有文件
@@ -25,7 +25,7 @@ REMOTE_SUBDIR="$2"
 PARALLEL="${3:-2}"
 export BAIDU_ENC_PASS="***REMOVED***"
 
-LOCAL_BASE="$PROJECT_DIR/data/股票知识库/$LOCAL_SUBDIR"
+LOCAL_BASE="$PROJECT_DIR/library/$LOCAL_SUBDIR"
 REMOTE_BASE="/apps/CPA课程归档/股票知识库/$REMOTE_SUBDIR"
 
 if [ ! -d "$LOCAL_BASE" ]; then

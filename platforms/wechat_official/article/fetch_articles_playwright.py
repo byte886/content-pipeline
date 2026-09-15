@@ -16,10 +16,10 @@ from playwright.sync_api import sync_playwright
 
 # 配置
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-URL_LIST = os.path.join(PROJECT_DIR, "knowledge-base/02-公众号文章/文章URL列表.json")
-OUTPUT_DIR = os.path.join(PROJECT_DIR, "data/股票知识库/03-公众号文章/正文")
-IMAGE_DIR = os.path.join(PROJECT_DIR, "data/股票知识库/03-公众号文章/图片")
-PROGRESS_FILE = os.path.join(PROJECT_DIR, "data/_workspace/article_fetch_progress.json")
+URL_LIST = os.environ.get("ARTICLE_URL_LIST", os.path.join(PROJECT_DIR, "library/00_manifest/文章URL列表.json"))
+OUTPUT_DIR = os.environ.get("ARTICLE_OUTPUT_DIR", os.path.join(PROJECT_DIR, "library/06_articles/wechat_official/正文"))
+IMAGE_DIR = os.environ.get("ARTICLE_IMAGE_DIR", os.path.join(PROJECT_DIR, "library/06_articles/wechat_official/图片"))
+PROGRESS_FILE = os.environ.get("ARTICLE_PROGRESS_FILE", os.path.join(PROJECT_DIR, "workspace/capture/article_fetch_progress.json"))
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(IMAGE_DIR, exist_ok=True)

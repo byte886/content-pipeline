@@ -293,7 +293,7 @@ python3 scripts/fetch_articles.py
 ### 8.4 输出目录结构
 
 ```
-knowledge-base/02-公众号文章/
+library/06_articles/wechat_official/
 ├── 文章URL列表.json          # 277篇文章URL
 ├── 采集进度.json             # 断点续传进度
 └── 正文/

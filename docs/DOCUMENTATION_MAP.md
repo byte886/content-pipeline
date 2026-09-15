@@ -29,12 +29,11 @@
 ### 视频转文字 / 图文OCR
 1. 转写工具：`processing/transcription/tools/batch_transcribe.py`（FunASR本地离线）
 2. OCR工具：`processing/ocr/tools/batch_article_images.py`（macOS Vision）
-3. 输出：`data/transcripts/短视频/{视频名}/transcript.md`
+3. 输出：`library/04_transcript/wechat_channels/短视频/{视频名}/transcript.md`
 
 ### 知识提取与知识库
-1. `docs/知识库组织方案.md` — 知识库架构设计
-2. `docs/知识库规范.md` — 知识库内容规范
-3. 工具：`processing/knowledge_extraction/tools/`
+1. `docs/知识库组织方案.md` — 知识库架构设计+内容规范（合并了原知识库规范）
+2. 工具：`processing/knowledge_extraction/tools/`
 
 ### 遇到问题/异常
 1. `grep -rn "关键词" docs/` — 搜索相关文档
