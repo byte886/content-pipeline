@@ -13,5 +13,22 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMP0O89ET8aM8wfkv8anMuib4fwCtZ495JK3s0u0K7atrCh7L7wJF0ibxOa6qksUUbuC5M2lBiaib4FuZw/640?wx_fmt=jpeg"
   ],
   "image_count": 5,
-  "content_length": 576
+  "content_length": 576,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMP0O89ET8aM8wfkv8anMuib4JiamhKia2pj9Sc1qwBXGia2GqDJkdjiboLRW8xXyR9PC3my17E3a7saibJw/640?wx_fmt=jpeg",
+      "filename": "8f594042ed64561b.jpg",
+      "ocr_text": "• 顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMP0O89ET8aM8wfkv8anMuib4xFfmZqCIY0KCPqokuDXFTet9ib2u7Lqtw6UspT9ucybBdq7rOlEBhmA/640?wx_fmt=png",
+      "filename": "cd2cbf5e4d06f7cb.png",
+      "ocr_text": "67MAV011:1.7301 MAVOL2:1.893K2"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMP0O89ET8aM8wfkv8anMuib4dl24QGtiaicaDO1TxosJb5KYBynIGawjAhiboDf03O4vCT0YDCpfu4wFw/640?wx_fmt=png",
+      "filename": "52db6455aa84047b.png",
+      "ocr_text": "4485.01\n日升品\n上A產期\n上道B税\n上BA期\n3610\n15\n1e6.00\n4612\n5414\n70720\n2014\ng 頂底之王"
+    }
+  ]
 }

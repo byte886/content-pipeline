@@ -10,5 +10,17 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPEX2R6bJUnAsnVibNiaK2tJuibL505JCEksb5Pu0Unbp3zY79Foo5ecXl4ibeHJra9H1Gia7jhN0teLeQ/640?wx_fmt=png"
   ],
   "image_count": 2,
-  "content_length": 399
+  "content_length": 399,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPEX2R6bJUnAsnVibNiaK2tJufeYQkeokP9868eSyMcGXIDFUiatTC9Hjb9YY0lzvicZnic4ibayl8rFXSw/640?wx_fmt=png",
+      "filename": "3e2241607cd96a58.png",
+      "ocr_text": "中证1000与上证50指数走势对比图\n顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPEX2R6bJUnAsnVibNiaK2tJuibL505JCEksb5Pu0Unbp3zY79Foo5ecXl4ibeHJra9H1Gia7jhN0teLeQ/640?wx_fmt=png",
+      "filename": "be8e189bf2c75f2e.png",
+      "ocr_text": "高市盈率与低市盈率指数走势对比图\n顶底之王"
+    }
+  ]
 }

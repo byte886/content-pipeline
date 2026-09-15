@@ -11,5 +11,22 @@
     "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgzM7zCvicoEDpsaDM5QIVVRWxatN1mZUBKoLSzE6vDQoiboic8qFTMlZAnZoUmIx7XBDgDicdRC1kiacDPQHI6fByHick6dIJkQdtTaY/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 3,
-  "content_length": 859
+  "content_length": 859,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgxOnIxicS4UKKkxmjgwibWibBAGPDoibaOicRrbTtibYoj4tmN5OWSJzjvoJuPYDn2FNZBTxXQxqb0BYLOJcfb1p5xwvIv3CegFQUgk0/640?wx_fmt=png&from=appmsg",
+      "filename": "77e26f9d2a1b0cf1.png",
+      "ocr_text": "2023.17\n5,10） VOLUME:1.999亿 MAVOL1:2.657亿少 MAVOL2:2.597亿\n12 2014 22 03 04\nMA D\nKD\nDC\nENE\nDDAD\nD..\n7D\n11\nDCV\n12\nKT\n2（"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgxNM7L34BrV7nU7WltzAZNjEibkBBnHDJEFjOAz5YOvWrIGs3CEuicrlbN6TxxpoJZjl5Cd4GGDjZN9qKibMcr6akdRAIgZerCTq0/640?wx_fmt=png&from=appmsg",
+      "filename": "3f6e2757bfc80c15.png",
+      "ocr_text": "灵权）103\nM\nLUME:2.014亿 少MAVOL1:2.660亿 * MAVOL2.2.598亿4"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgzM7zCvicoEDpsaDM5QIVVRWxatN1mZUBKoLSzE6vDQoiboic8qFTMlZAnZoUmIx7XBDgDicdRC1kiacDPQHI6fByHick6dIJkQdtTaY/640?wx_fmt=png&from=appmsg",
+      "filename": "14dfd3715d4d346d.png",
+      "ocr_text": "=5930.91\n殳置均线、"
+    }
+  ]
 }

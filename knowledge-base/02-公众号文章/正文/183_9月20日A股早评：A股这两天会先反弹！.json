@@ -13,5 +13,17 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMNd31JUH9ICWeZyxWmDiaMlfM1J7B3YR6Uibc1S2n9FemJRfUBV0Ojztsv8nabp5F2LPYPXGG2iaianYw/640?wx_fmt=jpeg"
   ],
   "image_count": 5,
-  "content_length": 704
+  "content_length": 704,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMNd31JUH9ICWeZyxWmDiaMlfH8qxHZIVpwoAhnIe6GnKDZR9Obg2W451cckxQr9W7rkicMReDEudicgA/640?wx_fmt=jpeg",
+      "filename": "a4d44c67a904b801.jpg",
+      "ocr_text": "日线\n月线\n更多趨期"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMNd31JUH9ICWeZyxWmDiaMlfqaUicicZnj6SATukGLyvTSB23DlYtpgdtlrqGXEHxdsB35kUtS9ibRcAQ/640?wx_fmt=jpeg",
+      "filename": "8962734efc09d9cd.jpg",
+      "ocr_text": "北向资金 护股迪、深股迪啊\n簽金净买额？\n效据日期：2022-09-19史多\n当日资金余额\n20\n15\n10\n5\n0\n-5\n-10\n9:30\nKvyy\n10:30\n11:30\n14:00\n15:00\n沪股通\n净买额6.70亿\n深股通\n净买额932亿\n北向资金 净头额16.03亿\n买入額202.37亿\n买入额231.18亿\n头入额433.56亿\n卖出額195.67亿\n卖出額221.86亿\n卖出额417.53亿"
+    }
+  ]
 }

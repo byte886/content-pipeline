@@ -20,5 +20,57 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMMf9jmOS8yL114e1bvMGibd40yVFboMkwnic9PTHia0TAx2uRIUwOXPSuyI9TnFl7AGVEZ6mjZK9JJdg/640?wx_fmt=jpeg"
   ],
   "image_count": 12,
-  "content_length": 162
+  "content_length": 162,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMMf9jmOS8yL114e1bvMGibd4aTYEN7dwYzH2nBpOMzVJRYoBV6WyIdjyuLVSP2t4AJ0dl7LuyaedPQ/640?wx_fmt=jpeg",
+      "filename": "ed53b98046f8106c.jpg",
+      "ocr_text": "16-09-02\n17-01-02\n17-05-02"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMMf9jmOS8yL114e1bvMGibd4vZI5nR6ZhXT11VhRQEGLPQwn43g4rGTU6Htic9aMZ24Av3eSHMCvgWg/640?wx_fmt=png",
+      "filename": "3d85e270522861a2.png",
+      "ocr_text": "中\n2022-09-10\n星期六\n八月十五\n壬買年\n【 年】\n中秋/佳/节\n团厦冲秋\nMic-Autumn\nFestival\n八/月/十/五/中/秋/节\n顶\n底\n之\n玉\n因然给价三孩之米；旅名，也有世路方书中秋特能在N月十六，"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_svg/r48cSSlr7jiaxmacEEfiaHOM4gdebMEXBUcumia8pR1JbWJ6j8qlvRMoDsJ2hVy4C53IXXXecicfQh1n3WAxtXEnomiac5Vn8iaicFf/640?wx_fmt=svg",
+      "filename": "4bc49b368b60022d.png",
+      "ocr_text": "ERROR: 无法加载图片"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_svg/r48cSSlr7jiaxmacEEfiaHOM4gdebMEXBUqFAibutkYLGoK4gA1MMrrGcWpKUTp0gNwdLZLKpOQrA9hpCtJawLf3tCCam25DuJ9/640?wx_fmt=svg",
+      "filename": "ed84dd8eb6b67be6.png",
+      "ocr_text": "ERROR: 无法加载图片"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_svg/r48cSSlr7jiaxmacEEfiaHOM4gdebMEXBUUll1Shm0L7kb3r576b3z59KjFETTwNl24RPcC6sxyewbJbqp1fp1icZ3GtSr7ibrV8/640?wx_fmt=svg",
+      "filename": "fdfc2c4b01d9c644.png",
+      "ocr_text": "ERROR: 无法加载图片"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_svg/r48cSSlr7jiaxmacEEfiaHOM4gdebMEXBUYc1zBkVicA4wDg8jWcAV8AxtHVibiaQJ4CTqKoNxwKckhd02oe1kwJaCVc3ryrkF2uE/640?wx_fmt=svg",
+      "filename": "d263147f2b6a70b7.png",
+      "ocr_text": "ERROR: 无法加载图片"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_svg/r48cSSlr7jiaxmacEEfiaHOM4gdebMEXBUia8m4GXr2d1RvnXYnKy50AII6oyCiapWyLc0WhB0ncHMNZFEibVtk4MNUbyaUepicmFG/640?wx_fmt=svg",
+      "filename": "efbf4d67ac5f26c5.png",
+      "ocr_text": "ERROR: 无法加载图片"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_svg/r48cSSlr7jiaxmacEEfiaHOM4gdebMEXBUgKwOw23lWS5JtsIXKGuG4cvqAsFsjANH6Ss6nUJXl9Rks1JSjbicwDzzIAVfLiaBd9/640?wx_fmt=svg",
+      "filename": "c7313e8f85ef309b.png",
+      "ocr_text": "ERROR: 无法加载图片"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_svg/r48cSSlr7jiaxmacEEfiaHOM4gdebMEXBUy53I5nJqT1iag6hlSBDL9SbXaPKnMPA71By3KYp6lSeIZzvicRB1RHicl3SXTYWpeiaa/640?wx_fmt=svg",
+      "filename": "619d0ee8512a8f7d.png",
+      "ocr_text": "ERROR: 无法加载图片"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_svg/r48cSSlr7jiaxmacEEfiaHOM4gdebMEXBU8NPwytTBcT2WR0vzrWVEAZsZhXW70ZOIOfcfWbEOQq6avvPcxbSyY5mxI1gK9icf6/640?wx_fmt=svg",
+      "filename": "e390ecd3c27064eb.png",
+      "ocr_text": "ERROR: 无法加载图片"
+    }
+  ]
 }

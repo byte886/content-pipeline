@@ -11,5 +11,22 @@
     "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgypPic2zcM9Hcvf3XjgNlbgSdhCibYm3JVhXlze7gZE6MnfkeKtYgicb7a2FzY5sngq6cLodwvPj62v77VBBvT0LSXxjszf1cRWiaU/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 3,
-  "content_length": 510
+  "content_length": 510,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgyEBjAhmeBcn0jreT7VOtVSxxF0Rx0bpveGcukN35pex0hvdiac4pELJczcNDolW1Q9zM9FkaJribWfpdYBtxffdeu43fAicxEHEM/640?wx_fmt=png&from=appmsg",
+      "filename": "466f14ab5d66552b.png",
+      "ocr_text": "过去20年\n沪深300在3月份的周度日历效应数据\n周数\n1\n2\n3\n4\n平均收益率\n0.51%\n-1.50%\n0.93%\n-0.59%\n胜率\n0.4762\n0.4286\n0.5714\n0.4762\n盈亏比\n1.7061\n0.2785\n1.4264\n0.6415\n过去20年\n中证1000在3月份的周度日历效应数据\n周数\n1\n2\n3\n4\n平均收益率\n2.21%\n-0.85%\n1.78%\n-0.99%\n胜率\n0.7143\n0.381\n0.7143\n0.381\n盈亏比\n1.7895\n0.8922\n1.1367\n0.8004"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/Bgib4dvhgGgy4lGEQ6jVWUREq1wS6lto9oT7ficSYUBtDeo3opRaL3Uy5UcdTaKibnPKlTaSDsCvNNxSQ9dQnecSJV5OK3Wq3dv4zCRuZgiafr8/640?wx_fmt=jpeg&from=appmsg",
+      "filename": "4c7baf96c48d2205.jpg",
+      "ocr_text": "-10.00%\n-5.00%\n0.00%\n5.00%\n10.00%\n15.00%\n2005年\n2009年\n2011年\n2013年\n2015年\n2017年\n2019年\n2021年\n2023年\n2025年\n沪深300-中证1000\n近21年，“沪深300-中证1000”\n在4月份的收益率分布"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgypPic2zcM9Hcvf3XjgNlbgSdhCibYm3JVhXlze7gZE6MnfkeKtYgicb7a2FzY5sngq6cLodwvPj62v77VBBvT0LSXxjszf1cRWiaU/640?wx_fmt=png&from=appmsg",
+      "filename": "6a47d5b91a4e9974.png",
+      "ocr_text": "000638 ② 0\n1399.15\n扫幼\n今日开\n1418.89\n730630\n内鱼总品\n外包分業\n491万手"
+    }
+  ]
 }

@@ -10,5 +10,17 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPEqEcicwRHAQZPeiagiaczpj0RRcPicdQOJxdbpSicZpYvIj101RgUrcDcQTeWlpcUAzOasxYHHcdtG9Q/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 2,
-  "content_length": 384
+  "content_length": 384,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPEqEcicwRHAQZPeiagiaczpj0YrcqBOcib6xQ3nb0EvBl08IicPibk0FmEMiaszyCyRY5tEiaW97aerLrficw/640?wx_fmt=png&from=appmsg",
+      "filename": "e2d5375ec3b794a1.png",
+      "ocr_text": "第二：上方短线压力\n2890点\n34"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPEqEcicwRHAQZPeiagiaczpj0RRcPicdQOJxdbpSicZpYvIj101RgUrcDcQTeWlpcUAzOasxYHHcdtG9Q/640?wx_fmt=png&from=appmsg",
+      "filename": "00d9353f395bf93c.png",
+      "ocr_text": "2900.00\n2889.09\n2880.00\n2860.00\n2839.39"
+    }
+  ]
 }

@@ -9,5 +9,12 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMOHnxpq7wb63fkeUU8RngKpdw2iczQ0tE209NhMRlg4zqZl2ibPtic1AdAibCib8dazC9LSXcfuvUGWXgA/640?wx_fmt=png"
   ],
   "image_count": 1,
-  "content_length": 722
+  "content_length": 722,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMOHnxpq7wb63fkeUU8RngKpdw2iczQ0tE209NhMRlg4zqZl2ibPtic1AdAibCib8dazC9LSXcfuvUGWXgA/640?wx_fmt=png",
+      "filename": "4fd82a213853e26e.png",
+      "ocr_text": "股权风险溢价水平\n3.000\n2.500\n200\n• 顶底之王"
+    }
+  ]
 }

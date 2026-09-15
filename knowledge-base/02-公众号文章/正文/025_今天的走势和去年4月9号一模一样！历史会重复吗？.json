@@ -9,5 +9,12 @@
     "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgy7ZiaiagYzj806OwBQxCZfuBeBb78MoWIey9NYIiaAbVa6icftTAfWLa9wic26bNqS52HmQuQ4MnSGba5g6icAlytBkv3ugQKWEoYYE/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 1,
-  "content_length": 741
+  "content_length": 741,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgy7ZiaiagYzj806OwBQxCZfuBeBb78MoWIey9NYIiaAbVa6icftTAfWLa9wic26bNqS52HmQuQ4MnSGba5g6icAlytBkv3ugQKWEoYYE/640?wx_fmt=png&from=appmsg",
+      "filename": "1d950ea084df21f9.png",
+      "ocr_text": "上证指数（000001） 2025年4月9日 星期三\n分时\n3310.04 X\n3277.141\n3244.24\n3211.34\n3178.45\n3145.55\n3112.65\n3079.76\n3046.86\n3013.96\n收盘：3186.81 张幅：+1.31% 最高3186.81 最低3070.08 成交：6.85亿\n竞价\n5.23%\nA100L\n3241.68\n2,09%\n1.05%\n0.00%\n1.05%6\n2,09%\n3.14%6\n4.18%"
+    }
+  ]
 }

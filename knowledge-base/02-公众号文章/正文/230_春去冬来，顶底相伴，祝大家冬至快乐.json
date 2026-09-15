@@ -8,5 +8,17 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMOLWgYFficUcxkKvXabOYwbv5A0iclO3vfBJ1b3fIjrVqlVeI6QA7LYV4UNDQBPZkcCuFs4v5XxRrww/640?wx_fmt=jpeg"
   ],
   "image_count": 2,
-  "content_length": 0
+  "content_length": 0,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMOLWgYFficUcxkKvXabOYwbvgIXEKCznXhrHyuErD4BQ3KksmBA9uVqPjia0ib8hNZLnQmllicRGc5FMA/640?wx_fmt=jpeg",
+      "filename": "795aebe52e2f8fc4.jpg",
+      "ocr_text": "冬\nDONG ZHI\n至\n传统二十四节气-冬至\n小红书：\n4979960564\n快手号：\nIiu530442814\n抖音号：\nliu530442814\n@顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMOLWgYFficUcxkKvXabOYwbv5A0iclO3vfBJ1b3fIjrVqlVeI6QA7LYV4UNDQBPZkcCuFs4v5XxRrww/640?wx_fmt=jpeg",
+      "filename": "2e6b482e493daac8.jpg",
+      "ocr_text": "冬\nDONGZHI\n至\n历经山水路途\n沉淀团圆味道\n-二十四节气一\n农历十一月十八\n服务热线\n小红书：\n4979960564\n快手号：\n1iu530442814\n抖音号：\nliu530442814\nC顶底之正"
+    }
+  ]
 }

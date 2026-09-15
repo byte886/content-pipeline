@@ -19,5 +19,17 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMOvViaiaXBv5X8XDBk27ecO75QibJPWLrfOcO2WAW7DQlpSQaudAfeeyBaIEia2pHavvllAx1mpFclW2g/640?wx_fmt=jpeg"
   ],
   "image_count": 11,
-  "content_length": 1006
+  "content_length": 1006,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMOvViaiaXBv5X8XDBk27ecO75PfGCcsTmFp3gkqtyjPwVAFVibtbNI7cDMHgUPJQEwVek0FapQT5RDqA/640?wx_fmt=jpeg",
+      "filename": "f8c8c0a2a098515a.jpg",
+      "ocr_text": "• 顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMOvViaiaXBv5X8XDBk27ecO75NdsnueVMVjr1LPBWmmBdhwkORt2hwe5aYs7ibocNIPb7Ijg9uWXSpAA/640?wx_fmt=png",
+      "filename": "81ce3d2f4b1d112d.png",
+      "ocr_text": "6-7"
+    }
+  ]
 }

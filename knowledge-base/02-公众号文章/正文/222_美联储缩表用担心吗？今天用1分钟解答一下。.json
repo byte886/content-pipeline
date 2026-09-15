@@ -9,5 +9,12 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMPao13FY5xFUPfJZleGpob4MziaRgplSTmfLf6J6ibdx3nyVX2sUTBZ1SAEGic465slkr7J0vydkSwnA/640?wx_fmt=jpeg"
   ],
   "image_count": 1,
-  "content_length": 602
+  "content_length": 602,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMPao13FY5xFUPfJZleGpob4MziaRgplSTmfLf6J6ibdx3nyVX2sUTBZ1SAEGic465slkr7J0vydkSwnA/640?wx_fmt=jpeg",
+      "filename": "35ee2e7a4c91240b.jpg",
+      "ocr_text": "技术分析的三大假设\n1、市场行为消化一切\n2、价格以趋势方式演变\n3、历史会重演\n项底之王"
+    }
+  ]
 }

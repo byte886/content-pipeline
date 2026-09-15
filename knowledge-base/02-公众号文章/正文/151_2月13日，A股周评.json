@@ -12,5 +12,12 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMOJBnGxlyF5V1jAWicB0NNGjibDZ5otSGLmUVNibhgmTtoOkibPeN2LCAamxpEm8WWwFfBibVTM0QgZeoA/640?wx_fmt=jpeg"
   ],
   "image_count": 4,
-  "content_length": 944
+  "content_length": 944,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMOsVupP3BiahpMsFeo9CLLUkLmBrSmeGsOf2T9JLscPgic1lZjDKbmosoC2jd5X41Qy832w1xY8TwPw/640?wx_fmt=jpeg",
+      "filename": "4064447abf11f44f.jpg",
+      "ocr_text": "2015年03月-2022年12月社融增速\n16 单位：-%\n15.2\n14.4\n13.7\n13.3\n12.9\n12\n-12.7\n12.8\n123\n12.1\n11\n5\n11.3\n10.6\n10.6/110.日\n10.5\n10.6\n9.8\n9\n8.2\n2015年06月\n2015年12月\n2016年06月\n2016年12月\n2017年06月\n2017年12月\n2018年06月\n2018年12月\n2019年06月\n2019年12月\n2020年06月\n2020年12月\n2021年06月\n2021年12月\n2022年06月\n2022年12月\n社融增速"
+    }
+  ]
 }

@@ -11,5 +11,22 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMM0Rp3Pdrc24luSDUXC1XbyTyQw2DY6TojT8optZJWvIJe18FmMOvORQf7uXeJ539LZxChSOVtWXg/640?wx_fmt=png"
   ],
   "image_count": 3,
-  "content_length": 761
+  "content_length": 761,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMM0Rp3Pdrc24luSDUXC1XbyS2z9rpbMhSVj00Zf8QCHUATCRZ20lsZ8eicicGbUskia5g42JOSNhn22w/640?wx_fmt=png",
+      "filename": "c048791d4f0e6df9.png",
+      "ocr_text": "配置\n20万深市股票\n过去1年\n20万沪市股票\n20万深市股票\n过去2年\n20万沪市股票\n累计申购签数\n5308\n3282\n7794\n5171\n累计中签概率\n117%\n161%\n217%\n341%"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMM0Rp3Pdrc24luSDUXC1Xby0huRibIvtNd8YNflKU0ZzXR2via3kYpaPFibW8Y4lp1HrdlPicXSXSr9YQ/640?wx_fmt=png",
+      "filename": "5e2b5b35b93ace47.png",
+      "ocr_text": "上交所\n深交所\n2万\n3万\n4\n6万\n7万\n8月\n9万\n10万\n11万\n12月\n13\n14月\n15万\n16万\n17万\n18月\n19万\n20万\n21九\n22万\n23万\n24万\n25\n26万\n27万\n28万\n29\n30万"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMM0Rp3Pdrc24luSDUXC1XbyTyQw2DY6TojT8optZJWvIJe18FmMOvORQf7uXeJ539LZxChSOVtWXg/640?wx_fmt=png",
+      "filename": "2109347545b0daf7.png",
+      "ocr_text": "顶底之王"
+    }
+  ]
 }

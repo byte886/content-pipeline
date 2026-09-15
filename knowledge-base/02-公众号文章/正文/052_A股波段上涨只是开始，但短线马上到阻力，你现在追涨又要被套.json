@@ -14,5 +14,37 @@
     "https://mmbiz.qpic.cn/sz_mmbiz_png/Bgib4dvhgGgw7p8afTRsuXmcsCk6ShichfXu1ic1KtGLxXsdK6u4yVVBGicSEdrkicmicJvAbPXicvgsS2t67nUyMpqWicEWvsStiaylJjCX74unicakY/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 6,
-  "content_length": 1042
+  "content_length": 1042,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgy1hMRzZYLVxJK2MkSOga2v9ZpfPmTXOrgCekH2GGpjv5lnPziaZCruHL4VOa4kiciagXu4XSVFIOSdsicDG50LPBO6XPtW9QvOPhk/640?wx_fmt=png&from=appmsg",
+      "filename": "dc58badd8a9827a7.png",
+      "ocr_text": "案例截图\nMS1100TE3S 04001129\n01\n1001277\n广古熱料\nSwwo\n022188\n果茶\nKom"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/Bgib4dvhgGgz5Igr9NAPz10uInRlrUPg8PW5qgYacQLcRVibkH3QlB5nUNqk74sKDChuLYduH2wuicBicuyJicjV1wYHcBwAy6jDVtqx6snqrdrQ/640?wx_fmt=png&from=appmsg",
+      "filename": "0ceb441587c1eecd.png",
+      "ocr_text": "案例截图\n08.25"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgw94glcrVuDSgzHVJ35yUtgUnWCxsKdZvIiadzaG3UnqL4pIceQlMyAwkFqTyryEBk4Zha0JksoOVsJKe0a2qZ9A9Q7ZNBM8yag/640?wx_fmt=png&from=appmsg",
+      "filename": "6771fc1109c2a756.png",
+      "ocr_text": "案例截图"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/Bgib4dvhgGgzY8d6V1CVA7usEFiaUbZibfciaJ4VTcPta7E8LDNyElicyA0z0oauo9xHJVWD7b7fdaia62MrFhhpicQibn668icuE5Vqcb5esXMlLk2g/640?wx_fmt=png&from=appmsg",
+      "filename": "1b3f35fdecb1401a.png",
+      "ocr_text": "案例截图\nc 上证商效\n3034.72\n禾\nSorks\n广古熱料\nMIOXAS"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgwDV5l8GYZQh8OsWrIMWc0Q1deiaOibGiak3C7Yzk6ArXa1PDZHrPdZRDTtpTFqgY5ombChGukNhEALVI3Re4QaWgp09KMHibGtGxk/640?wx_fmt=png&from=appmsg",
+      "filename": "18e8611982a7a82c.png",
+      "ocr_text": "案例截图\ncmn上证者效\n3004.72\n這东究食\n飲克养结 04001500\n02011180\n-naioz1\n02297"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/Bgib4dvhgGgw7p8afTRsuXmcsCk6ShichfXu1ic1KtGLxXsdK6u4yVVBGicSEdrkicmicJvAbPXicvgsS2t67nUyMpqWicEWvsStiaylJjCX74unicakY/640?wx_fmt=png&from=appmsg",
+      "filename": "ab9369950cfaf65b.png",
+      "ocr_text": "案例截图\nc 上证商效\n3034.72\nSereta\nwmaik\n广古熱料\nMIOMRS\n414\nIEX 04 081130 0405"
+    }
+  ]
 }

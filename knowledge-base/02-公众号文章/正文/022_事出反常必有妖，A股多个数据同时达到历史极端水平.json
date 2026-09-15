@@ -9,5 +9,12 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/Bgib4dvhgGgyPpOS7xuPSibI5ZZV93a63QUUPTXX06uWvwsG52zjehSHlrENzibh0xtOGToJHhXvPSXJuuye5Svobb8c7t4mDOQnhHzoibI0pnU/640?wx_fmt=jpeg"
   ],
   "image_count": 1,
-  "content_length": 556
+  "content_length": 556,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/Bgib4dvhgGgyPpOS7xuPSibI5ZZV93a63QUUPTXX06uWvwsG52zjehSHlrENzibh0xtOGToJHhXvPSXJuuye5Svobb8c7t4mDOQnhHzoibI0pnU/640?wx_fmt=jpeg",
+      "filename": "854859ab8da1ca8d.jpg",
+      "ocr_text": "半导体行业吸筹率\n20.00%\n15.00%\n10.00%\n5.00%\n0.00%\n2021-05-18\n2021-11-18\n2022-05-18\n2022-11-18\n2023-05-18\n2023-11-18\n2024-05-18\n2024-11-18\n2025-05-18\n2025-11-18\n2026-05-18"
+    }
+  ]
 }

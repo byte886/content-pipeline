@@ -9,5 +9,12 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNkibWoTtjcr8ibn9F50pfI3WzJsUOqOkttTSzUZwqJUMypiaYYlWkA6Va2TTqGhWekThu0VuIEiaeFKA/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 1,
-  "content_length": 493
+  "content_length": 493,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNkibWoTtjcr8ibn9F50pfI3WzJsUOqOkttTSzUZwqJUMypiaYYlWkA6Va2TTqGhWekThu0VuIEiaeFKA/640?wx_fmt=png&from=appmsg",
+      "filename": "7ffefaad7633d10c.png",
+      "ocr_text": "图表：中证1000过去十五年走势及25年走势\n中证1000历史走势（2010~2024年）\n2010~2024年均值\n2025\n1080\n1060\n1040\n1020\n1000\n980\n960\n940\n920\n900\n11-30\n12-21\n01-11\n02-01\n02-22\n03-15\n04-05\n04-26"
+    }
+  ]
 }

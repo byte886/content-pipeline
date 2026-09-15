@@ -13,5 +13,22 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMM7Zlk2BWiaicsvLHtz2kB9Mj37J4L6GvzSZMcbCeEiaDicRUjw2KiboPYtmahKP4HAqEdiaFBz3iaHWDpew/640?wx_fmt=jpeg"
   ],
   "image_count": 5,
-  "content_length": 550
+  "content_length": 550,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMM7Zlk2BWiaicsvLHtz2kB9MjQYAkYZgeL9mXpFDSS6Eyv5oEkUmYpKDVlSQxibujL6gmwYOmO87rFPA/640?wx_fmt=jpeg",
+      "filename": "a8a2b8980a3d0a2b.jpg",
+      "ocr_text": "• 顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMM7Zlk2BWiaicsvLHtz2kB9MjCd4ob4pEmm5w1nVEoLo2LhZUEuhfOgibzdVrIdS3n9lL01ibTZsO5ajw/640?wx_fmt=png",
+      "filename": "82a246109c2eb6ff.png",
+      "ocr_text": "000001上还寵数\n33-49.78\n顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMM7Zlk2BWiaicsvLHtz2kB9MjxVEtAWvjHeGH9gw8cI0KCDvCnTCmrZibc35Qjv1Bpd8ZN0SvUhQTd0A/640?wx_fmt=png",
+      "filename": "35ff92d134984ed8.png",
+      "ocr_text": "顶底之王"
+    }
+  ]
 }

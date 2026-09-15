@@ -10,5 +10,17 @@
     "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgwXbDAK08ozrHz4oQtMy7nKJZH16xWbmKUpibaRKXYxs5xb9SCH7j8kzjV82f7SPP5jBNI1FXQ9zZxJ6KKnW6M6JZgqbOMzOSGA/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 2,
-  "content_length": 539
+  "content_length": 539,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/Bgib4dvhgGgx4ibicThKr2bdicjBgZw4IuhhKeZ0Gc5q3XBBvrONMian4I7jLObKhz2uh39LmmFZbjQ5fhOB25wGpEIahvz89CpsHL8zUXL696Mg/640?wx_fmt=png&from=appmsg",
+      "filename": "304178fbb0979f22.png",
+      "ocr_text": "300.00\nNDX 纳斯达克\n26517.93\n最新\n26517.93 均价 2639014\n+1.91%6\n餅开\n26410.62 昨收 25021.66\n175.00\n04:00\n26517.93\n26517.93\n26517.93\n2228159\n5692491\n100,00\n75.00\n26517.93\n26517.93\n5392036\n25.00"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/Bgib4dvhgGgwXbDAK08ozrHz4oQtMy7nKJZH16xWbmKUpibaRKXYxs5xb9SCH7j8kzjV82f7SPP5jBNI1FXQ9zZxJ6KKnW6M6JZgqbOMzOSGA/640?wx_fmt=png&from=appmsg",
+      "filename": "6bc79127192318f4.png",
+      "ocr_text": "上150\n（日线前复仅）◎中证1000×\n-4110.18"
+    }
+  ]
 }

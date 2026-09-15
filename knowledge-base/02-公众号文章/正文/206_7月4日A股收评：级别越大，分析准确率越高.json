@@ -13,5 +13,22 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMO7sibvvdJQeXKPFD6qQ2ia0dGuQP56XBfK6l6K9z1MST6OFJOO6UribwJzIX91QcetEG8F9F4vH3VrA/640?wx_fmt=jpeg"
   ],
   "image_count": 5,
-  "content_length": 646
+  "content_length": 646,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMO7sibvvdJQeXKPFD6qQ2ia0d4wy7XYxViaFeUT2qLc4r34V4bNv1csYce6xx6LoU15uBSFzHxDe6A9g/640?wx_fmt=jpeg",
+      "filename": "1343f1fbd5a8ad90.jpg",
+      "ocr_text": "• 顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMO7sibvvdJQeXKPFD6qQ2ia0dVWapv6jPr1uwOlHPHI0vlentDukDpYdK22fYArqw1ic85kSdh2ibgibbg/640?wx_fmt=png",
+      "filename": "623ced7822cda95e.png",
+      "ocr_text": "北向资金 沪股通、深股通？\n资金净买额？\n资金净流入？\n数据日期：2022-07-04更多\n当日资金余额\n50\n40\n30\n20\n10\n-10\n-20\n9:30\n10:30\n11:30\n14:00\n15:00\n沪股通\n净头额15.43亿\n深股通\n净头额29.58亿\n北向资金 净买额45.01亿\n头入额292.13亿\n头入额353.24亿\n买入额645.37亿\n卖出额276.70亿\n卖出额323.66亿\n卖出额60d原充王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMO7sibvvdJQeXKPFD6qQ2ia0dkl9atxicVer4d6yUzmibLabm0pLmMVmyYTJvmNibMlEAyGia8JPy6CjGaA/640?wx_fmt=png",
+      "filename": "d9fed236bdef0228.png",
+      "ocr_text": "4496.03\n食E7%\n7泰万年\nJ50.6\n•10.73\n3034\n204\n11231\n顶底之王\n64I5"
+    }
+  ]
 }

@@ -11,5 +11,22 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNu8lk2qcbObkibpVVTuGnERSOULozQg3Sdosn2bJZSxD23FneQ7AcRYY3olm2qXQI1WLDLKV2EwRg/640?wx_fmt=png"
   ],
   "image_count": 3,
-  "content_length": 1122
+  "content_length": 1122,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNu8lk2qcbObkibpVVTuGnERTzSBn4xRZrLdQtbJAptUEqpQFiaQryOjP8SeeQKWOvSfdJNf2OHvB1w/640?wx_fmt=png",
+      "filename": "add2d3df3cb0d75a.png",
+      "ocr_text": "顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNu8lk2qcbObkibpVVTuGnER4bN3uASLCmKBwKk33ScRp3zWicNVVYk0zt6V6WPYliaMtBKpc1cHHPCg/640?wx_fmt=png",
+      "filename": "790f604d9ec02733.png",
+      "ocr_text": "投资高手访谈录\n解碳冠军的投资理念探尋高手的文易校巧\n顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNu8lk2qcbObkibpVVTuGnERSOULozQg3Sdosn2bJZSxD23FneQ7AcRYY3olm2qXQI1WLDLKV2EwRg/640?wx_fmt=png",
+      "filename": "2d87b9d3496d6ebd.png",
+      "ocr_text": "REMINISCENCBS\nASTOCK OVERATO\n股票大作手\n|回忆录\n（超鐵畅销飯）\nHOVTO TAIE\nSTOCAS\n股票大作手\n採盘\n各劃合司河阳醬格的科鼻其參情起•\n顶底之王"
+    }
+  ]
 }

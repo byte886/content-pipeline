@@ -9,5 +9,12 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/Bgib4dvhgGgwI2hFvQ7lrj7ibPSRU4LeuTfhaKWROXmZ26Dw5jRmbrO3ECY5ibv1OfRQZqOgY1rWSbL0PPD1BUNzmZdCQ0z7EJCh9BBSazfuib4/640?wx_fmt=jpeg&from=appmsg"
   ],
   "image_count": 1,
-  "content_length": 487
+  "content_length": 487,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/Bgib4dvhgGgwI2hFvQ7lrj7ibPSRU4LeuTfhaKWROXmZ26Dw5jRmbrO3ECY5ibv1OfRQZqOgY1rWSbL0PPD1BUNzmZdCQ0z7EJCh9BBSazfuib4/640?wx_fmt=jpeg&from=appmsg",
+      "filename": "dacc19fe68f978d6.jpg",
+      "ocr_text": "我们通过各一级行业近5日涨跌幅排名变化的绝对值加总，构建行业轮动强度指标，以定量刻画行业轮动的速度。\n当行业轮动速度收敛、轮动强度指标下行时，则意味着市场聚焦强势方向、主线共识形成；当行业轮动速度较\n快、涨跌幅排名变动较为剧烈时，轮动强度指标会上行，指向市场缺乏一致性共识、投资机会的持续性不强。\n图：行业轮动强度升至年内新高\n一行业轮动强度\n120\n115\n110\n105\n100\n2026-01\n2026-02\n2026-03\n2026-04\n2026-05\n2026-06\n2026-07\n2026-08"
+    }
+  ]
 }

@@ -10,5 +10,17 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNcDdHgefYvB5EBjZMUmXKNEiabKPdF4RpYP3ib26L1A7iabcMX2rUl097xOjicMEOEy67ibAtqzFG9lTQ/640?wx_fmt=png"
   ],
   "image_count": 2,
-  "content_length": 898
+  "content_length": 898,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNcDdHgefYvB5EBjZMUmXKNSdAHX78yyJe3LI0sqMpC1zYtH3AbowVSftOnTt3Chz8P5hLptJ3xFw/640?wx_fmt=png",
+      "filename": "bbf1d2b40054fb82.png",
+      "ocr_text": "E证指数（000001） 2020年7月24日 星期五\n分时\n收盘：3196.T7 张\n1：\n-3.86%最高：3319.13最低：3184.96成交：4.27亿\n3464.51\n3436.63\n3408.75\n3380.87\n3352.99\n3325.11\n3297.23\n3269.35\n5241.41\n3213.59\nT.81亿；\n4.19%\n3.35%\n2.52%\n1.68%\n0.84%\n0.00%\n0.84%\n1.68%\n2.52%\n顶底之土"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMNcDdHgefYvB5EBjZMUmXKNEiabKPdF4RpYP3ib26L1A7iabcMX2rUl097xOjicMEOEy67ibAtqzFG9lTQ/640?wx_fmt=png",
+      "filename": "6b38b4252ae3d02b.png",
+      "ocr_text": "航天航空 （BKD480） 2020年7月24日 星期五\n分时 收盘：35492.65 涨幅：2-26% 最高：37408.T4 最低：35492.65 成交：1475万\n37406.93\n37187.91\n38988.88\n36149.86\n38530.84\n36311.82\n36092.80\n35873.78\n35654.76\n35435.73\n4756万.\n3.02%\n2.41%\n1.81%\n1.21%\n0.60%\n0.00%\n0.60%\n1.21%\n1.81%\n2.418\n顶底之王"
+    }
+  ]
 }

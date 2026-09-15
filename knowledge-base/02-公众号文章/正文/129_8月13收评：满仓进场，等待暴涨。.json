@@ -10,5 +10,17 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPicLsvf8icPk2yVmiaicEJsdOkyBcvE9wGHoIA9Tq6arX6ox9zQRGz7B8rWf0381dEUzia5ZNvRjxSJKA/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 2,
-  "content_length": 402
+  "content_length": 402,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPicLsvf8icPk2yVmiaicEJsdOkMn4V7zibcTMNdJib4lFbegrUJicRP9DrFfYlaibq8Vuqb0C9M5krmg2byw/640?wx_fmt=png&from=appmsg",
+      "filename": "23259b7bfb10ac42.png",
+      "ocr_text": "项严\n8月13日\n收评\n满仓进场，等待暴涨。"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPicLsvf8icPk2yVmiaicEJsdOkyBcvE9wGHoIA9Tq6arX6ox9zQRGz7B8rWf0381dEUzia5ZNvRjxSJKA/640?wx_fmt=png&from=appmsg",
+      "filename": "01b1a5562a832ee4.png",
+      "ocr_text": "00\n2845.31\n改参数 加指标 换指标\n3006.31\n3000.00\n2950.00\n2900.00\n2850.00\n取1\n上证\n内盔\n外益\n上涨\n平盛\n下野\n上证\n上A\n上证\n上B\n14:5\n5.07\n0.00\n：（\n15:0"
+    }
+  ]
 }

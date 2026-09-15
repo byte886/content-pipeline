@@ -11,5 +11,22 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMMCsUh5N8ZnpsL5VeVyaaT8mhLpDKuGfLBuKVcZYlV8XyANia6dhJXx49gybtX7uJjtF7maJFu7GYg/640?wx_fmt=png"
   ],
   "image_count": 3,
-  "content_length": 948
+  "content_length": 948,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMMCsUh5N8ZnpsL5VeVyaaT8vtibKTM4fTsacO65Ilwqu4YDKhoeJE8RlNIE8GKPyyGiaSK0h7NZfNicA/640?wx_fmt=png",
+      "filename": "5047b907806eea78.png",
+      "ocr_text": "股剩娃\n股剩縣\n發市販（味）\n怎样/成油\n一芬乾除口\n顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMMCsUh5N8ZnpsL5VeVyaaT8mGjkQQZJu5X4TfdfjERAf9utyE8vNJnnG8rxThO9LTveIWyibhyRvsA/640?wx_fmt=png",
+      "filename": "378aadc84a107424.png",
+      "ocr_text": "趋势交易法\n第二版\n新增交易心理学\nREND FOLLOWING\nMETHOD\n顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMMCsUh5N8ZnpsL5VeVyaaT8mhLpDKuGfLBuKVcZYlV8XyANia6dhJXx49gybtX7uJjtF7maJFu7GYg/640?wx_fmt=png",
+      "filename": "dbd24ebcc902f1df.png",
+      "ocr_text": "股票大作手回忆录\nREDIBISCENCES OF ASTOCK OPERATOR\n股票大作于回忆录\n顶底之王"
+    }
+  ]
 }

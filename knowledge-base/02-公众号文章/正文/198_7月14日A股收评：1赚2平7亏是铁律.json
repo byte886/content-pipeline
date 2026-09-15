@@ -12,5 +12,22 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMPJ0GQoolaUqeaXtyHXvDKQzWQSYsu7sTDnQKwq4H4Pa0ibkhgibhOXbrFm8V9mI85Koia2LOjMjvzZA/640?wx_fmt=jpeg"
   ],
   "image_count": 4,
-  "content_length": 611
+  "content_length": 611,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMPJ0GQoolaUqeaXtyHXvDKQYic7wovtHLQQUt6viacicFSKtvZYBeLnNqFeHO49rRnnUoJ4TymhkiczGA/640?wx_fmt=jpeg",
+      "filename": "2fa4bc25a8adc86c.jpg",
+      "ocr_text": "• 顶底之王"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPJ0GQoolaUqeaXtyHXvDKQRQAjYaNpuy1URT9yibU9lVpdeiay96prwTcjcwPvXMFyYZ0IMItGfM4g/640?wx_fmt=png",
+      "filename": "29770e728a6f2204.png",
+      "ocr_text": "单位 %\n股指缩量调整 向下空间还有吗？\n76.00\n24.00\nA有\n日没有"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMPJ0GQoolaUqeaXtyHXvDKQhxcvddEpLa6ORm3QAibWDlKibxrqGDNe6ErUfI44Y8D00ZKNIuibfibNOg/640?wx_fmt=png",
+      "filename": "e0ed4fde2e85ab7d.png",
+      "ocr_text": "4 000001上证指线\n顶底之主\n32m91"
+    }
+  ]
 }

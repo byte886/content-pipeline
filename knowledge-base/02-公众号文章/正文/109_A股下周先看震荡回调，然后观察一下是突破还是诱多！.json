@@ -10,5 +10,17 @@
     "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMP58YauzDyKprvZeKWCo2VcjY9qPW7oFvIleeDHViawiciaeWKZm7vicXEYKcEEBgbSy3gPVWRbpl0EyA/640?wx_fmt=png&from=appmsg"
   ],
   "image_count": 2,
-  "content_length": 586
+  "content_length": 586,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMP58YauzDyKprvZeKWCo2VcS4whhnicwUkY0aUuF4MneBoLUnJcSCMOoewObx1bQicPXd8afwwd7Cyw/640?wx_fmt=png&from=appmsg",
+      "filename": "2d34dc009879d19f.png",
+      "ocr_text": "图表32：期权以购以活成交比率\n一中证800（左轴）\n期权认购认活比率：MA20 -\n情绪过冷：-1倍标准差\n••情绪过热：1倍标准差\n6500\n6000\n5500\n5000\n4500\n4000\n3500\n3000\n2500\n2018\n1.6\n1.5\n1.4\n1.3\n1.2\n1.1\n1\n0.9\n0.8\n0.7\n2019\n2020\n2021\n2022\n2023\n2024\n2025"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/szVAj3XrnMP58YauzDyKprvZeKWCo2VcjY9qPW7oFvIleeDHViawiciaeWKZm7vicXEYKcEEBgbSy3gPVWRbpl0EyA/640?wx_fmt=png&from=appmsg",
+      "filename": "b2d2dca0f5499932.png",
+      "ocr_text": "恐惧贪婪指戮\n更新时间：2025-03-14\n• 恐惧 •贪婪\n• 指数展性\n贪婪\n金\n1！ 指数数值\n84\n84\n已订阅\n蛇\n我们如何计算恐贪指数？\n67\n1日前\n中立\n79\n1周前\n贪婪\n84\n1月前\n贪婪\n62\n1年前\n中立"
+    }
+  ]
 }

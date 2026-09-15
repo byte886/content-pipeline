@@ -10,5 +10,17 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMMRZZyBVMeTQgQMIfglJrhoJcqHcjMibxia3DgUicQHH1qcDz2wKUsFBV9vCCUdic6ogKqF7cu1ISCXRQ/640?wx_fmt=jpeg"
   ],
   "image_count": 2,
-  "content_length": 630
+  "content_length": 630,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMMRZZyBVMeTQgQMIfglJrho1TGficcSbSUsmXNqLzXvtJX7dTS2YicPn1qXyg3wRiaq5OY2iat0b21Xww/640?wx_fmt=jpeg",
+      "filename": "763a7673f7161db3.jpg",
+      "ocr_text": "顶底之"
+    },
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMMRZZyBVMeTQgQMIfglJrhoJcqHcjMibxia3DgUicQHH1qcDz2wKUsFBV9vCCUdic6ogKqF7cu1ISCXRQ/640?wx_fmt=jpeg",
+      "filename": "ed43e166d3730c48.jpg",
+      "ocr_text": "创业板指\n2523.4.0\n2523，\n2609.\n33330\n1021.71亿\n2609，\n2506，\n4.1：\n1455\n14$6\n2525.69\n2525.45\n15949；\n1531\n5713.\n154.\n12176\n11166\n226.28\n-13552\n顶底之王…\n225.78：\n13201"
+    }
+  ]
 }

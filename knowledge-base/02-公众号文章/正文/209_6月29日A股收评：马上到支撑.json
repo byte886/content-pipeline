@@ -12,5 +12,12 @@
     "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMMHlA09DicqiaicpwsF2IW4ZdJHibcFvJAtMo5kRcHJs4m70Y1aUC05UsVBUkUnuREOJYBXKHPJaM5qNQ/640?wx_fmt=jpeg"
   ],
   "image_count": 4,
-  "content_length": 611
+  "content_length": 611,
+  "image_ocr": [
+    {
+      "url": "https://mmbiz.qpic.cn/mmbiz_jpg/szVAj3XrnMMHlA09DicqiaicpwsF2IW4ZdJzMV4QT7Lfq7otGKdt9g5DnKoZuNRPjiaFSU3gibYn2PyVnib15LxlqKIA/640?wx_fmt=jpeg",
+      "filename": "521c5ba9ce249d23.jpg",
+      "ocr_text": "• 顶底之王"
+    }
+  ]
 }
