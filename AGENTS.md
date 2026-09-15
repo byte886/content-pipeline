@@ -10,10 +10,12 @@
 
 ## 1. 项目概览
 
-**项目目标**：构建A股投资知识库，自动化采集微信视频号「交易的游戏」（证券投资顾问刘广义，关联公众号「顶底之王」）的全部短视频、直播回放和公众号文章，经过转写/OCR/知识提取后，形成结构化知识库，为量化系统和内容创作提供基础。
+**项目目标**：构建多平台内容采集与知识库生成框架，自动化采集各平台（微信公众号/视频号/B站/抖音/YouTube）的视频和图文，经过转写/OCR/知识提取后形成结构化知识库，并支持按行业（股票/珠宝等）生成文稿和视频。
 
-**核心数据**：
-- 短视频：313个（已下载+转写）
+**当前阶段**：架构重构（从微信生态专用项目重构为多平台通用框架），代码已迁移到新结构，数据待迁移。
+
+**核心数据（股票行业）**：
+- 短视频：313个（已下载+转写，待迁移到library/01_video/）
 - 直播回放：23个（已下载，待转写）
 - 公众号文章：277篇（已下载，275篇有正文，910张图片已OCR）
 
@@ -48,13 +50,13 @@
 
 ### 3.1 证书与代理（重要！多次踩坑，已修复）
 
-**已修复**：捕获工具现在使用**相对于可执行文件的路径**加载证书（`os.Executable()`），无论从哪个目录运行都能正确加载`tools/video-capture/ca.crt`。
+**已修复**：捕获工具现在使用**相对于可执行文件的路径**加载证书（`os.Executable()`），无论从哪个目录运行都能正确加载`platforms/wechat_channels/video-capture/ca.crt`。
 
 **历史问题**：之前用相对路径`ca.crt`，从项目根目录运行时会生成新的未信任证书，导致TLS握手失败、全网阻断。
 
 **正确操作**：
-1. 可以从任意目录运行`./tools/video-capture/video-capture`
-2. 证书路径：`tools/video-capture/ca.crt`（已在系统钥匙串信任）
+1. 可以从任意目录运行`./platforms/wechat_channels/video-capture/video-capture`
+2. 证书路径：`platforms/wechat_channels/video-capture/ca.crt`（已在系统钥匙串信任）
 3. 启动前检查：项目根目录**不应**有ca.crt/ca.key（如果有说明是旧版本生成的，删除即可）
 4. 捕获完成后必须清除系统代理（工具退出时自动清除）
 
@@ -69,10 +71,15 @@ done
 
 ### 3.2 工具运行目录规范
 
-| 工具 | 运行目录 | 原因 |
-|------|---------|------|
-| video-capture | 任意目录 | 已修复，使用相对于可执行文件的路径加载证书 |
-| 其他Python脚本 | 项目根目录 | 相对路径引用data/和knowledge-base/ |
+| 工具 | 路径 | 运行目录 | 原因 |
+|------|------|---------|------|
+| video-capture | platforms/wechat_channels/video-capture/ | 任意目录 | 已修复，使用相对于可执行文件的路径加载证书 |
+| video-downloader | platforms/wechat_channels/video-downloader/ | 项目根目录 | 相对路径引用data/ |
+| auto-capture | platforms/wechat_channels/auto-capture/ | 项目根目录 | 相对路径引用 |
+| transcription | processing/transcription/tools/ | 项目根目录 | 相对路径引用library/ |
+| ocr | processing/ocr/tools/ | 项目根目录 | 相对路径引用 |
+| knowledge-extraction | processing/knowledge_extraction/tools/ | 项目根目录 | 相对路径引用 |
+| article | platforms/wechat_official/article/ | 项目根目录 | 相对路径引用 |
 
 ### 3.3 问题驱动更新（强制）
 
@@ -116,7 +123,7 @@ done
 3. 涉及多个工具链（捕获 + 下载 + 解密 + 转写等）
 4. 用户明确要求"批量处理"、"全部完成"
 
-**状态记录落点**：`data/_workspace/capture/state/`（不入库），`TASK_STATUS.md` 只更新指针级状态，不抄批次明细。
+**状态记录落点**：`workspace/capture/state/`（不入库），`TASK_STATUS.md` 只更新指针级状态，不抄批次明细。
 
 **必须立即更新TASK_STATUS.md的场景**：任务开始时 / 每个子任务完成时 / 任务完成时 / 遇到问题或阻塞时 / 每次git提交前。
 
@@ -141,15 +148,17 @@ done
 
 | 位置 | 内容 | 说明 |
 |------|------|------|
-| GitHub仓库 | 代码+文档 | **禁止**放视频、PDF、文字稿等大文件 |
-| `data/videos/` | 视频原始文件 | gitignore忽略 |
-| `data/transcripts/` | 转写稿 | gitignore忽略 |
-| `knowledge-base/` | 结构化知识成品 | 部分入库（正文JSON、图片映射） |
-| 百度网盘 | 与本地完全镜像 | 备份+跨设备访问 |
+| GitHub仓库 | 代码+文档+清洗后知识成品 | **禁止**放视频、PDF、逐字转写、原文、凭证 |
+| `library/01_video/` | 视频原始文件 | gitignore忽略（待从data/videos/迁移） |
+| `library/04_transcript/` | 转写稿 | gitignore忽略（待从data/transcripts/迁移） |
+| `library/05_knowledge/` | 结构化知识成品 | 入库（仅stable状态） |
+| `library/06_articles/` | 图文原文 | gitignore忽略（待从knowledge-base/迁移） |
+| `workspace/` | 过程件 | gitignore忽略 |
+| 百度网盘 | 成品镜像 | 备份+跨设备访问 |
 
-### 3.10 运行时工作区（_workspace）
+### 3.10 运行时工作区（workspace）
 
-**过程件放在`data/_workspace/`下**，不散落在项目根目录或/tmp/。
+**过程件放在`workspace/`下**，不散落在项目根目录或/tmp/。
 
 | 子目录 | 用途 | 保留策略 |
 |--------|------|---------|
@@ -159,7 +168,7 @@ done
 
 **简化原则**：不生搬硬套高顿的6个子目录，只保留真正需要的3个。
 
-详见：`data/_workspace/README.md`、`docs/project-management/decisions/ADR-003.md`
+详见：`workspace/README.md`、`docs/project-management/decisions/ADR-003.md`
 
 ---
 
@@ -169,41 +178,47 @@ done
 
 | 任务 | 工具 | 位置 |
 |------|------|------|
-| 视频捕获（MITM） | video-capture | `tools/video-capture/` |
-| 视频下载+解密 | batch_download_v4.py | `tools/video-downloader/` |
-| 自动化采集 | auto_capture.py | `tools/auto-capture/` |
-| 增量采集 | incremental_collect.py | `tools/auto-capture/` |
-| 视频转文字 | batch_transcribe.py | `tools/transcription/` |
-| 图文OCR | batch_article_images.py | `tools/ocr/` |
-| 知识提取 | extract_knowledge.py | `tools/knowledge-extraction/` |
-| 知识库查询 | knowledge_base.py | `tools/knowledge-extraction/` |
-| 文章采集 | fetch_articles_*.py | `scripts/article/`（待迁移） |
+| 视频捕获（MITM） | video-capture | `platforms/wechat_channels/video-capture/` |
+| 视频下载+解密 | batch_download_v4.py | `platforms/wechat_channels/video-downloader/` |
+| 自动化采集 | auto_capture.py | `platforms/wechat_channels/auto-capture/` |
+| 增量采集 | incremental_collect.py | `platforms/wechat_channels/auto-capture/` |
+| 视频转文字 | batch_transcribe.py | `processing/transcription/tools/` |
+| 图文OCR | batch_article_images.py | `processing/ocr/tools/` |
+| 知识提取 | extract_knowledge.py | `processing/knowledge_extraction/tools/` |
+| 知识库查询 | knowledge_base.py | `processing/knowledge_extraction/tools/` |
+| 方法提炼 | method_extractor.py | `processing/method_extraction/` |
+| 文章采集 | fetch_articles_*.py | `platforms/wechat_official/article/` |
 | 网盘同步 | sync_stock.sh | `scripts/netdisk/` |
+| 流水线编排 | pipeline.py | `core/` |
+| 增量水位 | watermark.py | `core/` |
 
 ---
 
 ## 5. 常见问题
 
 ### Q: 为什么捕获工具启动后全网断了？
-A: 证书路径问题。检查项目根目录是否有ca.crt，如果有说明运行目录错了。删除根目录的ca.crt，从`tools/video-capture/`目录运行。
+A: 证书路径问题。检查项目根目录是否有ca.crt，如果有说明运行目录错了。删除根目录的ca.crt，从`platforms/wechat_channels/video-capture/`目录运行。
 
 ### Q: 视频下载后无法播放？
-A: 短视频是加密的，需要用DecodeKey解密。直播回放不需要解密。运行`node tools/video-downloader/wechat_decrypt.js <decodeKey> <file>`。
+A: 短视频是加密的，需要用DecodeKey解密。直播回放不需要解密。运行`node platforms/wechat_channels/video-downloader/wechat_decrypt.js <decodeKey> <file>`。
 
 ### Q: 下载的视频只有2-5MB，太小了？
 A: 默认是低分辨率版本。用`quality=max`参数下载xWT111格式（大69%）。真正的原始高清版本尚未找到，见`docs/高质量URL研究.md`。
 
 ### Q: 转写输出在哪里？
-A: `data/transcripts/短视频/{视频名}/transcript.md`（注意是子目录，不是直接md文件）。
+A: `data/transcripts/短视频/{视频名}/transcript.md`（注意是子目录，不是直接md文件）。待迁移到`library/04_transcript/wechat_channels/`。
 
 ---
 
 ## 6. 待办与已知限制
 
+- [ ] 架构重构阶段1：代码迁移完成，文档路径更新中
+- [ ] 架构重构阶段2：数据迁移到library/新结构
+- [ ] 架构重构阶段3：接入B站采集（复用珠宝项目脚本）
+- [ ] 架构重构阶段4：接入抖音/YouTube
 - [ ] 直播回放23个尚未转写
-- [ ] 方案B（视频号API）尚未实际验证
+- [ ] 方法提炼（MethodNote）LLM深度分析待实现
 - [ ] 高质量URL（原始48MB版本）尚未找到
-- [ ] scripts/article/ 待迁移到 tools/ 下统一管理
 - [ ] 知识提取当前是规则版，待接入LLM深度提取
 - [ ] 知识库与量化系统对接尚未实现
 

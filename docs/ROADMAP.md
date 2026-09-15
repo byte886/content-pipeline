@@ -29,7 +29,7 @@
 - [x] 视频号内容采集SOP
 - [x] 视频捕获工具（Go语言，命令行版v2.0）
 - [x] 视频下载工具（Python + Node.js）
-- [x] GitHub仓库（byte886/stock-knowledge-base）
+- [x] GitHub仓库（byte886/multiplatform-content-pipeline）
 
 ---
 

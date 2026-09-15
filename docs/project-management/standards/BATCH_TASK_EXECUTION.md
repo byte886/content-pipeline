@@ -24,7 +24,7 @@
 
 | 层级 | 位置 | 内容 |
 |------|------|------|
-| 批次明细 | `data/_workspace/capture/state/` | 具体进度、断点、锁文件（不入库） |
+| 批次明细 | `workspace/capture/state/` | 具体进度、断点、锁文件（不入库） |
 | 指针级状态 | `project-management/active/TASK_STATUS.md` | 只更新工单状态，不抄批次明细 |
 | 问题记录 | `project-management/active/ISSUES.md` | 机制级问题（换平台还会踩的） |
 
@@ -64,7 +64,7 @@
 
 ### 3.3 锁文件
 
-- 位置：`data/_workspace/capture/state/<task_type>.lock`
+- 位置：`workspace/capture/state/<task_type>.lock`
 - 内容：PID + 启动时间
 - 作用：防止多进程冲突
 - 任务完成后必须删除锁文件
@@ -97,7 +97,7 @@ for s in "Ethernet" "Wi-Fi"; do
 done
 
 # 清除残留锁文件
-rm -f data/_workspace/capture/state/*.lock
+rm -f workspace/capture/state/*.lock
 ```
 
 ---
@@ -123,7 +123,7 @@ rm -f data/_workspace/capture/state/*.lock
 启动捕获工具 → 微信滚动列表 → 停止捕获 → URL清单 → 批量下载 → 解密 → 验证 → 归档
 ```
 
-状态记录：`data/_workspace/capture/state/capture_<date>.json`
+状态记录：`workspace/capture/state/capture_<date>.json`
 
 ### 6.2 转写批次
 
@@ -131,7 +131,7 @@ rm -f data/_workspace/capture/state/*.lock
 读取视频列表 → 跳过已转写 → 批量转写 → 验证转写稿非空 → 更新状态
 ```
 
-状态记录：`data/_workspace/capture/state/transcribe_<date>.json`
+状态记录：`workspace/capture/state/transcribe_<date>.json`
 
 ### 6.3 OCR批次
 
@@ -139,7 +139,7 @@ rm -f data/_workspace/capture/state/*.lock
 读取文章图片列表 → 跳过已OCR → 批量OCR → 更新文章JSON → 验证
 ```
 
-状态记录：`data/_workspace/capture/state/ocr_<date>.json`
+状态记录：`workspace/capture/state/ocr_<date>.json`
 
 ---
 

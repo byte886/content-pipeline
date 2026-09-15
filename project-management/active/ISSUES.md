@@ -11,10 +11,10 @@
 ### ISSUE-001: 捕获工具证书路径问题 ✅ 已解决
 - **状态**：已修复（2026-09-15）
 - **发现时间**：2026-09-15
-- **问题描述**：捕获工具用相对路径`ca.crt`加载证书，从项目根目录运行时找不到`tools/video-capture/ca.crt`，会生成新的未信任证书，导致TLS握手失败、全网阻断。
+- **问题描述**：捕获工具用相对路径`ca.crt`加载证书，从项目根目录运行时找不到`platforms/wechat_channels/video-capture/ca.crt`，会生成新的未信任证书，导致TLS握手失败、全网阻断。
 - **根因**：`captor.go`的`loadOrGenerateCA()`用相对路径`"ca.crt"`
 - **修复方案**：改为相对于可执行文件的路径（`os.Executable()` + `filepath.Dir()`）
-- **验证**：从项目根目录运行，正确加载`tools/video-capture/ca.crt`，根目录不生成新证书
+- **验证**：从项目根目录运行，正确加载`platforms/wechat_channels/video-capture/ca.crt`，根目录不生成新证书
 
 ### ISSUE-002: 直播回放尚未转写（中优先级）
 - **状态**：待启动
@@ -28,9 +28,9 @@
 - **可能方向**：从objectDesc.media[0].spec数组中获取每个格式的独立URL
 - **参考**：`docs/高质量URL研究.md`
 
-### ISSUE-004: scripts/article/ 待迁移（低优先级）
+### ISSUE-004: platforms/wechat_official/article/ 待迁移（低优先级）
 - **状态**：待整理
-- **问题描述**：文章采集脚本在`scripts/article/`，与`tools/`目录分离，需要统一管理
+- **问题描述**：文章采集脚本在`platforms/wechat_official/article/`，与`tools/`目录分离，需要统一管理
 - **方案**：迁移到`tools/article-capture/`
 
 ### ISSUE-005: 2篇公众号文章无正文（低优先级）

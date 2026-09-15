@@ -54,7 +54,7 @@ networksetup -setsecurewebproxy "Wi-Fi" 127.0.0.1 8899
 **实现方式**：
 - 使用 Node.js 运行 RES Downloader 自带的 `decrypt.js`（Emscripten 编译的 WASM）
 - 关键函数：`Module.WxIsaac64(seed).generate(131072)` 生成 128KB 数组
-- 解密脚本：`tools/video-downloader/wechat_decrypt.js`
+- 解密脚本：`platforms/wechat_channels/video-downloader/wechat_decrypt.js`
 
 **直播回放**：不需要解密（无 DecodeKey），可直接下载播放。
 
@@ -70,7 +70,7 @@ networksetup -setsecurewebproxy "Wi-Fi" 127.0.0.1 8899
 
 ### 3.1 视频捕获工具
 
-**位置**：`tools/video-capture/`
+**位置**：`platforms/wechat_channels/video-capture/`
 
 **功能**：
 - 启动时自动设置系统代理（对所有活动网络服务）
@@ -130,7 +130,7 @@ nc -z 127.0.0.1 7890 && echo "ClashX正常" || echo "ClashX未运行"
 
 **使用方法**：
 ```bash
-cd tools/video-capture
+cd platforms/wechat_channels/video-capture
 ./video-capture -port 8899 -output videos.json -upstream ""
 # 按 Ctrl+C 停止，会自动清除代理
 ```
@@ -143,7 +143,7 @@ cd tools/video-capture
 
 ### 3.2 视频下载工具
 
-**位置**：`tools/video-downloader/`
+**位置**：`platforms/wechat_channels/video-downloader/`
 
 **功能**：
 - 批量下载视频
@@ -153,7 +153,7 @@ cd tools/video-capture
 
 **使用方法**：
 ```bash
-python3 tools/video-downloader/batch_download_v4.py <视频列表.json> <输出目录> <类型:live/short> [起始序号]
+python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <视频列表.json> <输出目录> <类型:live/short> [起始序号]
 ```
 
 **关键文件**：
@@ -216,7 +216,7 @@ python3 tools/video-downloader/batch_download_v4.py <视频列表.json> <输出�
 A: 确保对所有活动网络服务设置代理，不仅仅是Wi-Fi。使用 `networksetup -listallnetworkservices` 查看所有服务。
 
 ### Q2: 下载的视频无法播放怎么办？
-A: 短视频需要解密。使用 `node tools/video-downloader/wechat_decrypt.js <DecodeKey> <文件路径>` 解密。
+A: 短视频需要解密。使用 `node platforms/wechat_channels/video-downloader/wechat_decrypt.js <DecodeKey> <文件路径>` 解密。
 
 ### Q3: 如何获取 DecodeKey？
 A: DecodeKey 在捕获的视频数据中，字段名为 `decode_key`（9-10位数字）。

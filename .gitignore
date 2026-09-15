@@ -58,8 +58,19 @@ segments/
 
 # --- 数据目录（整体不入库：原料+成品+过程件）---
 data/
+knowledge-base/
+
+# --- library/ 下的原料目录（不入库，仅05_knowledge的stable成品入库）---
+library/01_video/
+library/02_audio/
+library/04_transcript/
+library/06_articles/
+library/07_books/
+library/08_sources/*/raw/
+library/08_sources/*/cleaned/
 
 # --- 运行时工作区（过程件，不入库不传网盘）---
+workspace/
 _workspace/
 
 # --- 日志 ---

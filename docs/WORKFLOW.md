@@ -50,7 +50,7 @@
 - [ ] 公众号文章数量与公众号列表一致
 - [ ] 所有视频文件可正常播放（ffprobe验证）
 - [ ] 所有文章有正文（无正文的记录原因）
-- [ ] URL清单已保存到`data/_workspace/capture/manifest/`
+- [ ] URL清单已保存到`workspace/capture/manifest/`
 
 ### 1.4 参考文档
 
@@ -78,8 +78,8 @@
 
 ### 2.3 参考文档
 
-- 转写工具：`tools/transcription/batch_transcribe.py`
-- OCR工具：`tools/ocr/batch_article_images.py`
+- 转写工具：`processing/transcription/tools/batch_transcribe.py`
+- OCR工具：`processing/ocr/tools/batch_article_images.py`
 - 自定义技能参考：`multiplatform-media-fetch`（FunASR）、`work-doc-extract`（OCR）
 
 ---
@@ -102,7 +102,7 @@
 
 ### 3.3 参考文档
 
-- 知识提取工具：`tools/knowledge-extraction/extract_knowledge.py`
+- 知识提取工具：`processing/knowledge_extraction/tools/extract_knowledge.py`
 - 知识库组织方案：`docs/知识库组织方案.md`
 
 ---
@@ -126,7 +126,7 @@
 ### 4.3 参考文档
 
 - 知识库组织方案：`docs/知识库组织方案.md`
-- 知识库查询工具：`tools/knowledge-extraction/knowledge_base.py`
+- 知识库查询工具：`processing/knowledge_extraction/tools/knowledge_base.py`
 - 网盘同步脚本：`scripts/netdisk/sync_stock.sh`
 
 ---

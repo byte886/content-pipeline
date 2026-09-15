@@ -9,7 +9,7 @@
 # 架构（Architecture）
 
 * [四地存储分工与仓库版图](concepts/architecture-storage-layout.md) - Git/本地data/网盘/飞书各放什么、什么才入库
-* [工具运行目录与证书信任](concepts/architecture-tool-runtime.md) - 捕获工具必须从tools/video-capture/运行、证书路径坑、代理设置
+* [工具运行目录与证书信任](concepts/architecture-tool-runtime.md) - 捕获工具必须从platforms/wechat_channels/video-capture/运行、证书路径坑、代理设置
 
 # 链路（Workflow）
 

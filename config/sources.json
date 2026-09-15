@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "platform": "wechat_official",
+      "account": "顶底之王",
+      "domain": "stock",
+      "enabled": true,
+      "config": {}
+    },
+    {
+      "platform": "wechat_channels",
+      "account": "交易的游戏",
+      "domain": "stock",
+      "enabled": true,
+      "config": {}
+    }
+  ],
+  "domains": [
+    {
+      "domain_id": "stock",
+      "name": "股票投资",
+      "knowledge_base_dir": "domains/stock/knowledge_base",
+      "article_writer_dir": "domains/stock/article_writer",
+      "article_reviewer_dir": "domains/stock/article_reviewer",
+      "config": {}
+    },
+    {
+      "domain_id": "jewelry",
+      "name": "珠宝",
+      "knowledge_base_dir": "domains/jewelry/knowledge_base",
+      "article_writer_dir": "domains/jewelry/article_writer",
+      "article_reviewer_dir": "domains/jewelry/article_reviewer",
+      "config": {}
+    }
+  ]
+}

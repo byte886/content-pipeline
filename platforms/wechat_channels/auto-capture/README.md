@@ -15,13 +15,13 @@
 
 ```bash
 # 完整采集（捕获+下载）
-python3 tools/auto-capture/auto_capture.py "交易的游戏"
+python3 platforms/wechat_channels/auto-capture/auto_capture.py "交易的游戏"
 
 # 只捕获不下载
-python3 tools/auto-capture/auto_capture.py "交易的游戏" --no-download
+python3 platforms/wechat_channels/auto-capture/auto_capture.py "交易的游戏" --no-download
 
 # 指定参数
-python3 tools/auto-capture/auto_capture.py "交易的游戏" \
+python3 platforms/wechat_channels/auto-capture/auto_capture.py "交易的游戏" \
     --port 8899 \
     --output videos.json \
     --download-dir ./downloads \

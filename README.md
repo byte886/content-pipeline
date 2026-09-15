@@ -1,19 +1,38 @@
-# A股投资知识库
+# 多平台内容流水线（multiplatform-content-pipeline）
 
-> **项目类型**：知识库建设 + 自动化采集
+> **项目类型**：多平台内容采集 + 知识库生成 + 文稿/视频创作
 > **创建时间**：2026-09-11
+> **架构重构**：2026-09-15（从微信生态专用项目重构为多平台通用框架）
 > **维护者**：AI自动维护 + 用户审核
 
 ## 项目目标
 
-构建A股投资知识库，自动化采集公众号「顶底之王」和关联视频号「交易的游戏」的全部内容，为后续量化系统和内容生成提供数据基础。
+构建**多平台内容采集与知识库生成框架**，自动化采集各平台（微信公众号/视频号/B站/抖音/YouTube）的视频和图文，经过转写/OCR/知识提取后形成结构化知识库，并支持按行业（股票/珠宝等）生成文稿和视频。
 
-## 目标账号
+### 核心能力
 
-| 平台 | 名称 | 认证 | 说明 |
-|------|------|------|------|
-| 公众号 | 顶底之王 | - | 图文文章 |
-| 视频号 | 交易的游戏 | 证券投资顾问（刘广义，执业编号A0630624060004） | 短视频 + 直播回放 |
+1. **多平台采集**：平台插件化，新平台接入只需实现接口
+2. **公共处理层**：转写（FunASR）、OCR（Vision）、知识提取，所有平台共用
+3. **行业隔离**：股票、珠宝等行业有独立的知识库、文章撰写模板、审稿规则
+4. **方法提炼**：分析博主的拍摄技巧、AI使用、内容呈现，提炼可复用的生成方法
+5. **增量采集**：水位（watermark）机制，只采集新内容
+
+## 已接入平台
+
+| 平台 | 状态 | 采集方式 | 已采集量 |
+|------|------|----------|----------|
+| 微信公众号 | ✅ 已接入 | 微信数据库读取 | 277篇文章 |
+| 微信视频号 | ✅ 已接入 | MITM代理捕获+解密 | 313短视频+23回放 |
+| B站 | 🔧 待接入 | wbi签名+合集采集（复用珠宝项目） | - |
+| 抖音 | 🔧 待接入 | yt-dlp（复用multiplatform-media-fetch） | - |
+| YouTube | 🔧 待接入 | yt-dlp | - |
+
+## 行业配置
+
+| 行业 | 采集源 | 知识库 | 文章撰写 | 审稿 |
+|------|--------|--------|----------|------|
+| 股票投资 | 顶底之王（公众号）+ 交易的游戏（视频号） | ✅ | ✅ | ✅ |
+| 珠宝 | 宝石学家老许（B站，待接入） | ✅ | ✅ | ✅ |
 
 ## 快速导航（AI和人都先看这里）
 
@@ -21,7 +40,7 @@
 |------|------|
 | [AGENTS.md](AGENTS.md) | AI操作手册（命令式、可执行） |
 | [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | 项目需求与决策溯源 |
-| [docs/WORKFLOW.md](docs/WORKFLOW.md) | 整体工作流（四阶段流水线） |
+| [docs/WORKFLOW.md](docs/WORKFLOW.md) | 整体工作流（五层架构流水线） |
 | [docs/DOCUMENTATION_MAP.md](docs/DOCUMENTATION_MAP.md) | **文档地图**（所有文档的快速入口） |
 | [docs/DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md) | 目录结构与存储分工 |
 | [project-management/active/TASK_STATUS.md](project-management/active/TASK_STATUS.md) | 当前进度、下一步 |
@@ -31,127 +50,143 @@
 ## 项目结构
 
 ```
-stock-knowledge-base/
+multiplatform-content-pipeline/
 ├── README.md                          # 项目概览（本文档）
 ├── AGENTS.md                          # AI操作手册
+├── config/
+│   └── sources.json                   # 采集源配置（平台→账号→行业映射）
+├── platforms/                         # 采集层：平台插件
+│   ├── base.py                        # 统一接口（PlatformFetcher）
+│   ├── wechat_official/               # 公众号采集
+│   │   └── article/                   # 文章采集脚本
+│   ├── wechat_channels/               # 视频号采集
+│   │   ├── video-capture/             # MITM代理捕获工具
+│   │   ├── video-downloader/          # 下载+解密
+│   │   └── auto-capture/              # 自动化采集
+│   ├── bilibili/                      # B站采集（待接入）
+│   ├── douyin/                        # 抖音采集（待接入）
+│   └── youtube/                       # YouTube采集（待接入）
+├── processing/                        # 处理层：公共SOP
+│   ├── transcription/                 # FunASR转写
+│   ├── ocr/                           # Vision OCR
+│   ├── knowledge_extraction/          # 知识提取
+│   ├── method_extraction/             # 方法提炼（拍摄技巧/AI使用/风格）
+│   └── normalization/                 # 内容标准化/去重
+├── core/                              # 核心框架
+│   ├── pipeline.py                    # 流水线编排
+│   ├── config.py                      # 配置管理
+│   └── watermark.py                   # 增量水位机制
+├── domains/                           # 行业层（隔离）
+│   ├── stock/                         # 股票行业
+│   │   ├── knowledge_base/            # 股票知识库
+│   │   ├── article_writer/            # 股票文章撰写
+│   │   └── article_reviewer/          # 股票文章审稿
+│   └── jewelry/                       # 珠宝行业
+│       └── ...
+├── library/                           # 数据层（按处理阶段编号）
+│   ├── 00_manifest/                   # 台账（manifest、水位、队列）
+│   ├── 01_video/<平台>/<账号>/        # 原片
+│   ├── 02_audio/                      # 音频（过程件）
+│   ├── 04_transcript/<平台>/          # 逐字转写（原料，不入库）
+│   ├── 05_knowledge/                  # OKF知识成品（入库）
+│   │   └── concepts/
+│   │       ├── videos/                # 视频笔记（VideoNote）
+│   │       ├── articles/              # 图文笔记（ArticleNote）
+│   │       ├── books/                 # 书籍笔记（BookNote）
+│   │       ├── reports/               # 报告笔记（ReportNote）
+│   │       ├── methods/               # 方法笔记（MethodNote）
+│   │       └── topics/                # 主题融合页
+│   ├── 06_articles/<平台>/            # 图文（原料，不入库）
+│   ├── 07_books/                      # 书籍
+│   └── 08_sources/<source_id>/        # 平台无关外部源
 ├── docs/                              # 工程文档
-│   ├── DOCUMENTATION_MAP.md           # 文档地图（先读这个）
+│   ├── DOCUMENTATION_MAP.md           # 文档地图
 │   ├── DIRECTORY_STRUCTURE.md         # 目录结构说明
-│   ├── PRD.md / 技术方案.md / 执行计划.md
+│   ├── WORKFLOW.md                    # 工作流
+│   ├── REQUIREMENTS.md                # 需求与决策溯源
 │   ├── ROADMAP.md                     # 路线图
 │   ├── 视频号内容采集SOP.md
 │   ├── 公众号文章采集SOP.md
-│   ├── 高质量URL研究.md
-│   ├── 视频号API研究.md
-│   ├── 知识库组织方案.md / 知识库规范.md
 │   └── project-management/
-│       ├── decisions/                 # ADR决策记录（只增不改）
-│       └── memory/                    # 工程记忆（跨会话稳定结论）
+│       ├── decisions/                 # ADR决策记录
+│       ├── memory/                    # 工程记忆
+│       └── standards/                 # 规范文档
 ├── project-management/
-│   └── active/                        # 活跃任务台账（动态）
-│       ├── TASK_STATUS.md             # 当前进度
-│       └── ISSUES.md                  # 已知问题
-├── tools/                             # 工具脚本（按功能分目录）
-│   ├── video-capture/                 # 视频捕获（MITM代理）
-│   ├── video-downloader/              # 视频下载+解密
-│   ├── auto-capture/                  # 自动化采集
-│   ├── transcription/                 # 视频转文字（FunASR）
-│   ├── ocr/                           # 图文OCR（macOS Vision）
-│   └── knowledge-extraction/          # 知识提取与查询
-├── scripts/                           # 其他脚本（待整理迁移）
-├── data/                              # 本地运行数据（gitignore）
-│   ├── videos/                        # 视频原始文件
-│   └── transcripts/                   # 转写稿
-└── knowledge-base/                    # 知识库成品
-    ├── 01-视频号内容/
-    ├── 02-公众号文章/
-    ├── 03-书籍精华/
-    ├── 04-知识点图谱/
-    └── 05-文案素材库/
+│   └── active/
+│       ├── TASK_STATUS.md             # 任务状态
+│       └── ISSUES.md                  # 问题清单
+├── scripts/                           # 运维脚本
+│   └── netdisk/                       # 百度网盘同步
+├── workspace/                         # 过程件（不入库）
+├── .secrets/                          # 凭证（不入库）
+└── data/                              # 旧数据（待迁移到library/）
 ```
 
-## 核心技术
+## 五层架构
 
-### 视频采集
-- **代理捕获**：MITM代理 + JS注入Hook，捕获视频号视频URL
-- **自动代理**：启动时自动设置系统代理（所有活动网络服务），退出时自动清除
-- **上游代理**：支持ClashX上游代理，国内直连/国外自动VPN
-- **视频解密**：ISAAC64伪随机数生成器 + XOR解密（前128KB）
-- **批量下载**：支持短视频（需解密）和直播回放（无需解密）
-- **高质量URL**：X-snsvideoflag=xWT111（比默认大69%）
+```
+① 来源层（平台插件化，开放扩展）
+   微信公众号 / 微信视频号 / B站 / 抖音 / YouTube / 其他
+              │
+② 加工层（公共SOP）
+   下载→解密→FunASR转写｜抓正文→图OCR｜书摘｜PDF抽取
+              │
+③ 原始层（只读·本地留档·不进公有仓）
+   library/01_video  02_audio  04_transcript  06_articles  07_books
+              │
+④ 知识层（清洗后"自己话重组、带来源"的成品，才入库）
+   concepts/videos articles books reports methods → topics/ 主题融合
+              │
+⑤ 应用层（按行业隔离）
+   domains/stock/    股票知识库 + 文章撰写 + 审稿
+   domains/jewelry/  珠宝知识库 + 文章撰写 + 审稿
+```
 
-### 文章采集
-- 微信本地数据库读取
-- 公众号文章正文提取
-- 图片OCR（macOS Vision，编译二进制提速10倍）
+## 方法提炼（MethodNote）
 
-### 知识处理
-- **视频转文字**：FunASR本地离线转写（9.7x实时）
-- **图文OCR**：macOS Vision框架
-- **知识提取**：基于规则的市场观点/技术点位/板块机会提取
+除了传统的内容知识库，本项目还支持**方法提炼**：
 
-## 数据统计（截至2026-09-15）
+- **场景**：看到一个博主（如抖音广告博主），拍摄技巧、AI使用效果、内容呈现都很新颖
+- **目标**：分析视频的表现效果和风格，提炼出可复用的生成方法
+- **过程**：可能需要搜索（如搜索某种AI工具的使用方法）
+- **目的**：不是进入该行业，而是提炼方法，方便抄袭风格和生成视频
+- **输出**：`library/05_knowledge/concepts/methods/` 下的MethodNote
 
-| 类型 | 数量 | 状态 |
-|------|------|------|
-| 短视频 | 313个 | ✅ 已下载 + 已转写 |
-| 直播回放 | 23个 | ✅ 已下载，⏳ 待转写 |
-| 公众号文章 | 277篇 | ✅ 已下载（275篇有正文，910张图片已OCR） |
+## 存储分工（硬约束）
+
+| 位置 | 内容 |
+|------|------|
+| Git公有仓 | 清洗后知识成品（05的stable）、代码、docs/、台账元数据；**不放媒体、逐字转写、原文、凭证、过程件** |
+| 本地桌面项目 | 原始资源 + 知识成品，**唯一权威源** |
+| 百度网盘 | 成品镜像 |
+| 飞书 | 暂缓；将来只发成品 |
+
+## 关键技术
+
+- **视频号采集**：MITM代理捕获URL + ISAAC64解密（DecodeKey→128KB数组→XOR前128KB）
+- **转写**：FunASR（SenseVoiceSmall模型，9.7x实时）
+- **OCR**：macOS Vision框架（编译二进制，1.5秒/张）
+- **增量采集**：水位（watermark）机制，先成功落地再推进水位
+- **知识格式**：OKF v0.2（type区分VideoNote/ArticleNote/BookNote/ReportNote/MethodNote）
 
 ## 快速开始
 
-### 捕获视频URL
 ```bash
-# 可以从任意目录运行（证书路径已修复为相对于可执行文件）
-./tools/video-capture/video-capture -port 8899 -output videos.json
-# 在微信中打开视频号，滚动列表
-# Ctrl+C 停止（自动清除代理）
+# 查看配置
+cat config/sources.json
+
+# 运行所有采集源（框架已搭好，平台插件待完善）
+python3 core/pipeline.py
+
+# 增量更新
+python3 -c "from core.watermark import WatermarkManager; wm = WatermarkManager(); print(wm.get_all_sources())"
 ```
 
-### 下载视频
-```bash
-# 短视频（自动解密）
-python3 tools/video-downloader/batch_download_v4.py videos.json output/ short 1
+## 下一步
 
-# 直播回放
-python3 tools/video-downloader/batch_download_v4.py live.json output/ live 1
-```
-
-### 视频转文字
-```bash
-python3 tools/transcription/batch_transcribe.py data/videos/短视频 data/transcripts/短视频
-```
-
-### 图文OCR
-```bash
-python3 tools/ocr/batch_article_images.py
-```
-
-## 存储分工
-
-| 位置 | 内容 | 说明 |
-|------|------|------|
-| GitHub仓库 | 代码+文档 | 禁止放视频等大文件 |
-| 本地 data/ | 视频、转写稿 | 主存储 |
-| 本地 knowledge-base/ | 结构化知识 | 部分入库 |
-| U盘 | 视频存档 | 备份 |
-| 百度网盘 | 与本地镜像 | 跨设备访问 |
-
-## 后续计划
-
-- [ ] 直播回放23个转写
-- [ ] 知识提取批量运行
-- [ ] 增量采集机制完善
-- [ ] 知识库汇总生成
-- [ ] 高质量URL原始版本（48.5MB）继续研究
-- [ ] 知识提取接入LLM深度提取
-- [ ] 量化系统对接
-- [ ] 内容创作工具（公众号文案/短视频脚本生成）
-
-## 相关文档
-
-- [视频号内容采集SOP](docs/视频号内容采集SOP.md)
-- [公众号文章采集SOP](docs/公众号文章采集SOP.md)
-- [高质量URL研究](docs/高质量URL研究.md)
-- [视频号API研究](docs/视频号API研究.md)
-- [知识库组织方案](docs/知识库组织方案.md)
+按 [docs/ROADMAP.md](docs/ROADMAP.md)：
+1. 阶段1完成：架构重构+代码迁移（进行中）
+2. 阶段2：数据迁移到library/新结构
+3. 阶段3：接入B站采集（复用珠宝项目脚本）
+4. 阶段4：接入抖音/YouTube
+5. 阶段5：方法提炼LLM深度分析

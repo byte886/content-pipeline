@@ -21,7 +21,7 @@ verified: machine
 
 ## 来源与下钻
 
-- 转写工具：`tools/transcription/batch_transcribe.py`
-- OCR工具：`tools/ocr/batch_article_images.py`
+- 转写工具：`processing/transcription/tools/batch_transcribe.py`
+- OCR工具：`processing/ocr/tools/batch_article_images.py`
 - 自定义技能：`/Users/wenjiechen/Doubao/skills/multiplatform-media-fetch/`（FunASR）
 - 自定义技能：`/Users/wenjiechen/Doubao/skills/work-doc-extract/`（OCR）
