@@ -33,7 +33,7 @@
 | T-02 | 视频号直播回放采集 | feature | 无 | **done** | 23个直播回放，`data/videos/直播回放/` |
 | T-03 | 公众号文章采集 | feature | 无 | **done** | 277篇文章，`knowledge-base/02-公众号文章/` |
 | T-04 | 短视频转文字 | feature | T-01 | **done** | 313个转写稿，`data/transcripts/短视频/` |
-| T-05 | 直播回放转文字 | feature | T-02 | **doing** | 23个转写稿，`library/04_transcript/wechat_channels/直播回放/`（后台运行，PID见workspace/logs） |
+| T-05 | 直播回放转文字 | feature | T-02 | **done** | 23个转写稿全部完成，`library/04_transcript/wechat_channels/直播回放/`（成功23/失败0，2026-09-16 07:00完成） |
 | T-06 | 公众号图片OCR | feature | T-03 | **done** | 910张图片OCR，更新236篇文章 |
 | T-07 | 知识提取工具开发 | feature | T-04/T-06 | **done** | `processing/knowledge_extraction/tools/extract_knowledge.py` |
 | T-08 | 知识提取批量运行 | feature | T-07 | **done** | 313个短视频知识提取完成，`library/05_knowledge/extracted/`（看涨145/看跌50/震荡118） |
