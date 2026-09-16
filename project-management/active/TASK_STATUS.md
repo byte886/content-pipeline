@@ -104,3 +104,33 @@
 ---
 
 *最后更新：2026-09-16*
+
+## T-30 珠宝知识库合并（2026-09-16）
+
+**状态**: ✅ 完成
+
+**内容**: 将独立的 gemology-kb 项目（宝石学家老许B站知识库）完整合并入主仓库，后续珠宝独立项目废弃。
+
+**合并成果**:
+- 视频：743个（约13GB）→ `library/01_video/bilibili/宝石学家老许/`
+- 转写稿：743个 → `library/04_transcript/bilibili/宝石学家老许/`
+- 知识成品：777个 → `library/05_knowledge/concepts/`（videos 765 + topics 11 + reports 1）
+- 图文动态：202个 → `library/06_articles/bilibili/宝石学家老许/`
+- 外部源：8个（生财有术珠宝社区）→ `library/08_sources/community-scys-jewelry/`
+- 台账：6个 → `library/00_manifest/bilibili/`
+- B站脚本：17个 → `platforms/bilibili/`
+- OCR脚本：4个 → `processing/ocr/`
+- 文档：7个 → `docs/project-management/jewelry-*.md`
+
+**架构决策**:
+- 平台能力通用化（platforms/bilibili/），不绑定珠宝
+- 行业内容隔离（domains/jewelry/）
+- 数据按平台+账号组织（library/01_video/bilibili/宝石学家老许/）
+- 配置驱动（config/sources.json添加B站源）
+
+**网盘同步**: 已启动珠宝视频/转写/知识成品同步到百度网盘「珠宝知识库/」
+
+**下一步**:
+- 珠宝视频同步完成后验证网盘完整性
+- 统一网盘同步脚本（sync_library.sh已创建，支持多知识库）
+- 清理旧的 sync_stock.sh（可保留为别名）

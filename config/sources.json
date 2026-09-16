@@ -13,6 +13,18 @@
       "domain": "stock",
       "enabled": true,
       "config": {}
+    },
+    {
+      "platform": "bilibili",
+      "account": "宝石学家老许",
+      "uid": "1841256325",
+      "domain": "jewelry",
+      "enabled": true,
+      "config": {
+        "chrome_profile": ".chrome-prof3",
+        "cdp_port": 9223,
+        "season_map": "platforms/bilibili/config/season_map.json"
+      }
     }
   ],
   "domains": [

@@ -1,0 +1,75 @@
+{
+  "video_id": "live_018_回调就是进场机会",
+  "title": "live_018_回调就是进场机会",
+  "extracted_at": "2026-09-16T11:14:57.958793",
+  "transcript_length": 10640,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 64,
+    "bearish_signals": 54,
+    "summary": "趋势没破位就不用管"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "光伏也不用出"
+    },
+    {
+      "name": "AI",
+      "context": "AI应用"
+    },
+    {
+      "name": "医药",
+      "context": "现在不是科技跟医药同长"
+    },
+    {
+      "name": "医疗",
+      "context": "医疗服务"
+    },
+    {
+      "name": "白酒",
+      "context": "白酒也是上涨趋势之后"
+    },
+    {
+      "name": "券商",
+      "context": "Yes. 券商券商上涨趋势不用动，你现在就是一个震荡，下跌没破位"
+    },
+    {
+      "name": "银行",
+      "context": "别问个股啊，红利红利中红利也说了很多次了，中长线上方还有很大空间，银行红利不管从股息率的角度，还是从趋势的角度"
+    },
+    {
+      "name": "地产",
+      "context": "地产也是这也是支撑为真的哈"
+    },
+    {
+      "name": "房地产",
+      "context": "房地产就差不多嘛"
+    },
+    {
+      "name": "钢铁",
+      "context": "钢铁钢铁之前也说了，有的话就拿着，这也是底部区域啊，这是讲过了太多次了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "被动性的卖出，而历史上往往"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

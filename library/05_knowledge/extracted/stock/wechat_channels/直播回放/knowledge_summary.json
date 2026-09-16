@@ -1,0 +1,1752 @@
+{
+  "total": 23,
+  "extracted_at": "2026-09-16T11:14:57.999098",
+  "results": [
+    {
+      "video_id": "live_007_地量地价",
+      "title": "live_007_地量地价",
+      "extracted_at": "2026-09-16T11:14:57.916790",
+      "transcript_length": 7218,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 43,
+        "bearish_signals": 34,
+        "summary": "跌的话呢主要是以科技为主的下跌，其他低估值还不错"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏没破位啊，光伏走势挺好的，而且光伏是为数不多的，低位板块里没放量的，这个应该还可以继续进啊，其他的什么低估值板块是不是都拉起来了"
+        },
+        {
+          "name": "半导体",
+          "context": "半导体也偏高位吧"
+        },
+        {
+          "name": "芯片",
+          "context": "Yeah. 存储芯片"
+        },
+        {
+          "name": "医药",
+          "context": "你要要么就是一个光伏啊，或者说医药，但是医药的缩量幅度感觉也不是太够啊"
+        },
+        {
+          "name": "医疗",
+          "context": "医药医疗周线缩量周线"
+        },
+        {
+          "name": "消费",
+          "context": "尤其是低估值，像什么消费白酒之类"
+        },
+        {
+          "name": "白酒",
+          "context": "尤其是低估值，像什么消费白酒之类"
+        },
+        {
+          "name": "券商",
+          "context": "低估值的趋势都是没问题的，券商这也是趋势都不用担心，都没问题"
+        },
+        {
+          "name": "银行",
+          "context": "银行的话"
+        },
+        {
+          "name": "保险",
+          "context": "白酒这两天也涨了涨了一段了，券商也拉起来了，保险都拉起来了"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "好吧，所以说你没有的话，就别往里进了，清仓的话可以拿着仓位重的话，你如果你是盈利的话，或者保本的话，最好先减仓啊"
+      },
+      "key_quotes": [
+        "如果要往上看，就必须把今天阴天给包掉",
+        "就不要看这板块，如果你有的话，你放也不用动了，因为它趋势没问题，中长线没什么问题，中长线这也是底部"
+      ],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_021_回调就是进场机会",
+      "title": "live_021_回调就是进场机会",
+      "extracted_at": "2026-09-16T11:14:57.919659",
+      "transcript_length": 9171,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 57,
+        "bearish_signals": 47,
+        "summary": "调整挺狠，上证指数跌0.3%没怎么跌啊，然后科技也没怎么跌吧，低估值那就医药"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "看一下光伏"
+        },
+        {
+          "name": "医药",
+          "context": "调整挺狠，上证指数跌0.3%没怎么跌啊，然后科技也没怎么跌吧，低估值那就医药"
+        },
+        {
+          "name": "医疗",
+          "context": "样医疗都是被"
+        },
+        {
+          "name": "白酒",
+          "context": "白酒白酒这都良性回调，这个位置不是顶部迹象上涨趋势"
+        },
+        {
+          "name": "券商",
+          "context": "券商龙头一直加盘"
+        },
+        {
+          "name": "银行",
+          "context": "买银行怎么样"
+        },
+        {
+          "name": "保险",
+          "context": "保险"
+        },
+        {
+          "name": "地产",
+          "context": "房地产"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产"
+        },
+        {
+          "name": "有色",
+          "context": "Yeah. 有色啊"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "CPO. CPO你可以根据科技先稍微拿一拿，就是我个人建议你首先先仓位重的话，肯定先减仓，这毫无疑问的"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_020_回调就是进场机会",
+      "title": "live_020_回调就是进场机会",
+      "extracted_at": "2026-09-16T11:14:57.922367",
+      "transcript_length": 8024,
+      "market_view": {
+        "direction": "看涨",
+        "confidence": "中",
+        "bullish_signals": 51,
+        "bearish_signals": 30,
+        "summary": "高位股是医药白酒下跌是吧"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "新能源",
+          "context": "但是新能源又冲了一波是吧"
+        },
+        {
+          "name": "光伏",
+          "context": "光伏光伏没啥问题"
+        },
+        {
+          "name": "医药",
+          "context": "高位股是医药白酒下跌是吧"
+        },
+        {
+          "name": "医疗",
+          "context": "上海轮牛市其实是医药医疗是吧"
+        },
+        {
+          "name": "消费",
+          "context": "带动消费往下跌"
+        },
+        {
+          "name": "白酒",
+          "context": "高位股是医药白酒下跌是吧"
+        },
+        {
+          "name": "军工",
+          "context": "军工啊等等都是高危板块"
+        },
+        {
+          "name": "券商",
+          "context": "那券商说实话，你不带去损也没什么问题，券商估值百分为到20%吧"
+        },
+        {
+          "name": "银行",
+          "context": "银行"
+        },
+        {
+          "name": "地产",
+          "context": "房地产"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "证券你说止损，放在6月份的低点"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动"
+      ]
+    },
+    {
+      "video_id": "live_015_回调就是进场机会",
+      "title": "live_015_回调就是进场机会",
+      "extracted_at": "2026-09-16T11:14:57.924714",
+      "transcript_length": 11188,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 71,
+        "bearish_signals": 91,
+        "summary": "医药虽然到支撑了，有可能在支撑位震荡，然后等缩量"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "为什么什么光伏啊，光伏是上周是缩了下，今天是小跌了一下，但是也还好吧，那就跌了1%，问题也不是很大，而且像今天大盘跌成这样，这个光伏跟着往下走一小下也没也不是什么大问题，而且他今天上午不是一开盘就拉起"
+        },
+        {
+          "name": "医药",
+          "context": "医药虽然到支撑了，有可能在支撑位震荡，然后等缩量"
+        },
+        {
+          "name": "医疗",
+          "context": "然后你包括你看医疗也是"
+        },
+        {
+          "name": "消费",
+          "context": "如果你是进的低估值啊，哪怕医药今天又跌了这么多，你都不用担心，或者说其他的低估值呃，什么农业啊、养殖啊，或者说消费啊，白酒，白酒也没怎么跌，白酒上周不是也这个也缩量了，是吧"
+        },
+        {
+          "name": "白酒",
+          "context": "如果你是进的低估值啊，哪怕医药今天又跌了这么多，你都不用担心，或者说其他的低估值呃，什么农业啊、养殖啊，或者说消费啊，白酒，白酒也没怎么跌，白酒上周不是也这个也缩量了，是吧"
+        },
+        {
+          "name": "军工",
+          "context": "主要就跌的科技，再加医药，再加上一些什么军工啊，这个传媒啊，这都属于小跌的"
+        },
+        {
+          "name": "券商",
+          "context": "Yours. 然后有一些这个像什么券商啊这种缩量的，它也并没怎么跌，对吧"
+        },
+        {
+          "name": "银行",
+          "context": "银行煤炭市涨的好，那他就是跟科技反降的"
+        },
+        {
+          "name": "地产",
+          "context": "十字节呢，今天都没怎么跌，跌的主要就是房地产和这个医药，不都是上周利好消息兑现放量了吗"
+        },
+        {
+          "name": "房地产",
+          "context": "十字节呢，今天都没怎么跌，跌的主要就是房地产和这个医药，不都是上周利好消息兑现放量了吗"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "科创可以加仓吗"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_003_再次地量！",
+      "title": "live_003_再次地量！",
+      "extracted_at": "2026-09-16T11:14:57.927652",
+      "transcript_length": 7022,
+      "market_view": {
+        "direction": "看跌",
+        "confidence": "中",
+        "bullish_signals": 26,
+        "bearish_signals": 40,
+        "summary": "如果是上涨趋势，就进到底部了"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "这个券商啊光伏啊"
+        },
+        {
+          "name": "医药",
+          "context": "或者医药今天也摔了一下"
+        },
+        {
+          "name": "医疗",
+          "context": "医疗服务一些东财这种等权板块"
+        },
+        {
+          "name": "消费",
+          "context": "食品饮料那就消费呗"
+        },
+        {
+          "name": "白酒",
+          "context": "都是正常回调白酒"
+        },
+        {
+          "name": "食品",
+          "context": "食品饮料那就消费呗"
+        },
+        {
+          "name": "券商",
+          "context": "你如说像最近的券商啊，创新药啊"
+        },
+        {
+          "name": "地产",
+          "context": "房地产"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产"
+        },
+        {
+          "name": "钢铁",
+          "context": "如果非要让我做短线的话，一个券商，一个光伏，然后再加个钢铁"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "那么如果你有技术的话，那你可以做一些高抛低吸是吧"
+      },
+      "key_quotes": [
+        "短线无法分解，也就是说过很多次，你不要问了",
+        "前天跟昨天很多自媒体都说不要站在光里，要站在田里，不知道大家刷到没有以我的经验，只要出现这种情况，就基本上就是要回调"
+      ],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_022_上涨中继",
+      "title": "live_022_上涨中继",
+      "extracted_at": "2026-09-16T11:14:57.929551",
+      "transcript_length": 9657,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 48,
+        "bearish_signals": 69,
+        "summary": "你是两点之后的下跌"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "So. Yeah. 光伏怎么办"
+        },
+        {
+          "name": "半导体",
+          "context": "嗯. 半导体呀"
+        },
+        {
+          "name": "医药",
+          "context": "Okay. 医药创新药这边都放量了"
+        },
+        {
+          "name": "医疗",
+          "context": "医疗连续几天上有线"
+        },
+        {
+          "name": "消费",
+          "context": "低估值就是就是老邓哈，就是医药消费、白酒、农业、恒生科技也算吧"
+        },
+        {
+          "name": "白酒",
+          "context": "低估值就是就是老邓哈，就是医药消费、白酒、农业、恒生科技也算吧"
+        },
+        {
+          "name": "券商",
+          "context": "7年铁粉帮分一下券商啊"
+        },
+        {
+          "name": "保险",
+          "context": "保险不太好判断技术面没有趋势，没有形态"
+        },
+        {
+          "name": "地产",
+          "context": "房地产能拿呀"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产能拿呀"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "空仓，你有仓位",
+        "action": "颈线在这儿了，有可能明天还想回家，那创业板现在就是支撑了，反正就是不管怎么样，明天回也好，呃，这明天随便怎么走，趋势是往上的如果明天回那就是继续加仓，继续补仓"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_019_上涨中继",
+      "title": "live_019_上涨中继",
+      "extracted_at": "2026-09-16T11:14:57.933242",
+      "transcript_length": 10556,
+      "market_view": {
+        "direction": "看涨",
+        "confidence": "中",
+        "bullish_signals": 58,
+        "bearish_signals": 34,
+        "summary": "虽然说现在你你这板块走的趋势走的不太好，只能说今天量价关系非常正常，你这不是一个高高低点逐级下移的嘛，这算是个反弹啊，趋势上一般"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "新能源",
+          "context": "第一波下跌之后的反弹，新能源光伏这些反弹的也挺猛的"
+        },
+        {
+          "name": "光伏",
+          "context": "基本上其他的都没问题，光伏什么的"
+        },
+        {
+          "name": "半导体",
+          "context": "电子啊、通信、半导体"
+        },
+        {
+          "name": "芯片",
+          "context": "存储板块存储芯片吗"
+        },
+        {
+          "name": "医药",
+          "context": "然后医医药都都都反弹的挺猛的"
+        },
+        {
+          "name": "医疗",
+          "context": "CRO不就医医疗吗"
+        },
+        {
+          "name": "消费",
+          "context": "那属于消费类的"
+        },
+        {
+          "name": "白酒",
+          "context": "白酒啊"
+        },
+        {
+          "name": "券商",
+          "context": "券商券商"
+        },
+        {
+          "name": "银行",
+          "context": "银行就您先加个粉丝登牌的问题的朋友"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": ""
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_014_地量见地价",
+      "title": "live_014_地量见地价",
+      "extracted_at": "2026-09-16T11:14:57.936873",
+      "transcript_length": 12501,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 44,
+        "bearish_signals": 45,
+        "summary": "缩量下跌是你第一是下跌破位了，下跌趋势现在还不太算下跌趋势，只能算是个支撑位置的震荡"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏也S"
+        },
+        {
+          "name": "医药",
+          "context": "医药生物并没有缩量"
+        },
+        {
+          "name": "医疗",
+          "context": "中症医疗啊"
+        },
+        {
+          "name": "白酒",
+          "context": "白酒也没问题啊，所有的板块今天都没问题，白酒不也是缩量小阳线吗"
+        },
+        {
+          "name": "券商",
+          "context": "券商也是啊，缩量十字星，如果某一天缩量十字星，那就起日线反弹"
+        },
+        {
+          "name": "银行",
+          "context": "那个银行煤炭权重比较高的那个红利已经涨7%了"
+        },
+        {
+          "name": "地产",
+          "context": "房地产也没什么问题啊"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产也没什么问题啊"
+        },
+        {
+          "name": "钢铁",
+          "context": "钢铁看一下"
+        },
+        {
+          "name": "煤炭",
+          "context": "那个银行煤炭权重比较高的那个红利已经涨7%了"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "低吸的"
+      },
+      "key_quotes": [
+        "这朋友还是房地产不要碰",
+        "当然也有的情况是失败了，只不过如果你想等地量的时候就进的话，你你不要再去什么犹豫了，一旦出现地量，赶紧进啊，第二天就拉起来了"
+      ],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_012_大盘底部",
+      "title": "live_012_大盘底部",
+      "extracted_at": "2026-09-16T11:14:57.940640",
+      "transcript_length": 9473,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 44,
+        "bearish_signals": 30,
+        "summary": "如果是上涨趋势或底部的话"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "新能源",
+          "context": "煤炭啊，什么有色啊，什么这个新能源啊，还有这个什么这个中证1000啊，这些是吧"
+        },
+        {
+          "name": "光伏",
+          "context": "光伏这也没什么问题啊"
+        },
+        {
+          "name": "医药",
+          "context": "粮食也是一个猪肉也是一个地产，还有什么消费啊，医药啊，这么多低估值的，你看现在粮食为什么涨"
+        },
+        {
+          "name": "消费",
+          "context": "粮食也是一个猪肉也是一个地产，还有什么消费啊，医药啊，这么多低估值的，你看现在粮食为什么涨"
+        },
+        {
+          "name": "白酒",
+          "context": "白酒这儿也有机会"
+        },
+        {
+          "name": "军工",
+          "context": "军工不是太建议，也是"
+        },
+        {
+          "name": "券商",
+          "context": "券商我说一下啊，这首先"
+        },
+        {
+          "name": "地产",
+          "context": "Yeah. 等会儿给大家去讲讲房地产，房地产不是出了政策吗"
+        },
+        {
+          "name": "房地产",
+          "context": "Yeah. 等会儿给大家去讲讲房地产，房地产不是出了政策吗"
+        },
+        {
+          "name": "有色",
+          "context": "理矿也好，有色也好，这是个阻力"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "重仓是吧？拿一些小仓位",
+        "action": "散户你是能看到他是在卖出的"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_009_正常回调",
+      "title": "live_009_正常回调",
+      "extracted_at": "2026-09-16T11:14:57.945276",
+      "transcript_length": 8655,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 73,
+        "bearish_signals": 95,
+        "summary": "最好是能连续震荡缩量"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏的话偏震荡吧，它这个这你这段小小下跌，这这其势太小了啊，你定义不了下跌趋势的，它就是拉一下，然后就震了一下，可能是被光伏的龙头的利空消息给带的吧，这也不是下跌趋势，也没破位什么的，就就是一个震荡，"
+        },
+        {
+          "name": "AI",
+          "context": "AI应用"
+        },
+        {
+          "name": "医药",
+          "context": "它也是上涨趋势，医药、医疗、中新药都是上涨趋势"
+        },
+        {
+          "name": "医疗",
+          "context": "它也是上涨趋势，医药、医疗、中新药都是上涨趋势"
+        },
+        {
+          "name": "白酒",
+          "context": "嗯. 白酒也是上涨趋势回调"
+        },
+        {
+          "name": "军工",
+          "context": "军工启动了"
+        },
+        {
+          "name": "券商",
+          "context": "Yeah. 好. . 券商刚才不是说过了吗"
+        },
+        {
+          "name": "保险",
+          "context": "保险跟券商一样"
+        },
+        {
+          "name": "地产",
+          "context": "老顽同晚上好，房地产是支撑啊，房地产周线支撑嗯"
+        },
+        {
+          "name": "房地产",
+          "context": "老顽同晚上好，房地产是支撑啊，房地产周线支撑嗯"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "Yeah. 没主线怎么做那你要么就做高抛低吸啊"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_023_大盘底部",
+      "title": "live_023_大盘底部",
+      "extracted_at": "2026-09-16T11:14:57.949600",
+      "transcript_length": 9730,
+      "market_view": {
+        "direction": "看涨",
+        "confidence": "高",
+        "bullish_signals": 70,
+        "bearish_signals": 30,
+        "summary": "底部的关键是什么上涨什么什么意思"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏光伏也是好现象，光伏今天也是哦光伏今天涨了3%啊，这你没说的话，我今天还没太注意的啊，这么点阳线就涨3%"
+        },
+        {
+          "name": "半导体",
+          "context": "大家看到了，公募基金的就是在这个电子通信里的比例啊达到60%啊，这还不算一些半导体之类的板块，就光靠电子跟通信达60%"
+        },
+        {
+          "name": "芯片",
+          "context": "如果加上半导体芯片之类的"
+        },
+        {
+          "name": "医药",
+          "context": "什么深知医药医创新药的话，套牢盘确实解了一批"
+        },
+        {
+          "name": "医疗",
+          "context": "医疗"
+        },
+        {
+          "name": "消费",
+          "context": "像什么消费啊，这上方无限套牢盘"
+        },
+        {
+          "name": "白酒",
+          "context": "你叫什么白酒啊"
+        },
+        {
+          "name": "食品",
+          "context": "食品饮料"
+        },
+        {
+          "name": "军工",
+          "context": "军工也不错"
+        },
+        {
+          "name": "券商",
+          "context": "重点关注缩量小阳线，缩量中阳线的这种你像券商"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "60%的仓位",
+        "action": "基金减仓老灯了"
+      },
+      "key_quotes": [
+        "底部的关键是什么上涨什么什么意思",
+        "底部关键是什么上涨就低估值上涨啊，今天不就是么"
+      ],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_004_爆发前的震荡",
+      "title": "live_004_爆发前的震荡",
+      "extracted_at": "2026-09-16T11:14:57.954709",
+      "transcript_length": 9110,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 29,
+        "bearish_signals": 29,
+        "summary": "第一次打到这就在这个区间的时候，说过很多次了，好业科技就要回调，或者要进行一段时间震荡"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "然后光伏"
+        },
+        {
+          "name": "锂电",
+          "context": "像什么锂电池啊之类的"
+        },
+        {
+          "name": "半导体",
+          "context": "如果你要进的话，就双创嘛，或者说你去科技细分板块里面，通信啊，半导体里面自己去选"
+        },
+        {
+          "name": "医药",
+          "context": "啊括医药医疗都是"
+        },
+        {
+          "name": "医疗",
+          "context": "啊括医药医疗都是"
+        },
+        {
+          "name": "消费",
+          "context": "就现在你要让我分析短期的话，你后几天什么板块比较容易起行情的话，券商保险、光伏然后这个钢铁啊，就这些板块，像医药啊、什么消费啊、白酒啊，就估计还得等啊，白酒是有一些机会，这两天量能又缩起来"
+        },
+        {
+          "name": "白酒",
+          "context": "就现在你要让我分析短期的话，你后几天什么板块比较容易起行情的话，券商保险、光伏然后这个钢铁啊，就这些板块，像医药啊、什么消费啊、白酒啊，就估计还得等啊，白酒是有一些机会，这两天量能又缩起来"
+        },
+        {
+          "name": "券商",
+          "context": "Yeah. 支撑不是很明显，算是小职撑嘛，嗯差不多算是小职撑吧，市道职撑了，券商的话可能还差不多差不多了"
+        },
+        {
+          "name": "银行",
+          "context": "比银行都高啊"
+        },
+        {
+          "name": "保险",
+          "context": "保险券销什么到称啊"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": ""
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_018_回调就是进场机会",
+      "title": "live_018_回调就是进场机会",
+      "extracted_at": "2026-09-16T11:14:57.958793",
+      "transcript_length": 10640,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 64,
+        "bearish_signals": 54,
+        "summary": "趋势没破位就不用管"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏也不用出"
+        },
+        {
+          "name": "AI",
+          "context": "AI应用"
+        },
+        {
+          "name": "医药",
+          "context": "现在不是科技跟医药同长"
+        },
+        {
+          "name": "医疗",
+          "context": "医疗服务"
+        },
+        {
+          "name": "白酒",
+          "context": "白酒也是上涨趋势之后"
+        },
+        {
+          "name": "券商",
+          "context": "Yes. 券商券商上涨趋势不用动，你现在就是一个震荡，下跌没破位"
+        },
+        {
+          "name": "银行",
+          "context": "别问个股啊，红利红利中红利也说了很多次了，中长线上方还有很大空间，银行红利不管从股息率的角度，还是从趋势的角度"
+        },
+        {
+          "name": "地产",
+          "context": "地产也是这也是支撑为真的哈"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产就差不多嘛"
+        },
+        {
+          "name": "钢铁",
+          "context": "钢铁钢铁之前也说了，有的话就拿着，这也是底部区域啊，这是讲过了太多次了"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "被动性的卖出，而历史上往往"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_013_指数会随时爆发",
+      "title": "live_013_指数会随时爆发",
+      "extracted_at": "2026-09-16T11:14:57.964104",
+      "transcript_length": 7570,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 34,
+        "bearish_signals": 38,
+        "summary": "Okay. 医药呢这可能要回调震荡一段时间了，你最近一直没缩量"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "或者光伏爆发"
+        },
+        {
+          "name": "医药",
+          "context": "Okay. 医药呢这可能要回调震荡一段时间了，你最近一直没缩量"
+        },
+        {
+          "name": "医疗",
+          "context": "中症医疗是缩量，但是不是也说了吗"
+        },
+        {
+          "name": "白酒",
+          "context": "你像这个白酒啊"
+        },
+        {
+          "name": "券商",
+          "context": "呃，这个就是延续之前的策略，除了券商今天冲了一下，重点讲一讲"
+        },
+        {
+          "name": "银行",
+          "context": "银行红利也有"
+        },
+        {
+          "name": "保险",
+          "context": "多元金融，那你券商要涨的话，像保险多元金融"
+        },
+        {
+          "name": "地产",
+          "context": "你比如说房地产上周是放了量，然后这波是回调下来，然后量能缩了一下，这两天才往上冲的是吧"
+        },
+        {
+          "name": "房地产",
+          "context": "你比如说房地产上周是放了量，然后这波是回调下来，然后量能缩了一下，这两天才往上冲的是吧"
+        },
+        {
+          "name": "有色",
+          "context": "有色有色不做"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "持仓比例是跌了2%",
+        "action": "散户一些无脑买入，把行情推到一个很高的位置，它属于超买了，或者行情在一个很低的位置，散户恐惧了，把行情杀到杀出这个恐慌盘了是吧"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_002_最坏的情况？",
+      "title": "live_002_最坏的情况？",
+      "extracted_at": "2026-09-16T11:14:57.966938",
+      "transcript_length": 8747,
+      "market_view": {
+        "direction": "看跌",
+        "confidence": "中",
+        "bullish_signals": 43,
+        "bearish_signals": 74,
+        "summary": "券商没破位呀，这个问题不是很简单吗"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏也是啊"
+        },
+        {
+          "name": "医药",
+          "context": "像医药啊"
+        },
+        {
+          "name": "医疗",
+          "context": "你所有的医药医疗的板块你都打一遍"
+        },
+        {
+          "name": "消费",
+          "context": "嗯，消费白酒、农业养殖"
+        },
+        {
+          "name": "白酒",
+          "context": "你像我们说过白酒的增红率超过6%了是吧"
+        },
+        {
+          "name": "券商",
+          "context": "券商没破位呀，这个问题不是很简单吗"
+        },
+        {
+          "name": "银行",
+          "context": "已经比银行还高了，比四大行还高了"
+        },
+        {
+          "name": "有色",
+          "context": "底框我都不用看，好早之前就跟大家说过了，有色金属"
+        },
+        {
+          "name": "农业",
+          "context": "回调不破低嘛，这是农业板块"
+        },
+        {
+          "name": "养殖",
+          "context": "嗯，消费白酒、农业养殖"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "减仓的时候，如果"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_016_回调就是进场机会",
+      "title": "live_016_回调就是进场机会",
+      "extracted_at": "2026-09-16T11:14:57.970464",
+      "transcript_length": 9851,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 47,
+        "bearish_signals": 34,
+        "summary": "短线反弹这是"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "很简单，今天科技跌这个低估值涨，明天科技涨低估值跌，然后今天低估值里涨医药，明房地产，明天又涨那个什么恒科涨一些光伏啊，涨什么就这么个情况，非常简单，就是机器人机器人"
+        },
+        {
+          "name": "半导体",
+          "context": "你，你看半导体"
+        },
+        {
+          "name": "医药",
+          "context": "低估值一个涨的医药，一个涨的是"
+        },
+        {
+          "name": "医疗",
+          "context": "就医疗吧"
+        },
+        {
+          "name": "消费",
+          "context": "你像这个消费，我看也放量了"
+        },
+        {
+          "name": "白酒",
+          "context": "呃，消费放量，白酒还没放量，但是消费放量"
+        },
+        {
+          "name": "军工",
+          "context": "军工"
+        },
+        {
+          "name": "券商",
+          "context": "这个小的吧就还有一些，比如说券商也是缩量，但是主要缩的是科技"
+        },
+        {
+          "name": "银行",
+          "context": "银行银行没机会，就充一下的就是可但我是短期啊，短期银行没机会啊"
+        },
+        {
+          "name": "保险",
+          "context": "我觉得保险的话也有也是缩量，券商能涨，保险应该也能涨"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "而且止损很小，券商前这个创新高低点在这儿好吧，你现在进的话，止损就放这么大啊，跌下去大不了损掉，你3%吧左右吧，3四%的"
+      },
+      "key_quotes": [
+        "你要进银行，可以拿着不动，你就不要去看了"
+      ],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_017_回调就是进场机会",
+      "title": "live_017_回调就是进场机会",
+      "extracted_at": "2026-09-16T11:14:57.975371",
+      "transcript_length": 9915,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 57,
+        "bearish_signals": 60,
+        "summary": "嗯，还能反弹上去吗"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "喵带，你别刷屏论，有问题的朋友加个粉丝动牌啊，这哈哈哈说稀有金属光伏光伏应该没啥问题吧"
+        },
+        {
+          "name": "半导体",
+          "context": "非正半导体怎么走啊"
+        },
+        {
+          "name": "医药",
+          "context": "像什么医药啊"
+        },
+        {
+          "name": "医疗",
+          "context": "医疗跟医药更推荐哪一个啊"
+        },
+        {
+          "name": "消费",
+          "context": "那个消费啊，白酒"
+        },
+        {
+          "name": "白酒",
+          "context": "那个消费啊，白酒"
+        },
+        {
+          "name": "券商",
+          "context": "券商啊"
+        },
+        {
+          "name": "地产",
+          "context": "房地产是阻力，房地产上周也回过了"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产是阻力，房地产上周也回过了"
+        },
+        {
+          "name": "传媒",
+          "context": "游戏文化传媒我就说了，这些阻力除掉"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "你先等反弹，然后先减仓"
+      },
+      "key_quotes": [
+        "这什么记住现在所有的一切，他们所做的一切就是为了两个字出货，围要出货的做行情，你哪个板块，你说谁呀出货呀"
+      ],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_005_爆发前的震荡",
+      "title": "live_005_爆发前的震荡",
+      "extracted_at": "2026-09-16T11:14:57.979694",
+      "transcript_length": 7894,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 39,
+        "bearish_signals": 32,
+        "summary": "科技上方还有反弹空间，说很多次"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏跟白酒选一个选哪一个选光伏，光伏，白酒从低位已经拉了一段了，光伏现在还是一个底部区，那白酒有点放量过大了，光伏还没放量"
+        },
+        {
+          "name": "医药",
+          "context": "你像有些低估值，你比如说医药啊"
+        },
+        {
+          "name": "医疗",
+          "context": "好吧，就跟之前我讲过那重庆医疗一样"
+        },
+        {
+          "name": "消费",
+          "context": "医药消费农业"
+        },
+        {
+          "name": "白酒",
+          "context": "光伏跟白酒选一个选哪一个选光伏，光伏，白酒从低位已经拉了一段了，光伏现在还是一个底部区，那白酒有点放量过大了，光伏还没放量"
+        },
+        {
+          "name": "军工",
+          "context": "连续小涨十几天的军工跑不跑啊，军工"
+        },
+        {
+          "name": "券商",
+          "context": "券商的话"
+        },
+        {
+          "name": "保险",
+          "context": "先去券商保险"
+        },
+        {
+          "name": "地产",
+          "context": "之前想着房地产是一个"
+        },
+        {
+          "name": "房地产",
+          "context": "之前想着房地产是一个"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "底息拉起来的放量的出掉，跌下来的加仓"
+      },
+      "key_quotes": [
+        "好吧，你看我这现在都问的最多的就是跌就是往下跌的问要不要去出掉，然后拉起来的呢就不说话了，是吧"
+      ],
+      "tags": [
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_011_大盘底部",
+      "title": "live_011_大盘底部",
+      "extracted_at": "2026-09-16T11:14:57.983084",
+      "transcript_length": 9819,
+      "market_view": {
+        "direction": "看涨",
+        "confidence": "中",
+        "bullish_signals": 51,
+        "bearish_signals": 31,
+        "summary": "然后跌下跌到这时没破跌，没破低，是不是就是回调"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "嗯，现在就差一光伏了"
+        },
+        {
+          "name": "半导体",
+          "context": "变成半导体也跌了那么多"
+        },
+        {
+          "name": "医药",
+          "context": "中长线是大机会，但是短线这放量过大，就现在基本上所有的低估资板块都有机会，就医药没机会啊"
+        },
+        {
+          "name": "白酒",
+          "context": "白酒"
+        },
+        {
+          "name": "军工",
+          "context": "啊，传媒啊、军工就些你随便进"
+        },
+        {
+          "name": "券商",
+          "context": "上周跟大家说，券商科技"
+        },
+        {
+          "name": "银行",
+          "context": "银行今天放量有点大，这个不是太建议进银行，它的日线、月线都有点放量"
+        },
+        {
+          "name": "地产",
+          "context": "房地产房地产没什么问题，今天说不明已经讲的很清楚了"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产房地产没什么问题，今天说不明已经讲的很清楚了"
+        },
+        {
+          "name": "煤炭",
+          "context": "煤炭煤炭不好判断，反正我不做，因为它属于红利类的"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": ""
+      },
+      "key_quotes": [
+        "比如判那个个股要不要涨，判断板块要不要涨"
+      ],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_008_地量地价",
+      "title": "live_008_地量地价",
+      "extracted_at": "2026-09-16T11:14:57.987435",
+      "transcript_length": 8531,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 38,
+        "bearish_signals": 37,
+        "summary": "行业是上涨趋势当中的回调震荡的过程当中出现的地量"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏光伏"
+        },
+        {
+          "name": "医药",
+          "context": "包括一些之前放量的板块，像医药之类的，也一直在等这种低量的出现啊"
+        },
+        {
+          "name": "白酒",
+          "context": "白酒白酒死等"
+        },
+        {
+          "name": "券商",
+          "context": "券商也没问题，券商是上涨趋势"
+        },
+        {
+          "name": "银行",
+          "context": "如果指数爆发的话，那银行肯定就拉不起来了呀"
+        },
+        {
+          "name": "保险",
+          "context": "保险大奖可以卖吗"
+        },
+        {
+          "name": "地产",
+          "context": "地产白酒都是上涨趋势"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产月线没缩量啊，像这种放量啊，你说过，他是把双刃剑，你判断的是散户进主力出还是主力进散户出，很少数的情况，放量是好事，放完量之后给你要给你标下来的，就是很少数的，大概十次能有个一两次吧，就不错了，"
+        },
+        {
+          "name": "钢铁",
+          "context": "你什么农业跟钢铁哪个稳"
+        },
+        {
+          "name": "农业",
+          "context": "你什么农业跟钢铁哪个稳"
+        }
+      ],
+      "stock_mentions": [
+        {
+          "code": "242526",
+          "name": "",
+          "sentiment": "中性"
+        }
+      ],
+      "trading_advice": {
+        "position": "",
+        "action": ""
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_001_再次缩量见底",
+      "title": "live_001_再次缩量见底",
+      "extracted_at": "2026-09-16T11:14:57.991140",
+      "transcript_length": 8265,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 28,
+        "bearish_signals": 38,
+        "summary": "是有可能往下跌的"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "新能源",
+          "context": "光伏跟新能源"
+        },
+        {
+          "name": "光伏",
+          "context": "光伏跟新能源"
+        },
+        {
+          "name": "医药",
+          "context": "而且像医药呢，它也属于缩量的中阳线，今天收不平也都说了"
+        },
+        {
+          "name": "白酒",
+          "context": "白酒地量了吗"
+        },
+        {
+          "name": "券商",
+          "context": "券商这也都没什么问题啊"
+        },
+        {
+          "name": "银行",
+          "context": "就哪怕是银行啊"
+        },
+        {
+          "name": "地产",
+          "context": "房地产也是低量啊，房地产是最近一段时间的最低，跟这个白酒一样"
+        },
+        {
+          "name": "房地产",
+          "context": "房地产也是低量啊，房地产是最近一段时间的最低，跟这个白酒一样"
+        },
+        {
+          "name": "有色",
+          "context": "四个板块，一个是有色金属，一个是这个贵金属"
+        },
+        {
+          "name": "农业",
+          "context": "农业这都没问题啊"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "颈线和止损点之间"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_010_大盘底部",
+      "title": "live_010_大盘底部",
+      "extracted_at": "2026-09-16T11:14:57.993168",
+      "transcript_length": 10722,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 52,
+        "bearish_signals": 44,
+        "summary": "他要用月线级别调整"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏的话"
+        },
+        {
+          "name": "锂电",
+          "context": "锂电池锂电池就是"
+        },
+        {
+          "name": "半导体",
+          "context": "通信啊，再加上半导体之类的"
+        },
+        {
+          "name": "芯片",
+          "context": "像半导体芯片之类的"
+        },
+        {
+          "name": "医药",
+          "context": "医药有个很大的问题，月先级放量过大"
+        },
+        {
+          "name": "医疗",
+          "context": "医疗啊"
+        },
+        {
+          "name": "消费",
+          "context": "你像现在什么白酒啊、消费啊、医药啊"
+        },
+        {
+          "name": "白酒",
+          "context": "你比如说白酒"
+        },
+        {
+          "name": "券商",
+          "context": "Yeah. 这个券商还好吧"
+        },
+        {
+          "name": "银行",
+          "context": "Yeah. 银行是中长线，是上方是有空间，但是短期我不是太建议借啊"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "",
+        "action": "就这个涨多了，你要去高抛掉，然后进一些低吸的缩量的"
+      },
+      "key_quotes": [],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    },
+    {
+      "video_id": "live_006_酝酿行情中",
+      "title": "live_006_酝酿行情中",
+      "extracted_at": "2026-09-16T11:14:57.996383",
+      "transcript_length": 10438,
+      "market_view": {
+        "direction": "震荡",
+        "confidence": "中",
+        "bullish_signals": 55,
+        "bearish_signals": 64,
+        "summary": "放量或缩量，要么呢出现什么大阳线啊，或者单阴线破位啊，行情没动就持有就行了呗"
+      },
+      "technical_levels": {
+        "support": [],
+        "resistance": []
+      },
+      "sector_opportunities": [
+        {
+          "name": "光伏",
+          "context": "光伏今天拉起来了，光伏还是有机会啊，今今天涨也是缩量上涨"
+        },
+        {
+          "name": "锂电",
+          "context": "锂电池"
+        },
+        {
+          "name": "半导体",
+          "context": "然后再加上周五飞行半导体已经拉了3.5%了，呃，再加上周五是很多低估值板块是放巨量，消费白酒"
+        },
+        {
+          "name": "医药",
+          "context": "你包括你进医药也好"
+        },
+        {
+          "name": "医疗",
+          "context": "医药医疗啊"
+        },
+        {
+          "name": "消费",
+          "context": "消费也好，房地产也好"
+        },
+        {
+          "name": "白酒",
+          "context": "然后再加上周五飞行半导体已经拉了3.5%了，呃，再加上周五是很多低估值板块是放巨量，消费白酒"
+        },
+        {
+          "name": "券商",
+          "context": "像券商这种阴线或者任何一个板块出现这种阴线，你分辨一下"
+        },
+        {
+          "name": "银行",
+          "context": "上方还是有空间，银行红利自由现金流就都有空间"
+        },
+        {
+          "name": "地产",
+          "context": "房地产房地产今天有什么变化吗"
+        }
+      ],
+      "stock_mentions": [],
+      "trading_advice": {
+        "position": "持仓已经达到65%",
+        "action": ""
+      },
+      "key_quotes": [
+        "本月他不要往下跌，也别涨",
+        "老灯要不要先出一部分进科技"
+      ],
+      "tags": [
+        "A股",
+        "反弹",
+        "调整",
+        "技术分析",
+        "量能",
+        "板块轮动",
+        "操作策略",
+        "市场情绪"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "video_id": "live_014_地量见地价",
+  "title": "live_014_地量见地价",
+  "extracted_at": "2026-09-16T11:14:57.936873",
+  "transcript_length": 12501,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 44,
+    "bearish_signals": 45,
+    "summary": "缩量下跌是你第一是下跌破位了，下跌趋势现在还不太算下跌趋势，只能算是个支撑位置的震荡"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "光伏也S"
+    },
+    {
+      "name": "医药",
+      "context": "医药生物并没有缩量"
+    },
+    {
+      "name": "医疗",
+      "context": "中症医疗啊"
+    },
+    {
+      "name": "白酒",
+      "context": "白酒也没问题啊，所有的板块今天都没问题，白酒不也是缩量小阳线吗"
+    },
+    {
+      "name": "券商",
+      "context": "券商也是啊，缩量十字星，如果某一天缩量十字星，那就起日线反弹"
+    },
+    {
+      "name": "银行",
+      "context": "那个银行煤炭权重比较高的那个红利已经涨7%了"
+    },
+    {
+      "name": "地产",
+      "context": "房地产也没什么问题啊"
+    },
+    {
+      "name": "房地产",
+      "context": "房地产也没什么问题啊"
+    },
+    {
+      "name": "钢铁",
+      "context": "钢铁看一下"
+    },
+    {
+      "name": "煤炭",
+      "context": "那个银行煤炭权重比较高的那个红利已经涨7%了"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "低吸的"
+  },
+  "key_quotes": [
+    "这朋友还是房地产不要碰",
+    "当然也有的情况是失败了，只不过如果你想等地量的时候就进的话，你你不要再去什么犹豫了，一旦出现地量，赶紧进啊，第二天就拉起来了"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "市场情绪"
+  ]
+}

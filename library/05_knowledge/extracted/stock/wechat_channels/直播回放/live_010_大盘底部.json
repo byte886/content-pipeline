@@ -1,0 +1,75 @@
+{
+  "video_id": "live_010_大盘底部",
+  "title": "live_010_大盘底部",
+  "extracted_at": "2026-09-16T11:14:57.993168",
+  "transcript_length": 10722,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 52,
+    "bearish_signals": 44,
+    "summary": "他要用月线级别调整"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "光伏的话"
+    },
+    {
+      "name": "锂电",
+      "context": "锂电池锂电池就是"
+    },
+    {
+      "name": "半导体",
+      "context": "通信啊，再加上半导体之类的"
+    },
+    {
+      "name": "芯片",
+      "context": "像半导体芯片之类的"
+    },
+    {
+      "name": "医药",
+      "context": "医药有个很大的问题，月先级放量过大"
+    },
+    {
+      "name": "医疗",
+      "context": "医疗啊"
+    },
+    {
+      "name": "消费",
+      "context": "你像现在什么白酒啊、消费啊、医药啊"
+    },
+    {
+      "name": "白酒",
+      "context": "你比如说白酒"
+    },
+    {
+      "name": "券商",
+      "context": "Yeah. 这个券商还好吧"
+    },
+    {
+      "name": "银行",
+      "context": "Yeah. 银行是中长线，是上方是有空间，但是短期我不是太建议借啊"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "就这个涨多了，你要去高抛掉，然后进一些低吸的缩量的"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

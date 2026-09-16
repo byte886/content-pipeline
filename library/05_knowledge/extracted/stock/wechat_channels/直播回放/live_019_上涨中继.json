@@ -1,0 +1,75 @@
+{
+  "video_id": "live_019_上涨中继",
+  "title": "live_019_上涨中继",
+  "extracted_at": "2026-09-16T11:14:57.933242",
+  "transcript_length": 10556,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 58,
+    "bearish_signals": 34,
+    "summary": "虽然说现在你你这板块走的趋势走的不太好，只能说今天量价关系非常正常，你这不是一个高高低点逐级下移的嘛，这算是个反弹啊，趋势上一般"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "新能源",
+      "context": "第一波下跌之后的反弹，新能源光伏这些反弹的也挺猛的"
+    },
+    {
+      "name": "光伏",
+      "context": "基本上其他的都没问题，光伏什么的"
+    },
+    {
+      "name": "半导体",
+      "context": "电子啊、通信、半导体"
+    },
+    {
+      "name": "芯片",
+      "context": "存储板块存储芯片吗"
+    },
+    {
+      "name": "医药",
+      "context": "然后医医药都都都反弹的挺猛的"
+    },
+    {
+      "name": "医疗",
+      "context": "CRO不就医医疗吗"
+    },
+    {
+      "name": "消费",
+      "context": "那属于消费类的"
+    },
+    {
+      "name": "白酒",
+      "context": "白酒啊"
+    },
+    {
+      "name": "券商",
+      "context": "券商券商"
+    },
+    {
+      "name": "银行",
+      "context": "银行就您先加个粉丝登牌的问题的朋友"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

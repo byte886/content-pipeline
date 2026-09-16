@@ -1,0 +1,78 @@
+{
+  "video_id": "live_003_再次地量！",
+  "title": "live_003_再次地量！",
+  "extracted_at": "2026-09-16T11:14:57.927652",
+  "transcript_length": 7022,
+  "market_view": {
+    "direction": "看跌",
+    "confidence": "中",
+    "bullish_signals": 26,
+    "bearish_signals": 40,
+    "summary": "如果是上涨趋势，就进到底部了"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "这个券商啊光伏啊"
+    },
+    {
+      "name": "医药",
+      "context": "或者医药今天也摔了一下"
+    },
+    {
+      "name": "医疗",
+      "context": "医疗服务一些东财这种等权板块"
+    },
+    {
+      "name": "消费",
+      "context": "食品饮料那就消费呗"
+    },
+    {
+      "name": "白酒",
+      "context": "都是正常回调白酒"
+    },
+    {
+      "name": "食品",
+      "context": "食品饮料那就消费呗"
+    },
+    {
+      "name": "券商",
+      "context": "你如说像最近的券商啊，创新药啊"
+    },
+    {
+      "name": "地产",
+      "context": "房地产"
+    },
+    {
+      "name": "房地产",
+      "context": "房地产"
+    },
+    {
+      "name": "钢铁",
+      "context": "如果非要让我做短线的话，一个券商，一个光伏，然后再加个钢铁"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "那么如果你有技术的话，那你可以做一些高抛低吸是吧"
+  },
+  "key_quotes": [
+    "短线无法分解，也就是说过很多次，你不要问了",
+    "前天跟昨天很多自媒体都说不要站在光里，要站在田里，不知道大家刷到没有以我的经验，只要出现这种情况，就基本上就是要回调"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

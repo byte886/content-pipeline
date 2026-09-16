@@ -1,0 +1,75 @@
+{
+  "video_id": "live_022_上涨中继",
+  "title": "live_022_上涨中继",
+  "extracted_at": "2026-09-16T11:14:57.929551",
+  "transcript_length": 9657,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 48,
+    "bearish_signals": 69,
+    "summary": "你是两点之后的下跌"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "So. Yeah. 光伏怎么办"
+    },
+    {
+      "name": "半导体",
+      "context": "嗯. 半导体呀"
+    },
+    {
+      "name": "医药",
+      "context": "Okay. 医药创新药这边都放量了"
+    },
+    {
+      "name": "医疗",
+      "context": "医疗连续几天上有线"
+    },
+    {
+      "name": "消费",
+      "context": "低估值就是就是老邓哈，就是医药消费、白酒、农业、恒生科技也算吧"
+    },
+    {
+      "name": "白酒",
+      "context": "低估值就是就是老邓哈，就是医药消费、白酒、农业、恒生科技也算吧"
+    },
+    {
+      "name": "券商",
+      "context": "7年铁粉帮分一下券商啊"
+    },
+    {
+      "name": "保险",
+      "context": "保险不太好判断技术面没有趋势，没有形态"
+    },
+    {
+      "name": "地产",
+      "context": "房地产能拿呀"
+    },
+    {
+      "name": "房地产",
+      "context": "房地产能拿呀"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "空仓，你有仓位",
+    "action": "颈线在这儿了，有可能明天还想回家，那创业板现在就是支撑了，反正就是不管怎么样，明天回也好，呃，这明天随便怎么走，趋势是往上的如果明天回那就是继续加仓，继续补仓"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

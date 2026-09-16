@@ -1,0 +1,77 @@
+{
+  "video_id": "live_017_回调就是进场机会",
+  "title": "live_017_回调就是进场机会",
+  "extracted_at": "2026-09-16T11:14:57.975371",
+  "transcript_length": 9915,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 57,
+    "bearish_signals": 60,
+    "summary": "嗯，还能反弹上去吗"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "喵带，你别刷屏论，有问题的朋友加个粉丝动牌啊，这哈哈哈说稀有金属光伏光伏应该没啥问题吧"
+    },
+    {
+      "name": "半导体",
+      "context": "非正半导体怎么走啊"
+    },
+    {
+      "name": "医药",
+      "context": "像什么医药啊"
+    },
+    {
+      "name": "医疗",
+      "context": "医疗跟医药更推荐哪一个啊"
+    },
+    {
+      "name": "消费",
+      "context": "那个消费啊，白酒"
+    },
+    {
+      "name": "白酒",
+      "context": "那个消费啊，白酒"
+    },
+    {
+      "name": "券商",
+      "context": "券商啊"
+    },
+    {
+      "name": "地产",
+      "context": "房地产是阻力，房地产上周也回过了"
+    },
+    {
+      "name": "房地产",
+      "context": "房地产是阻力，房地产上周也回过了"
+    },
+    {
+      "name": "传媒",
+      "context": "游戏文化传媒我就说了，这些阻力除掉"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "你先等反弹，然后先减仓"
+  },
+  "key_quotes": [
+    "这什么记住现在所有的一切，他们所做的一切就是为了两个字出货，围要出货的做行情，你哪个板块，你说谁呀出货呀"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}

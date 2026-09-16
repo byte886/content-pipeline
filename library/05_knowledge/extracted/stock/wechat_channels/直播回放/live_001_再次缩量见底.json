@@ -1,0 +1,74 @@
+{
+  "video_id": "live_001_再次缩量见底",
+  "title": "live_001_再次缩量见底",
+  "extracted_at": "2026-09-16T11:14:57.991140",
+  "transcript_length": 8265,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 28,
+    "bearish_signals": 38,
+    "summary": "是有可能往下跌的"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "新能源",
+      "context": "光伏跟新能源"
+    },
+    {
+      "name": "光伏",
+      "context": "光伏跟新能源"
+    },
+    {
+      "name": "医药",
+      "context": "而且像医药呢，它也属于缩量的中阳线，今天收不平也都说了"
+    },
+    {
+      "name": "白酒",
+      "context": "白酒地量了吗"
+    },
+    {
+      "name": "券商",
+      "context": "券商这也都没什么问题啊"
+    },
+    {
+      "name": "银行",
+      "context": "就哪怕是银行啊"
+    },
+    {
+      "name": "地产",
+      "context": "房地产也是低量啊，房地产是最近一段时间的最低，跟这个白酒一样"
+    },
+    {
+      "name": "房地产",
+      "context": "房地产也是低量啊，房地产是最近一段时间的最低，跟这个白酒一样"
+    },
+    {
+      "name": "有色",
+      "context": "四个板块，一个是有色金属，一个是这个贵金属"
+    },
+    {
+      "name": "农业",
+      "context": "农业这都没问题啊"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "颈线和止损点之间"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "市场情绪"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "video_id": "live_011_大盘底部",
+  "title": "live_011_大盘底部",
+  "extracted_at": "2026-09-16T11:14:57.983084",
+  "transcript_length": 9819,
+  "market_view": {
+    "direction": "看涨",
+    "confidence": "中",
+    "bullish_signals": 51,
+    "bearish_signals": 31,
+    "summary": "然后跌下跌到这时没破跌，没破低，是不是就是回调"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "嗯，现在就差一光伏了"
+    },
+    {
+      "name": "半导体",
+      "context": "变成半导体也跌了那么多"
+    },
+    {
+      "name": "医药",
+      "context": "中长线是大机会，但是短线这放量过大，就现在基本上所有的低估资板块都有机会，就医药没机会啊"
+    },
+    {
+      "name": "白酒",
+      "context": "白酒"
+    },
+    {
+      "name": "军工",
+      "context": "啊，传媒啊、军工就些你随便进"
+    },
+    {
+      "name": "券商",
+      "context": "上周跟大家说，券商科技"
+    },
+    {
+      "name": "银行",
+      "context": "银行今天放量有点大，这个不是太建议进银行，它的日线、月线都有点放量"
+    },
+    {
+      "name": "地产",
+      "context": "房地产房地产没什么问题，今天说不明已经讲的很清楚了"
+    },
+    {
+      "name": "房地产",
+      "context": "房地产房地产没什么问题，今天说不明已经讲的很清楚了"
+    },
+    {
+      "name": "煤炭",
+      "context": "煤炭煤炭不好判断，反正我不做，因为它属于红利类的"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": ""
+  },
+  "key_quotes": [
+    "比如判那个个股要不要涨，判断板块要不要涨"
+  ],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "市场情绪"
+  ]
+}

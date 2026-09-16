@@ -1,0 +1,74 @@
+{
+  "video_id": "live_009_正常回调",
+  "title": "live_009_正常回调",
+  "extracted_at": "2026-09-16T11:14:57.945276",
+  "transcript_length": 8655,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 73,
+    "bearish_signals": 95,
+    "summary": "最好是能连续震荡缩量"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "光伏的话偏震荡吧，它这个这你这段小小下跌，这这其势太小了啊，你定义不了下跌趋势的，它就是拉一下，然后就震了一下，可能是被光伏的龙头的利空消息给带的吧，这也不是下跌趋势，也没破位什么的，就就是一个震荡，"
+    },
+    {
+      "name": "AI",
+      "context": "AI应用"
+    },
+    {
+      "name": "医药",
+      "context": "它也是上涨趋势，医药、医疗、中新药都是上涨趋势"
+    },
+    {
+      "name": "医疗",
+      "context": "它也是上涨趋势，医药、医疗、中新药都是上涨趋势"
+    },
+    {
+      "name": "白酒",
+      "context": "嗯. 白酒也是上涨趋势回调"
+    },
+    {
+      "name": "军工",
+      "context": "军工启动了"
+    },
+    {
+      "name": "券商",
+      "context": "Yeah. 好. . 券商刚才不是说过了吗"
+    },
+    {
+      "name": "保险",
+      "context": "保险跟券商一样"
+    },
+    {
+      "name": "地产",
+      "context": "老顽同晚上好，房地产是支撑啊，房地产周线支撑嗯"
+    },
+    {
+      "name": "房地产",
+      "context": "老顽同晚上好，房地产是支撑啊，房地产周线支撑嗯"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "",
+    "action": "Yeah. 没主线怎么做那你要么就做高抛低吸啊"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "市场情绪"
+  ]
+}

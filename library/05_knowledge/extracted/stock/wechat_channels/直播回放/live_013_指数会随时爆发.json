@@ -1,0 +1,75 @@
+{
+  "video_id": "live_013_指数会随时爆发",
+  "title": "live_013_指数会随时爆发",
+  "extracted_at": "2026-09-16T11:14:57.964104",
+  "transcript_length": 7570,
+  "market_view": {
+    "direction": "震荡",
+    "confidence": "中",
+    "bullish_signals": 34,
+    "bearish_signals": 38,
+    "summary": "Okay. 医药呢这可能要回调震荡一段时间了，你最近一直没缩量"
+  },
+  "technical_levels": {
+    "support": [],
+    "resistance": []
+  },
+  "sector_opportunities": [
+    {
+      "name": "光伏",
+      "context": "或者光伏爆发"
+    },
+    {
+      "name": "医药",
+      "context": "Okay. 医药呢这可能要回调震荡一段时间了，你最近一直没缩量"
+    },
+    {
+      "name": "医疗",
+      "context": "中症医疗是缩量，但是不是也说了吗"
+    },
+    {
+      "name": "白酒",
+      "context": "你像这个白酒啊"
+    },
+    {
+      "name": "券商",
+      "context": "呃，这个就是延续之前的策略，除了券商今天冲了一下，重点讲一讲"
+    },
+    {
+      "name": "银行",
+      "context": "银行红利也有"
+    },
+    {
+      "name": "保险",
+      "context": "多元金融，那你券商要涨的话，像保险多元金融"
+    },
+    {
+      "name": "地产",
+      "context": "你比如说房地产上周是放了量，然后这波是回调下来，然后量能缩了一下，这两天才往上冲的是吧"
+    },
+    {
+      "name": "房地产",
+      "context": "你比如说房地产上周是放了量，然后这波是回调下来，然后量能缩了一下，这两天才往上冲的是吧"
+    },
+    {
+      "name": "有色",
+      "context": "有色有色不做"
+    }
+  ],
+  "stock_mentions": [],
+  "trading_advice": {
+    "position": "持仓比例是跌了2%",
+    "action": "散户一些无脑买入，把行情推到一个很高的位置，它属于超买了，或者行情在一个很低的位置，散户恐惧了，把行情杀到杀出这个恐慌盘了是吧"
+  },
+  "key_quotes": [],
+  "tags": [
+    "A股",
+    "反弹",
+    "调整",
+    "技术分析",
+    "量能",
+    "板块轮动",
+    "操作策略",
+    "市场情绪"
+  ]
+}
