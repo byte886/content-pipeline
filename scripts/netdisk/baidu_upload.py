@@ -55,7 +55,7 @@ def curl_api(url, params=None, data=None, file_path=None, file_field="file", tim
     if params:
         url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
 
-    cmd = ["curl", "-sS", "--connect-timeout", "10", "--retry", "2", "--retry-delay", "3"]
+    cmd = ["curl", "-sS", "--globoff", "--connect-timeout", "10", "--retry", "2", "--retry-delay", "3"]
 
     if file_path:
         cmd += ["-F", f"{file_field}=@{file_path}"]
