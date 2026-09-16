@@ -44,14 +44,14 @@
 | T-13 | _workspace运行时工作区设计 | refactor | 无 | **done** | logs/tmp/capture(manifest,state)，`workspace/README.md` |
 | T-14 | 知识库汇总生成 | feature | T-08 | **done** | 336个视频知识提取完成（313短视频+23直播回放），`knowledge_base_summary.json`，看涨149/震荡135/看跌52 |
 | T-15 | 增量采集机制完善 | feature | T-01/T-02/T-03 | **done** | watermark接入pipeline，at-least-once，commit 3438e05 |
-| T-16 | 百度网盘同步 | feature | 无 | **todo** | 股票知识库应用，`scripts/netdisk/sync_stock.sh` |
-| T-17 | 书籍精华提取 | feature | T-03 | **doing** | 书籍清单已提取（4本核心交易书），`library/07_books/recommended_books.json`，待找电子书内容形成文稿 |
+| T-16 | 百度网盘同步 | feature | 无 | **doing** | 转写稿/知识提取/文章后台同步中（3进程并发），视频待同步，`scripts/netdisk/sync_stock.sh` |
+| T-17 | 书籍精华提取 | feature | T-03 | **done** | 4本书精华文稿完成（股票大作手回忆录/十年一梦/股剩是怎样炼成的/趋势交易法），`library/07_books/精华/`，含四书对比和量化启示 |
 | T-18 | 架构重构阶段1：改名+代码迁移 | refactor | 无 | **done** | multiplatform-content-pipeline，commit bd45204，见ADR-004 |
 | T-19 | 架构重构阶段2：数据迁移 | refactor | T-18 | **done** | commit 782ba97：data/videos→library/01_video，data/transcripts→library/04_transcript，knowledge-base→library/06_articles，清理空目录，更新5个脚本+5个文档路径 |
 | T-20 | 架构重构阶段3：接入B站采集 | feature | T-19 | **done** | commit a24d70a：迁移bili_list.py（wbi+dynamic双通道），适配可配置UID，输出library/00_manifest/bilibili/，dynamic通道测试验证通过 |
 | T-21 | 架构重构阶段4：接入抖音/YouTube | feature | T-20 | **done** | 复用multiplatform-media-fetch技能media_downloader.py，创建platforms/douyin/README.md和platforms/youtube/README.md |
 | T-22 | 方法提炼（MethodNote）LLM深度分析 | feature | T-18 | **blocked** | 框架已搭（processing/method_extraction/），目标博主「原来是陶阿狗君」，抖音反爬403无法下载视频，用户说暂时跳过，等有时间手动下载视频后继续 |
-| T-23 | GitHub仓库改名 | ops | 无 | **todo** | API token问题，可手动在网页改名（旧URL自动重定向） |
+| T-23 | GitHub仓库改名 | ops | 无 | **done** | 已通过computer use完成改名，stock-knowledge-base→multiplatform-content-pipeline |
 | T-24 | 评审改进批次1：清理与修正（P0） | refactor | 无 | **done** | commit b5044eb：删旧脚本+修数量+更新状态+建workspace+更新文档地图 |
 | T-25 | 评审改进批次2：文档精简 | refactor | 无 | **done** | commit ee3630f：退役执行计划.md+技术方案.md+修复.gitignore |
 | T-26 | 评审改进批次3：需求与知识库文档更新（P1） | refactor | 无 | **done** | commit 022ecd3：合并PRD到REQUIREMENTS+合并知识库规范+更新多平台多行业 |
