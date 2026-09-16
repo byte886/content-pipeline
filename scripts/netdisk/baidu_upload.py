@@ -17,9 +17,11 @@
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 CHUNK_SIZE = 4 * 1024 * 1024  # 4MB
 API_BASE = "https://pan.baidu.com/rest/2.0/xpan/file"
@@ -48,12 +50,12 @@ def get_token():
     return json.loads(result.stdout)["access_token"]
 
 
-def curl_api(url, params=None, data=None, file_path=None, file_field="file", timeout=300):
-    """通过 curl 直连调用 API（不走代理）"""
+def curl_api(url, params=None, data=None, file_path=None, file_field="file", timeout=300, retries=3):
+    """通过 curl 直连调用 API（不走代理），失败自动重试"""
     if params:
         url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
 
-    cmd = ["curl", "-s", "--connect-timeout", "10"]
+    cmd = ["curl", "-sS", "--connect-timeout", "10", "--retry", "2", "--retry-delay", "3"]
 
     if file_path:
         cmd += ["-F", f"{file_field}=@{file_path}"]
@@ -64,10 +66,22 @@ def curl_api(url, params=None, data=None, file_path=None, file_field="file", tim
         cmd += ["-X", "POST"]
 
     cmd.append(url)
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
-    if result.returncode != 0:
-        raise RuntimeError(f"curl failed: {result.stderr}")
-    return json.loads(result.stdout)
+
+    last_error = None
+    for attempt in range(retries):
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+            if result.returncode == 0:
+                return json.loads(result.stdout)
+            last_error = f"curl exit={result.returncode}: {result.stderr[:300]}"
+        except subprocess.TimeoutExpired:
+            last_error = f"timeout after {timeout}s"
+        except json.JSONDecodeError as e:
+            last_error = f"JSON decode error: {e}, stdout={result.stdout[:300] if 'result' in dir() else 'N/A'}"
+        if attempt < retries - 1:
+            print(f"  [retry {attempt+1}/{retries}] {last_error}", file=sys.stderr)
+            time.sleep(2 * (attempt + 1))
+    raise RuntimeError(f"curl failed after {retries} attempts: {last_error}")
 
 
 def upload_file(local_path, remote_path, token):
@@ -136,7 +150,7 @@ def upload_file(local_path, remote_path, token):
                 print(f"FAILED: {result}")
                 sys.exit(1)
     finally:
-        os.rmdir(tmp_dir)
+        shutil.rmtree(tmp_dir, ignore_errors=True)
 
     # 4. create (合并)
     print("[3/3] Merging chunks...")

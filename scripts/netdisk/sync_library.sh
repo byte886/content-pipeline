@@ -62,7 +62,7 @@ find -L "$LOCAL_BASE" -type f -print0 2>/dev/null | while IFS= read -r -d '' loc
     BAIDU_ENC_PASS=***REMOVED*** python3 "$SCRIPT_DIR/baidu_upload.py" mkdir "$remote_dir" 2>/dev/null
     
     # 上传
-    if BAIDU_ENC_PASS=***REMOVED*** python3 "$SCRIPT_DIR/baidu_upload.py" upload "$local_file" "$remote_file" 2>&1 | tail -1 | grep -q "Done\|OK\|fs_id"; then
+    if BAIDU_ENC_PASS=***REMOVED*** python3 "$SCRIPT_DIR/baidu_upload.py" upload "$local_file" "$remote_file" 2>&1 | grep -q "Done! fs_id"; then
         echo "[OK $COUNT/$TOTAL] $rel_path"
     else
         echo "[FAIL $COUNT/$TOTAL] $rel_path"
