@@ -44,7 +44,7 @@
 | T-13 | _workspace运行时工作区设计 | refactor | 无 | **done** | logs/tmp/capture(manifest,state)，`workspace/README.md` |
 | T-14 | 知识库汇总生成 | feature | T-08 | **done** | 336个视频知识提取完成（313短视频+23直播回放），`knowledge_base_summary.json`，看涨149/震荡135/看跌52 |
 | T-15 | 增量采集机制完善 | feature | T-01/T-02/T-03 | **done** | watermark接入pipeline，at-least-once，commit 3438e05 |
-| T-16 | 百度网盘同步 | feature | 无 | **doing** | 转写稿/知识提取/文章后台同步中（3进程并发），视频待同步，`scripts/netdisk/sync_stock.sh` |
+| T-16 | 百度网盘同步 | feature | 无 | **done** | 全部完成0失败：转写673/知识340/文章1188/短视频313/直播23/书籍6，`scripts/netdisk/sync_stock.sh` |
 | T-17 | 书籍精华提取 | feature | T-03 | **done** | 4本书精华文稿完成（股票大作手回忆录/十年一梦/股剩是怎样炼成的/趋势交易法），`library/07_books/精华/`，含四书对比和量化启示 |
 | T-18 | 架构重构阶段1：改名+代码迁移 | refactor | 无 | **done** | multiplatform-content-pipeline，commit bd45204，见ADR-004 |
 | T-19 | 架构重构阶段2：数据迁移 | refactor | T-18 | **done** | commit 782ba97：data/videos→library/01_video，data/transcripts→library/04_transcript，knowledge-base→library/06_articles，清理空目录，更新5个脚本+5个文档路径 |
