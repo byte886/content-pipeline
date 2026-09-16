@@ -53,7 +53,8 @@ def get_token():
 def curl_api(url, params=None, data=None, file_path=None, file_field="file", timeout=300, retries=3):
     """通过 curl 直连调用 API（不走代理），失败自动重试"""
     if params:
-        url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
+        from urllib.parse import quote
+        url += "?" + "&".join(f"{k}={quote(str(v), safe='')}" for k, v in params.items())
 
     cmd = ["curl", "-sS", "--globoff", "--connect-timeout", "10", "--retry", "2", "--retry-delay", "3"]
 
