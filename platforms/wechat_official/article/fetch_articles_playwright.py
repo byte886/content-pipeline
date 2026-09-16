@@ -17,8 +17,10 @@ from playwright.sync_api import sync_playwright
 # 配置
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 URL_LIST = os.environ.get("ARTICLE_URL_LIST", os.path.join(PROJECT_DIR, "library/00_manifest/文章URL列表.json"))
-OUTPUT_DIR = os.environ.get("ARTICLE_OUTPUT_DIR", os.path.join(PROJECT_DIR, "library/06_articles/wechat_official/正文"))
-IMAGE_DIR = os.environ.get("ARTICLE_IMAGE_DIR", os.path.join(PROJECT_DIR, "library/06_articles/wechat_official/图片"))
+# TODO: 重构为每篇文章一个目录结构（articles/<序号>_标题/{article.json,content.md,content.html,images/}）
+# 当前仍使用旧的分散存储，后续需改造
+OUTPUT_DIR = os.environ.get("ARTICLE_OUTPUT_DIR", os.path.join(PROJECT_DIR, "library/06_articles/wechat_official/_legacy/正文"))
+IMAGE_DIR = os.environ.get("ARTICLE_IMAGE_DIR", os.path.join(PROJECT_DIR, "library/06_articles/wechat_official/_legacy/图片"))
 PROGRESS_FILE = os.environ.get("ARTICLE_PROGRESS_FILE", os.path.join(PROJECT_DIR, "workspace/capture/article_fetch_progress.json"))
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
