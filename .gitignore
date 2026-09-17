@@ -69,6 +69,11 @@ library/07_books/
 library/08_sources/*/raw/
 library/08_sources/*/cleaned/
 
+# 但各博主的manifest.json台账需要入库（小文件，用于增量对比和状态追踪）
+!library/01_video/*/*/manifest.json
+!library/06_articles/*/*/manifest.json
+!library/07_books/*/manifest.json
+
 # --- 运行时工作区（过程件，不入库不传网盘）---
 workspace/*
 !workspace/README.md
