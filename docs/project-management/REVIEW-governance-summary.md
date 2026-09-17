@@ -56,11 +56,11 @@ docs/
 ├── DOCUMENTATION_MAP.md         # 文档地图（按场景快速入口）
 ├── WORKFLOW.md                  # 整体工作流（四阶段流水线+校验门）
 ├── ROADMAP.md                   # 项目路线图
-├── 知识库组织方案.md             # 知识库架构设计（合并了知识库规范）
-├── 视频号内容采集SOP.md          # 平台级SOP
-├── 公众号文章采集SOP.md          # 平台级SOP
-├── 高质量URL研究.md              # 技术研究记录
-├── 视频号API研究.md              # 技术研究记录
+├── DESIGN-knowledge-base-organization.md             # 知识库架构设计（合并了知识库规范）
+├── SOP-wechat-channels-capture.md          # 平台级SOP
+├── SOP-wechat-official-article.md          # 平台级SOP
+├── RESEARCH-video-quality-url.md              # 技术研究记录
+├── RESEARCH-wechat-channels-api.md              # 技术研究记录
 └── project-management/
     ├── active/
     │   ├── TASK_STATUS.md       # 任务状态台账（工单制）
@@ -72,7 +72,7 @@ docs/
     │   ├── log.md               # 记忆变更日志
     │   └── concepts/            # 稳定结论编译层（OKF bundle）
     ├── reviews/
-    │   └── 2026-09-15-架构重构后评审.md  # 评审报告
+    │   └── 2026-09-15-post-refactor-review.md  # 评审报告
     └── standards/
         ├── DOC_SYNC_CHECKLIST.md       # 文档同步检查清单
         └── BATCH_TASK_EXECUTION.md     # 批量任务执行规范
@@ -312,7 +312,7 @@ domains/
 ### 批次3：需求与知识库文档更新 — commit 022ecd3
 
 - 合并PRD.md到REQUIREMENTS.md（更新为多平台多行业需求）
-- 合并知识库规范.md到知识库组织方案.md（更新为多行业）
+- 合并知识库规范.md到DESIGN-knowledge-base-organization.md（更新为多行业）
 - 删除PRD.md和知识库规范.md
 
 ### 批次4：视频号SOP更新 — commit 1ecfb06
@@ -569,7 +569,7 @@ stale_after: 2027-03-31T23:59:59+08:00
 | 工作流 | `docs/WORKFLOW.md` | 四阶段流水线+校验门 |
 | 任务状态 | `project-management/active/TASK_STATUS.md` | 工单台账 |
 | 问题清单 | `project-management/active/ISSUES.md` | 开放/已解决问题 |
-| 评审报告 | `docs/project-management/reviews/2026-09-15-架构重构后评审.md` | 完整评审记录 |
+| 评审报告 | `docs/project-management/reviews/2026-09-15-post-refactor-review.md` | 完整评审记录 |
 | 工程记忆入口 | `docs/project-management/memory/index.md` | 跨会话稳定结论 |
 
 ---

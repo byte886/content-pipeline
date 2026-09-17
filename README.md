@@ -105,8 +105,8 @@ multiplatform-content-pipeline/
 │   ├── WORKFLOW.md                    # 工作流
 │   ├── REQUIREMENTS.md                # 需求与决策溯源
 │   ├── ROADMAP.md                     # 路线图
-│   ├── 视频号内容采集SOP.md
-│   ├── 公众号文章采集SOP.md
+│   ├── SOP-wechat-channels-capture.md
+│   ├── SOP-wechat-official-article.md
 │   └── project-management/
 │       ├── decisions/                 # ADR决策记录
 │       ├── memory/                    # 工程记忆
@@ -163,7 +163,7 @@ multiplatform-content-pipeline/
 
 ## 关键技术
 
-- **视频号采集**：MITM代理捕获URL + 解密（详见 `docs/视频号内容采集SOP.md`）
+- **视频号采集**：MITM代理捕获URL + 解密（详见 `docs/SOP-wechat-channels-capture.md`）
 - **转写**：FunASR（SenseVoiceSmall模型，9.7x实时）
 - **OCR**：macOS Vision框架（编译二进制，1.5秒/张）
 - **增量采集**：水位（watermark）机制，先成功落地再推进水位

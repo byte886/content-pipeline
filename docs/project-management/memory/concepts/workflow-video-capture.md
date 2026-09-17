@@ -26,7 +26,7 @@ verified: machine
 
 ## 来源与下钻
 
-- 采集SOP：`docs/视频号内容采集SOP.md`
-- 高质量URL研究：`docs/高质量URL研究.md`
+- 采集SOP：`docs/SOP-wechat-channels-capture.md`
+- 高质量URL研究：`docs/RESEARCH-video-quality-url.md`
 - 下载工具：`platforms/wechat_channels/video-downloader/batch_download_v4.py`
 - 解密工具：`platforms/wechat_channels/video-downloader/wechat_decrypt.js`

@@ -54,10 +54,10 @@
 
 ### 1.4 参考文档
 
-- 视频号采集SOP：`docs/视频号内容采集SOP.md`
-- 公众号采集SOP：`docs/公众号文章采集SOP.md`
-- 高质量URL研究：`docs/高质量URL研究.md`
-- 视频号API研究：`docs/视频号API研究.md`
+- 视频号采集SOP：`docs/SOP-wechat-channels-capture.md`
+- 公众号采集SOP：`docs/SOP-wechat-official-article.md`
+- 高质量URL研究：`docs/RESEARCH-video-quality-url.md`
+- 视频号API研究：`docs/RESEARCH-wechat-channels-api.md`
 
 ---
 
@@ -103,7 +103,7 @@
 ### 3.3 参考文档
 
 - 知识提取工具：`processing/knowledge_extraction/tools/extract_knowledge.py`
-- 知识库组织方案：`docs/知识库组织方案.md`
+- 知识库组织方案：`docs/DESIGN-knowledge-base-organization.md`
 
 ---
 
@@ -125,7 +125,7 @@
 
 ### 4.3 参考文档
 
-- 知识库组织方案：`docs/知识库组织方案.md`
+- 知识库组织方案：`docs/DESIGN-knowledge-base-organization.md`
 - 知识库查询工具：`processing/knowledge_extraction/tools/knowledge_base.py`
 - 网盘同步脚本：`scripts/netdisk/sync_stock.sh`
 
@@ -139,7 +139,7 @@
 2. 新增内容走阶段①→②→③完整流程
 3. 更新知识库汇总
 
-详见：`docs/视频号内容采集SOP.md`「增量采集」章节
+详见：`docs/SOP-wechat-channels-capture.md`「增量采集」章节
 
 ---
 

@@ -32,10 +32,10 @@
 5. `docs/project-management/memory/index.md` — 工程记忆（跨会话稳定结论）
 6. `project-management/active/TASK_STATUS.md` + `active/ISSUES.md` — 当前状态
 7. 对应环节的SOP：
-   - 视频采集：`docs/视频号内容采集SOP.md`
-   - 文章采集：`docs/公众号文章采集SOP.md`
-   - 高质量URL：`docs/高质量URL研究.md`
-   - API研究：`docs/视频号API研究.md`
+   - 视频采集：`docs/SOP-wechat-channels-capture.md`
+   - 文章采集：`docs/SOP-wechat-official-article.md`
+   - 高质量URL：`docs/RESEARCH-video-quality-url.md`
+   - API研究：`docs/RESEARCH-wechat-channels-api.md`
 
 ### 2.2 续接（继续同一阶段的任务）
 只读：
@@ -203,7 +203,7 @@ A: 证书路径问题。检查项目根目录是否有ca.crt，如果有说明�
 A: 短视频是加密的，需要用DecodeKey解密。直播回放不需要解密。运行`node platforms/wechat_channels/video-downloader/wechat_decrypt.js <decodeKey> <file>`。
 
 ### Q: 下载的视频只有2-5MB，太小了？
-A: 默认是低分辨率版本。用`quality=max`参数下载xWT111格式（大69%）。真正的原始高清版本尚未找到，见`docs/高质量URL研究.md`。
+A: 默认是低分辨率版本。用`quality=max`参数下载xWT111格式（大69%）。真正的原始高清版本尚未找到，见`docs/RESEARCH-video-quality-url.md`。
 
 ### Q: 转写输出在哪里？
 A: `data/transcripts/短视频/{视频名}/transcript.md`（注意是子目录，不是直接md文件）。待迁移到`library/04_transcript/wechat_channels/`。

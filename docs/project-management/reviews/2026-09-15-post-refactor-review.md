@@ -80,10 +80,10 @@
 
 | 文档 | 评分 | 问题 |
 |------|:---:|------|
-| `视频号内容采集SOP.md` | ⭐⭐⭐ | 数量不一致（314 vs 313）、视频质量说明过时、待优化项未更新 |
-| `公众号文章采集SOP.md` | ⭐⭐⭐⭐ | 质量较好（未深入精读） |
-| `高质量URL研究.md` | ⭐⭐⭐⭐ | 专业研究文档，数据详实 |
-| `视频号API研究.md` | ⭐⭐⭐ | 研究记录，待更新 |
+| `SOP-wechat-channels-capture.md` | ⭐⭐⭐ | 数量不一致（314 vs 313）、视频质量说明过时、待优化项未更新 |
+| `SOP-wechat-official-article.md` | ⭐⭐⭐⭐ | 质量较好（未深入精读） |
+| `RESEARCH-video-quality-url.md` | ⭐⭐⭐⭐ | 专业研究文档，数据详实 |
+| `RESEARCH-wechat-channels-api.md` | ⭐⭐⭐ | 研究记录，待更新 |
 
 ### 3.3 早期文档（严重过时，需重点处理）
 
@@ -93,7 +93,7 @@
 | `技术方案.md` | ⭐⭐ | 还是旧的三层架构（数据采集层/内容处理层），与五层架构不符 |
 | `执行计划.md` | ⭐ | 还是早期里程碑（179个视频/21个回放），实际已313/23，严重过时 |
 | `REQUIREMENTS.md` | ⭐⭐⭐ | 还是描述A股单一项目，需更新为多平台需求 |
-| `知识库组织方案.md` | ⭐⭐⭐ | 标题还是"股票知识库"，需更新为多行业 |
+| `DESIGN-knowledge-base-organization.md` | ⭐⭐⭐ | 标题还是"股票知识库"，需更新为多行业 |
 | `知识库规范.md` | ⭐⭐⭐ | v1.0，可能需要更新 |
 
 ### 3.4 项目管理文档（质量高）
@@ -118,7 +118,7 @@
 | 证书与代理（ca.crt/全网阻断） | 6个 | 🟡 中 | 权威源放AGENTS.md第3章，其他链接 |
 | 存储分工（四地存储） | 4个 | 🟡 中 | 权威源放DIRECTORY_STRUCTURE.md，其他链接 |
 | 五层架构 | 2个 | 🟢 低 | README和DIRECTORY_STRUCTURE，可接受 |
-| 高质量URL（xWT111） | 8个 | 🟡 中 | 权威源放高质量URL研究.md，其他链接 |
+| 高质量URL（xWT111） | 8个 | 🟡 中 | 权威源放RESEARCH-video-quality-url.md，其他链接 |
 
 ### 4.2 文档职责重叠
 
@@ -127,7 +127,7 @@
 | PRD.md vs REQUIREMENTS.md | 项目背景、核心诉求 | 合并为REQUIREMENTS.md，PRD可退役 |
 | 技术方案.md vs DIRECTORY_STRUCTURE.md | 架构设计 | 技术方案可退役，架构说明放DIRECTORY_STRUCTURE |
 | 执行计划.md vs TASK_STATUS.md | 里程碑、任务进度 | 执行计划可退役，进度跟踪用TASK_STATUS |
-| 知识库组织方案.md vs 知识库规范.md | 知识库结构、命名规范 | 合并为一个知识库设计文档 |
+| DESIGN-knowledge-base-organization.md vs 知识库规范.md | 知识库结构、命名规范 | 合并为一个知识库设计文档 |
 
 ### 4.3 建议退役/合并的文档
 
@@ -136,7 +136,7 @@
 | `执行计划.md` | 退役 | 已被TASK_STATUS.md替代，内容严重过时 |
 | `技术方案.md` | 退役 | 架构已重构，旧三层架构无参考价值 |
 | `PRD.md` | 合并到REQUIREMENTS.md | 需求文档只需一份权威源 |
-| `知识库规范.md` | 合并到知识库组织方案.md | 两个文档职责重叠 |
+| `知识库规范.md` | 合并到DESIGN-knowledge-base-organization.md | 两个文档职责重叠 |
 
 ---
 
@@ -260,10 +260,10 @@ gallery-dl是命令行图片/视频批量下载工具，其**配置驱动**设�
 | P1-1 | 退役 `执行计划.md`（已被TASK_STATUS替代） | 5分钟 |
 | P1-2 | 退役 `技术方案.md`（旧架构，无参考价值） | 5分钟 |
 | P1-3 | 合并 `PRD.md` 到 `REQUIREMENTS.md`，更新为多平台需求 | 1小时 |
-| P1-4 | 合并 `知识库规范.md` 到 `知识库组织方案.md` | 30分钟 |
+| P1-4 | 合并 `知识库规范.md` 到 `DESIGN-knowledge-base-organization.md` | 30分钟 |
 | P1-5 | 更新视频号SOP的视频质量说明和待优化项 | 20分钟 |
 | P1-6 | 更新 `REQUIREMENTS.md` 为多平台多行业需求 | 1小时 |
-| P1-7 | 更新 `知识库组织方案.md` 标题和内容为多行业 | 30分钟 |
+| P1-7 | 更新 `DESIGN-knowledge-base-organization.md` 标题和内容为多行业 | 30分钟 |
 
 ### 🟢 P2：长期优化（提升质量）
 

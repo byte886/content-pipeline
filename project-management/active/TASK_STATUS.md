@@ -37,7 +37,7 @@
 | T-06 | 公众号图片OCR | feature | T-03 | **done** | 910张图片OCR，更新236篇文章 |
 | T-07 | 知识提取工具开发 | feature | T-04/T-06 | **done** | `processing/knowledge_extraction/tools/extract_knowledge.py` |
 | T-08 | 知识提取批量运行 | feature | T-07 | **done** | 313个短视频知识提取完成，`library/05_knowledge/extracted/`（看涨145/看跌50/震荡118） |
-| T-09 | 高质量URL研究 | research | 无 | **done** | xWT111比默认大69%，`docs/高质量URL研究.md` |
+| T-09 | 高质量URL研究 | research | 无 | **done** | xWT111比默认大69%，`docs/RESEARCH-video-quality-url.md` |
 | T-10 | 视频号API研究（方案B） | research | 无 | **todo** | 证书路径已修复，可重新测试 |
 | T-11 | 项目治理与文档架构 | refactor | 无 | **done** | DOCUMENTATION_MAP、DIRECTORY_STRUCTURE、ADR、工程记忆、WORKFLOW、REQUIREMENTS |
 | T-12 | 捕获工具证书路径修复 | bugfix | 无 | **done** | 改为相对于可执行文件的路径，已验证 |
@@ -64,7 +64,7 @@
 ## 关键口径（指针，不展开）
 
 - **视频解密原理**：DecodeKey → ISAAC64生成128KB数组 → XOR文件前128KB → 见工程记忆 `workflow-video-capture`
-- **高质量URL参数**：X-snsvideoflag=xWT111（最大3.92MB）→ 见 `docs/高质量URL研究.md`
+- **高质量URL参数**：X-snsvideoflag=xWT111（最大3.92MB）→ 见 `docs/RESEARCH-video-quality-url.md`
 - **证书与代理方案**：相对于可执行文件的路径 + 上游代理 → 见 ADR-002
 - **转写工具**：FunASR SenseVoiceSmall，9.7x实时 → 见 `processing/transcription/tools/`
 - **OCR工具**：macOS Vision编译二进制，1.5秒/张 → 见 `processing/ocr/tools/`
@@ -87,7 +87,7 @@
 
 ## 评审改进完成记录
 
-> 来源：`docs/project-management/reviews/2026-09-15-架构重构后评审.md`
+> 来源：`docs/project-management/reviews/2026-09-15-post-refactor-review.md`
 > 状态：**全部6个批次已完成**（2026-09-15）
 
 | 批次 | 工单 | 内容 | 优先级 | 完成commit |

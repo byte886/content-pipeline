@@ -88,11 +88,11 @@ multiplatform-content-pipeline/
 │   ├── WORKFLOW.md                    # 工作流（五层架构流水线）
 │   ├── REQUIREMENTS.md                # 需求与决策溯源
 │   ├── ROADMAP.md                     # 路线图
-│   ├── 视频号内容采集SOP.md
-│   ├── 公众号文章采集SOP.md
-│   ├── 高质量URL研究.md
-│   ├── 视频号API研究.md
-│   ├── 知识库组织方案.md
+│   ├── SOP-wechat-channels-capture.md
+│   ├── SOP-wechat-official-article.md
+│   ├── RESEARCH-video-quality-url.md
+│   ├── RESEARCH-wechat-channels-api.md
+│   ├── DESIGN-knowledge-base-organization.md
 │   └── project-management/
 │       ├── decisions/                 # ADR决策记录（只增不改）
 │       ├── memory/                    # 工程记忆（跨会话稳定结论）

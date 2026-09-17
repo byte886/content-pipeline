@@ -32,5 +32,5 @@ done
 
 - 证书问题历史：`project-management/active/ISSUES.md` ISSUE-001（已解决）
 - 代理设置：`platforms/wechat_channels/video-capture/proxy_darwin.go`
-- 捕获工具SOP：`docs/视频号内容采集SOP.md`
+- 捕获工具SOP：`docs/SOP-wechat-channels-capture.md`
 - ADR决策：`docs/project-management/decisions/ADR-002-视频号采集的证书与代理方案.md`

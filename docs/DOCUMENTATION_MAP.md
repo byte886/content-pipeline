@@ -17,13 +17,13 @@
 3. 跨会话稳定结论：`docs/project-management/memory/index.md`（按需沿concept下钻）
 
 ### 视频号内容采集
-1. `docs/视频号内容采集SOP.md` — 采集流程（捕获→下载→解密→验证）
-2. `docs/高质量URL研究.md` — X-snsvideoflag参数、6种格式对比
-3. `docs/视频号API研究.md` — 方案B API研究记录
+1. `docs/SOP-wechat-channels-capture.md` — 采集流程（捕获→下载→解密→验证）
+2. `docs/RESEARCH-video-quality-url.md` — X-snsvideoflag参数、6种格式对比
+3. `docs/RESEARCH-wechat-channels-api.md` — 方案B API研究记录
 4. 工具：`platforms/wechat_channels/video-capture/`（MITM捕获）、`platforms/wechat_channels/video-downloader/`（下载+解密）
 
 ### 公众号文章采集
-1. `docs/公众号文章采集SOP.md` — 文章采集流程
+1. `docs/SOP-wechat-official-article.md` — 文章采集流程
 2. 工具：`platforms/wechat_official/article/`
 
 ### 视频转文字 / 图文OCR
@@ -32,7 +32,7 @@
 3. 输出：`library/04_transcript/wechat_channels/短视频/{视频名}/transcript.md`
 
 ### 知识提取与知识库
-1. `docs/知识库组织方案.md` — 知识库架构设计+内容规范（合并了原知识库规范）
+1. `docs/DESIGN-knowledge-base-organization.md` — 知识库架构设计+内容规范（合并了原知识库规范）
 2. 工具：`processing/knowledge_extraction/tools/`
 
 ### 遇到问题/异常
@@ -65,10 +65,10 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 视频号采集SOP | `docs/视频号内容采集SOP.md` | 捕获→下载→解密→验证全流程 |
-| 公众号采集SOP | `docs/公众号文章采集SOP.md` | 文章采集与OCR流程 |
-| 高质量URL研究 | `docs/高质量URL研究.md` | X-snsvideoflag参数研究 |
-| 视频号API研究 | `docs/视频号API研究.md` | 方案B API研究记录 |
+| 视频号采集SOP | `docs/SOP-wechat-channels-capture.md` | 捕获→下载→解密→验证全流程 |
+| 公众号采集SOP | `docs/SOP-wechat-official-article.md` | 文章采集与OCR流程 |
+| 高质量URL研究 | `docs/RESEARCH-video-quality-url.md` | X-snsvideoflag参数研究 |
+| 视频号API研究 | `docs/RESEARCH-wechat-channels-api.md` | 方案B API研究记录 |
 
 ### 二、产品与规划（What & Why）
 
@@ -81,7 +81,7 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 知识库组织与规范 | `docs/知识库组织方案.md` | 知识库架构设计+内容规范+标签体系（合并了原知识库规范） |
+| 知识库组织与规范 | `docs/DESIGN-knowledge-base-organization.md` | 知识库架构设计+内容规范+标签体系（合并了原知识库规范） |
 
 ### 四、项目治理
 
