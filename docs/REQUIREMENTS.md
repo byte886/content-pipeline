@@ -399,8 +399,8 @@ AI基于素材和方法生成文案初稿
 | `docs/ROADMAP.md` | 项目路线图 |
 | `project-management/active/TASK_STATUS.md` | 当前任务状态 |
 | `project-management/active/ISSUES.md` | 已知问题 |
-| `docs/project-management/decisions/` | ADR决策记录 |
-| `docs/project-management/reviews/` | 评审报告 |
+| `project-management/decisions/` | ADR决策记录 |
+| `project-management/reviews/` | 评审报告 |
 
 ---
 

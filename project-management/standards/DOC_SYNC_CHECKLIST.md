@@ -71,13 +71,13 @@
 
 ### 五、工程记忆同步（如稳定结论变更）
 
-- [ ] `docs/project-management/memory/index.md` 已更新
+- [ ] `project-management/memory/index.md` 已更新
 - [ ] 相关concept已修订
 - [ ] `memory/log.md` 已记录变更
 
 ### 六、ADR决策记录（如重要决策）
 
-- [ ] 重要决策已记录到 `docs/project-management/decisions/ADR-xxx.md`
+- [ ] 重要决策已记录到 `project-management/decisions/ADR-xxx.md`
 - [ ] 决策状态正确（已采纳/已废弃/提议中）
 
 ---

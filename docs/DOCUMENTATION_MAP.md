@@ -14,7 +14,7 @@
 ### 开始新任务前
 1. 先判冷启动还是续接，按 `AGENTS.md` 第2章读对应文档
 2. 当前到哪/下一步：`project-management/active/TASK_STATUS.md` + `active/ISSUES.md`
-3. 跨会话稳定结论：`docs/project-management/memory/index.md`（按需沿concept下钻）
+3. 跨会话稳定结论：`project-management/memory/index.md`（按需沿concept下钻）
 
 ### 视频号内容采集
 1. `docs/SOP-wechat-channels-capture.md` — 采集流程（捕获→下载→解密→验证）
@@ -43,8 +43,8 @@
 
 ### 项目维护/文档更新
 1. `docs/DIRECTORY_STRUCTURE.md` — 目录结构与存储分工
-2. `docs/project-management/decisions/` — ADR架构决策记录（做重要决策前先查历史）
-3. `docs/project-management/memory/` — 工程记忆（稳定结论变化时同步更新）
+2. `project-management/decisions/` — ADR架构决策记录（做重要决策前先查历史）
+3. `project-management/memory/` — 工程记忆（稳定结论变化时同步更新）
 
 ---
 
@@ -89,9 +89,9 @@
 |------|------|------|
 | 任务状态 | `project-management/active/TASK_STATUS.md` | 当前进度、下一步（单一进度真相） |
 | 问题清单 | `project-management/active/ISSUES.md` | 已知问题、阻塞项 |
-| ADR决策 | `docs/project-management/decisions/` | 架构决策记录（只增不改，4条） |
-| 工程记忆 | `docs/project-management/memory/` | 跨会话稳定结论编译层 |
-| 规范文档 | `docs/project-management/standards/` | 文档同步检查清单、批量任务执行规范 |
+| ADR决策 | `project-management/decisions/` | 架构决策记录（只增不改，4条） |
+| 工程记忆 | `project-management/memory/` | 跨会话稳定结论编译层 |
+| 规范文档 | `project-management/standards/` | 文档同步检查清单、批量任务执行规范 |
 | 运行时工作区 | `workspace/README.md` | 过程件管理规范（logs/tmp/capture） |
 
 ---

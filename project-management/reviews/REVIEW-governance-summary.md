@@ -569,8 +569,8 @@ stale_after: 2027-03-31T23:59:59+08:00
 | 工作流 | `docs/WORKFLOW.md` | 四阶段流水线+校验门 |
 | 任务状态 | `project-management/active/TASK_STATUS.md` | 工单台账 |
 | 问题清单 | `project-management/active/ISSUES.md` | 开放/已解决问题 |
-| 评审报告 | `docs/project-management/reviews/2026-09-15-post-refactor-review.md` | 完整评审记录 |
-| 工程记忆入口 | `docs/project-management/memory/index.md` | 跨会话稳定结论 |
+| 评审报告 | `project-management/reviews/2026-09-15-post-refactor-review.md` | 完整评审记录 |
+| 工程记忆入口 | `project-management/memory/index.md` | 跨会话稳定结论 |
 
 ---
 

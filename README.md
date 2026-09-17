@@ -99,7 +99,8 @@ multiplatform-content-pipeline/
 │   ├── 06_articles/<平台>/            # 图文（原料，不入库）
 │   ├── 07_books/                      # 书籍
 │   └── 08_sources/<source_id>/        # 平台无关外部源
-├── docs/                              # 工程文档
+├── docs/                              # 产品与技术文档
+│   ├── README.md                      # 文档入口
 │   ├── DOCUMENTATION_MAP.md           # 文档地图
 │   ├── DIRECTORY_STRUCTURE.md         # 目录结构说明
 │   ├── WORKFLOW.md                    # 工作流
@@ -107,14 +108,20 @@ multiplatform-content-pipeline/
 │   ├── ROADMAP.md                     # 路线图
 │   ├── SOP-wechat-channels-capture.md
 │   ├── SOP-wechat-official-article.md
-│   └── project-management/
-│       ├── decisions/                 # ADR决策记录
-│       ├── memory/                    # 工程记忆
-│       └── standards/                 # 规范文档
-├── project-management/
-│   └── active/
-│       ├── TASK_STATUS.md             # 任务状态
-│       └── ISSUES.md                  # 问题清单
+│   ├── SOP-books-extraction.md
+│   ├── RESEARCH-video-quality-url.md
+│   ├── RESEARCH-wechat-channels-api.md
+│   └── DESIGN-knowledge-base-organization.md
+├── project-management/                # 项目治理体系
+│   ├── README.md                      # 治理体系入口
+│   ├── active/                        # 活态台账
+│   │   ├── TASK_STATUS.md             # 任务状态
+│   │   └── ISSUES.md                  # 问题清单
+│   ├── decisions/                     # ADR决策记录
+│   ├── memory/                        # 工程记忆
+│   ├── reviews/                       # 评审报告
+│   ├── standards/                     # 执行标准
+│   └── legacy/                        # 历史项目存档
 ├── scripts/                           # 运维脚本
 │   └── netdisk/                       # 百度网盘同步
 ├── workspace/                         # 过程件（不入库）

@@ -87,7 +87,7 @@
 
 ## 评审改进完成记录
 
-> 来源：`docs/project-management/reviews/2026-09-15-post-refactor-review.md`
+> 来源：`project-management/reviews/2026-09-15-post-refactor-review.md`
 > 状态：**全部6个批次已完成**（2026-09-15）
 
 | 批次 | 工单 | 内容 | 优先级 | 完成commit |
@@ -120,7 +120,7 @@
 - 台账：6个 → `library/00_manifest/bilibili/`
 - B站脚本：17个 → `platforms/bilibili/`
 - OCR脚本：4个 → `processing/ocr/`
-- 文档：7个 → `docs/project-management/jewelry-*.md`
+- 文档：7个 → `project-management/jewelry-*.md`
 
 **架构决策**:
 - 平台能力通用化（platforms/bilibili/），不绑定珠宝

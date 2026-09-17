@@ -55,4 +55,4 @@ workspace/
 
 ---
 
-*详见：`docs/project-management/decisions/ADR-003-统一运行时工作区与过程件管理.md`*
+*详见：`project-management/decisions/ADR-003-统一运行时工作区与过程件管理.md`*

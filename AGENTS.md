@@ -29,7 +29,7 @@
 2. `docs/REQUIREMENTS.md` — 项目需求与决策溯源
 3. `docs/WORKFLOW.md` — 整体工作流（四阶段流水线）
 4. `docs/DIRECTORY_STRUCTURE.md` — 目录结构与存储分工
-5. `docs/project-management/memory/index.md` — 工程记忆（跨会话稳定结论）
+5. `project-management/memory/index.md` — 工程记忆（跨会话稳定结论）
 6. `project-management/active/TASK_STATUS.md` + `active/ISSUES.md` — 当前状态
 7. 对应环节的SOP：
    - 视频采集：`docs/SOP-wechat-channels-capture.md`
@@ -107,7 +107,7 @@ done
 
 ### 3.6 文档同步规则（强制）
 
-每次完成阶段性任务、生成新文档、或变化项目结构时，必须按 `docs/project-management/standards/DOC_SYNC_CHECKLIST.md` 检查并同步相关文档。
+每次完成阶段性任务、生成新文档、或变化项目结构时，必须按 `project-management/standards/DOC_SYNC_CHECKLIST.md` 检查并同步相关文档。
 
 **同步时机**：完成采集批次后 / 完成转写批次后 / 发现问题并解决后 / 项目结构调整后 / 大阶段完成后
 
@@ -127,7 +127,7 @@ done
 
 **必须立即更新TASK_STATUS.md的场景**：任务开始时 / 每个子任务完成时 / 任务完成时 / 遇到问题或阻塞时 / 每次git提交前。
 
-详细规范：`docs/project-management/standards/BATCH_TASK_EXECUTION.md`
+详细规范：`project-management/standards/BATCH_TASK_EXECUTION.md`
 
 ### 3.8 清理与维护原则（强制）
 
@@ -168,7 +168,7 @@ done
 
 **简化原则**：不生搬硬套高顿的6个子目录，只保留真正需要的3个。
 
-详见：`workspace/README.md`、`docs/project-management/decisions/ADR-003.md`
+详见：`workspace/README.md`、`project-management/decisions/ADR-003.md`
 
 ---
 

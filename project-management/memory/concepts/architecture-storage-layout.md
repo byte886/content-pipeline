@@ -27,4 +27,4 @@ verified: machine
 
 - 目录结构详情：`docs/DIRECTORY_STRUCTURE.md`
 - .gitignore：项目根目录`.gitignore`
-- 存储分工决策：`docs/project-management/decisions/ADR-001-项目存储分工.md`
+- 存储分工决策：`project-management/decisions/ADR-001-项目存储分工.md`
