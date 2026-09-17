@@ -208,22 +208,69 @@ class BilibiliFetcher(IncrementalFetcher):
         params['w_rid'] = wbi_sign
         return urllib.parse.urlencode(params)
 
+    def _get_chrome_sessdata(self) -> str:
+        """从Chrome读取B站SESSDATA cookie（已登录态），失败返回空字符串"""
+        import subprocess, tempfile, os
+        ruby_script = '''
+require "sqlite3"
+require "openssl"
+password = `security find-generic-password -w -a Chrome -s "Chrome Safe Storage"`.strip
+key = OpenSSL::PKCS5.pbkdf2_hmac(password, "saltysalt", 1003, 16, OpenSSL::Digest::SHA1.new)
+cookies_db = File.expand_path("~/Library/Application Support/Google/Chrome/Default/Cookies")
+db = SQLite3::Database.new(cookies_db)
+rows = db.execute("SELECT encrypted_value FROM cookies WHERE host_key LIKE '%bilibili.com' AND name='SESSDATA'")
+db.close
+rows.each do |enc_val|
+  enc_val = enc_val[0]
+  next unless enc_val && enc_val.bytes[0..2] == [118, 49, 48]
+  iv = enc_val.bytes[3..18].pack("C*")
+  ciphertext = enc_val.bytes[19..].pack("C*")
+  decipher = OpenSSL::Cipher.new("AES-128-CBC")
+  decipher.decrypt
+  decipher.key = key
+  decipher.iv = iv
+  decrypted = decipher.update(ciphertext) + decipher.final
+  pad_len = decrypted.bytes[-1]
+  val = decrypted.bytes[0...-pad_len].pack("C*")
+  idx = val.index(/[0-9a-f]{8}/)
+  val = val[idx..] if idx
+  if val && val.length > 50 && val.include?("%2C")
+    print val
+    exit 0
+  end
+end
+'''
+        try:
+            result = subprocess.run(['ruby', '-e', ruby_script], capture_output=True, timeout=15)
+            val = result.stdout.decode('utf-8', errors='ignore').strip()
+            if val and len(val) > 50:
+                return val
+        except Exception:
+            pass
+        return ''
+
     def _get_wbi_keys(self) -> tuple:
-        """获取wbi img_key和sub_key"""
+        """获取wbi img_key和sub_key（带登录cookie）"""
         import urllib.request, http.cookiejar
+        sessdata = self._get_chrome_sessdata()
         cj = http.cookiejar.CookieJar()
+        if sessdata:
+            # 手动注入SESSDATA
+            import http.cookiejar as cj_mod
+            cookie = cj_mod.Cookie(
+                version=0, name='SESSDATA', value=sessdata,
+                port=None, port_specified=False,
+                domain='.bilibili.com', domain_specified=True, domain_initial_dot=True,
+                path='/', path_specified=True,
+                secure=True, expires=None, discard=True,
+                comment=None, comment_url=None, rest={}, rfc2109=False
+            )
+            cj.set_cookie(cookie)
         # 强制直连，不走代理
         opener = urllib.request.build_opener(
             urllib.request.ProxyHandler({}),
             urllib.request.HTTPCookieProcessor(cj)
         )
-        # 先访问首页获取cookie
-        req = urllib.request.Request("https://www.bilibili.com/", headers={'User-Agent': self.UA})
-        try:
-            with opener.open(req, timeout=10) as r:
-                r.read(200)
-        except:
-            pass
         # 获取nav接口的wbi keys
         req = urllib.request.Request(
             "https://api.bilibili.com/x/web-interface/nav",
