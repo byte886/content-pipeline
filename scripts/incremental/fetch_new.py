@@ -188,43 +188,93 @@ class IncrementalFetcher(ABC):
 # ============================================================
 
 class BilibiliFetcher(IncrementalFetcher):
-    """B站增量采集 — 复用bili_list.py的wbi签名获取UP主动态"""
+    """B站增量采集 — 内联wbi签名获取UP主动态（不走subprocess，避免环境差异）"""
+
+    UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+          "(KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36")
+    MIXIN_TAB = [46,47,18,2,53,8,23,32,15,50,10,31,58,3,45,35,27,43,5,49,33,9,42,19,29,28,
+                 14,39,12,38,41,13,37,48,7,16,24,55,40,61,26,17,0,1,60,51,30,4,22,25,54,21,
+                 56,59,6,63,57,62,11,36,20,34,44,52]
+
+    def _wbi_sign(self, params: dict, img_key: str, sub_key: str) -> str:
+        """wbi签名"""
+        import hashlib, urllib.parse, time
+        mixin_key = img_key + sub_key
+        mixin = ''.join([mixin_key[i] for i in self.MIXIN_TAB])[:32]
+        params['wts'] = int(time.time())
+        params = dict(sorted(params.items()))
+        query = urllib.parse.urlencode(params)
+        wbi_sign = hashlib.md5((query + mixin).encode()).hexdigest()
+        params['w_rid'] = wbi_sign
+        return urllib.parse.urlencode(params)
+
+    def _get_wbi_keys(self) -> tuple:
+        """获取wbi img_key和sub_key"""
+        import urllib.request, http.cookiejar
+        cj = http.cookiejar.CookieJar()
+        # 强制直连，不走代理
+        opener = urllib.request.build_opener(
+            urllib.request.ProxyHandler({}),
+            urllib.request.HTTPCookieProcessor(cj)
+        )
+        # 先访问首页获取cookie
+        req = urllib.request.Request("https://www.bilibili.com/", headers={'User-Agent': self.UA})
+        try:
+            with opener.open(req, timeout=10) as r:
+                r.read(200)
+        except:
+            pass
+        # 获取nav接口的wbi keys
+        req = urllib.request.Request(
+            "https://api.bilibili.com/x/web-interface/nav",
+            headers={'User-Agent': self.UA, 'Referer': 'https://www.bilibili.com/'}
+        )
+        with opener.open(req, timeout=10) as r:
+            data = json.loads(r.read())
+        wbi = data['data']['wbi_img']
+        img_key = wbi['img_url'].rsplit('/', 1)[1].split('.')[0]
+        sub_key = wbi['sub_url'].rsplit('/', 1)[1].split('.')[0]
+        return img_key, sub_key, opener
 
     def fetch_latest_list(self) -> List[Dict[str, Any]]:
-        """调用bili_list.py获取UP主最新视频列表（只取最新一页）"""
-        import subprocess
-        import tempfile
-
+        """内联wbi签名获取UP主最新视频列表"""
+        import urllib.request
         uid = self.config.get('uid', '')
         if not uid:
             raise ValueError("B站UID未配置")
 
-        # 用临时目录存放输出
-        with tempfile.TemporaryDirectory() as tmpdir:
-            output_file = Path(tmpdir) / f"up_{uid}_videos.json"
-            cmd = [
-                sys.executable,
-                str(PROJECT_DIR / "platforms" / "bilibili" / "bili_list.py"),
-                "wbi", "--uid", uid, "--max-pages", "1"
-            ]
-            env = os.environ.copy()
-            env['BILI_OUTPUT_DIR'] = tmpdir
+        img_key, sub_key, opener = self._get_wbi_keys()
 
-            result = subprocess.run(cmd, capture_output=True, text=True,
-                                  timeout=60, env=env, cwd=str(PROJECT_DIR))
+        params = {
+            'mid': uid,
+            'ps': 50,
+            'pn': 1,
+            'order': 'pubdate',
+        }
+        signed_query = self._wbi_sign(params, img_key, sub_key)
+        url = f"https://api.bilibili.com/x/space/wbi/arc/search?{signed_query}"
 
-            if not output_file.exists():
-                raise Exception(f"bili_list.py执行失败: {result.stderr[-200:]}")
+        req = urllib.request.Request(
+            url,
+            headers={
+                'User-Agent': self.UA,
+                'Referer': f'https://space.bilibili.com/{uid}/video',
+                'Origin': 'https://space.bilibili.com',
+            }
+        )
+        with opener.open(req, timeout=15) as r:
+            data = json.loads(r.read())
 
-            with open(output_file, encoding='utf-8') as f:
-                videos = json.load(f)
+        if data.get('code') != 0:
+            raise Exception(f"B站API错误: {data.get('message')} (code={data.get('code')})")
 
+        videos = data['data']['list']['vlist']
         result = []
         for v in videos:
             result.append({
                 'bvid': v['bvid'],
                 'title': v['title'],
-                'url': v.get('url', f"https://www.bilibili.com/video/{v['bvid']}"),
+                'url': f"https://www.bilibili.com/video/{v['bvid']}",
                 'created': v.get('created', 0),
                 'length': v.get('length', ''),
                 'play': v.get('play', 0),
@@ -316,6 +366,173 @@ class WechatOfficialFetcher(IncrementalFetcher):
         raise NotImplementedError("公众号下载待实现")
 
 
+class DouyinFetcher(IncrementalFetcher):
+    """抖音增量采集 — 复用multiplatform-media-fetch的media_downloader.py
+
+    列表获取：需要从抖音网页版或分享链接获取（反爬严格，目前支持单条下载）
+    下载：media_downloader.py（匿名设备票据ttwid，公开视频免登录）
+    """
+
+    SKILL_DIR = Path.home() / "Doubao" / "skills" / "multiplatform-media-fetch"
+    DOWNLOADER = SKILL_DIR / "scripts" / "media_downloader.py"
+
+    def fetch_latest_list(self) -> List[Dict[str, Any]]:
+        """抖音列表获取需手动提供（反爬严格）
+
+        支持两种方式：
+        1. --list-file 指定JSON列表
+        2. 配置中指定 sec_uid，调用抖音网页版（可能被反爬）
+        """
+        list_file = self.config.get('list_file', '')
+        if list_file and Path(list_file).exists():
+            with open(list_file, encoding='utf-8') as f:
+                data = json.load(f)
+            return data if isinstance(data, list) else data.get('list', [])
+
+        # 尝试从配置的分享链接获取单条
+        share_url = self.config.get('share_url', '')
+        if share_url:
+            return [{'url': share_url, 'title': '抖音视频', 'type': 'video'}]
+
+        raise Exception(
+            "抖音列表获取需指定 --list-file 或在config中配置share_url\n"
+            "（抖音反爬严格，自动获取用户全部作品列表暂不可用）"
+        )
+
+    def get_unique_key(self, item: Dict[str, Any]) -> str:
+        # 抖音纯数字ID或URL
+        aweme_id = item.get('aweme_id', item.get('id', ''))
+        if aweme_id:
+            return str(aweme_id)
+        url = item.get('url', '')
+        # 从URL提取数字ID
+        import re
+        match = re.search(r'/(\d{15,})', url)
+        if match:
+            return match.group(1)
+        return url
+
+    def download_item(self, item: Dict[str, Any], index: int) -> Optional[Path]:
+        """调用media_downloader.py下载抖音视频"""
+        import subprocess
+        url = item.get('url', '')
+        if not url:
+            return None
+
+        title = item.get('title', f'douyin_{index}').replace('/', '_')[:50]
+        output_dir = LIBRARY_DIR / "01_video" / self.domain / self.account
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        # 抖音强制直连，清除代理
+        env = os.environ.copy()
+        for key in ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']:
+            env.pop(key, None)
+
+        try:
+            cmd = [
+                sys.executable, str(self.DOWNLOADER),
+                url, '--quality', '720',
+                '-o', str(output_dir)
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True,
+                                  timeout=120, env=env, cwd=str(PROJECT_DIR))
+            # 查找下载的文件
+            files = list(output_dir.glob(f"*{title}*"))
+            if files:
+                return files[0]
+            # 按时间找最新文件
+            files = sorted(output_dir.glob("*.mp4"), key=lambda f: f.stat().st_mtime, reverse=True)
+            if files and (files[0].stat().st_mtime > __import__('time').time() - 120):
+                return files[0]
+        except Exception as e:
+            print(f"下载失败: {e}")
+        return None
+
+
+class YoutubeFetcher(IncrementalFetcher):
+    """YouTube增量采集 — 复用media_downloader.py + yt-dlp
+
+    列表获取：yt-dlp获取频道/播放列表视频
+    下载：media_downloader.py（需要代理）
+    """
+
+    SKILL_DIR = Path.home() / "Doubao" / "skills" / "multiplatform-media-fetch"
+    DOWNLOADER = SKILL_DIR / "scripts" / "media_downloader.py"
+
+    def fetch_latest_list(self) -> List[Dict[str, Any]]:
+        """用yt-dlp获取频道最新视频列表"""
+        import subprocess
+        channel_url = self.config.get('channel_url', '')
+        if not channel_url:
+            raise Exception("YouTube频道URL未配置（config.channel_url）")
+
+        # 用yt-dlp获取频道最新视频（flat-playlist只获取元数据不下载）
+        env = os.environ.copy()
+        # YouTube需要代理，确保代理环境变量存在
+        proxy = env.get('HTTPS_PROXY', env.get('https_proxy', 'http://127.0.0.1:7890'))
+        env['HTTPS_PROXY'] = proxy
+        env['HTTP_PROXY'] = proxy
+
+        try:
+            cmd = [
+                'yt-dlp', '--flat-playlist', '--dump-json',
+                '--playlist-end', '30',  # 最新30条
+                channel_url
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True,
+                                  timeout=60, env=env, cwd=str(PROJECT_DIR))
+            items = []
+            for line in result.stdout.strip().split('\n'):
+                if line.strip():
+                    try:
+                        v = json.loads(line)
+                        items.append({
+                            'video_id': v.get('id', ''),
+                            'title': v.get('title', ''),
+                            'url': f"https://www.youtube.com/watch?v={v.get('id', '')}",
+                            'duration': v.get('duration', 0),
+                            'type': 'video',
+                        })
+                    except json.JSONDecodeError:
+                        continue
+            return items
+        except Exception as e:
+            raise Exception(f"yt-dlp获取频道列表失败: {e}")
+
+    def get_unique_key(self, item: Dict[str, Any]) -> str:
+        return item.get('video_id', item.get('url', ''))
+
+    def download_item(self, item: Dict[str, Any], index: int) -> Optional[Path]:
+        """调用media_downloader.py下载YouTube视频"""
+        import subprocess
+        url = item.get('url', '')
+        if not url:
+            return None
+
+        output_dir = LIBRARY_DIR / "01_video" / self.domain / self.account
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        env = os.environ.copy()
+        proxy = env.get('HTTPS_PROXY', env.get('https_proxy', 'http://127.0.0.1:7890'))
+        env['HTTPS_PROXY'] = proxy
+        env['HTTP_PROXY'] = proxy
+
+        try:
+            cmd = [
+                sys.executable, str(self.DOWNLOADER),
+                url, '--quality', '720',
+                '-o', str(output_dir)
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True,
+                                  timeout=300, env=env, cwd=str(PROJECT_DIR))
+            files = sorted(output_dir.glob("*.mp4"), key=lambda f: f.stat().st_mtime, reverse=True)
+            if files and (files[0].stat().st_mtime > __import__('time').time() - 300):
+                return files[0]
+        except Exception as e:
+            print(f"下载失败: {e}")
+        return None
+
+
 # ============================================================
 # 工厂和入口
 # ============================================================
@@ -324,6 +541,8 @@ FETCHER_REGISTRY = {
     'bilibili': BilibiliFetcher,
     'wechat_channels': WechatChannelsFetcher,
     'wechat_official': WechatOfficialFetcher,
+    'douyin': DouyinFetcher,
+    'youtube': YoutubeFetcher,
 }
 
 
