@@ -270,17 +270,22 @@ func (c *Captor) Stop() {
 
 // onRequest 请求处理
 func (c *Captor) onRequest(r *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-	// 记录视频号API请求（方案B研究）
-	if strings.HasSuffix(r.Host, "channels.weixin.qq.com") && strings.Contains(r.URL.Path, "/web/api/") {
+	// 记录所有微信相关请求（公众号主页/视频号API/文章列表）
+	host := r.Host
+	if strings.HasSuffix(host, "weixin.qq.com") ||
+		strings.HasSuffix(host, "qq.com") ||
+		strings.Contains(host, "weixin") ||
+		strings.Contains(host, "wx.qq.com") {
 		c.logAPIRequest(r)
 	}
 
-	// 记录公众号API请求（文章列表增量采集）
-	if strings.HasSuffix(r.Host, "mp.weixin.qq.com") &&
-		(strings.Contains(r.URL.Path, "/mp/jsmonitor") ||
-			strings.Contains(r.URL.Path, "/mp/profile_ext") ||
-			strings.Contains(r.URL.Path, "/mp/getappmsgext")) {
-		c.logAPIRequest(r)
+	// 禁用公众号主页缓存，确保注入的JS每次都执行
+	if strings.HasSuffix(host, "channels.weixin.qq.com") &&
+		strings.Contains(r.URL.Path, "/web/pages/mp_profile") {
+		r.Header.Set("Cache-Control", "no-cache, no-store, must-revalidate")
+		r.Header.Set("Pragma", "no-cache")
+		r.Header.Set("If-Modified-Since", "")
+		r.Header.Set("If-None-Match", "")
 	}
 
 	// 处理微信视频号的回调请求
@@ -302,6 +307,15 @@ func (c *Captor) logAPIRequest(r *http.Request) {
 		r.Host,
 		r.URL.RequestURI(),
 	)
+
+	// 显式记录Cookie（Go的http.Request.Header中Cookie是单独处理的）
+	if len(r.Cookies()) > 0 {
+		cookieStr := ""
+		for _, cookie := range r.Cookies() {
+			cookieStr += cookie.Name + "=" + cookie.Value + "; "
+		}
+		entry += fmt.Sprintf("  Cookies: %s\n", cookieStr)
+	}
 
 	// 记录请求头
 	entry += fmt.Sprintf("  Headers: %v\n", r.Header)
@@ -331,10 +345,30 @@ func (c *Captor) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Re
 	host := resp.Request.Host
 	path := resp.Request.URL.Path
 
+	// 记录所有微信相关响应（方案B研究）
+	if strings.HasSuffix(host, "weixin.qq.com") ||
+		strings.HasSuffix(host, "qq.com") ||
+		strings.Contains(host, "weixin") ||
+		strings.Contains(host, "wx.qq.com") {
+		c.logAPIResponse(resp)
+	}
+
 	// 视频号页面 - 注入JS
 	if strings.HasSuffix(host, "channels.weixin.qq.com") &&
 		(strings.Contains(path, "/web/pages/feed") || strings.Contains(path, "/web/pages/home")) {
 		return c.replaceWxJsContent(resp, ".js\"", fmt.Sprintf(".js?v=%s\"", c.version))
+	}
+
+	// 公众号主页(mp_profile) - 注入文章列表提取JS
+	if strings.HasSuffix(host, "channels.weixin.qq.com") &&
+		strings.Contains(path, "/web/pages/mp_profile") {
+		return c.injectArticleListHook(resp)
+	}
+
+	// 文章详情页 - 注入JS捕获appmsg_token等参数
+	if strings.HasSuffix(host, "mp.weixin.qq.com") &&
+		strings.HasPrefix(path, "/s") {
+		return c.injectArticleDetailHook(resp)
 	}
 
 	// 微信JS资源 - 注入Hook代码
@@ -350,6 +384,45 @@ func (c *Captor) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Re
 	return resp
 }
 
+// logAPIResponse 记录API响应
+func (c *Captor) logAPIResponse(resp *http.Response) {
+	if c.apiLogFile == nil || resp.Body == nil {
+		return
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return
+	}
+	// 恢复响应体
+	resp.Body = io.NopCloser(strings.NewReader(string(body)))
+
+	entry := fmt.Sprintf("[%s] RESPONSE %s %s%s (status=%d, len=%d)\n",
+		time.Now().Format("2006-01-02 15:04:05"),
+		resp.Request.Method,
+		resp.Request.Host,
+		resp.Request.URL.RequestURI(),
+		resp.StatusCode,
+		len(body),
+	)
+
+	// 只记录JSON或文本响应的前2000字符
+	contentType := resp.Header.Get("Content-Type")
+	if strings.Contains(contentType, "json") || strings.Contains(contentType, "text") || strings.Contains(contentType, "javascript") {
+		if len(body) > 2000 {
+			entry += fmt.Sprintf("  Body: %s...(truncated)\n", string(body[:2000]))
+		} else {
+			entry += fmt.Sprintf("  Body: %s\n", string(body))
+		}
+	} else {
+		entry += fmt.Sprintf("  Content-Type: %s (not logged)\n", contentType)
+	}
+
+	entry += "\n"
+	c.apiLogFile.WriteString(entry)
+	c.apiLogFile.Sync()
+}
+
 // handleWechatRequest 处理微信视频号的回调
 func (c *Captor) handleWechatRequest(r *http.Request) (*http.Request, *http.Response) {
 	body, err := io.ReadAll(r.Body)
@@ -357,9 +430,104 @@ func (c *Captor) handleWechatRequest(r *http.Request) (*http.Request, *http.Resp
 		return r, c.buildEmptyResponse(r)
 	}
 
+	// 检查是否是文章列表回调(type=3)
+	if strings.Contains(r.URL.RawQuery, "type=3") {
+		c.handleArticleList(body)
+		return r, c.buildEmptyResponse(r)
+	}
+
 	go c.handleMedia(body)
 
 	return r, c.buildEmptyResponse(r)
+}
+
+// handleArticleList 处理文章列表回调
+func (c *Captor) handleArticleList(body []byte) {
+	var result map[string]interface{}
+	if err := json.Unmarshal(body, &result); err != nil {
+		return
+	}
+
+	msgType, _ := result["type"].(string)
+	page, _ := result["page"].(string)
+	if page == "" {
+		page, _ = result["url"].(string)
+	}
+
+	// 处理文章详情页参数回调
+	if msgType == "article_detail_params" {
+		appmsgToken, _ := result["appmsg_token"].(string)
+		uin, _ := result["uin"].(string)
+		key, _ := result["key"].(string)
+		passTicket, _ := result["pass_ticket"].(string)
+		wxtoken, _ := result["wxtoken"].(string)
+		biz, _ := result["biz"].(string)
+		reason, _ := result["reason"].(string)
+		
+		entry := fmt.Sprintf("[%s] ARTICLE_DETAIL_PARAMS reason=%s\n  appmsg_token=%s\n  uin=%s\n  key=%s\n  pass_ticket=%s\n  wxtoken=%s\n  biz=%s\n  url=%s\n",
+			time.Now().Format("2006-01-02 15:04:05"),
+			reason, appmsgToken, uin, key, passTicket, wxtoken, biz, page)
+		if c.apiLogFile != nil {
+			c.apiLogFile.WriteString(entry)
+			c.apiLogFile.Sync()
+		}
+		if appmsgToken != "" {
+			fmt.Printf("[%s] ★★★ 捕获到appmsg_token: %s (reason=%s)\n", time.Now().Format("15:04:05"), appmsgToken, reason)
+		} else {
+			fmt.Printf("[%s] appmsg_token为空 (reason=%s)\n", time.Now().Format("15:04:05"), reason)
+		}
+		return
+	}
+
+	if msgType == "page_html" {
+		html, _ := result["html"].(string)
+		entry := fmt.Sprintf("[%s] PAGE_HTML len=%d url=%s\n%s\n",
+			time.Now().Format("2006-01-02 15:04:05"),
+			len(html), page, html)
+		if c.apiLogFile != nil {
+			c.apiLogFile.WriteString(entry)
+			c.apiLogFile.Sync()
+		}
+		fmt.Printf("[%s] 收到页面HTML, 长度=%d\n", time.Now().Format("15:04:05"), len(html))
+		return
+	}
+
+	if msgType == "articles" {
+		articles, ok := result["articles"].([]interface{})
+		bodyText, _ := result["bodyText"].(string)
+
+		if ok && len(articles) > 0 {
+			for _, item := range articles {
+				article, ok := item.(map[string]interface{})
+				if !ok {
+					continue
+				}
+				title, _ := article["title"].(string)
+				url, _ := article["url"].(string)
+				if title == "" || url == "" {
+					continue
+				}
+				entry := fmt.Sprintf("[%s] ARTICLE_LIST title=%s url=%s page=%s\n",
+					time.Now().Format("2006-01-02 15:04:05"),
+					title, url, page)
+				if c.apiLogFile != nil {
+					c.apiLogFile.WriteString(entry)
+					c.apiLogFile.Sync()
+				}
+				fmt.Printf("[%s] 捕获到文章: %s\n", time.Now().Format("15:04:05"), truncate(title, 50))
+			}
+		}
+
+		if bodyText != "" {
+			entry := fmt.Sprintf("[%s] BODY_TEXT len=%d\n%s\n",
+				time.Now().Format("2006-01-02 15:04:05"),
+				len(bodyText), bodyText)
+			if c.apiLogFile != nil {
+				c.apiLogFile.WriteString(entry)
+				c.apiLogFile.Sync()
+			}
+		}
+	}
 }
 
 // handleMedia 处理视频媒体信息
@@ -467,6 +635,290 @@ func (c *Captor) handleMedia(body []byte) {
 	if c.autoDownload && video.Classify == "video" {
 		go c.downloadVideo(video)
 	}
+}
+
+// injectArticleListHook 注入文章列表提取JS（公众号主页）
+func (c *Captor) injectArticleListHook(resp *http.Response) *http.Response {
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return resp
+	}
+
+	bodyStr := string(body)
+
+	// 在</body>前注入文章列表提取脚本
+	articleHookJS := `
+<script>
+(function() {
+  console.log('[ArticleHook] 脚本已注入');
+  
+  var lastSent = 0;
+  
+  // 发送页面HTML到代理，用于调试DOM结构
+  function sendPageHTML(reason) {
+    var now = Date.now();
+    if (now - lastSent < 1000) return; // 限流：最多每秒1次
+    lastSent = now;
+    
+    var html = document.documentElement.outerHTML.substring(0, 80000);
+    var bodyText = document.body ? document.body.innerText.substring(0, 8000) : '';
+    
+    fetch('https://wxapp.tc.qq.com/res-downloader/wechat?type=3', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify({
+        type: 'page_html', 
+        html: html, 
+        bodyText: bodyText,
+        url: location.href,
+        reason: reason || 'periodic'
+      })
+    });
+  }
+  
+  // 提取文章列表
+  function extractArticles() {
+    var articles = [];
+    
+    // 尝试多种选择器匹配文章列表
+    var selectors = [
+      'a[href*="/s/"]',
+      'a[href*="mp.weixin.qq.com"]',
+      '.article-item',
+      '.feed-item',
+      '.list-item',
+      '[class*="article"]',
+      '[class*="feed"]',
+      '[class*="item"]'
+    ];
+    
+    var seen = new Set();
+    selectors.forEach(function(selector) {
+      try {
+        var elements = document.querySelectorAll(selector);
+        elements.forEach(function(el) {
+          var title = '';
+          var url = '';
+          
+          if (el.tagName === 'A') {
+            url = el.href || '';
+            title = el.textContent || el.innerText || '';
+          } else {
+            var link = el.querySelector('a');
+            if (link) {
+              url = link.href || '';
+            }
+            title = el.textContent || el.innerText || '';
+          }
+          
+          title = title.trim().substring(0, 200);
+          if (title && url && title.length > 5 && !seen.has(url)) {
+            seen.add(url);
+            articles.push({title: title, url: url});
+          }
+        });
+      } catch(e) {}
+    });
+    
+    if (articles.length > 0) {
+      fetch('https://wxapp.tc.qq.com/res-downloader/wechat?type=3', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify({type: 'articles', articles: articles, url: location.href})
+      });
+    }
+  }
+
+  // 页面加载完成后开始提取
+  function start() {
+    console.log('[ArticleHook] 页面加载完成，开始提取');
+    
+    // 发送页面基本信息
+    function sendPageInfo(reason) {
+      var now = Date.now();
+      if (now - lastSent < 1000) return;
+      lastSent = now;
+      
+      var html = document.documentElement.outerHTML.substring(0, 100000);
+      var bodyText = document.body ? document.body.innerText.substring(0, 10000) : '';
+      
+      // 查找所有可点击元素
+      var clickables = [];
+      document.querySelectorAll('a, button, [role="button"], [class*="tab"], [class*="Tab"], [class*="nav"], [class*="Nav"]').forEach(function(el) {
+        var text = (el.textContent || el.innerText || '').trim().substring(0, 50);
+        var cls = el.className || '';
+        if (text || cls) {
+          clickables.push({text: text, class: typeof cls === 'string' ? cls.substring(0, 100) : ''});
+        }
+      });
+      
+      fetch('https://wxapp.tc.qq.com/res-downloader/wechat?type=3', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify({
+          type: 'page_html', 
+          html: html, 
+          bodyText: bodyText,
+          url: location.href,
+          reason: reason || 'periodic',
+          clickables: clickables.slice(0, 50),
+          scrollHeight: document.documentElement.scrollHeight,
+          scrollTop: document.documentElement.scrollTop,
+          clientHeight: document.documentElement.clientHeight
+        })
+      });
+    }
+    
+    sendPageInfo('load');
+    extractArticles();
+    
+    // 定期发送页面信息（每3秒）
+    setInterval(function() {
+      sendPageInfo('periodic');
+      extractArticles();
+    }, 3000);
+    
+    // 自动滚动页面（每2秒滚动一次，共滚动10次）
+    var scrollCount = 0;
+    var scrollInterval = setInterval(function() {
+      if (scrollCount >= 20) {
+        clearInterval(scrollInterval);
+        return;
+      }
+      window.scrollBy(0, 500);
+      scrollCount++;
+      console.log('[ArticleHook] 自动滚动第' + scrollCount + '次');
+    }, 2000);
+    
+    // 监听DOM变化
+    if (window.MutationObserver) {
+      var observer = new MutationObserver(function(mutations) {
+        sendPageInfo('mutation');
+        extractArticles();
+      });
+      observer.observe(document.body, {childList: true, subtree: true});
+    }
+    
+    // 监听点击事件
+    document.addEventListener('click', function(e) {
+      setTimeout(function() {
+        sendPageInfo('click');
+        extractArticles();
+      }, 500);
+    }, true);
+  }
+  
+  if (document.readyState === 'complete') {
+    setTimeout(start, 1000);
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(start, 1000);
+    });
+  }
+})();
+</script>
+`
+
+	// 在</body>前注入
+	newBodyStr := strings.Replace(bodyStr, "</body>", articleHookJS+"</body>", 1)
+	if newBodyStr == bodyStr {
+		// 如果没有</body>，就在末尾追加
+		newBodyStr = bodyStr + articleHookJS
+	}
+
+	newBodyBytes := []byte(newBodyStr)
+	resp.Body = io.NopCloser(strings.NewReader(string(newBodyBytes)))
+	resp.ContentLength = int64(len(newBodyBytes))
+	resp.Header.Set("Content-Length", fmt.Sprintf("%d", len(newBodyBytes)))
+	// 禁用缓存，确保每次都重新加载并注入JS
+	resp.Header.Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	resp.Header.Set("Pragma", "no-cache")
+	resp.Header.Set("Expires", "0")
+
+	return resp
+}
+
+// injectArticleDetailHook 注入文章详情页JS，捕获appmsg_token等参数
+func (c *Captor) injectArticleDetailHook(resp *http.Response) *http.Response {
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return resp
+	}
+
+	bodyStr := string(body)
+
+	// 在</body>前注入参数捕获脚本
+	detailHookJS := `
+<script>
+(function() {
+  console.log('[DetailHook] 脚本已注入');
+  
+  function sendParams(reason) {
+    var params = {
+      type: 'article_detail_params',
+      url: location.href,
+      reason: reason || 'load',
+      appmsg_token: window.appmsg_token || '',
+      uin: window.uin || '',
+      key: window.key || '',
+      pass_ticket: window.pass_ticket || '',
+      wxtoken: window.wxtoken || '',
+      biz: window.biz || '',
+      devicetype: window.devicetype || '',
+      clientversion: window.clientversion || ''
+    };
+    
+    fetch('https://wxapp.tc.qq.com/res-downloader/wechat?type=3', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(params)
+    });
+  }
+  
+  // 页面加载后发送
+  function start() {
+    sendParams('load');
+    
+    // 定期发送（每2秒），捕获异步赋值的appmsg_token
+    setInterval(function() {
+      sendParams('periodic');
+    }, 2000);
+    
+    // 监听appmsg_token变化
+    if (window.MutationObserver) {
+      var observer = new MutationObserver(function() {
+        sendParams('mutation');
+      });
+      observer.observe(document.body, {childList: true, subtree: true});
+    }
+  }
+  
+  if (document.readyState === 'complete') {
+    setTimeout(start, 500);
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(start, 500);
+    });
+  }
+})();
+</script>
+`
+
+	// 在</body>前注入
+	newBodyStr := strings.Replace(bodyStr, "</body>", detailHookJS+"</body>", 1)
+	if newBodyStr == bodyStr {
+		newBodyStr = bodyStr + detailHookJS
+	}
+
+	newBodyBytes := []byte(newBodyStr)
+	resp.Body = io.NopCloser(strings.NewReader(string(newBodyBytes)))
+	resp.ContentLength = int64(len(newBodyBytes))
+	resp.Header.Set("Content-Length", fmt.Sprintf("%d", len(newBodyBytes)))
+	resp.Header.Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	resp.Header.Set("Pragma", "no-cache")
+	resp.Header.Set("Expires", "0")
+
+	return resp
 }
 
 // injectVideoHook 注入视频Hook代码

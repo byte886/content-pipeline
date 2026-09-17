@@ -14,13 +14,20 @@
 
 **限制**：只能获取本地缓存的最近推送文章（通常每公众号1-5篇），无法获取全部历史文章。
 
-### 方案B：video-capture MITM代理（备选，全量采集）
+### 方案B：video-capture MITM代理（全量采集，**当前不可用**）
 
 **原理**：用项目中的 `video-capture` 工具（Go写的MITM代理）解密HTTPS流量，从文章详情页的jsmonitor请求中提取API参数（uin/key/pass_ticket/appmsg_token），再调用文章列表API。
 
 **适用场景**：全量采集（首次采集、补全历史文章）。
 
-**限制**：需要用户在微信中操作（进入文章详情页并下拉刷新），appmsg_token可能为空，参数有时效性。
+**⚠️ 当前状态（2026-09-17验证）**：
+- uin/key/pass_ticket可以捕获到
+- **appmsg_token始终为空**：微信4.x中appmsg_token通过微信内部API（xweb.worker）生成，不走HTTP，代理捕获不到
+- 用appmsg_token为空的参数调用API返回`msg_count=0`
+- 早期（2026-09-12）能捕获到，可能是微信服务端后来更新了
+- **首次全量采集新公众号的方案待研究**
+
+**顶底之王已有278篇文章URL在manifest中**，不需要全量采集，直接用方案C下载正文即可。
 
 ### 方案C：UA伪装法获取正文（通用）
 
@@ -283,8 +290,9 @@ curl -L -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) A
 
 ### Q3: API返回ret!=0或文章数为0？
 - key/pass_ticket已过期，重新捕获参数
-- appmsg_token可能为空，尝试从公众号主页HTML中提取
+- **appmsg_token为空**：微信4.x中appmsg_token通过内部API生成，代理捕获不到，此方案当前不可用
 - 确认`__biz`是目标公众号的
+- 顶底之王已有278篇URL在manifest中，不需要调用此API
 
 ### Q4: ClashX和video-capture冲突？
 - 不冲突。video-capture是系统代理，ClashX是video-capture的上游代理
@@ -306,9 +314,12 @@ curl -L -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) A
 | 搜狗微信搜索 | ❌ | 只能找到24篇旧文章 |
 | pfctl透明代理 | ❌ | macOS只重定向入站流量，不重定向出站 |
 | tcpdump/Wireshark | ❌ | 微信保持长连接无新TLS握手，无法解密 |
+| **appmsg_token通过代理捕获** | ❌ | **微信4.x中appmsg_token通过xweb.worker内部API生成，不走HTTP，代理捕获不到，始终为空** |
+| 用pass_ticket代替appmsg_token | ❌ | API返回msg_count=0 |
+| getappmsgext API获取appmsg_token | ❌ | 返回ret=-11 |
 
 ---
 
 *文档创建：2026-09-12*
-*最后更新：2026-09-17（新增wx biz-articles方案A作为首选，video-capture降级为备选）*
-*推荐流程：日常增量用方案A（wx biz-articles），全量补全用方案B（video-capture），正文下载统一用方案C（UA伪装）*
+*最后更新：2026-09-17（验证appmsg_token无法通过代理捕获，方案B当前不可用；顶底之王已有278篇URL在manifest中）*
+*推荐流程：日常增量用方案A（wx biz-articles），正文下载统一用方案C（UA伪装）；全量采集新公众号的方案待研究*

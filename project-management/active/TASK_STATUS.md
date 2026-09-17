@@ -74,12 +74,12 @@
 
 ## 下一步（按优先级）
 
-> **2026-09-17 更新：公众号增量采集验证成功（wx biz-articles方案），发现并下载1篇新文章，manifest 277→278篇**
+> **2026-09-17 更新：公众号/B站图文目录重构完成，appmsg_token捕获验证失败（微信4.x内部API生成）**
 
-1. **视频号增量采集验证**（WechatChannelsFetcher已就绪，需网络捕获元数据补充唯一ID）
-2. **百度网盘统一重新同步**（用户明确暂停，等所有前置问题解决后统一执行；股票需删旧传新，珠宝需全量上传）
+1. **百度网盘统一重新同步**（用户明确暂停，等所有前置问题解决后统一执行；股票需删旧传新，珠宝需全量上传）
+2. **视频号增量采集验证**（WechatChannelsFetcher已就绪，需网络捕获元数据补充唯一ID）
 3. **广义趋势理论课程**（用户说已拿到电子版，等提供后转码入库）
-4. **2篇公众号文章补采**（"每年12月哪个板块涨的最好？"和"冬至快乐"无正文）
+4. **4篇公众号文章日期补全**（URL失效或文章已删除，可从标题推断大致日期）
 5. **股票书籍知识详解生成**（13本书拆解到交易哲学/技术分析等分类）
 6. **珠宝书籍补充**（当前0本）
 7. **T-31指定博主采集**（抖音反爬403，暂时跳过，等用户手动下载视频）
@@ -88,12 +88,14 @@
 
 ## 最近完成（2026-09-17）
 
-- ✅ 公众号增量采集验证：发现`wx biz-articles`（wechat-control技能）可读取微信本地数据库中的最近推送文章，无需代理/appmsg_token/UI自动化
-- ✅ 新增文章下载：顶底之王2026-09-15发布的"连续地量，随时酝酿爆发！"已下载正文（522字，2图）
-- ✅ manifest更新：277→278篇
-- ✅ SOP重写：SOP-wechat-official-article.md改为三方案（A: wx biz-articles增量首选 / B: video-capture全量备选 / C: UA伪装法正文下载）
-- ✅ 死路方案清理：删除mitmproxy_capture_articles.py、capture_article_list.py
-- ✅ video-capture增强：增加对mp.weixin.qq.com的请求头记录
+- ✅ 公众号图文目录重构：278篇文章从"编号_标题"根目录 → "articles/日期_标题"子目录，每篇含article.json/article.html/content.md/images/
+- ✅ B站图文目录重构：20条动态从根目录 → "articles/日期_标题_ID"子目录，创建manifest.json
+- ✅ 公众号日期补全：274/278篇从微信服务器获取发布日期（UA伪装法只下载HTML头部）
+- ✅ 旧目录结构清理：删除277个旧的"编号_标题"目录
+- ✅ manifest更新：公众号278篇has_content全部=True，B站20条创建manifest
+- ✅ appmsg_token捕获验证：确认微信4.x中appmsg_token通过xweb.worker内部API生成，不走HTTP，代理无法捕获（已验证多种参数组合均返回msg_count=0）
+- ✅ SOP更新：SOP-wechat-official-article.md记录appmsg_token无法捕获的结论，方案B标记为当前不可用
+- ✅ 公众号增量采集验证：wx biz-articles方案成功，新增1篇文章（277→278）
 
 ---
 
