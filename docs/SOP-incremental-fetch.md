@@ -152,11 +152,18 @@ python3 scripts/incremental/fetch_new.py --all            # 确认后下载
 
 | 平台 | 列表获取 | 唯一键 | 自动下载 | 状态 |
 |------|----------|--------|----------|------|
-| B站 | 内联wbi签名（已验证） | bvid | yt-dlp | ✅ 列表+对比正常，发现1个新增 |
-| YouTube | yt-dlp flat-playlist（已验证） | video_id | media_downloader.py | ✅ 列表正常，下载待验证 |
+| B站 | 内联wbi签名 | bvid | yt-dlp | ⚠️ API临时412（需已登录cookie，游客态被限） |
+| YouTube | yt-dlp flat-playlist | video_id | media_downloader.py | ✅ 列表+下载均已验证 |
 | 视频号 | 网络捕获JSON | 标题+大小 | 需手动捕获 | ⚠️ 需手动捕获列表 |
-| 抖音 | 手动提供列表 | aweme_id/URL | media_downloader.py | ⚠️ 框架就绪，下载403待调试 |
-| 公众号 | 网络捕获 | URL | 需手动捕获 | ⚠️ 待实现 |
+| 抖音 | 手动提供列表 | aweme_id/URL | media_downloader.py | ❌ 403反爬（yt-dlp最新版仍失败，需换提取方式） |
+| 公众号 | 网络捕获JSON | URL | fetcher.py | ⚠️ 框架就绪，下载需微信登录态 |
+
+### B站412解决方案
+
+B站游客态调用`x/space/wbi/arc/search`会被412限制（短时间多次请求触发）。解决方案：
+1. 导出已登录B站的Chrome cookie：`python3 platforms/bilibili/export_cookies.py`
+2. 在请求中携带SESSDATA等cookie
+3. 或降低请求频率（每次间隔≥30秒）
 
 ---
 

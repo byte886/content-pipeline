@@ -275,6 +275,14 @@ func (c *Captor) onRequest(r *http.Request, ctx *goproxy.ProxyCtx) (*http.Reques
 		c.logAPIRequest(r)
 	}
 
+	// 记录公众号API请求（文章列表增量采集）
+	if strings.HasSuffix(r.Host, "mp.weixin.qq.com") &&
+		(strings.Contains(r.URL.Path, "/mp/jsmonitor") ||
+			strings.Contains(r.URL.Path, "/mp/profile_ext") ||
+			strings.Contains(r.URL.Path, "/mp/getappmsgext")) {
+		c.logAPIRequest(r)
+	}
+
 	// 处理微信视频号的回调请求
 	if strings.Contains(r.Host, "qq.com") && strings.Contains(r.URL.Path, "/res-downloader/wechat") {
 		return c.handleWechatRequest(r)

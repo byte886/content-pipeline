@@ -1,316 +1,314 @@
 # 公众号文章自动化采集 SOP
 
 > 目标公众号：顶底之王（__biz=MzUxODM4ODM5Mg==）
-> 最后验证：2026-09-12
-> 采集结果：277篇文章（含多图文子文章）
+> 最后验证：2026-09-17
+> 采集结果：278篇文章（含多图文子文章）
 
-## 1. 核心原理
+## 1. 核心方案（按优先级）
 
-微信Mac版公众号文章列表API（`profile_ext?action=getmsg`）**不走系统代理**，而是通过微信主进程的长连接（IPv6:8080端口）获取。因此无法直接用mitmproxy/res-downloader捕获文章列表API。
+### 方案A：wx biz-articles 本地数据库读取（首选，增量采集）
 
-**突破方法**：公众号文章**详情页**（`mp.weixin.qq.com/s/xxx`）由内置浏览器（WeChatAppEx）渲染，其流量**走系统代理**。在详情页的jsmonitor请求中，可以捕获到调用文章列表API所需的全部参数（uin/key/pass_ticket/appmsg_token）。拿到这些参数后，直接用requests调用API即可。
+**原理**：微信本地数据库缓存了最近推送的公众号文章。用 `wx-cli` 工具直接解密读取，无需代理、无需登录态、无需UI自动化。
 
-## 2. 前置条件
+**适用场景**：增量采集（发现新文章）、日常跟踪。
+
+**限制**：只能获取本地缓存的最近推送文章（通常每公众号1-5篇），无法获取全部历史文章。
+
+### 方案B：video-capture MITM代理（备选，全量采集）
+
+**原理**：用项目中的 `video-capture` 工具（Go写的MITM代理）解密HTTPS流量，从文章详情页的jsmonitor请求中提取API参数（uin/key/pass_ticket/appmsg_token），再调用文章列表API。
+
+**适用场景**：全量采集（首次采集、补全历史文章）。
+
+**限制**：需要用户在微信中操作（进入文章详情页并下拉刷新），appmsg_token可能为空，参数有时效性。
+
+### 方案C：UA伪装法获取正文（通用）
+
+**原理**：微信公众号文章的反爬策略主要检查User-Agent中是否包含`MicroMessenger`关键字。只要UA声明自己是微信客户端，服务器就放行，不需要Cookie、不需要登录、不需要代理。
+
+**适用场景**：获取单篇文章正文（方案A/B获取到URL后，用此方法下载正文）。
+
+---
+
+## 2. 方案A：wx biz-articles 增量采集（推荐）
+
+### 2.1 前置条件
 
 | 项目 | 要求 |
 |------|------|
 | 微信版本 | 4.1.8（锁定，不升级） |
-| mitmproxy | 已安装（`brew install mitmproxy`） |
-| mitmproxy证书 | 已安装到系统钥匙串并信任 |
+| wx-cli | 已安装：`/usr/local/bin/wx`（wechat-control技能提供） |
+| 微信密钥 | 已提取（wechat-control技能首次配置时完成） |
 | 微信登录 | 已登录且已关注目标公众号 |
 
-**本方案不依赖ClashX、不依赖res-downloader。** mitmproxy使用直连模式，微信和公众号API都是国内流量，不需要翻墙。
-
-## 3. 采集步骤
-
-### 3.1 启动mitmproxy捕获cookie
+### 2.2 采集步骤
 
 ```bash
-# 1. 启动mitmproxy（端口8084，header捕获脚本）
-cat > /tmp/capture_headers.py << 'EOF'
-import mitmproxy.http
-import json, os, time
-OUTPUT_DIR = "/tmp/wechat_headers"
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+# 查询指定公众号的最新文章（本地缓存）
+wx biz-articles --account "顶底之王" --limit 500 --json
 
-def request(flow):
-    host = flow.request.host
-    if "weixin.qq.com" in host:
-        ts = int(time.time() * 1000)
-        data = {
-            "timestamp": ts,
-            "method": flow.request.method,
-            "url": flow.request.pretty_url,
-            "headers": dict(flow.request.headers),
-            "cookies": dict(flow.request.cookies),
-        }
-        safe_host = host.replace(".", "_")
-        with open(f"{OUTPUT_DIR}/{safe_host}_{ts}.json", "w") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        if flow.request.cookies:
-            print(f"[COOKIE] {flow.request.pretty_url[:80]}")
-EOF
-
-nohup mitmdump --listen-port 8084 -s /tmp/capture_headers.py > /tmp/mitmproxy.log 2>&1 &
-
-# 2. 设置系统代理为mitmproxy
-networksetup -setwebproxy Wi-Fi 127.0.0.1 8084
-networksetup -setsecurewebproxy Wi-Fi 127.0.0.1 8084
+# 查询所有公众号的最新文章
+wx biz-articles --limit 1000 --json
 ```
 
-### 3.2 在微信中触发cookie
+**输出字段**：
+- `account`：公众号名称
+- `title`：文章标题
+- `url`：文章URL（含完整参数mid/sn/chksm）
+- `time`：发布时间
+- `digest`：摘要
+- `cover_url`：封面图
 
-1. 打开目标公众号主页
-2. 点击任意一篇文章进入**详情页**
-3. **下拉刷新**详情页（关键！必须刷新才能触发带cookie的jsmonitor请求）
-4. 等待3-5秒
-
-### 3.3 提取参数
-
-```bash
-# 查看最新的带cookie请求
-ls -lt /tmp/wechat_headers/mp_weixin_qq_com_*.json | head -3
-
-# 提取参数（从最新的文件中）
-python3 << 'EOF'
-import json, glob, urllib.parse
-files = sorted(glob.glob("/tmp/wechat_headers/mp_weixin_qq_com_*.json"), reverse=True)
-for f in files:
-    d = json.load(open(f))
-    if d.get('cookies'):
-        parsed = urllib.parse.urlparse(d['url'])
-        params = urllib.parse.parse_qs(parsed.query)
-        print("=== 关键参数 ===")
-        print(f"__biz: {params.get('__biz', [''])[0]}")
-        print(f"uin: {params.get('uin', [''])[0]}")
-        print(f"key: {params.get('key', [''])[0][:60]}...")
-        print(f"pass_ticket: {params.get('pass_ticket', [''])[0]}")
-        print(f"appmsg_token: {params.get('appmsg_token', [''])[0][:60]}...")
-        print(f"wxtoken: {params.get('wxtoken', [''])[0]}")
-        print(f"\n=== Cookies ===")
-        for k, v in d['cookies'].items():
-            print(f"  {k}: {v[:60]}")
-        break
-EOF
-```
-
-### 3.4 调用文章列表API
+### 2.3 增量对比脚本
 
 ```python
-import requests, json, time, datetime
+import json, subprocess
 
-# 填入3.3提取的参数
-PARAMS = {
-    "__biz": "MzUxODM4ODM5Mg==",
-    "uin": "MTcwNDE4MTE5MA==",
-    "key": "从捕获文件中复制完整key",
-    "pass_ticket": "从捕获文件中复制",
-    "appmsg_token": "从捕获文件中复制",
+# 获取最新文章
+result = subprocess.run(
+    ['wx', 'biz-articles', '--account', '顶底之王', '--limit', '500', '--json'],
+    capture_output=True, text=True
+)
+latest = json.loads(result.stdout)
+
+# 读取现有manifest
+with open('library/06_articles/stock/顶底之王/manifest.json') as f:
+    existing = json.load(f)
+
+# 对比（去掉chksm参数比较，因为每次可能不同）
+existing_urls = {a['url'].split('&chksm=')[0] for a in existing}
+new_articles = [a for a in latest if a['url'].split('&chksm=')[0] not in existing_urls]
+
+print(f"现有: {len(existing)}篇, 新增: {len(new_articles)}篇")
+for a in new_articles:
+    print(f"  [{a['time']}] {a['title']}")
+```
+
+### 2.4 下载新文章正文
+
+获取到URL后，用方案C（UA伪装法）下载正文。详见第4节。
+
+---
+
+## 3. 方案B：video-capture 全量采集（备选）
+
+### 3.1 前置条件
+
+| 项目 | 要求 |
+|------|------|
+| video-capture | 已编译：`platforms/wechat_channels/video-capture/video-capture` |
+| CA证书 | `platforms/wechat_channels/video-capture/ca.crt` 已在系统钥匙串信任 |
+| ClashX | 运行中，监听7890（作为上游代理，可不用但建议开） |
+
+### 3.2 采集步骤
+
+#### 步骤1：启动video-capture
+
+```bash
+cd platforms/wechat_channels/video-capture
+nohup ./video-capture -port 8899 -output /tmp/capture.json -upstream "http://127.0.0.1:7890" > /tmp/video_capture.log 2>&1 &
+echo $! > /tmp/video_capture_pid.txt
+```
+
+#### 步骤2：在微信中触发参数捕获
+
+1. 打开目标公众号**主页**，停留几秒（设置Cookie）
+2. 点击任意一篇文章进入**详情页**
+3. **下拉刷新**详情页（触发jsmonitor请求）
+4. 等待3-5秒
+
+#### 步骤3：提取参数
+
+```python
+import re, urllib.parse, json
+
+with open('/tmp/video_capture.log', 'r') as f:
+    log = f.read()
+
+# 找包含uin/key/pass_ticket的POST请求
+matches = re.findall(r'Sending request POST (https://mp\.weixin\.qq\.com/mp/jsmonitor\?[^\n]+)', log)
+uin_matches = [m for m in matches if 'uin=' in m and 'key=' in m]
+
+if uin_matches:
+    url = uin_matches[-1]  # 最新的
+    params = urllib.parse.parse_qs(urllib.parse.urlparse(url).query)
+    
+    def multi_decode(s, times=3):
+        for _ in range(times):
+            try: s = urllib.parse.unquote(s)
+            except: break
+        return s
+    
+    result = {
+        '__biz': multi_decode(params.get('__biz', [''])[0]),
+        'uin': multi_decode(params.get('uin', [''])[0]),
+        'key': multi_decode(params.get('key', [''])[0]),
+        'pass_ticket': multi_decode(params.get('pass_ticket', [''])[0]),
+        'appmsg_token': multi_decode(params.get('appmsg_token', [''])[0]),
+    }
+    
+    with open('/tmp/wechat_api_params.json', 'w') as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+```
+
+**注意**：
+- 如果appmsg_token为空，尝试从公众号主页HTML中提取：先用参数调用 `profile_ext?action=home`，从返回HTML中用正则 `appmsg_token\s*=\s*["']([^"']+)["']` 提取。
+- 必须确认`__biz`是目标公众号的（顶底之王是`MzUxODM4ODM5Mg==`）。
+
+#### 步骤4：调用文章列表API
+
+```python
+import requests, json, time, datetime, base64
+
+with open('/tmp/wechat_api_params.json') as f:
+    p = json.load(f)
+
+url = "https://mp.weixin.qq.com/mp/profile_ext"
+headers = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 MicroMessenger/8.0.34",
+    "Referer": f"https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz={p['__biz']}&scene=124",
+    "X-Requested-With": "XMLHttpRequest",
 }
-
-COOKIES = {
-    "wxuin": "1704181190",
+cookies = {
+    "wxuin": str(int.from_bytes(base64.b64decode(p['uin']), 'big')),
     "devicetype": "UnifiedPCMac",
     "version": "f264186b",
     "lang": "zh_CN",
-    "appmsg_token": PARAMS["appmsg_token"],
-    "pass_ticket": PARAMS["pass_ticket"],
+    "pass_ticket": p['pass_ticket'],
     "wxtokenkey": "777",
-    "wap_sid2": "从捕获文件中复制",
 }
+if p.get('appmsg_token'):
+    cookies['appmsg_token'] = p['appmsg_token']
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-    "Referer": "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxODM4ODM5Mg==&scene=124",
-    "X-Requested-With": "XMLHttpRequest",
-}
-
-url = "https://mp.weixin.qq.com/mp/profile_ext"
 all_articles = []
 offset = 0
-
 while True:
     query = {
-        "action": "getmsg",
-        "__biz": PARAMS["__biz"],
-        "f": "json",
-        "offset": str(offset),
-        "count": "10",
-        "is_ok": "1",
-        "scene": "124",
-        "uin": PARAMS["uin"],
-        "key": PARAMS["key"],
-        "pass_ticket": PARAMS["pass_ticket"],
-        "wxtoken": "777",
-        "appmsg_token": PARAMS["appmsg_token"],
-        "x5": "0",
+        "action": "getmsg", "__biz": p['__biz'], "f": "json",
+        "offset": str(offset), "count": "10", "is_ok": "1", "scene": "124",
+        "uin": p['uin'], "key": p['key'], "pass_ticket": p['pass_ticket'],
+        "wxtoken": "777", "x5": "0",
     }
-    resp = requests.get(url, params=query, headers=HEADERS, cookies=COOKIES, timeout=30)
+    if p.get('appmsg_token'):
+        query['appmsg_token'] = p['appmsg_token']
+    
+    resp = requests.get(url, params=query, headers=headers, cookies=cookies, timeout=30)
     data = resp.json()
     
     if data.get('ret') != 0:
-        print(f"错误: {data}")
+        print(f"API错误: {data}")
         break
     
-    msg_list = json.loads(data['general_msg_list'])
+    msg_list = json.loads(data.get('general_msg_list', '{"list":[]}'))
     for item in msg_list.get('list', []):
         if 'app_msg_ext_info' in item:
             info = item['app_msg_ext_info']
-            all_articles.append({
-                "title": info.get('title', ''),
-                "url": info.get('content_url', '').replace('&amp;', '&'),
-                "date": datetime.datetime.fromtimestamp(
-                    item['comm_msg_info']['datetime']
-                ).strftime('%Y-%m-%d'),
-                "digest": info.get('digest', ''),
-            })
-            # 多图文子文章
+            dt = datetime.datetime.fromtimestamp(item['comm_msg_info']['datetime'])
+            all_articles.append({"title": info.get('title',''), "url": info.get('content_url','').replace('&amp;','&'), "date": dt.strftime('%Y-%m-%d')})
             for sub in info.get('multi_app_msg_item_list', []):
-                all_articles.append({
-                    "title": sub.get('title', ''),
-                    "url": sub.get('content_url', '').replace('&amp;', '&'),
-                    "date": datetime.datetime.fromtimestamp(
-                        item['comm_msg_info']['datetime']
-                    ).strftime('%Y-%m-%d'),
-                    "digest": sub.get('digest', ''),
-                    "is_sub": True,
-                })
+                all_articles.append({"title": sub.get('title',''), "url": sub.get('content_url','').replace('&amp;','&'), "date": dt.strftime('%Y-%m-%d')})
     
     if data.get('can_msg_continue') == 0:
         break
     offset = data['next_offset']
     time.sleep(1)
 
-# 去重保存
+# 去重
 seen = set()
 unique = [a for a in all_articles if a['url'] and a['url'] not in seen and not seen.add(a['url'])]
-with open("文章URL列表.json", "w", encoding='utf-8') as f:
-    json.dump(unique, f, ensure_ascii=False, indent=2)
 print(f"获取完成: {len(unique)}篇")
 ```
 
-### 3.5 恢复环境
+#### 步骤5：停止捕获
 
 ```bash
-# 关闭系统代理（或恢复为你平时用的代理）
-networksetup -setwebproxystate Wi-Fi off
-networksetup -setsecurewebproxystate Wi-Fi off
-
-# 停止mitmproxy
-pkill mitmdump
+kill $(cat /tmp/video_capture_pid.txt)
+# video-capture停止时会自动恢复系统代理
 ```
 
-## 4. 关键参数说明
+---
 
-| 参数 | 来源 | 时效性 | 说明 |
-|------|------|--------|------|
-| `__biz` | 公众号固定 | 永久 | 公众号唯一标识，Base64编码 |
-| `uin` | cookie/URL | 长期 | 用户ID，Base64编码 |
-| `key` | URL参数 | **数小时** | 调用API的密钥，会过期 |
-| `pass_ticket` | cookie/URL | **数小时** | 通行证，会过期 |
-| `appmsg_token` | cookie/URL | **数小时** | 应用消息token，会过期 |
-| `wxtoken` | URL参数 | 长期 | 固定为777 |
-| `wap_sid2` | cookie | 数天 | 会话ID |
+## 4. 方案C：UA伪装法获取文章正文（通用）
 
-**注意**：key/pass_ticket/appmsg_token有时效性（通常几小时），过期后需要重新捕获。
-
-## 5. 常见问题
-
-### Q1: mitmproxy捕获不到带cookie的请求？
-- 确认系统代理已设置为mitmproxy 8084
-- 确认ClashX已关闭"设置为系统代理"
-- 必须进入文章**详情页**并**下拉刷新**，仅在列表页滚动不会触发cookie
-- 确认mitmproxy证书已信任
-
-### Q2: API返回ret!=0或errmsg?
-- key/pass_ticket/appmsg_token已过期，重新执行3.1-3.3捕获新参数
-- 请求频率过高，增加time.sleep延迟
-
-### Q3: 其他代理软件（如ClashX）总是把系统代理改回去？
-- 采集期间完全退出其他代理软件
-- 或者在其他代理软件中关闭"设置为系统代理"
-
-### Q4: 文章数和公众号主页显示不一致？
-- 公众号主页显示的是"原创"文章数
-- API返回的是所有文章（含转载、多图文子文章）
-- 277篇包含了多图文的子文章（is_sub=true）
-
-## 6. 增量更新（后续跟踪）
-
-```python
-# 只获取最新的N篇，offset从0开始，直到遇到已存在的文章
-existing_urls = {a['url'] for a in json.load(open('文章URL列表.json'))}
-new_articles = []
-
-for article in all_articles:
-    if article['url'] in existing_urls:
-        break  # 遇到已存在的文章，停止
-    new_articles.append(article)
-
-print(f"新增文章: {len(new_articles)}篇")
-```
-
-## 7. 已验证死路（不要浪费时间）
-
-| 方案 | 结果 | 原因 |
-|------|------|------|
-| 微信数据库读取 | ❌ | 公众号文章浏览后不缓存到本地数据库 |
-| res-downloader抓包 | ❌ | 文章列表API不走系统代理；且不保存JSON响应 |
-| 搜狗微信搜索 | ❌ | 只能找到24篇旧文章，很多已注销 |
-| pfctl透明代理 | ❌ | macOS只重定向入站流量，不重定向出站 |
-| Proxifier | ❌ | 付费软件 |
-| ClashX TUN+mitmproxy | ❌ | 导致ClashX端口冲突，翻墙中断 |
-| tcpdump/Wireshark | ❌ | 微信保持长连接无新TLS握手，无法解密 |
-
-## 8. 文章正文获取（UA伪装法，已验证）
-
-### 8.1 核心原理
+### 4.1 核心原理
 
 微信公众号文章的反爬策略主要检查User-Agent中是否包含`MicroMessenger`关键字。只要UA声明自己是微信客户端，服务器就放行，**不需要Cookie、不需要登录、不需要代理**。
 
-### 8.2 关键UA（微信内置浏览器标识）
+### 4.2 关键UA
 
 ```
 Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.34(0x16082222) NetType/WIFI Language/zh_CN
 ```
 
-### 8.3 采集脚本
-
-脚本位置：`scripts/fetch_articles.py`
+### 4.3 采集脚本
 
 ```bash
-# 运行批量采集
-python3 scripts/fetch_articles.py
+# 单篇文章下载
+curl -L -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 MicroMessenger/8.0.34" -o article.html "文章URL"
 ```
 
-**功能特性**：
-- 断点续传：采集进度保存在`采集进度.json`，中断后可继续
-- 自动重试：每篇最多重试3次
-- 随机延迟：2-4秒间隔，避免触发风控
-- 完整保存：标题、正文（纯文本+HTML）、图片URL、发布时间、公众号名称
-- 输出格式：每篇文章一个JSON文件
+**解析要点**：
+- 标题：`<h1 class="rich_media_title">` 或 `#activity-name`
+- 正文：`<div id="js_content">`
+- 图片：`data-src` 属性（不是`src`）
+- 发布时间：`var ct = "时间戳"`
 
-### 8.4 输出目录结构
+---
 
-```
-library/06_articles/wechat_official/
-├── 文章URL列表.json          # 277篇文章URL
-├── 采集进度.json             # 断点续传进度
-└── 正文/
-    ├── 001_文章标题.json
-    ├── 002_文章标题.json
-    └── ...
-```
+## 5. 关键参数说明
 
-### 8.5 注意事项
+| 参数 | 来源 | 时效性 | 说明 |
+|------|------|--------|------|
+| `__biz` | 公众号固定 | 永久 | 公众号唯一标识，Base64编码 |
+| `uin` | URL参数 | 长期 | 用户ID，Base64编码 |
+| `key` | URL参数 | **数小时** | 调用API的密钥，会过期 |
+| `pass_ticket` | URL参数 | **数小时** | 通行证，会过期 |
+| `appmsg_token` | URL参数/cookie | **数小时** | 应用消息token，可能为空 |
+| `wxtoken` | 固定 | 长期 | 固定为777 |
 
-1. **请求频率**：2-4秒间隔，不要太快，避免IP被限制
-2. **图片处理**：文章中的图片URL已提取，后续可下载并OCR解析
-3. **去重**：按URL去重，已完成的不会重复采集
-4. **时效性**：UA伪装法目前有效，微信可能随时升级反爬策略
+---
+
+## 6. 常见问题
+
+### Q1: wx biz-articles 只能获取到最近几篇文章？
+- 是的，微信本地数据库只缓存最近推送的文章（通常每公众号1-5篇）
+- 全量采集需要用方案B（video-capture）或人工滚动页面采集
+- 增量采集用方案A足够
+
+### Q2: video-capture捕获不到公众号流量？
+- 确认系统代理已设置为127.0.0.1:8899
+- 确认CA证书已在系统钥匙串信任
+- 必须进入文章**详情页**并**下拉刷新**
+- 微信4.x主进程不走代理，但WeChatAppEx内置浏览器走代理
+
+### Q3: API返回ret!=0或文章数为0？
+- key/pass_ticket已过期，重新捕获参数
+- appmsg_token可能为空，尝试从公众号主页HTML中提取
+- 确认`__biz`是目标公众号的
+
+### Q4: ClashX和video-capture冲突？
+- 不冲突。video-capture是系统代理，ClashX是video-capture的上游代理
+- 流量路径：微信 → video-capture(8899) → ClashX(7890) → 目标服务器
+
+### Q5: 文章数和公众号主页显示不一致？
+- 公众号主页显示的是"原创"文章数
+- API返回的是所有文章（含转载、多图文子文章）
+
+---
+
+## 7. 已验证死路（不要浪费时间）
+
+| 方案 | 结果 | 原因 |
+|------|------|------|
+| mitmproxy系统代理 | ❌ | 微信4.x主进程不走系统代理，配置复杂 |
+| 微信数据库读取文章列表 | ❌ | 公众号文章浏览后不缓存完整列表到本地数据库（但`wx biz-articles`可读取最近推送） |
+| res-downloader抓文章列表 | ❌ | 文章列表API不走系统代理；且不保存JSON响应 |
+| 搜狗微信搜索 | ❌ | 只能找到24篇旧文章 |
+| pfctl透明代理 | ❌ | macOS只重定向入站流量，不重定向出站 |
+| tcpdump/Wireshark | ❌ | 微信保持长连接无新TLS握手，无法解密 |
 
 ---
 
 *文档创建：2026-09-12*
-*最后更新：2026-09-14（新增UA伪装法，已验证277篇文章可稳定采集）*
-*采集方案验证：mitmproxy捕获cookie + profile_ext API直接调用 + UA伪装法获取正文*
+*最后更新：2026-09-17（新增wx biz-articles方案A作为首选，video-capture降级为备选）*
+*推荐流程：日常增量用方案A（wx biz-articles），全量补全用方案B（video-capture），正文下载统一用方案C（UA伪装）*
