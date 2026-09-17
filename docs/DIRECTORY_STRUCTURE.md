@@ -198,11 +198,11 @@ class PlatformFetcher(ABC):
 
 | 旧路径 | 新路径 | 状态 |
 |--------|--------|:---:|
-| data/videos/短视频/ | library/01_video/wechat_channels/交易的游戏/短视频/ | 待迁移 |
-| data/videos/直播回放/ | library/01_video/wechat_channels/交易的游戏/直播回放/ | 待迁移 |
-| data/transcripts/短视频/ | library/04_transcript/wechat_channels/交易的游戏/ | 待迁移 |
-| knowledge-base/02-公众号文章/正文/ | library/06_articles/wechat_official/顶底之王/ | 待迁移 |
-| knowledge-base/02-公众号文章/图片/ | library/06_articles/wechat_official/顶底之王/images/ | 待迁移 |
+| data/videos/短视频/ | library/01_video/stock/交易的游戏/short/ | 待迁移 |
+| data/videos/直播回放/ | library/01_video/stock/交易的游戏/live/ | 待迁移 |
+| data/transcripts/短视频/ | library/04_transcript/stock/交易的游戏/ | 待迁移 |
+| knowledge-base/02-公众号文章/正文/ | library/06_articles/stock/顶底之王/ | 待迁移 |
+| knowledge-base/02-公众号文章/图片/ | library/06_articles/stock/顶底之王/images/ | 待迁移 |
 | knowledge-base/01-视频号内容/ | library/05_knowledge/concepts/videos/ | 待迁移 |
 
 迁移原则：复制+验证，不是剪切；验证通过后再清理旧目录。

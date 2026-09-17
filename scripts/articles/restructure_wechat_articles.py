@@ -27,7 +27,7 @@ import re
 import shutil
 from pathlib import Path
 
-BASE = Path("/Users/wenjiechen/Desktop/multiplatform-content-pipeline/library/06_articles/wechat_official")
+BASE = Path("/Users/wenjiechen/Desktop/multiplatform-content-pipeline/library/06_articles/stock/顶底之王")
 OLD_TEXT = BASE / "正文"
 OLD_IMAGES = BASE / "图片"
 NEW_DIR = BASE / "articles"

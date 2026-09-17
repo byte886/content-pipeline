@@ -86,8 +86,8 @@ fetched_at: {datetime.now().isoformat()}
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='微信公众号文章采集')
-    parser.add_argument('--output', '-o', default=os.environ.get('ARTICLE_OUTPUT_DIR', 'library/06_articles/wechat_official'),
-                        help='输出目录（默认: library/06_articles/wechat_official）')
+    parser.add_argument('--output', '-o', default=os.environ.get('ARTICLE_OUTPUT_DIR', 'library/06_articles/stock/顶底之王'),
+                        help='输出目录（默认: library/06_articles/stock/顶底之王）')
     parser.add_argument('--account', '-a', default='顶底之王', help='公众号名称')
     parser.add_argument('--pages', '-p', type=int, default=3, help='搜索页数')
     args = parser.parse_args()

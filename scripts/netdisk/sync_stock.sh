@@ -5,8 +5,8 @@
 #   bash scripts/netdisk/sync_stock.sh <本地子目录> <网盘子目录> [并发数=2]
 #
 # 示例:
-#   bash scripts/netdisk/sync_stock.sh "01_video/wechat_channels/短视频" "01_video/wechat_channels/短视频"
-#   bash scripts/netdisk/sync_stock.sh "06_articles/wechat_official/正文" "06_articles/wechat_official/正文"
+#   bash scripts/netdisk/sync_stock.sh "01_video/stock/交易的游戏/short" "01_video/stock/交易的游戏/short"
+#   bash scripts/netdisk/sync_stock.sh "06_articles/stock/顶底之王" "06_articles/stock/顶底之王"
 #
 # 特性:
 #   - 递归上传目录下所有文件

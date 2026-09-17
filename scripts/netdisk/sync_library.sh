@@ -5,8 +5,8 @@
 #   bash scripts/netdisk/sync_library.sh <知识库名> <本地子目录> <网盘子目录> [并发数=1]
 #
 # 示例:
-#   bash scripts/netdisk/sync_library.sh "股票知识库" "01_video/wechat_channels/短视频" "01_video/wechat_channels/短视频"
-#   bash scripts/netdisk/sync_library.sh "珠宝知识库" "01_video/bilibili/宝石学家老许" "01-视频原片"
+#   bash scripts/netdisk/sync_library.sh "股票知识库" "01_video/stock/交易的游戏/short" "01_video/stock/交易的游戏/short"
+#   bash scripts/netdisk/sync_library.sh "珠宝知识库" "01_video/jewelry/宝石学家老许" "01-视频原片"
 #
 # 特性:
 #   - 递归上传目录下所有文件（正确处理中文/空格/特殊字符文件名）

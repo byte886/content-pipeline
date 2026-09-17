@@ -74,14 +74,16 @@
 
 ## 下一步（按优先级）
 
-> **2026-09-16 更新：直播回放转写+知识提取全部完成，知识库汇总生成，推进百度网盘同步和书籍精华提取**
+> **2026-09-17 更新：珠宝原生资料扁平化完成，启动网盘统一重新同步**
 
-1. **GitHub仓库改名**（T-23，需用户手动在网页Settings→Rename操作）
-2. **百度网盘同步**（T-16，脚本已存在，待正式运行）
-3. **书籍精华提取**（T-17，4本书清单已提取，待找电子书内容）
-4. **方法提炼**（T-22，blocked，等用户手动下载抖音视频后继续）
-5. **2篇公众号文章补采**（"每年12月哪个板块涨的最好？"和"冬至快乐"无正文）
-6. **高质量URL原始版本研究**（当前2-5MB/个，真正原始48.5MB待找）
+1. **百度网盘统一重新同步**（股票+珠宝全部，结构修正后全量同步）
+2. **广义趋势理论课程**（等用户提供电子版后转码入库）
+3. **2篇公众号文章补采**（"每年12月哪个板块涨的最好？"和"冬至快乐"无正文）
+4. **股票书籍知识详解生成**（13本书拆解到交易哲学/技术分析等分类）
+5. **珠宝书籍补充**（当前0本）
+6. **T-31指定博主采集**（抖音反爬403，暂时跳过，等用户手动下载视频）
+7. **T-32博物馆站点采集**（6个站点，待评估爬虫友好度）
+8. **高质量URL原始版本研究**（当前2-5MB/个，真正原始48.5MB待找）
 
 ---
 
@@ -111,16 +113,16 @@
 
 **内容**: 将独立的 gemology-kb 项目（宝石学家老许B站知识库）完整合并入主仓库，后续珠宝独立项目废弃。
 
-**合并成果**:
-- 视频：743个（约13GB）→ `library/01_video/bilibili/宝石学家老许/`
-- 转写稿：743个 → `library/04_transcript/bilibili/宝石学家老许/`
+**合并成果**（2026-09-17 扁平化重构后）:
+- 视频：743个（约13GB）→ `library/01_video/bilibili/宝石学家老许/`（扁平 `video_001_标题 [BV].mp4`）
+- 转写稿：743个md + 743个json → `library/04_transcript/bilibili/宝石学家老许/`（扁平）
 - 知识成品：777个 → `library/05_knowledge/concepts/`（videos 765 + topics 11 + reports 1）
-- 图文动态：202个 → `library/06_articles/bilibili/宝石学家老许/`
+- 图文动态：20个 → `library/06_articles/bilibili/宝石学家老许/`（扁平 `dynamic_001_标题_ID/`，每篇含article.md+meta.json+images/+ocr/）
 - 外部源：8个（生财有术珠宝社区）→ `library/08_sources/community-scys-jewelry/`
-- 台账：6个 → `library/00_manifest/bilibili/`
+- 台账：manifest.json 743条 → `library/00_manifest/bilibili/`（含category分类信息）
 - B站脚本：17个 → `platforms/bilibili/`
 - OCR脚本：4个 → `processing/ocr/`
-- 文档：7个 → `project-management/jewelry-*.md`
+- 文档：7个 → `project-management/legacy/jewelry-*.md`（存档）
 
 **架构决策**:
 - 平台能力通用化（platforms/bilibili/），不绑定珠宝

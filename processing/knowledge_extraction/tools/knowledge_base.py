@@ -9,7 +9,7 @@
 
 用法：
     # 批量提取知识
-    python3 knowledge_base.py extract --transcripts library/04_transcript/wechat_channels --output library/05_knowledge
+    python3 knowledge_base.py extract --transcripts library/04_transcript/stock/交易的游戏 --output library/05_knowledge
 
     # 生成汇总
     python3 knowledge_base.py summarize --knowledge-dir library/05_knowledge
@@ -183,7 +183,7 @@ def main():
     parser = argparse.ArgumentParser(description='知识库汇总与查询工具')
     parser.add_argument('action', choices=['extract', 'summarize', 'query'],
                         help='操作类型')
-    parser.add_argument('--transcripts', default='library/04_transcript/wechat_channels', help='转写稿目录')
+    parser.add_argument('--transcripts', default='library/04_transcript/stock/交易的游戏', help='转写稿目录')
     parser.add_argument('--knowledge-dir', default='library/05_knowledge', help='知识库目录')
     parser.add_argument('--keyword', help='查询关键词')
     parser.add_argument('--tag', help='筛选标签')

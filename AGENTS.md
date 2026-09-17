@@ -206,7 +206,7 @@ A: 短视频是加密的，需要用DecodeKey解密。直播回放不需要解�
 A: 默认是低分辨率版本。用`quality=max`参数下载xWT111格式（大69%）。真正的原始高清版本尚未找到，见`docs/RESEARCH-video-quality-url.md`。
 
 ### Q: 转写输出在哪里？
-A: `data/transcripts/短视频/{视频名}/transcript.md`（注意是子目录，不是直接md文件）。待迁移到`library/04_transcript/wechat_channels/`。
+A: `data/transcripts/短视频/{视频名}/transcript.md`（注意是子目录，不是直接md文件）。待迁移到`library/04_transcript/stock/交易的游戏/`。
 
 ---
 

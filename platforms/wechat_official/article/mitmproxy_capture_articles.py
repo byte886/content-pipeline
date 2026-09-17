@@ -13,7 +13,7 @@ import re
 import time
 from datetime import datetime
 
-OUTPUT_DIR = os.environ.get("ARTICLE_OUTPUT_DIR", "library/06_articles/wechat_official")
+OUTPUT_DIR = os.environ.get("ARTICLE_OUTPUT_DIR", "library/06_articles/stock/顶底之王")
 PROGRESS_FILE = os.environ.get("ARTICLE_PROGRESS_FILE", "workspace/capture/article_fetch_progress.json")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)

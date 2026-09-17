@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>珠宝创业调研报告 · 生财有术社区情报</title>
+<style>
+:root{
+  --ink:#1c2b27; --ink2:#3a4a45; --muted:#6f7d78;
+  --teal:#17574c; --teal2:#2a7468; --gold:#b08d57; --gold-l:#d8bd8c;
+  --paper:#fbf9f4; --card:#ffffff; --line:#e4ddcd; --line2:#efe9db;
+  --warn:#a8503a; --ok:#2f7d5b; --shadow:0 1px 3px rgba(28,43,39,.08);
+}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"Hiragino Sans GB","PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--ink); background:#ece7db; line-height:1.75; font-size:14.5px;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:860px;margin:0 auto;background:var(--paper);padding:56px 60px 70px;box-shadow:0 2px 18px rgba(0,0,0,.10);}
+h1,h2,h3,h4{font-family:"Hiragino Sans GB","Songti SC","STSong",serif;color:var(--teal);line-height:1.35;}
+h2.sec{font-size:23px;margin:46px 0 6px;padding-bottom:10px;border-bottom:2.5px solid var(--gold);display:flex;align-items:baseline;gap:12px;}
+h2.sec .no{font-size:13px;letter-spacing:2px;color:var(--gold);font-family:sans-serif;font-weight:700;}
+h3{font-size:17.5px;margin:26px 0 8px;color:var(--teal);border-left:4px solid var(--gold);padding-left:10px;}
+h4{font-size:15.5px;margin:18px 0 6px;color:var(--ink2);}
+p{margin:8px 0;} a{color:var(--teal2);text-decoration:none;border-bottom:1px dotted var(--gold-l);}
+small,.muted{color:var(--muted);}
+em{font-style:normal;color:var(--gold);font-weight:600;}
+strong{color:var(--ink);}
+/* 封面 */
+.cover{background:linear-gradient(150deg,#14463d 0%,#1c5e51 55%,#2a7468 100%);color:#f4efe2;margin:-56px -60px 0;padding:74px 60px 50px;position:relative;overflow:hidden;}
+.cover::after{content:"";position:absolute;right:-70px;top:-70px;width:280px;height:280px;border:2px solid rgba(216,189,140,.28);border-radius:50%;}
+.cover::before{content:"";position:absolute;right:-20px;top:-20px;width:180px;height:180px;border:1px solid rgba(216,189,140,.2);border-radius:50%;}
+.cover .kicker{letter-spacing:5px;font-size:12.5px;color:var(--gold-l);font-weight:600;}
+.cover h1{color:#fbf6e9;font-size:38px;margin:14px 0 8px;letter-spacing:1px;}
+.cover .sub{font-size:15px;color:#d9e4df;max-width:620px;}
+.cover .meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;}
+.cover .chip{background:rgba(255,255,255,.10);border:1px solid rgba(216,189,140,.4);padding:5px 13px;border-radius:30px;font-size:12.5px;color:#f0e8d6;}
+.cover .stats{display:flex;gap:34px;margin-top:32px;flex-wrap:wrap;}
+.cover .stat b{display:block;font-size:30px;color:var(--gold-l);font-family:Georgia,serif;}
+.cover .stat span{font-size:12px;color:#c4d3cd;}
+/* 关键结论卡 */
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0;}
+.kpi{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);padding:13px 15px;border-radius:6px;box-shadow:var(--shadow);}
+.kpi .t{font-weight:700;color:var(--teal);font-size:14px;margin-bottom:3px;}
+.kpi p{margin:0;font-size:13px;color:var(--ink2);line-height:1.65;}
+/* 条形图 */
+.chart{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin:14px 0;box-shadow:var(--shadow);}
+.chart .ct{font-weight:700;color:var(--teal);font-size:13.5px;margin-bottom:10px;}
+.bar-row{display:grid;grid-template-columns:118px 1fr 40px;align-items:center;gap:10px;margin:5px 0;font-size:12.8px;}
+.bar-label{color:var(--ink2);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar-track{background:var(--line2);border-radius:3px;height:17px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--teal2),var(--teal));border-radius:3px;}
+.bar-fill.gold{background:linear-gradient(90deg,#c6a468,var(--gold));}
+.bar-val{font-weight:700;color:var(--teal);font-family:Georgia,serif;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+/* 案例卡 */
+.case{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:15px 17px;margin:13px 0;box-shadow:var(--shadow);page-break-inside:avoid;}
+.case .ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px dashed var(--line);padding-bottom:7px;margin-bottom:8px;}
+.case .ch .cn{font-weight:700;color:var(--teal);font-size:15px;}
+.case .tag{font-size:11px;background:#eef4f1;color:var(--teal);border:1px solid #cfe0d9;padding:2px 8px;border-radius:20px;margin-right:5px;}
+.case .num{font-family:Georgia,serif;color:var(--gold);font-size:12.5px;font-weight:700;}
+.case ul{margin:6px 0;padding-left:19px;} .case li{margin:3px 0;font-size:13.3px;}
+.quote{border-left:3px solid var(--gold-l);background:#faf6ec;padding:8px 13px;margin:9px 0;font-size:13px;color:#5d5238;border-radius:0 5px 5px 0;}
+/* 通用盒子 */
+.box{border-radius:6px;padding:13px 16px;margin:13px 0;font-size:13.5px;}
+.box.teal{background:#eef4f1;border:1px solid #cfe0d9;}
+.box.warn{background:#faf0ec;border:1px solid #e6c9bf;}
+.box.gold{background:#faf6ec;border:1px solid #e8dcc2;}
+.box .bt{font-weight:700;margin-bottom:4px;color:var(--teal);}
+.box.warn .bt{color:var(--warn);}
+.pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:12px;background:#eef4f1;color:var(--teal);border:1px solid #cfe0d9;margin:1px 2px;}
+.pill.g{background:#faf6ec;color:#8a6d3a;border-color:#e8dcc2;}
+table{border-collapse:collapse;width:100%;font-size:12.5px;margin:10px 0;}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+th{background:var(--teal);color:#f3ecdb;font-weight:600;font-size:12px;}
+tbody tr:nth-child(even){background:#f6f2e8;}
+/* 流程 */
+.flow{display:flex;flex-wrap:wrap;gap:0;align-items:stretch;margin:14px 0;}
+.flow .step{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 12px;position:relative;margin-right:22px;}
+.flow .step:last-child{margin-right:0;}
+.flow .step::after{content:"➜";position:absolute;right:-19px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:16px;}
+.flow .step:last-child::after{content:"";}
+.flow .step b{color:var(--teal);display:block;font-size:13px;}
+.flow .step span{font-size:11.8px;color:var(--muted);}
+ol.tight,ul.tight{margin:7px 0;padding-left:21px;} ol.tight li,ul.tight li{margin:4px 0;}
+.divider{height:1px;background:var(--line);margin:26px 0;}
+.toc{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 20px;font-size:13.3px;columns:2;column-gap:34px;}
+.toc a{border:none;} .toc li{margin:3px 0;list-style:none;} .toc ol{margin:0;padding-left:0;counter-reset:toc;}
+.toc ol li::before{counter-increment:toc;content:counter(toc,decimal-leading-zero) "  ";color:var(--gold);font-family:Georgia,serif;font-weight:700;}
+.foot-note{font-size:11.8px;color:var(--muted);border-top:1px solid var(--line);margin-top:40px;padding-top:12px;}
+@media print{
+  body{background:#fff;font-size:11.5px;}
+  .page{max-width:none;box-shadow:none;padding:0 6mm;margin:0;}
+  .cover{margin:0;padding:20mm 6mm 14mm;}
+  h2.sec{page-break-after:avoid;} .case,.chart,.kpi,.box,table{page-break-inside:avoid;}
+  a{color:var(--ink);border:none;}
+  @page{size:A4;margin:13mm 12mm;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============ 封面 ============ -->
+<section class="cover">
+  <div class="kicker">SHENGCAI · JEWELRY ENTREPRENEURSHIP RESEARCH</div>
+  <h1>珠宝创业调研报告</h1>
+  <div class="sub">基于生财有术社区 548 篇珠宝主题帖子的清洗、筛选与多维拆解，聚焦普通人可切入的经营方式、平台打法、产业带资源与避坑要点。</div>
+  <div class="meta">
+    <span class="chip">样本 548 → 精选 174 篇</span>
+    <span class="chip">17 篇精华深读</span>
+    <span class="chip">14 类经营方式 · 10 大平台 · 9 大产业带</span>
+    <span class="chip">时间跨度 2018–2026</span>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>174</b><span>精选帖子</span></div>
+    <div class="stat"><b>14</b><span>经营赛道</span></div>
+    <div class="stat"><b>9</b><span>代表案例深讲</span></div>
+    <div class="stat"><b>7</b><span>分类维度</span></div>
+  </div>
+</section>
+
+<!-- ============ 目录 ============ -->
+<h2 class="sec"><span class="no">CONTENTS</span>报告目录</h2>
+<div class="toc"><ol>
+<li><a href="#s1">核心结论摘要（先读这一页）</a></li>
+<li><a href="#s2">调研方法与样本结构</a></li>
+<li><a href="#s3">行业全景：14 类经营方式拆解</a></li>
+<li><a href="#s4">平台格局、品类结构与时间趋势</a></li>
+<li><a href="#s5">产业带地图：货源决定成本底线</a></li>
+<li><a href="#s6">代表案例深讲（9 个真实样本）</a></li>
+<li><a href="#s7">从 0 到 1 的通用打法方法论</a></li>
+<li><a href="#s8">风险清单与避坑指南</a></li>
+<li><a href="#s9">趋势研判与机会窗口</a></li>
+<li><a href="#s10">附录：174 篇精选多维分类索引</a></li>
+</ol></div>
+
+<!-- ============ 1 核心结论 ============ -->
+<h2 class="sec" id="s1"><span class="no">01</span>核心结论摘要</h2>
+<p>把 174 篇帖子、尤其是 9 篇拿到完整经营数据的精华帖横向对比后，珠宝这门生意的底层规律高度收敛，可先记住下面七条判断，后文逐一展开论证。</p>
+<div class="kpis">
+  <div class="kpi"><div class="t">① 利润来自"信息差 + 信任 + 情感溢价"</div><p>钻石有 4C、黄金有实时行情，唯独玉石/彩宝/珍珠非标难定价；再叠加"一生一枚""开光转运""自我犒赏"等情感价值，珠宝不是比谁流量便宜，而是比谁更懂行、更被信任。</p></div>
+  <div class="kpi"><div class="t">② 活下来的共性是"轻资产 / 零库存"</div><p>DR 靠定制预售零库存、水贝中间商接单后再拿货、李宏以第三方身份帮粉丝砍价不压货、私域玩家接单转工厂。反例（金子半年亏 200 万、DIY 手串租别墅扩张）都死在重资产与库存上。</p></div>
+  <div class="kpi"><div class="t">③ 变现路径高度收敛：公域人设 → 私域成交</div><p>公域（小红书/抖音/视频号/TikTok）输出专业内容与人设，把人导到微信，在私域完成高客单成交、复购与转介绍。<em>"不在吸粉的平台上直接硬卖"</em>是反复出现的纪律。</p></div>
+  <div class="kpi"><div class="t">④ 平台分工明确，选错平台事倍功半</div><p>小红书=高净值女性、低粉高变现（300 粉变现 20w）；抖音=直播起量快但规则与退货风险高；视频号=熟龄高客单复购；TikTok 跨境=风口期已过，转向精细化店铺运营。</p></div>
+  <div class="kpi"><div class="t">⑤ 产业带是普通人最大的成本杠杆</div><p>深圳水贝（黄金/钻饰/综合）、佛山平洲（翡翠）、诸暨（珍珠）、连云港东海（水晶）、汕尾可塘（彩宝珠子）、河南（培育钻）、义乌（DIY 饰品）。人在产业带或能建联产业带，是多数案例的起点。</p></div>
+  <div class="kpi"><div class="t">⑥ 新机会集中在四条支线</div><p>培育钻石（婚嫁性价比 + 生命钻石）、珠宝 +AI（AI 模特/AI 摄影降本、AI 命理）、玄学水晶与情绪价值饰品、情感/宠物定制，以及海外源头华人 IP。</p></div>
+  <div class="kpi"><div class="t">⑦ 选品数据化 &gt; 个人喜好，止损 &gt; 硬扛</div><p>"在别人已经验证的爆款里找自己的爆款，不要自己测款"；账要按 10 天退货后算；当行业卷低价、流量结构性下滑时，果断清仓离场保住利润，比在泥潭里硬扛更重要。</p></div>
+  <div class="kpi"><div class="t">一句话总览</div><p>珠宝创业的最优解 = <em>贴近一个产业带 + 在一个平台立住专业人设 + 私域承接高客单 + 定制/代购轻资产运转 + 复购转介绍裂变</em>，先单点跑通盈利，再谈复制（而非扩张）。</p></div>
+</div>
+
+
+<!-- ============ 2 调研方法 ============ -->
+<h2 class="sec" id="s2"><span class="no">02</span>调研方法与样本结构</h2>
+<h3>2.1 样本是怎么来的：548 → 174 的过滤漏斗</h3>
+<p>以「珠宝」为关键词对社区全站做 12 页检索并以话题检索兜底，按帖子 ID 全局去重得到 <strong>548 篇</strong>唯一帖；随后按"裸标题是否真的在讲珠宝/宝玉石/产业带"做相关性过滤，删除珠宝仅出现在举例、兴趣标签、作者履历中的通用运营帖与其他行业帖、以及零阅读零互动废帖共 374 篇，并手动救回 3 篇以珠宝为核心案例的高价值帖，最终得到 <strong>174 篇精选</strong>（强相关 167、中相关 7；其中社区标记精华 17 篇）。本报告所有统计与结论均基于这 174 篇，逐条打了 7 个维度的标签。</p>
+<div class="flow">
+  <div class="step"><b>全站检索</b><span>关键词「珠宝」12 页 + 话题兜底</span></div>
+  <div class="step"><b>去重</b><span>按 entityId 全局去重</span></div>
+  <div class="step"><b>548 篇全量</b><span>2018–2026 全周期</span></div>
+  <div class="step"><b>相关性过滤</b><span>删 374 / 救回 3</span></div>
+  <div class="step"><b>174 篇精选</b><span>强 167 · 中 7 · 精华 17</span></div>
+</div>
+<h3>2.2 七个分类维度</h3>
+<p>对每篇帖子按 <span class="pill">主赛道（14 类）</span><span class="pill">主平台（10 类）</span><span class="pill">主品类（9 类）</span><span class="pill g">内容类型（6 类）</span><span class="pill g">创业阶段（5 类）</span><span class="pill g">产业带（9 地）</span><span class="pill g">互动量级</span> 七个维度交叉打标，附录提供完整可检索索引。</p>
+
+<div class="two-col">
+  <div class="chart">
+    <div class="ct">14 类经营赛道分布（篇）</div>
+    <div class="bar-row"><span class="bar-label">行业认知/综合</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">33</span></div>
+    <div class="bar-row"><span class="bar-label">供应链/货源批发</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><span class="bar-val">21</span></div>
+    <div class="bar-row"><span class="bar-label">直播带货</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><span class="bar-val">21</span></div>
+    <div class="bar-row"><span class="bar-label">平台规则/类目政策</span><div class="bar-track"><div class="bar-fill" style="width:52%"></div></div><span class="bar-val">17</span></div>
+    <div class="bar-row"><span class="bar-label">跨境出海</span><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><span class="bar-val">15</span></div>
+    <div class="bar-row"><span class="bar-label">玄学水晶/文玩</span><div class="bar-track"><div class="bar-fill" style="width:42%"></div></div><span class="bar-val">14</span></div>
+    <div class="bar-row"><span class="bar-label">定制/手工设计</span><div class="bar-track"><div class="bar-fill" style="width:36%"></div></div><span class="bar-val">12</span></div>
+    <div class="bar-row"><span class="bar-label">珠宝 +AI/科技</span><div class="bar-track"><div class="bar-fill gold" style="width:30%"></div></div><span class="bar-val">10</span></div>
+    <div class="bar-row"><span class="bar-label">小红书图文/种草</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-val">10</span></div>
+    <div class="bar-row"><span class="bar-label">实体门店/线下</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span class="bar-val">6</span></div>
+    <div class="bar-row"><span class="bar-label">黄金回收/投资</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="bar-val">5</span></div>
+    <div class="bar-row"><span class="bar-label">私域高客单</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span class="bar-val">4</span></div>
+    <div class="bar-row"><span class="bar-label">鉴定/鉴宝服务</span><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><span class="bar-val">3</span></div>
+    <div class="bar-row"><span class="bar-label">二奢/中古</span><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><span class="bar-val">3</span></div>
+  </div>
+  <div>
+    <div class="chart">
+      <div class="ct">主平台分布（篇，"综合"=不限定单一平台）</div>
+      <div class="bar-row"><span class="bar-label">综合/其他</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">82</span></div>
+      <div class="bar-row"><span class="bar-label">小红书</span><div class="bar-track"><div class="bar-fill" style="width:29%"></div></div><span class="bar-val">24</span></div>
+      <div class="bar-row"><span class="bar-label">抖音</span><div class="bar-track"><div class="bar-fill" style="width:24%"></div></div><span class="bar-val">20</span></div>
+      <div class="bar-row"><span class="bar-label">视频号</span><div class="bar-track"><div class="bar-fill" style="width:13%"></div></div><span class="bar-val">11</span></div>
+      <div class="bar-row"><span class="bar-label">跨境其他</span><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div><span class="bar-val">9</span></div>
+      <div class="bar-row"><span class="bar-label">微信私域</span><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div><span class="bar-val">9</span></div>
+      <div class="bar-row"><span class="bar-label">线下实体</span><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><span class="bar-val">7</span></div>
+      <div class="bar-row"><span class="bar-label">TikTok</span><div class="bar-track"><div class="bar-fill gold" style="width:7%"></div></div><span class="bar-val">6</span></div>
+      <div class="bar-row"><span class="bar-label">传统电商</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="bar-val">5</span></div>
+      <div class="bar-row"><span class="bar-label">快手</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-val">1</span></div>
+    </div>
+    <div class="chart">
+      <div class="ct">主品类分布（篇）</div>
+      <div class="bar-row"><span class="bar-label">综合珠宝</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">89</span></div>
+      <div class="bar-row"><span class="bar-label">文玩/首饰饰品</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-val">27</span></div>
+      <div class="bar-row"><span class="bar-label">黄金/K金</span><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div><span class="bar-val">19</span></div>
+      <div class="bar-row"><span class="bar-label">翡翠玉石</span><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div><span class="bar-val">19</span></div>
+      <div class="bar-row"><span class="bar-label">水晶</span><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><span class="bar-val">8</span></div>
+      <div class="bar-row"><span class="bar-label">彩宝/其他宝玉石</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="bar-val">5</span></div>
+      <div class="bar-row"><span class="bar-label">银饰/珍珠/钻石</span><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div><span class="bar-val">7</span></div>
+    </div>
+  </div>
+</div>
+<div class="box teal"><span class="bt">样本结构读出的三个信号</span>
+① <strong>"行业认知 + 供应链 + 资源对接"类合计占比过半</strong>（资源对接 51、行业认知 49），说明珠宝是强资源、强信息差行业，社区里最高频的需求是"找货源、找合作、补认知"，而非纯流量玩法；② 平台侧小红书（24）+抖音（20）合计占去明确平台帖的六成，是当下主战场；③ 品类上"综合珠宝"最多，垂直品类里文玩饰品、黄金、翡翠玉石三足鼎立，水晶是近年增速最快的情绪品类。</div>
+
+<!-- ============ 3 行业全景 14 赛道 ============ -->
+<h2 class="sec" id="s3"><span class="no">03</span>行业全景：14 类经营方式拆解</h2>
+<p>下面按"怎么赚钱、门槛与毛利、适合谁、社区代表样本"四个要点，逐一说清 14 类经营方式。读者可按自己的资源（是否近产业带、有无私域、会不会做内容、资金厚薄）对号入座。</p>
+
+<div class="case"><div class="ch"><span class="cn">3.1 行业认知 / 综合（33 篇，4 篇精华）</span><span class="tag">打底认知</span></div>
+<p style="margin:4px 0;font-size:13.3px;">行业全景、品类科普、转型故事与商业模式拆解，是新手建立认知框架的入口，本身不直接变现，但决定后面选哪条路。</p>
+<ul>
+<li><strong>价值：</strong>讲清珠宝行业的利润结构（非标信息差、情感溢价、定制零库存）、各品类门道与转型路径。</li>
+<li><strong>代表样本：</strong>《DR 珠宝零库存高利润》（6505 阅读，品牌商业模式拆解）、《单人跟珠宝厂合作 0 粉快手起步月盈利 10W》（25178）、《从药企到珠宝：新疆二代珠宝人副业转型》（21165）、《实操两年的培育钻石项目解析》（18549）。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.2 供应链 / 货源批发（21 篇）</span><span class="tag">资源命脉</span></div>
+<p style="margin:4px 0;font-size:13.3px;">产业带工厂、档口、批发渠道的资源对接与扫盲，是所有零售玩法的上游。社区里大量帖子本质是"工厂找渠道 / 渠道找工厂"。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>做一手货源赚批发差价，或手握渠道给下游代购/主播供货；也有大量"异地珠宝商合作""工厂直供"的撮合帖。</li>
+<li><strong>门槛：</strong>需要实地跑产业带、会鉴别货品、能拿到"同行价"；N 道贩子普遍存在，越靠近工厂成本越低。</li>
+<li><strong>代表样本：</strong>《全国翡翠源头平洲找异地珠宝商合作》《深圳 15 年老珠宝厂、30 家工厂、故宫黄金渠道》《可塘珠宝百亿小镇扫盲》。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.3 直播带货（21 篇，3 篇精华）</span><span class="tag">起量最快 / 风险最高</span></div>
+<p style="margin:4px 0;font-size:13.3px;">珠宝直播分淘宝/抖音/视频号/快手，既有玉石翡翠的"第三方砍价"模式，也有珍珠开蚌、鸡血石、DIY 手串等小众类目玩法。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>直播间非标品讲解 + 限时成交赚信息差与冲动溢价；小众类目竞争小、客单高（鸡血石、手串、彩宝）。</li>
+<li><strong>真实水位：</strong>轻资产精耕可做到很高营收（3 人年销 3000 万），但盲目扩张、网红坑位费、退货率可快速吞掉利润（半年亏 200 万）。<em>发货时的盈利是假象，10 天退货后才算数。</em></li>
+<li><strong>代表样本：</strong>《3 人团队直播年销三千万》《盲目扩张半年亏损百万》《抖音鸡血石小众赛道 + 直播间诊断模型》。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.4 平台规则 / 类目政策（17 篇，2 篇精华）</span><span class="tag">合规门票</span></div>
+<p style="margin:4px 0;font-size:13.3px;">珠宝是平台强管控类目，涉及报白、基地入仓、证书发货、定向招商、违规扣分。不懂规则，直播间随时被下播、小店被封。</p>
+<ul>
+<li><strong>关键点：</strong>抖音珠宝文玩需类目报白/入驻直播基地、一物一证发货；跨境店珠宝多为定向邀请；盲盒/开蚌/赌石类"贴线玩法"随规则收紧被限制。</li>
+<li><strong>代表样本：</strong>《抖音 DIY 手串类目 TOP 直播间全面复盘》（16944）、《抖音小众类目鸡血石直播变现百万》（11513）、多篇"小店报白资源对接"。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.5 跨境出海（15 篇，4 篇精华）</span><span class="tag">信息差更大</span></div>
+<p style="margin:4px 0;font-size:13.3px;">含 TikTok 跨境店（6 篇）与海外华人源头 IP、独立站、非洲/斯里兰卡宝石等（9 篇）。把中国供应链或源头宝石卖给海外，或把海外源头故事讲给国内。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>TikTok 直播/短视频 + 店铺运营卖莫桑钻、珍珠等，毛利 30%–60%；或打造"泰国/斯里兰卡/非洲矿区"华人 IP 做源头信任带货。</li>
+<li><strong>现状判断：</strong>"会外语就能出单"的风口期（2021–2022）已过，直播流量下滑、商城流量上升，转向<em>小团队全员深度参与 + 店铺精细化运营</em>。</li>
+<li><strong>代表样本：</strong>《海外华人 IP 打造全盘思路》（33231，本批最高阅读）、《TikTok 卖珠宝两年，日均 GMV 从 3000 美金到 500 刀》、《全职妈妈代理非洲宝石赚第一个 10w》《3D 打印定制珠宝月入 1.5W 美金》。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.6 玄学水晶 / 文玩饰品（14 篇）</span><span class="tag">情绪价值 · 高毛利</span></div>
+<p style="margin:4px 0;font-size:13.3px;">水晶、手串、文玩把"装饰消费"升级为"转运/疗愈/本命"的情绪消费，毛利高、复购强、内容自带传播点，是近年最活跃的新支线。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>十二星座/生肖/五行系列、定制开运手串、水晶盲盒，客单 299 元起；小红书种草 + 私域一对一"命理式"推荐转化极高，甚至有用 DeepSeek 当命理导师做到营收 200 万的案例。</li>
+<li><strong>货源：</strong>连云港东海水晶城、汕尾可塘（彩宝珠子）；注意内容合规，不碰封建迷信红线，主打"文化/疗愈/饰品"。</li>
+<li><strong>代表样本：</strong>《玄学水晶私域项目剖析》《抖音高客单文玩珠宝文案》《十二星座水晶系列单条播放 10–40 万》。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.7 定制 / 手工设计（12 篇）</span><span class="tag">零库存 · 高情感溢价</span></div>
+<p style="margin:4px 0;font-size:13.3px;">按客户需求定制婚戒、纪念首饰、宠物骨灰/毛发"生命珠宝"、手作串珠等，先收定金再生产，天然零库存、高溢价。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>小红书/线下接单 → 工厂/手作交付，赚设计与定制服务费；情感叙事（宠物、亲子、爱情）显著抬高支付意愿。</li>
+<li><strong>代表样本：</strong>《小红书手工饰品创业前景及起号》（12140）、《把宠物做成珠宝，小红书评论区都在问怎么定制》《小红书高销量手作饰品风向标拆解》。</li>
+</ul></div>
+
+
+<div class="case"><div class="ch"><span class="cn">3.8 珠宝 +AI / 科技（10 篇，1 篇精华）</span><span class="tag">降本增效新工具</span></div>
+<p style="margin:4px 0;font-size:13.3px;">用 AI 模特/AI 摄影替代部分真人拍摄、用 MJ 做款式与营销图、用大模型做命理客服与选品，是"卖铲子"和"自我提效"两条线。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>为珠宝/首饰商家提供 AI 商拍（定价约传统摄影一半，7 天引流 100+ 商家、付费率约 15%）；或自用降低拍摄成本、用 AI 批量产出种草内容。</li>
+<li><strong>能力边界：</strong>简单基础款可达商用标准，复杂高定款、珠宝级精修仍需实拍 + PS；本质是"红海中的蓝海"——会的人多、能商用落地的极少。</li>
+<li><strong>代表样本：</strong>《AI 模特 7 天跑通变现复盘》（29368，本批第二高阅读）、《用 Midjourney 做珠宝摄影》《请 DeepSeek 做玄学水晶创业导师，营收破 200 万》。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.9 小红书图文 / 种草（10 篇，2 篇精华）</span><span class="tag">低粉高变现主阵地</span></div>
+<p style="margin:4px 0;font-size:13.3px;">高净值女性聚集、搜索决策属性强，是珠宝"低粉高变现"最典型的平台，图文即可起号，最终几乎都导向微信私域成交。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>专业知识 + 款式推荐两类内容立人设，群聊/评论区安全引流微信；可做高客单定制（300 粉变现 20w）或 0 囤货代购（水贝黄金首月 GMV 13w）。</li>
+<li><strong>关键纪律：</strong>精准粉 &gt; 泛粉（追娱乐热点涨的粉没购买力）；转化数据 &gt; 点赞数据；数据选品 &gt; 喜好选品；爆款要重复发、矩阵化榨干。</li>
+<li><strong>代表样本：</strong>《300 粉变现 20w+》（12961）、《0 成本水贝黄金中间商首月 GMV13w》（11234）、《珠宝实体工作室做小红书运营感悟》。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.10 实体门店 / 线下（6 篇，1 篇精华）</span><span class="tag">体验与信任场</span></div>
+<p style="margin:4px 0;font-size:13.3px;">定制店、工作室、珠宝展、本地异业。线下承担"看得见摸得着"的信任与仪式感，线上负责引流，二者结合而非对立。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>定制工作室靠预约制 + 口碑转介绍；本地店靠同城内容/异业联盟引流；也有"给本地珠宝店打广告/策展"的服务型玩法。</li>
+<li><strong>代表样本：</strong>《珠宝定制店从 0–1 实体店经营思路》（9383，庄禾）、《2 元店 4 个月吸粉 1.3 万、给本地珠宝店打广告月入稳定》《副业策展让珠宝展业绩超预期 55%》。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.11 黄金回收 / 投资（5 篇）</span><span class="tag">刚需 · 现金流生意</span></div>
+<p style="margin:4px 0;font-size:13.3px;">金价上行周期里，黄金回收（C2B 折价收金转炼厂/批发商）与普通人买金/套利是两条线，回收偏本地服务、靠差价与周转。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>回收赚"收金价与出货价"差价 + 折旧/手续费，轻库存快周转；需要会验金、懂当日金价、有出货渠道。</li>
+<li><strong>代表样本：</strong>《黄金回收从 0–1 保姆教程》（7614）、《普通人如何投资黄金》（9497）、《特殊节点各大平台黄金无风险套利》。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.12 私域高客单（4 篇）</span><span class="tag">终极承接池</span></div>
+<p style="margin:4px 0;font-size:13.3px;">几乎所有公域玩法的终点都是微信私域。靠朋友圈人设、一对一咨询、老客复购与转介绍做高客单"静默成交"。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>朋友圈"卖自己（生活圈+思维圈）+卖产品（产品圈+代理圈）"，把卖点翻译成买点；老客友情价、不打折、终身售后、极致开箱体验；招代理合伙人裂变、给推荐人 50% CPS。</li>
+<li><strong>代表样本：</strong>《珠宝高客单如何打造私域、静默成交》（10497）及多篇私域珠宝粉资源对接。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.13 鉴定 / 鉴宝服务（3 篇）</span><span class="tag">信任中介 · 低粉高销</span></div>
+<p style="margin:4px 0;font-size:13.3px;">以鉴定/证书能力建立专业信任，再反向带货或做付费鉴定、回收。成本低、信任溢价高，适合有 NGTC 等资质者。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>低价/免费鉴定引流私域 → 加价接单、代理卖珠宝、延伸回收；平台鉴宝账号波动（如"天天鉴宝"下架）后把流量沉淀到私域。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">3.14 二奢 / 中古（3 篇）</span><span class="tag">高价值循环经济</span></div>
+<p style="margin:4px 0;font-size:13.3px;">二手奢侈品珠宝/腕表/箱包在小红书、视频号成交活跃，可与定制、回收、鉴定形成闭环，靠"鉴定信任 + 信息差 + 反复触达"。</p>
+<ul>
+<li><strong>怎么赚钱：</strong>低收高卖、寄售抽佣、私域反复拓客；门槛在真伪鉴别与稳定货源/出货渠道。</li>
+</ul></div>
+
+<!-- ============ 4 平台格局 / 品类 / 趋势 ============ -->
+<h2 class="sec" id="s4"><span class="no">04</span>平台格局、品类结构与时间趋势</h2>
+<h3>4.1 五大主阵地对比：把货放在对的场</h3>
+<table>
+<thead><tr><th style="width:11%">平台</th><th style="width:20%">人群/心智</th><th style="width:27%">主流打法</th><th style="width:15%">客单/毛利</th><th>优劣势与提醒</th></tr></thead>
+<tbody>
+<tr><td><strong>小红书</strong></td><td>高净值年轻女性，"买前搜一搜"</td><td>专业知识+款式图文/短视频立人设，群聊引流微信成交</td><td>高客单、毛利高</td><td>低粉可高变现、积累型越久越吃香；忌泛娱乐粉，重精准与转化</td></tr>
+<tr><td><strong>抖音</strong></td><td>人群最广、冲动消费</td><td>直播（砍价/开蚌/小众类目）+短视频投流，需报白入基地</td><td>跨度大、退货高</td><td>起量最快；规则强、退货率 20%+、坑位费风险，必须按退货后算账</td></tr>
+<tr><td><strong>视频号</strong></td><td>熟龄、有消费力、私域好友链</td><td>直播+朋友圈/社群联动，熟人信任转化</td><td>高客单、复购好</td><td>适合二奢、玉石、黄金等熟龄高客单；依托微信生态闭环</td></tr>
+<tr><td><strong>微信私域</strong></td><td>已建立信任的存量客户</td><td>朋友圈人设+1v1 咨询+老客转介绍+代理裂变</td><td>最高客单</td><td>所有公域的终点；慢工细活，靠产品力与服务复利</td></tr>
+<tr><td><strong>TikTok 跨境</strong></td><td>欧美/东南亚消费者</td><td>短视频/直播引流店铺，莫桑钻珍珠成品首饰，店铺精细化运营</td><td>毛利 30–60%</td><td>风口期已过，直播流量降、商城流量升；需小团队全员深耕、合规网络与供应链</td></tr>
+</tbody></table>
+<div class="box gold"><span class="bt">平台选择的决策逻辑</span>有产业带/会拍照写图文、追求低投入起步 → <strong>小红书 + 私域</strong>；能出镜/能直播、扛得住高强度运营 → <strong>抖音/视频号直播</strong>；有外语与跨境供应链 → <strong>TikTok 店铺</strong>；有本地资源/资质 → <strong>实体 + 同城内容 + 私域</strong>。新手不建议一开始就多平台同时铺，先在一个平台跑通单点盈利。</div>
+
+<h3>4.2 时间趋势：内容在 2023–2024 集中爆发，2025 后转向 AI 与情绪价值</h3>
+<div class="chart">
+  <div class="ct">精选帖按年份分布（篇）</div>
+  <div class="bar-row"><span class="bar-label">2018</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-val">1</span></div>
+  <div class="bar-row"><span class="bar-label">2019</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-val">1</span></div>
+  <div class="bar-row"><span class="bar-label">2020</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="bar-val">10</span></div>
+  <div class="bar-row"><span class="bar-label">2021</span><div class="bar-track"><div class="bar-fill" style="width:23%"></div></div><span class="bar-val">15</span></div>
+  <div class="bar-row"><span class="bar-label">2022</span><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div><span class="bar-val">14</span></div>
+  <div class="bar-row"><span class="bar-label">2023</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">66</span></div>
+  <div class="bar-row"><span class="bar-label">2024</span><div class="bar-track"><div class="bar-fill" style="width:73%"></div></div><span class="bar-val">48</span></div>
+  <div class="bar-row"><span class="bar-label">2025</span><div class="bar-track"><div class="bar-fill gold" style="width:15%"></div></div><span class="bar-val">10</span></div>
+  <div class="bar-row"><span class="bar-label">2026</span><div class="bar-track"><div class="bar-fill gold" style="width:14%"></div></div><span class="bar-val">9</span></div>
+</div>
+<ul class="tight">
+<li><strong>2020–2022：直播红利期。</strong>以淘宝/抖音玉石直播、TikTok 开蚌为代表，"敢开播就有流量"，诞生了 3 人年销 3000 万的轻资产样板，也埋下了盲目扩张亏损的伏笔。</li>
+<li><strong>2023–2024：爆发与内卷并存（114 篇，占 65.5%）。</strong>小红书高客单私域、培育钻石、小众类目直播集中跑通；同时直播内卷、退货高企，方法论从"抓流量"转向"精细化 + 私域复购"。</li>
+<li><strong>2025–2026：新质生产力与情绪消费。</strong>AI 模特/AI 命理、玄学水晶、情绪价值饰品、源头华人 IP 成为新增量；纯流量套利的帖子明显减少。</li>
+</ul>
+
+
+<!-- ============ 5 产业带 ============ -->
+<h2 class="sec" id="s5"><span class="no">05</span>产业带地图：货源决定成本底线</h2>
+<p>174 篇中有 19 篇明确标注产业带（其余为线上/综合玩法）。结合精华帖正文，珠宝创业可对接的核心产业带如下——<em>人在产业带、或能稳定建联产业带，是绝大多数低成本样本的共同起点</em>。</p>
+<table>
+<thead><tr><th style="width:15%">产业带</th><th style="width:20%">主营品类</th><th>特点与切入提示</th></tr></thead>
+<tbody>
+<tr><td><strong>深圳水贝</strong>（7 篇）</td><td>黄金/K金、钻石、培育钻、彩宝综合</td><td>全国珠宝产能与交易核心（社区从业者口径约占七成），含金展、水贝金座/银座、特力、兴龙等卖场；设 NGTC 国检点。适合黄金代购、钻饰定制、综合选品，可"接单后再拿货"做到零库存。</td></tr>
+<tr><td><strong>佛山平洲</strong>（4 篇）</td><td>翡翠（尤其手镯）、玉石</td><td>全国翡翠集散地之一，手镯货盘最全；多为找异地合作/分销的资源帖，适合翡翠直播与私域玩家找一手货。</td></tr>
+<tr><td><strong>广州华林 / 番禺</strong>（各 1–2 篇）</td><td>华林=玉器批发；番禺=镶嵌加工</td><td>华林玉器街做玉石流通；番禺是珠宝镶嵌/代加工重镇，适合定制类找工厂。</td></tr>
+<tr><td><strong>诸暨山下湖</strong>（案例高频）</td><td>淡水珍珠</td><td>中国珍珠之都，设抖音直播基地（入仓、一物一证发货）；珍珠开蚌/成品直播的供应链源头，杭州团队就近取材。</td></tr>
+<tr><td><strong>连云港东海</strong>（1 篇）</td><td>水晶</td><td>世界水晶集散中心，水晶城批发，玄学水晶/文玩玩法的核心货源地，需会挑货、防以次充好。</td></tr>
+<tr><td><strong>汕尾可塘</strong>（1 篇）</td><td>彩宝、水晶/珠子半成品</td><td>"以石头珠子造出百亿市场"的南方小镇，DIY 手串、彩宝配珠的重要货源，成本极低、毛利高。</td></tr>
+<tr><td><strong>义乌</strong>（案例高频）</td><td>DIY 琉璃珠、饰品配件</td><td>国际商贸城及福田/兴中/北下朱等小区批发市场，DIY 手串、平价饰品直播的供应链腹地。</td></tr>
+<tr><td><strong>河南（柘城等）</strong>（案例正文）</td><td>培育钻石毛坯与加工</td><td>国内培育钻主产区，工厂多不做散客、经多层分销流出；私域定制玩家的成本洼地，1 克拉成品可做到数千元。</td></tr>
+<tr><td><strong>新疆</strong>（1 篇）</td><td>和田玉</td><td>和田玉源头，"二代珠宝人"回乡转型、源头人设带货的典型，适合做产地信任 IP。</td></tr>
+</tbody></table>
+<div class="box teal"><span class="bt">找货源的三个被反复验证的技巧</span>① 看大量同质化直播间的<strong>发货地</strong>，聚集城市即货源地；② 除了"XX 去哪拿货"，多搜"XX 倒闭清仓 / 拿货避雷 / 货源都是从…"等长尾词，并善用小红书（种草避雷）、闲鱼（清仓直发）、1688（产业带）交叉验证；③ 混进同行粉丝群/私域，以"帮客户找款的同行"身份对话，比以"新手"身份更容易拿到同行价。</div>
+
+<!-- ============ 6 代表案例深讲 ============ -->
+<h2 class="sec" id="s6"><span class="no">06</span>代表案例深讲：9 个真实样本</h2>
+<p>从 17 篇精华中选取 9 篇拿到完整经营数据或全流程细节的样本，覆盖直播、私域、代购、跨境、培育钻、AI、品牌模型与失败/退场，按"模式—关键数字—可迁移点"拆解。</p>
+
+<div class="case"><div class="ch"><span class="cn">案例 1 · 李宏：3 人团队直播年销 3000 万（玉石翡翠）</span><span><span class="tag">淘宝直播</span><span class="tag">轻资产</span><span class="num">阅读 10021</span></span></div>
+<ul>
+<li><strong>关键数字：</strong>3 人（主播/客服/导播）、每周 5 天 × 每天 4 小时、日销约 10 万、年销约 3000 万，<em>无自有货源、不囤货</em>。</li>
+<li><strong>模式四步闭环：</strong>① 把行业黑话通俗化，多平台发"玉石专家"短视频立人设、引流淘宝店；② 做"第三方测评/砍价"内容，到集散地现场破价打假制造传播，自留货 2 小时内限时上架；③ 淘宝直播变现——本人只当帮粉丝砍价的第三方，卖家是缺现金流的家庭作坊并向其抽佣；货盘 20% 成本价实货保真实 + 50% 高货只展示撑实力 + 30% 定制（收 50% 定金、两周交付）；④ 售后全部导微信私域做高加价复购。</li>
+<li><strong>利润本质：</strong>玉不可标准化 → 信息不对称。钻石有 4C、黄金有行情，唯玉"无价"，专业人设就是定价权。</li>
+<li><strong>可迁移点：</strong>不在吸粉平台直接变现以维护人设；选支付与信任链完整的平台成交；把钱投给 IP 而非库存；定制预售锁定现金流。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">案例 2 · 金子：盲目扩张，珍珠直播半年亏近 200 万（反面教材）</span><span><span class="tag">珍珠直播</span><span class="tag">失败复盘</span><span class="num">阅读 16187</span></span></div>
+<ul>
+<li><strong>亏损路径：</strong>买天猫店 20 万 + 拍照代运营 10 万；义乌 10 人剧情号 2 个月亏近 20 万（粉丝不精准）；淘宝开蚌 5 人配置流量仅几十；网红专场 7 月 7 场做了 100 多万、看似 ROI 1:5，实则爆款利润率不足 10%、退货率 20%+、坑位费数万前置、佣金 15–25%，最终仍亏。</li>
+<li><strong>十条教训（浓缩）：</strong>忌重资产贪大；先跑通一项稳定盈利再节制扩张；忌多平台多城市同时铺；模式没验证别扩招、别发高于行情的薪资；别一味最低价；爆款反复卖、减 SKU 压库存；账要按 10 天退货后算；普通人没网红资源优先自播做小 IP；前期亲力亲为；留一个稳定现金牛、及时止损。</li>
+<li><strong>对照标杆：</strong>"苗哥珍珠"2 人起步、7 万粉月销千万、走中高端高客单——<em>同样的品类，轻资产高客单跑赢重资产低价跑量</em>。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">案例 3 · DR 钻戒：互联网思维做品牌，零库存 + 70% 毛利</span><span><span class="tag">品牌模型</span><span class="tag">情感溢价</span><span class="num">阅读 6505</span></span></div>
+<ul>
+<li><strong>关键数字：</strong>求婚钻戒毛利约 70%（行业约 40%），客单价从 1.01 万提升到 1.29 万；靠定制把库存压到接近零，300 家店省近 40% 库存、近亿元资金。</li>
+<li><strong>打法：</strong>以"一生只爱一人、身份证终身限买一枚、区块链存证"锁定唯一性情感；渠道全线上化（微博买热搜做争议话题并逐条回复、小红书种理念不种产品、抖音 B 站用素人第三方情感故事弱化推销）；线下门店重仪式感（身份证核验、真爱宣言按手印、拍立得、采访素人爱情故事反哺线上）。</li>
+<li><strong>零库存机制：</strong>先收钱、15 个工作日交货，实际生产仅 3–4 天，资金占用极低；门店只陈列莫桑石/锆石样品；不靠好位置、自带客流还能拿商场补贴。</li>
+<li><strong>可迁移点：</strong>卖情感与理念而非卖参数，用户为意义买单时不看性价比；定制预售是零库存的通用解；线上种草 + 线下仪式感形成内容闭环。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">案例 4 · 李米乐：小红书 300 精准粉变现 20w+（高客单私域）</span><span><span class="tag">小红书</span><span class="tag">微信私域</span><span class="num">阅读 12961</span></span></div>
+<ul>
+<li><strong>关键数字：</strong>13 年珠宝从业、深圳 30+ 合作工厂；100 粉开始变现、300 粉变现 20w+、累计 50w+，曾单日涨粉 1000+。</li>
+<li><strong>模式：</strong>只做中高端，笃信"1000 个铁杆粉丝"（奢侈品行业 6% 高定用户贡献超 60% 销售额）；账号只发两类内容——专业知识占心智、款式推荐做销售；群聊+小号安全引流微信。</li>
+<li><strong>私域承接：</strong>朋友圈"卖自己（生活圈+思维圈）+卖产品（产品圈把卖点翻译成买点 + 代理圈）"；14 倍放大镜做质检、12 道工序 15 分钟定制香氛开箱、终身售后；不做促销、老客友情价、生日惊喜；招代理合伙人裂变，给外部推荐人 50% CPS。</li>
+<li><strong>关键认知：</strong>另一个追娱乐热点的人设号涨粉快但来的都是"预算不够"的泛粉——<em>两三百精准粉胜过几十万非精准粉</em>；避坑上强调认 GIA 腰码、防套证钻/莫桑冒充、黄金抛开克重谈价都是耍流氓。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">案例 5 · 金喜：0 成本做水贝黄金中间商，图文号首月 GMV 13w</span><span><span class="tag">小红书图文</span><span class="tag">零囤货代购</span><span class="num">阅读 11234</span></span></div>
+<ul>
+<li><strong>关键数字：</strong>1 个图文号、实际约 1 个月、GMV 13w+，赚工费差价 15–35 元/克 + 附加费差价（利润 3k+，黄金薄利，可矩阵/投流放大或转更高毛利的银饰彩宝）。</li>
+<li><strong>九步 SOP：</strong>注册 → 养号找爆款（每天 40–60 分钟搜下拉词，筛近 1–2 月、赞 300+ 评 40+，建 Excel 爆品库）→ 水贝找货（带爆款找同款，伪装"帮客户找款的同行"拿同行价）→ 像素级模仿拍照（一款≥12 张+视频，记金重/工费/尺寸）→ 小红书运营（先发权重帖、账号名带"黄金"、群欢迎语引流、标题埋品类/人群/价格词、爆款重复发）→ 微信转化（总价=（当日水贝金价+工费）×金重+附加，当天收款当天下单锁价）→ 拿货到 NGTC 出证（50 元/张计入工费）→ 顺丰保价到付。</li>
+<li><strong>可迁移点：</strong>"不要自己测爆款，在别人近期爆款里找你的爆款"；转化数据 &gt; 点赞、数据选品 &gt; 喜好选品；黄金自带流量、无需教育客户（"钱没消失，只是换了种方式存在"）。</li>
+</ul></div>
+
+
+<div class="case"><div class="ch"><span class="cn">案例 6 · SUN：TikTok 卖珠宝两年，日均 GMV 从 3000 美金到 500 刀</span><span><span class="tag">TikTok 跨境</span><span class="tag">周期复盘</span><span class="num">阅读 6993</span></span></div>
+<ul>
+<li><strong>轨迹：</strong>2021 年底入局杭州（近诸暨珍珠源头），欧美直播开蚌引流独立站，风口期日均 2000–3000 美金、直播间 500+ 在线、"会英语就能出单"；2022 秋拓东南亚、从珍珠半成品扩到成品首饰与莫桑钻，单场 1000+ 美金、毛利 30–60%；2023.9 成为首批美区珠宝跨境定邀商家；转成品后单直播间回落到 500–1000 美金。</li>
+<li><strong>从 0 到 1 十件事：</strong>选品（"标品里选非标、非标里选标品"，开蚌是非标半成品→定制成标品）、人设（珍珠养殖商家、视觉贴合欧美审美）、供应链（蹲同行直播间截图→1688 货比三家）、定价（同行均值 9 折、引流款半价）、鲜活河蚌两天一采降囤货、设备/网络（SD-WAN 直播稳、双 ISP 住宅 IP 防风控）、买店 + Shopify 独立站、定制包装与英文客服话术、Payoneer/Paypal 回款。</li>
+<li><strong>结论：</strong>风口过后直播只是曝光渠道之一，<em>店铺精细化运营才是核心</em>；这是"小团队负责人必须全员深度参与"的生意，想靠招主播运营当甩手掌柜大概率失败；盲盒/开蚌类玩法已被平台限制，创意要"贴线不出线"。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">案例 7 · Luke 林：实操两年培育钻石，7 天变现万元、累计约 8 万</span><span><span class="tag">培育钻</span><span class="tag">信息差私域</span><span class="num">阅读 18549</span></span></div>
+<ul>
+<li><strong>机会发现：</strong>自己结婚买钻戒时发现，1.39 克拉培育钻定制仅 6200 元，而品牌天然钻 1 克拉 8 万起，存在约 20 倍渠道差价；调研发现"结婚一定要钻戒"的刚需稳固，但多数人只知道实体店 → 巨大信息差。</li>
+<li><strong>轻资产打法：</strong>不囤货，拿供应商图上架闲鱼并在 Soul/美图/微博（搜结婚/三金人群私信）分发，引流微信；成交路径"客户→定金→制作→发货→尾款"，在供应商报价上上浮 30%–70%、收取接近成本的定金以对冲跑单风险。</li>
+<li><strong>两个代价不小的错：</strong>花 13980 元找代运营做号打水漂（0–1 阶段代运营无法替代你自己的内容/运营能力）；花 18000 元做 11 个真钻样品（本可用莫桑石 300 多元替代出图）。教训：<em>跑通之前不增加任何投入</em>。</li>
+<li><strong>供应商 4 条判据：</strong>回复速度快（慢=可能是 N 道贩子）、懂 3C/切工/克拉、报价即时（一问具体价就消失=去问上线加价）、支持来图甚至手绘定制。延伸机会：宠物骨灰/毛发"生命钻石"，单颗可过万、成本约千元级。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">案例 8 · 温妮：AI 模特 7 天跑通变现，珠宝商拍的"卖铲人"</span><span><span class="tag">珠宝 +AI</span><span class="tag">服务变现</span><span class="num">阅读 29368</span></span></div>
+<ul>
+<li><strong>背景与数字：</strong>电商摄影从业者，面对 AI 冲击"打不过就加入"；调研 100+ AI 博主，有可变现产品的不足 20 家、达商用标准的仅一两家——红海中的蓝海；7 天引流 100+ 首饰/服装商家，付费率约 15%，定价约为传统摄影一半。</li>
+<li><strong>技术现实：</strong>基于 Stable Diffusion，两条路线——8–20 张图训练衣物模型（效果好但耗时）或直接换脸（省力但姿势少）；简单基础款可达商用，复杂高定款、珠宝级精修仍做不到，需 PS 二次修到 95–100% 准确才能交付；一组商用图快则半小时、慢则 4–5 小时，成本不会归零。</li>
+<li><strong>可迁移点：</strong>AI 与传统实拍是共生而非替代；珠宝商家对技术认知少、无"必须实拍"包袱，是容易切入的付费方；<em>把 AI 能力打包成"比传统方案更省"的确定性服务，比单纯炫技更易变现</em>。</li>
+</ul></div>
+
+<div class="case"><div class="ch"><span class="cn">案例 9 · 早早：两人做到抖音 DIY 手串类目 TOP5，又果断清仓退场</span><span><span class="tag">有货源直播</span><span class="tag">全周期+止损</span><span class="num">阅读 16944</span></span></div>
+<ul>
+<li><strong>0–1：</strong>2022 年中从"刷上头"发现连麦选款的 DIY 琉璃珠直播，用蝉妈妈/灰豚判断处于增量期、对手不专业、黏性极高；跑义乌产业带、坚持高客单高毛利（头部毛利 80–110%）与差异化选品（唯一带手电透光质检）；几千元货 + 现成女装直播间"地上开播"做 MVP，首日惨淡，次日只加了"买一送一"（价不变、量增多）就卖出 14 单，随后逐日翻倍，一周验证跑通。</li>
+<li><strong>1–10：</strong>搬到湖州毛坯房、只停播一天无缝切换；针对"款式少、灯光差、短视频弱"三问题逐个补；混手作博主圈子、寄样合作撬动精准流量；BOSS 直聘招主播客服，把自己从时薪 40 的活里解放出来做时薪 400 的决策。</li>
+<li><strong>三大坑：</strong>① 增长瓶颈期误选"扩张"（租 300 平四层别墅、扩到 7 人、设备全升级）而非"复制多直播间"，3 月搬进 6 月退场；② 忽视平台规则频繁违规被罚；③ 2000 个 SKU 导致库存灾难、爆款缺货滞销压货。</li>
+<li><strong>退场判断：</strong>发现大量 4.9–9.9 低价九宫格玩家涌入、头部纷纷换形式/卷价格、自身流量下滑；该类目老粉成交占比 80–90%、不断倒逼上新、旧款持续积压，结构性见顶——6 月果断清仓回笼大几十万资金。<em>会干就完了，更要懂及时止损。</em></li>
+</ul></div>
+
+<!-- ============ 7 通用方法论 ============ -->
+<h2 class="sec" id="s7"><span class="no">07</span>从 0 到 1 的通用打法方法论</h2>
+<p>把 9 个案例与 174 篇帖子的共性提炼为一条可执行主线，供不同资源禀赋的创业者套用。</p>
+<div class="flow">
+  <div class="step"><b>① 盘点资源</b><span>产业带/私域/内容力/资金</span></div>
+  <div class="step"><b>② 选赛道选品</b><span>数据化跟爆款、高客单高毛利</span></div>
+  <div class="step"><b>③ 建联供应链</b><span>跑产业带、4 标准筛供应商</span></div>
+  <div class="step"><b>④ MVP 验证</b><span>最小成本一周跑通闭环</span></div>
+</div>
+<div class="flow">
+  <div class="step"><b>⑤ 立人设做内容</b><span>专业+靠谱，两类内容</span></div>
+  <div class="step"><b>⑥ 引流私域成交</b><span>信任承接、定金风控</span></div>
+  <div class="step"><b>⑦ 复购转介绍</b><span>服务复利、代理/CPS 裂变</span></div>
+  <div class="step"><b>⑧ 复制而非扩张</b><span>单点盈利后多账号/多店复制</span></div>
+</div>
+<h3>7.1 选赛道与选品：用数据，不用审美</h3>
+<ul class="tight">
+<li><strong>顺着自己的资源选：</strong>近产业带做代购/定制、有专业资质做鉴定/高客单、会出镜做直播、擅长图文做小红书、懂外语做跨境。</li>
+<li><strong>标品里选非标、非标里选标品：</strong>在大类里找有非标溢价空间、又能标准化交付的切口（开蚌半成品→定制成品、黄金标品→热门款式代购）。</li>
+<li><strong>优先高客单、高毛利：</strong>有利润空间才做得起品控、服务与口碑；低价跑量极易陷入退货与价格战。</li>
+<li><strong>在别人验证过的爆款里选，不自己测款：</strong>按近 1–2 月、赞藏评达标、可模仿三原则建爆品库；爆款要重复发、换形式发、多账号发，榨干单品价值。</li>
+</ul>
+<h3>7.2 内容与人设：专业是最好的转化器</h3>
+<ul class="tight">
+<li>人设公式 = <strong>专业（懂行、能避坑）+ 靠谱（长期主义、可托付）+ 明确利益点</strong>（如"用低于市价的钱买到更高品质"）。</li>
+<li>内容只做两类：<strong>专业知识占领心智</strong>（科普、避坑、行业内幕）+ <strong>款式推荐直接销售</strong>；少做与成交无关的泛娱乐内容。</li>
+<li>公域平台只负责"被信任、被找到"，通过群聊/评论区/主页合规引流到微信，<em>不在吸粉平台硬卖</em>。</li>
+</ul>
+<h3>7.3 私域成交：把信任变成订单与复购</h3>
+<ul class="tight">
+<li>朋友圈四圈：生活圈、思维圈（卖自己）、产品圈（卖点翻译成买点）、代理圈（卖产品/裂变），调性与客单匹配。</li>
+<li>高客单风控：定制先收接近成本的定金、明确"定制非质量问题不退"、量准圈口号、贵重品顺丰保价；当天收款当天向供应商锁价（金价每日波动）。</li>
+<li>复购来自产品力 + 超预期细节（质检、包装、终身售后、记住客户偏好），转介绍用 CPS/代理机制放大；珠宝展示属性强，老客本身就是渠道。</li>
+</ul>
+<h3>7.4 放大：先复制，慎扩张</h3>
+<div class="box warn"><span class="bt">最关键的一条分岔路</span>单店/单账号跑通且遇到增长瓶颈时，优先<strong>复制</strong>多个同模型直播间/账号（边际成本低、可验证可回退），而不是<strong>扩张</strong>（租大场地、招大批人、上重设备、铺多平台）。金子与早早两个样本都在"扩张"上交了百万级或几十万级学费。同时算清自己的"时薪"，把创始人从重复劳动里解放出来做选品、供应链与战略。</div>
+
+
+<!-- ============ 8 风险 ============ -->
+<h2 class="sec" id="s8"><span class="no">08</span>风险清单与避坑指南</h2>
+<p>综合失败复盘与高频求助帖，珠宝创业的坑集中在财务、合规、供应链、心态四类，下表给出风险、典型表现与对策。</p>
+<table>
+<thead><tr><th style="width:13%">类别</th><th style="width:40%">典型表现（来自真实案例）</th><th>对策</th></tr></thead>
+<tbody>
+<tr><td><strong>财务/库存</strong></td><td>重资产租大场地、盲目扩招；2000 个 SKU 滞销压货、爆款反缺货；网红坑位费数万前置、佣金 15–25%；退货率 20%+ 导致"发货即盈利"的假象</td><td>轻资产起步、定制/代购零库存；精简 SKU、爆款反复卖；按 10 天退货后核算真实利润；没网红资源优先自播；留稳定现金牛</td></tr>
+<tr><td><strong>平台合规</strong></td><td>珠宝文玩未报白/未入基地被封；盲盒、开蚌、赌石类"贴线玩法"被限流封禁；站外引流方式违规；忽视官方规则被警告扣分下播</td><td>先学透平台官方规则与课程（"免费的最贵"）；该报白报白、一物一证、基地入仓发货；用群欢迎语/小号图等相对安全方式引流并随时关注规则变化；创意"贴线不出线"</td></tr>
+<tr><td><strong>供应链/品控</strong></td><td>遇到 N 道贩子层层加价；套证钻、莫桑冒充天然钻；金重不达标易断、车花片显大；K 金链断、银镀金发黑引发售后</td><td>用"回复速度/专业度/报价即时性/支持定制"4 标准筛供应商，同时询 3–4 家比价；认 GIA/IGI/NGTC 证书与腰码；黄金按克重计价、保留质检；提前数字化管理库存与仓储</td></tr>
+<tr><td><strong>认知/心态</strong></td><td>追娱乐热点涨泛粉却不转化；多平台多城市同时铺；跑通后舍近求远试新玩法；迷信代运营；沉没成本下硬扛不止损</td><td>精准粉优先、单点跑通再复制；持续做已验证赚钱的事；0–1 阶段不把钱交给代运营；设定清仓/退场触发线（低价玩家涌入、流量结构下滑），果断止损</td></tr>
+</tbody></table>
+<div class="quote">两句最值得贴在墙上的话——金子："未谋胜先谋败，留一个稳定现金牛。" 早早："既要会干就完了，也要懂及时止损，保住胜利果实远比在泥潭里挣扎明智。"</div>
+
+<!-- ============ 9 趋势 ============ -->
+<h2 class="sec" id="s9"><span class="no">09</span>趋势研判与机会窗口</h2>
+<table>
+<thead><tr><th style="width:18%">方向</th><th style="width:30%">为什么是机会</th><th style="width:24%">切入方式</th><th>主要风险/门槛</th></tr></thead>
+<tbody>
+<tr><td><strong>培育钻石</strong></td><td>与天然钻成分一致、有 IGI 证书，价格约 1/10–1/20；婚嫁刚需稳固、经济下行期性价比逆势上升</td><td>私域/小红书做婚嫁定制，接单转河南/水贝工厂；延伸宠物"生命钻石"</td><td>需吃透 4C 与证书、找到非多层分销的靠谱供应商；平台内卷，宜走私域</td></tr>
+<tr><td><strong>珠宝 +AI</strong></td><td>AI 商拍/模特可降一半拍摄成本，会技术的多、能商用交付的极少；AI 命理/客服可规模化</td><td>为珠宝商家提供 AI 商拍修图服务；用大模型做水晶命理推荐与内容批量生产</td><td>复杂高定款与珠宝精修仍需实拍；交付要达到 95%+ 准确度，是服务力生意</td></tr>
+<tr><td><strong>玄学水晶/情绪饰品</strong></td><td>星座、五行、疗愈、开运把装饰升级为情绪消费，内容自带传播、毛利高、复购强</td><td>小红书系列化选题（十二星座/五行）+私域一对一推荐；东海/可塘拿货</td><td>注意平台对封建迷信的边界，主打文化/疗愈/饰品；货品以次充好需甄别</td></tr>
+<tr><td><strong>情感/宠物定制</strong></td><td>爱情、亲子、宠物纪念叙事带来高情感溢价，先收定金后做、天然零库存</td><td>小红书评论区/笔记接单，来图定制、骨灰毛发生命珠宝</td><td>交付周期与工艺稳定性、情感类售后沟通要求高</td></tr>
+<tr><td><strong>跨境分化</strong></td><td>TikTok 直播红利退潮但商城流量上升；海外源头（泰国/斯里兰卡/非洲）华人 IP 信任稀缺</td><td>小团队深耕 TikTok 店铺 + 短视频/达人多渠道；打造矿区/产地源头 IP 反向带货</td><td>网络合规、跨境物流时效（48h 发货/72h 入仓）、本土化与回款，负责人须深度参与</td></tr>
+<tr><td><strong>回归私域长期主义</strong></td><td>公域流量越来越贵，珠宝高客单天然依赖信任，老客复购与转介绍成本最低</td><td>公域立专业人设 → 私域精细化运营 → 代理/CPS 裂变</td><td>慢变量，靠产品力、服务与时间复利，无法速成</td></tr>
+</tbody></table>
+<div class="box gold"><span class="bt">总体研判</span>珠宝不是"流量红利"生意，而是"<strong>供应链 × 专业信任 × 情感价值</strong>"的长期生意。短期套利窗口（某类直播、某个平台）会不断出现又消失，但"贴近产业带降低成本、用专业内容建立信任、在私域沉淀高客单与复购、以定制/代购保持轻资产"这套底层结构长期成立。对普通人最稳妥的路径是：<em>选一个与自身资源匹配的窄切口，用最小成本跑通单点盈利，再靠复制放大，而不是靠扩张赌规模</em>。</div>
+
+<!-- ============ 10 附录 ============ -->
+<h2 class="sec" id="s10"><span class="no">10</span>附录：174 篇精选多维分类索引</h2>
+<p>下表为全部 174 篇精选帖，按 14 个主赛道分组、组内按阅读量降序，同时标注平台、品类、创业阶段、内容类型、阅读量与是否精华（"精"=社区精华帖），标题可点击直达原帖。配套的《多维分类表（CSV）》支持用 Excel 按任意维度自行筛选排序。</p>
+<style>
+h4.appx-group{font-family:"Hiragino Sans GB",sans-serif;font-size:14.5px;margin:20px 0 6px;color:var(--teal);background:#eef4f1;border-left:4px solid var(--teal2);padding:6px 11px;border-radius:0 4px 4px 0;page-break-after:avoid;}
+h4.appx-group .gn{display:inline-block;background:var(--teal);color:#fff;border-radius:50%;width:20px;height:20px;line-height:20px;text-align:center;font-size:11px;margin-right:8px;}
+h4.appx-group em{font-size:12px;color:var(--gold);font-style:normal;font-weight:700;margin-left:6px;}
+table.appx{font-size:10.8px;margin:4px 0 10px;}
+table.appx th{font-size:10.3px;padding:4px 5px;background:#2a7468;}
+table.appx td{padding:3px 5px;line-height:1.45;}
+table.appx td.t{min-width:200px;} table.appx td.t a{border:none;color:#1c2b27;}
+table.appx td.t a:hover{color:var(--teal2);text-decoration:underline;}
+table.appx .c-no,.appx .c-num{text-align:center;white-space:nowrap;}
+table.appx .c-author,.appx .c-date{white-space:nowrap;color:var(--muted);}
+table.appx .c-tag{white-space:nowrap;color:var(--ink2);font-size:10.3px;}
+table.appx .c-jing{text-align:center;} .jing{background:var(--gold);color:#fff;font-size:9.5px;padding:1px 4px;border-radius:3px;}
+table.appx tr{page-break-inside:avoid;}
+@media print{table.appx{font-size:9px;} table.appx th{font-size:8.8px;} h4.appx-group{page-break-before:auto;}}
+</style>
+<h4 class="appx-group"><span class="gn">1</span>行业认知/综合 <em>33 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">143</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/812525418455182">《我单人和珠宝厂合作引流，0粉丝从快手起步到月盈利10W的经历分享》</a></td><td class="c-author">T拿铁</td><td class="c-date">2022-04</td><td class="c-tag">快手</td><td class="c-tag">综合珠宝</td><td class="c-tag">0-1起盘</td><td class="c-tag">资源对接/供需</td><td class="c-num">25178</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">107</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/814485221185852">从药企到珠宝：新疆二代珠宝人的副业转型与成功经验分享</a></td><td class="c-author">希茗💎</td><td class="c-date">2023-05</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">转型/副业起步</td><td class="c-tag">实战复盘/案例</td><td class="c-num">21165</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">15</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/1524484844124252">从生活细节发现机会，实操两年的培育钻石项目解析</a></td><td class="c-author">小挣青年</td><td class="c-date">2025-05</td><td class="c-tag">综合/其他</td><td class="c-tag">钻石/培育钻</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">18549</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">145</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/812525851411552">定价技巧系列（9）为什么卡地亚珠宝预览图不标价格？</a></td><td class="c-author">小马宋</td><td class="c-date">2022-04</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">8908</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">164</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/582248822551454">传统珠宝行业如何用互联网思维实现零库存、高利润？DR珠宝给出答案</a></td><td class="c-author">李宏</td><td class="c-date">2020-11</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">6505</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">114</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/181448581281252">来自一名小小翡翠珠宝人的思考平洲高货案例</a></td><td class="c-author">Z丶泽</td><td class="c-date">2023-04</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">5354</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">117</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214281588588121">在视频号上卖珠宝保护膜，销量应该不错</a></td><td class="c-author">乔久伴</td><td class="c-date">2023-04</td><td class="c-tag">视频号</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">3774</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">60</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811415484114842">珠宝与礼品关联的简单方法</a></td><td class="c-author">香菜丸子</td><td class="c-date">2024-01</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">1690</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">45</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5122542442411254">深圳13年老珠宝厂全品类中高端产品线</a></td><td class="c-author">李米乐</td><td class="c-date">2024-05</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">1296</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">46</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4844541488248458">资源对接：大牌珠宝A货资源，寻找有需求的大佬</a></td><td class="c-author">差不多先生点亮技能树</td><td class="c-date">2024-04</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1198</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">33</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/8855181428424882">珠宝首饰零售与多城市业务扩展计划</a></td><td class="c-author">追风少年O2</td><td class="c-date">2024-08</td><td class="c-tag">综合/其他</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">1074</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">53</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2855824258445121">多元素多寓意的珠宝产品，成本低价高销售</a></td><td class="c-author">香菜丸子</td><td class="c-date">2024-03</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">1058</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">151</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/418841158188118">求认识北京千叶珠宝人力资源部</a></td><td class="c-author">王*</td><td class="c-date">2021-09</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1017</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">88</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588151458118884">进入珠宝行业，找项目和业务方合作</a></td><td class="c-author">灵均</td><td class="c-date">2023-08</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">988</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">84</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588145584152844">资源对接文旅客户和彩色宝石翡翠珠宝资源</a></td><td class="c-author">青小仙</td><td class="c-date">2023-09</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">982</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">23</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4848528212115558">翡翠珠宝客单价转化比急速下降求助</a></td><td class="c-author">Kevin</td><td class="c-date">2024-10</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">963</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">85</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188544555142442">寻找珠宝首饰资源对接的合作伙伴</a></td><td class="c-author">阿柯～lisa</td><td class="c-date">2023-08</td><td class="c-tag">综合/其他</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">943</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">111</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584585215514154">为什么那么多人喜欢珠宝，珠宝主要满足什么需求？</a></td><td class="c-author">BLUE</td><td class="c-date">2023-05</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">936</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">38</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4844251151122188">寻求珠宝玉石评论区引流专家合作茶水费丰厚</a></td><td class="c-author">Kevin</td><td class="c-date">2024-07</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">842</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">89</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211825544285181">年轻人备婚需知，婚庆/珠宝等结婚相关业务变现</a></td><td class="c-author">Fwrd</td><td class="c-date">2023-08</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">764</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">95</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211511158484811">抖音珠宝行业上线原创图片保护功能</a></td><td class="c-author">西米</td><td class="c-date">2023-07</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">707</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">90</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188558228445142">地质大学校内店珠宝价格实惠925银耳环15元</a></td><td class="c-author">阿徐</td><td class="c-date">2023-08</td><td class="c-tag">综合/其他</td><td class="c-tag">银饰</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">701</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">135</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412424424214128">视频号双12年货节珠宝食品货盘寻场均20w+达人</a></td><td class="c-author">陈陈陈</td><td class="c-date">2022-12</td><td class="c-tag">视频号</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">680</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">106</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/814485215588442">抖音只卖和田玉博主观察</a></td><td class="c-author">半阙酒</td><td class="c-date">2023-05</td><td class="c-tag">抖音</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">604</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">87</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211828444821551">七夕电商涌现廉价戒指29元月销10W+</a></td><td class="c-author">浮生若梦</td><td class="c-date">2023-08</td><td class="c-tag">综合/其他</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">602</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">102</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214421484482821">抖音珠宝和木作商家受益低价商品利润空间提高</a></td><td class="c-author">西米</td><td class="c-date">2023-06</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">506</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">152</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/185244145281822">求黄金珠宝首饰渠道，想买个男戒</a></td><td class="c-author">密斯特赵</td><td class="c-date">2021-07</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">501</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">78</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211258182282241">抖音珠宝行业风向标调整内容方向</a></td><td class="c-author">小卢</td><td class="c-date">2023-09</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">466</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">63</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211444422825511">夸张手势成珠宝模特关键吸引更多关注</a></td><td class="c-author">Chris UU</td><td class="c-date">2024-01</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">351</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">155</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/215118421522551">生财茶馆 国内珠宝品牌的二三事</a></td><td class="c-author">白筱月</td><td class="c-date">2021-06</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">96</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">157</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/215148885888451">5.20珠宝店盲盒活动热销</a></td><td class="c-author">肖叮当</td><td class="c-date">2021-05</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">83</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">168</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/841122811815452">用万字长文解析珠宝业</a></td><td class="c-author">李宏</td><td class="c-date">2020-06</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">47</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">171</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/421144522515128">大学买卖手机赚第一个十万，后改行做珠宝行业</a></td><td class="c-author">江涛</td><td class="c-date">2020-04</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">转型/副业起步</td><td class="c-tag">行业认知/数据</td><td class="c-num">0</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">2</span>供应链/货源批发 <em>21 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">113</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214221814281451">全国翡翠源头平洲找异地珠宝商合作</a></td><td class="c-author">Z丶泽</td><td class="c-date">2023-04</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">2332</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">16</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4845551225451548">深圳15年老珠宝厂产业链30家工厂故宫黄金渠道</a></td><td class="c-author">李米乐</td><td class="c-date">2025-04</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">供应链/货源</td><td class="c-tag">行业认知/数据</td><td class="c-num">1638</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">34</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/1522851148225582">东亚银行开户及内购价购买黄金珠宝每克少150</a></td><td class="c-author">颜周</td><td class="c-date">2024-08</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1553</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">25</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4848544211444488">一手和田玉源头供应链，多工厂联合供应，寻成熟珠宝卖货团队</a></td><td class="c-author">韫椟</td><td class="c-date">2024-09</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">放大/规模化</td><td class="c-tag">资源对接/供需</td><td class="c-num">1470</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">91</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811884128448822">寻找优质淡水珍珠供应链</a></td><td class="c-author">恒佳珍珠D0501</td><td class="c-date">2023-08</td><td class="c-tag">综合/其他</td><td class="c-tag">珍珠</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">1439</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">119</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584515421114224">平洲翡翠手镯源头找他地珠宝商合作</a></td><td class="c-author">Z丶泽</td><td class="c-date">2023-04</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">1334</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">39</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5122454152215144">96年老板黄金加工创业，抖音引流，年盈利超百万</a></td><td class="c-author">老图突击队</td><td class="c-date">2024-06</td><td class="c-tag">抖音</td><td class="c-tag">黄金/K金</td><td class="c-tag">放大/规模化</td><td class="c-tag">实战复盘/案例</td><td class="c-num">1260</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">42</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5122584122858224">高质量私域女粉MCN对接天然珠宝原矿供应链</a></td><td class="c-author">韫椟</td><td class="c-date">2024-05</td><td class="c-tag">微信私域</td><td class="c-tag">彩宝/其他宝玉石</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">1251</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">17</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4845445482228258">自有黄金银饰金包银工厂深圳水贝有展厅资源对接</a></td><td class="c-author">23</td><td class="c-date">2025-03</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">1150</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">120</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214282455252421">目前在翡翠手镯源头地平洲，有什么合作变现方法吗</a></td><td class="c-author">Z丶泽</td><td class="c-date">2023-04</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">1089</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">43</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4844512412128848">珠宝南红现货，天然原矿，价格低，量小也出</a></td><td class="c-author">韫椟</td><td class="c-date">2024-05</td><td class="c-tag">综合/其他</td><td class="c-tag">彩宝/其他宝玉石</td><td class="c-tag">供应链/货源</td><td class="c-tag">行业认知/数据</td><td class="c-num">1076</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">105</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584414281582184">1000家工厂加盟100%天然珠宝供应链服务</a></td><td class="c-author">韫椟</td><td class="c-date">2023-06</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">932</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">153</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/218588145282181">玉翠珠宝供应链寻抖音直播团队</a></td><td class="c-author">山木</td><td class="c-date">2021-07</td><td class="c-tag">抖音</td><td class="c-tag">翡翠玉石</td><td class="c-tag">放大/规模化</td><td class="c-tag">资源对接/供需</td><td class="c-num">910</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">77</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188451145155282">1000+ 工厂加盟的 100% 天然珠宝供应链服务，全品类珠宝数据化仓储系统</a></td><td class="c-author">韫椟</td><td class="c-date">2023-10</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">807</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">96</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188281885258452">1000+工厂加盟的100%天然珠宝供应链服务</a></td><td class="c-author">韫椟</td><td class="c-date">2023-07</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">735</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">92</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/411885555454288">利用全品类供应链抓住珠宝市场薄利多销机会</a></td><td class="c-author">韫椟</td><td class="c-date">2023-08</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">680</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">134</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412424214512588">提供优质珠宝供应链找视频直播带货合作</a></td><td class="c-author">达达城城主</td><td class="c-date">2022-12</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">620</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">3</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/22255242158815481">广州华林玉器城23年珠宝加工店，金银钻石翡翠都能做</a></td><td class="c-author">求其</td><td class="c-date">2026-06</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">供应链/货源</td><td class="c-tag">行业认知/数据</td><td class="c-num">605</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">142</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/812884421511482">需求珠宝玉石一手批发货源镶嵌一件代发</a></td><td class="c-author">豪</td><td class="c-date">2022-06</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">537</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">72</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588421544558424">杭州的珠宝城批发和个人购买都方便</a></td><td class="c-author">六和</td><td class="c-date">2023-12</td><td class="c-tag">线下实体</td><td class="c-tag">综合珠宝</td><td class="c-tag">供应链/货源</td><td class="c-tag">行业认知/数据</td><td class="c-num">461</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">10</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5124214452484884">线上珠宝饰品商家找银合金镶嵌源头工厂合作</a></td><td class="c-author">我是乐多</td><td class="c-date">2025-09</td><td class="c-tag">综合/其他</td><td class="c-tag">银饰</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">123</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">3</span>直播带货 <em>21 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">148</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/818258818451122">盲目扩张半年亏损百万直播带货踩的坑</a></td><td class="c-author">鱼丸 亦仁助理</td><td class="c-date">2021-12</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">16187</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">165</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/215525585551521">珠宝类重资产传统行业转型——3个人的团队，直播带货，年销售额三千万背后的故事</a></td><td class="c-author">李宏</td><td class="c-date">2020-09</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">转型/副业起步</td><td class="c-tag">实战复盘/案例</td><td class="c-num">10021</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">147</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/581544482185414">抖音直播鸡血石小众赛道+直播间诊断模型</a></td><td class="c-author">郭郭郭</td><td class="c-date">2022-03</td><td class="c-tag">抖音</td><td class="c-tag">彩宝/其他宝玉石</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">8406</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">51</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2855821225484511">视频号用户展示高客单珠宝，5个月GMV达5000+w</a></td><td class="c-author">Elaine</td><td class="c-date">2024-03</td><td class="c-tag">视频号</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">7649</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">163</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/414848482454148">从零开始做珠宝抖音直播，我是如何做到月营收4329万的？</a></td><td class="c-author">未知</td><td class="c-date">2020-12</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">放大/规模化</td><td class="c-tag">实战复盘/案例</td><td class="c-num">4477</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">79</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588521152552284">广东靓仔逛市场直播卖珠宝，月销8亿，卖法新奇引围观</a></td><td class="c-author">与文</td><td class="c-date">2023-09</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">放大/规模化</td><td class="c-tag">实战复盘/案例</td><td class="c-num">4012</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">14</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2852482588584551">直播间高级灯光摆件营造珠宝高价感、低价甩卖话术</a></td><td class="c-author">AT心灵壁垒</td><td class="c-date">2025-05</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">1467</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">35</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/8855188211245412">请问有圈友做珠宝或者有做珠宝赛道直播带货的吗</a></td><td class="c-author">邱多多（勿忘初心）</td><td class="c-date">2024-08</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">求助问答</td><td class="c-num">1292</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">68</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188151822551442">想做直播珠宝项目寻广州华林国际附近办公室直播间</a></td><td class="c-author">酱紫麻</td><td class="c-date">2023-12</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1152</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">36</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/1522184455282852">视频号带货案例拆解：低价饰品单场272单</a></td><td class="c-author">李诚Sonic</td><td class="c-date">2024-07</td><td class="c-tag">视频号</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">1130</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">37</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2855418412285251">抖音法郎珠宝摆件盲盒直播年轻女性利润超10万</a></td><td class="c-author">孤独的数字游民</td><td class="c-date">2024-07</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">1073</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">59</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811418444421542">小红书无人直播间展示珠宝首饰背景放联系方式引流</a></td><td class="c-author">与鲸</td><td class="c-date">2024-01</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">619</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">99</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/814448812211542">抖音直播挂小风车引流私域卖珠宝高客单高利润</a></td><td class="c-author">One</td><td class="c-date">2023-06</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">613</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">41</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5122418284552124">美业珠宝人设校园霸凌话题连续剧带货5.2万</a></td><td class="c-author">阿杰</td><td class="c-date">2024-06</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">508</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">100</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412224112881218">抖音推出珠宝直播间标签提升自然流量和转化</a></td><td class="c-author">西米</td><td class="c-date">2023-06</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">358</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">156</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/815115284111512">直播间1元起拍卖珠宝</a></td><td class="c-author">az</td><td class="c-date">2021-05</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">174</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">159</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/815121185528512">房产大v微信珠宝拍卖，买的是挂念和咨询费</a></td><td class="c-author">az</td><td class="c-date">2021-05</td><td class="c-tag">微信私域</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">152</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">161</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/414151414112128">珠宝直播港澳台新马客户高客单，可否Facebook引流淘宝</a></td><td class="c-author">哈哈</td><td class="c-date">2021-05</td><td class="c-tag">传统电商</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">求助问答</td><td class="c-num">47</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">167</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/841144142248442">社区珠宝店逆势开店案例直播退货率高</a></td><td class="c-author">张五哥</td><td class="c-date">2020-07</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">0</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">169</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/548824158222224">有翡翠珠宝直播主播擅长转化但缺新粉求支招</a></td><td class="c-author">傅宇昕</td><td class="c-date">2020-05</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">0</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">173</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/241542821825581">如何知道用户真正会搜什么词(钻展拓展出珠宝拍卖等词)</a></td><td class="c-author">OneStep</td><td class="c-date">2019-12</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">0</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">4</span>平台规则/类目政策 <em>17 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">11</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2854558542281421">从0到1抖音DIY手串类目TOP直播间全面复盘</a></td><td class="c-author">早早</td><td class="c-date">2025-09</td><td class="c-tag">抖音</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">0-1起盘</td><td class="c-tag">政策/行业风向</td><td class="c-num">16944</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">125</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412544255418518">抖音小众类目鸡血石直播变现百万经验</a></td><td class="c-author">时易</td><td class="c-date">2023-03</td><td class="c-tag">抖音</td><td class="c-tag">彩宝/其他宝玉石</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">11513</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">116</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214281825458281">提供小店报白珠宝翡翠文玩等资源对接</a></td><td class="c-author">奋斗的蚂蚁</td><td class="c-date">2023-04</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1915</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">141</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/415882142288218">抖音电商面向珠宝文玩等行业发起品牌服务商招募</a></td><td class="c-author">东东</td><td class="c-date">2022-06</td><td class="c-tag">抖音</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1839</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">61</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588482118442124">求助能开抖音珠宝报白LV3达人号的渠道</a></td><td class="c-author">🌸蕾蕾</td><td class="c-date">2024-01</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1581</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">115</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412552552584418">抖音本地生活珠宝类目4月21日开放30家门店准入</a></td><td class="c-author">大冰哥</td><td class="c-date">2023-04</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">1365</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">32</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2855121588442181">寻求小时达服装和珠宝报白服务资源对接</a></td><td class="c-author">流量玩家Jason</td><td class="c-date">2024-08</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1176</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">44</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2855212441581111">抖音视频号小店类目报白食品珠宝文玩等合作</a></td><td class="c-author">抖商黑科技 谈威</td><td class="c-date">2024-05</td><td class="c-tag">视频号</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1008</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">9</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/22811244454855881">自有得物珠宝企业店资质齐全，寻专业运营合伙人</a></td><td class="c-author">金子</td><td class="c-date">2026-02</td><td class="c-tag">传统电商</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">766</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">150</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/418888584222248">抖店珠宝银器报白资源对接</a></td><td class="c-author">一抹色彩</td><td class="c-date">2021-10</td><td class="c-tag">抖音</td><td class="c-tag">银饰</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">723</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">104</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/181151188825812">视频号橱窗6月14起暂停珠宝设计师品牌入驻</a></td><td class="c-author">梵野</td><td class="c-date">2023-06</td><td class="c-tag">视频号</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">714</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">94</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811511185412182">抖音珠宝新规结算GMV低于10万关闭经营权限</a></td><td class="c-author">西米</td><td class="c-date">2023-07</td><td class="c-tag">抖音</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">651</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">138</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/812218255422412">视频号直播珠宝玉石类需要什么资质</a></td><td class="c-author">Aaa、口袋</td><td class="c-date">2022-10</td><td class="c-tag">视频号</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">求助问答</td><td class="c-num">649</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">144</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/212525424155411">珠宝玉石代理入驻抖音直播官方旗舰店注意什么</a></td><td class="c-author">大军</td><td class="c-date">2022-04</td><td class="c-tag">抖音</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">求助问答</td><td class="c-num">631</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">86</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211822581111821">视频号带货榜top100中国黄金周大生居前</a></td><td class="c-author">洛翎1</td><td class="c-date">2023-08</td><td class="c-tag">视频号</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">622</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">132</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214882882522121">中国黄金珠宝消费白皮书</a></td><td class="c-author">李物</td><td class="c-date">2023-01</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">331</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">140</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/415525551421848">珠宝类目寻找淘宝运营可运营店铺和直播</a></td><td class="c-author">心静自然凉</td><td class="c-date">2022-09</td><td class="c-tag">传统电商</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">211</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">5</span>跨境出海 <em>15 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">52</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5122154842185424">海外华人ip打造的全盘思路</a></td><td class="c-author">苏夏</td><td class="c-date">2024-03</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">33231</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">69</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811451551424842">在TikTok上卖珠宝两年多，日均GMV从3000美金到500刀，这门生意还能做吗？</a></td><td class="c-author">SUN</td><td class="c-date">2023-12</td><td class="c-tag">TikTok</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">求助问答</td><td class="c-num">6993</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">40</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2855422451228281">TikTok美区跨境店国内发货传闻，珠宝类目或先行，待官方确认</a></td><td class="c-author">万航宇</td><td class="c-date">2024-06</td><td class="c-tag">TikTok</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">5067</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">2</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/82255214448851812">关于【可塘珠宝】的轻度扫盲帖！这一个靠石头珠子造出“百亿市场”的南方小镇里面到底有什么？</a></td><td class="c-author">八窍生</td><td class="c-date">2026-06</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">放大/规模化</td><td class="c-tag">行业认知/数据</td><td class="c-num">3718</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">149</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/218882412421121">TikTok珠宝领域账号爆品可持续做矩阵上车</a></td><td class="c-author">Fam</td><td class="c-date">2021-10</td><td class="c-tag">TikTok</td><td class="c-tag">综合珠宝</td><td class="c-tag">放大/规模化</td><td class="c-tag">行业认知/数据</td><td class="c-num">2037</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">47</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/1522421411545852">虾皮凌晨直播卖小饰品珠宝一晚赚3000跨境可借鉴</a></td><td class="c-author">长风</td><td class="c-date">2024-04</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">1129</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">97</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584444428854124">求长沙鞋服包珠宝等厂家资源做海外供应商</a></td><td class="c-author">胡祥军</td><td class="c-date">2023-07</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">948</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">129</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584142851845814">TikTok美国半闭环水晶类目大调整，转向官方重视的珠宝类目</a></td><td class="c-author">易尚江</td><td class="c-date">2023-02</td><td class="c-tag">TikTok</td><td class="c-tag">水晶</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">946</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">31</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/8855145484828482">美区TT类目增加开放珠宝汽车配件家居等类目</a></td><td class="c-author">耿集薪</td><td class="c-date">2024-08</td><td class="c-tag">TikTok</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">864</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">12</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/8854555585854482">跨境珍珠生意做10年的卡点</a></td><td class="c-author">金子</td><td class="c-date">2025-08</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">珍珠</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">779</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">28</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5122841455141844">TikTok开放国内发货的水晶珠宝类目普通入驻</a></td><td class="c-author">陈小胖</td><td class="c-date">2024-09</td><td class="c-tag">TikTok</td><td class="c-tag">水晶</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">774</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">30</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2855145418482121">Tiktok美国跨境POP珠宝水晶类目开放普招入驻</a></td><td class="c-author">陈小胖</td><td class="c-date">2024-08</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">水晶</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">555</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">126</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584522558421144">国际黄金价格突破2000美元</a></td><td class="c-author">Mr.Rabbit</td><td class="c-date">2023-03</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">538</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">170</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/548824152241854">全职妈妈如何通过代理非洲宝石赚到第一个10w</a></td><td class="c-author">王三娴</td><td class="c-date">2020-05</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">彩宝/其他宝玉石</td><td class="c-tag">转型/副业起步</td><td class="c-tag">实战复盘/案例</td><td class="c-num">0</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">174</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/51425451258224">一起赚美元：一个用3D打印定制珠宝的产品AuGrav，月入1.5W美金</a></td><td class="c-author">麻瓜小小</td><td class="c-date">2018-09</td><td class="c-tag">跨境/海外其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">0</td><td class="c-jing"><span class="jing">精</span></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">6</span>玄学水晶/文玩饰品 <em>14 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">22</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2858242258558811">玄学水晶珠宝私域项目剖析-终于找到喜欢且长期做的副业项目了</a></td><td class="c-author">贾璐 luca</td><td class="c-date">2024-10</td><td class="c-tag">微信私域</td><td class="c-tag">水晶</td><td class="c-tag">转型/副业起步</td><td class="c-tag">实战复盘/案例</td><td class="c-num">4837</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">122</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214288225285841">抖音高客单价高利润品——文玩珠宝文化消费目前必火文案</a></td><td class="c-author">小秦老师</td><td class="c-date">2023-03</td><td class="c-tag">抖音</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">4520</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">19</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/8858184415144182">去连云港东海水晶城看水晶注意事项</a></td><td class="c-author">果果 债务优化</td><td class="c-date">2025-02</td><td class="c-tag">综合/其他</td><td class="c-tag">水晶</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">3298</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">27</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/8855142885412522">国学玄学情绪价值视频号珠宝首饰销售新策略</a></td><td class="c-author">阿白</td><td class="c-date">2024-09</td><td class="c-tag">视频号</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">1282</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">29</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5122842484448824">找珠宝、水晶、朱砂、沉香、手串、琉璃等玄学饰品资源</a></td><td class="c-author">樾樾</td><td class="c-date">2024-08</td><td class="c-tag">综合/其他</td><td class="c-tag">水晶</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">1114</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">110</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214212541425241">小红书内容篇：首饰珠宝行业+开运好运</a></td><td class="c-author">蔡文静好文静</td><td class="c-date">2023-05</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">998</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">67</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811424441451482">小红书推出无人直播首次销售文玩珠宝</a></td><td class="c-author">希平@AI工作流定制</td><td class="c-date">2024-01</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">962</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">81</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811258512121852">寻找文玩珠宝类产品小红书矩阵运营合作伙伴</a></td><td class="c-author">月亮</td><td class="c-date">2023-09</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">放大/规模化</td><td class="c-tag">资源对接/供需</td><td class="c-num">883</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">1</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/14422188545114482">小红书十二星座水晶颜色系列爆火！单条播放10-40万，客单价299起利润高</a></td><td class="c-author">飞掌柜</td><td class="c-date">2026-08</td><td class="c-tag">小红书</td><td class="c-tag">水晶</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">850</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">112</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/181485818525842">中老年视频号可带货珠宝紫砂壶文玩高客单复购</a></td><td class="c-author">Yanhua</td><td class="c-date">2023-05</td><td class="c-tag">视频号</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">718</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">128</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412825428885458">国学风水号与翡翠珠宝合作，边角料加持卖高价</a></td><td class="c-author">小宁</td><td class="c-date">2023-02</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">680</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">71</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211454118421441">椰壳朱砂貔貅串珠手镯高利润女生首饰珠宝1688代发案例</a></td><td class="c-author">志豪</td><td class="c-date">2023-12</td><td class="c-tag">传统电商</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">670</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">133</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214511488484141">提供珠宝供应链水晶玛瑙人造宝石低价翡翠和田玉</a></td><td class="c-author">达达城城主</td><td class="c-date">2023-01</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">621</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">64</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811444452884212">小红书珠宝店引流新玩法利用生肖星座话题</a></td><td class="c-author">阳光笑脸</td><td class="c-date">2024-01</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">427</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">7</span>定制/手工设计 <em>12 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">55</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188825525481422">小红书手工饰品创业前景及起号</a></td><td class="c-author">大雨</td><td class="c-date">2024-02</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">12140</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">56</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188825241114152">风向标拆解：小红书高销量手作饰品</a></td><td class="c-author">与鲸</td><td class="c-date">2024-02</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">4907</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">8</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/22811428252151851">把宠物做成珠宝，小红书评论区超级多用户问怎么定制</a></td><td class="c-author">云棠</td><td class="c-date">2026-03</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">2092</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">58</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/411215528845458">小红书手工饰品创业前景及起号运营实操</a></td><td class="c-author">大雨</td><td class="c-date">2024-02</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">1401</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">118</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/181454154285182">提供设计、批量款手串、项链等各种珠宝业务对接</a></td><td class="c-author">韫椟</td><td class="c-date">2023-04</td><td class="c-tag">综合/其他</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">1346</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">49</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/8855848585245882">深圳黄金珠宝批发商提供定制服务，员工内购价更优惠</a></td><td class="c-author">颜周</td><td class="c-date">2024-03</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">1178</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">57</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588821228442254">风向标拆解：小红书高销量手作饰品运转逻辑</a></td><td class="c-author">栗子</td><td class="c-date">2024-02</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">954</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">137</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/184121558528242">项链等饰品定做</a></td><td class="c-author">Jay森</td><td class="c-date">2022-10</td><td class="c-tag">综合/其他</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">792</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">75</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588582428485214">珠宝账号新玩法贴纸式展示定制效果翡翠反差销售</a></td><td class="c-author">我安了个安安</td><td class="c-date">2023-11</td><td class="c-tag">综合/其他</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">536</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">5</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/14422281281825252">寻珠宝定制赛道深圳供应商合作，需售后保障、产品质量过硬</a></td><td class="c-author">苏雪Sue</td><td class="c-date">2026-04</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">495</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">73</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811458221188552">广州番禺大罗珠宝城黄金批发手工费低至20元每克</a></td><td class="c-author">志豪</td><td class="c-date">2023-12</td><td class="c-tag">线下实体</td><td class="c-tag">黄金/K金</td><td class="c-tag">供应链/货源</td><td class="c-tag">行业认知/数据</td><td class="c-num">450</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">172</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/841155545281282">第一次非主业赚到10万珍珠首饰定制微商</a></td><td class="c-author">六六娘娘</td><td class="c-date">2020-04</td><td class="c-tag">综合/其他</td><td class="c-tag">珍珠</td><td class="c-tag">转型/副业起步</td><td class="c-tag">实战复盘/案例</td><td class="c-num">0</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">8</span>珠宝+AI/科技 <em>10 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">121</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214288222585121">AI模特7天跑通变现复盘</a></td><td class="c-author">温妮</td><td class="c-date">2023-03</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">29368</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">101</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/181148185425112">非设计专业如何用Midjourney做出商品(珠宝摄影与艺术流派参考)</a></td><td class="c-author">饼公子</td><td class="c-date">2023-06</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">6403</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">18</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/5125221511252554">请Deepseek做我的玄学水晶创业导师和命理师，营收破200万</a></td><td class="c-author">贾璐 luca</td><td class="c-date">2025-03</td><td class="c-tag">综合/其他</td><td class="c-tag">水晶</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">5935</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">21</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2858242112414251">AI驱动的珠宝设计与定制平台：从创意到成品的全流程服务</a></td><td class="c-author">WRZ🔮</td><td class="c-date">2024-11</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">2384</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">26</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4848544228812118">宠物AI绘画与珠宝定制高溢价非标品新赛道</a></td><td class="c-author">凌州</td><td class="c-date">2024-09</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">1648</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">7</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/82255512585458482">15年珠宝工作室招募事业合伙人珠宝加AI赛道</a></td><td class="c-author">小野</td><td class="c-date">2026-04</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">961</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">6</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/45544415221528448">寻找“珠宝+AI”事业合伙人，有15年珠宝工作室和高净值客户资源</a></td><td class="c-author">小野</td><td class="c-date">2026-04</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">838</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">24</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/2858248242252541">用AI创造独特珠宝，Arcade让每个人都能成为珠宝设计大师！</a></td><td class="c-author">乾多多</td><td class="c-date">2024-10</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">755</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">83</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811844415122182">小红书上的 MJ 应用：定制珠宝</a></td><td class="c-author">宜澄</td><td class="c-date">2023-09</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">610</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">93</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588125455858554">AI 图像在珠宝带货中的应用，佛像和珠宝人群有重合度</a></td><td class="c-author">刘同学</td><td class="c-date">2023-07</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">484</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">9</span>小红书图文/种草 <em>10 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">109</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412244424252588">《珠宝高客单，从小红书引流到私域，300粉变现20w+我做对了什么》</a></td><td class="c-author">李米乐</td><td class="c-date">2023-05</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">0-1起盘</td><td class="c-tag">教程/方法论</td><td class="c-num">12961</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">13</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/8852124884481852">0成本在小红书做水贝黄金中间商首月gmv13w</a></td><td class="c-author">金喜surprise</td><td class="c-date">2025-07</td><td class="c-tag">小红书</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">11234</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">98</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412228128885548">珠宝实体工作室做小红书运营感悟</a></td><td class="c-author">Lotus-途经梦想</td><td class="c-date">2023-06</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">4009</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">65</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188111122528582">高客单高利润串珠首饰小红书店半年700W</a></td><td class="c-author">Ahaaa</td><td class="c-date">2024-01</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">2886</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">50</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4844824281288858">中高客单珠宝小红书纯自然流轻人设引流私域</a></td><td class="c-author">加麻</td><td class="c-date">2024-03</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">1345</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">130</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584154814182424">小红书个人店想卖珠宝玉石（道教佛教珠串戒指）要注意什么</a></td><td class="c-author">小花</td><td class="c-date">2023-02</td><td class="c-tag">小红书</td><td class="c-tag">翡翠玉石</td><td class="c-tag">综合认知</td><td class="c-tag">求助问答</td><td class="c-num">615</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">127</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214812284244811">小红书图片直接留v，地质大学珠宝代购</a></td><td class="c-author">muggle</td><td class="c-date">2023-03</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">595</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">66</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/411222845145848">小红书珠宝赛道用在逃公主标题吸引高点赞</a></td><td class="c-author">Alisa</td><td class="c-date">2024-01</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">474</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">62</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811444445254242">小红书珠宝赛道低价戒指销量爆棚利润可观</a></td><td class="c-author">Alisa</td><td class="c-date">2024-01</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">407</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">80</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811258858415882">小红书高赞图文揭示母婴和珠宝首饰美丽风向</a></td><td class="c-author">陈龙</td><td class="c-date">2023-09</td><td class="c-tag">小红书</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">324</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">10</span>实体门店/线下 <em>6 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">166</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/815554422882242">珠宝定制店：从0-1跑通实体店的经营思路分享</a></td><td class="c-author">宇宙无敌勇气青春美少女</td><td class="c-date">2020-08</td><td class="c-tag">综合/其他</td><td class="c-tag">综合珠宝</td><td class="c-tag">0-1起盘</td><td class="c-tag">实战复盘/案例</td><td class="c-num">9383</td><td class="c-jing"><span class="jing">精</span></td></tr>
+<tr><td class="c-no">162</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/582185548488854">2元店4个月吸粉13000，给本地珠宝店等商家打广告月入稳定</a></td><td class="c-author">华聪</td><td class="c-date">2021-03</td><td class="c-tag">线下实体</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">4779</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">4</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/14422515181585882">亲执副业策展布XX提珠宝展，新思路让业绩超预期55%</a></td><td class="c-author">火山</td><td class="c-date">2026-05</td><td class="c-tag">线下实体</td><td class="c-tag">综合珠宝</td><td class="c-tag">转型/副业起步</td><td class="c-tag">教程/方法论</td><td class="c-num">3102</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">76</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211284151584521">深圳求稳定黄金加工流量或珠宝渠道有门店</a></td><td class="c-author">西柚</td><td class="c-date">2023-10</td><td class="c-tag">线下实体</td><td class="c-tag">黄金/K金</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">759</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">154</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/414111125452218">珠宝文玩供应链，杭州九堡珠宝展厅找渠道主播达人媒介合作</a></td><td class="c-author">山木</td><td class="c-date">2021-06</td><td class="c-tag">线下实体</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">供应链/货源</td><td class="c-tag">资源对接/供需</td><td class="c-num">443</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">160</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/815121215884152">珠宝店的盈利：分享 一个大学城的珠宝店推出活动</a></td><td class="c-author">陈姐</td><td class="c-date">2021-05</td><td class="c-tag">线下实体</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">120</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">11</span>黄金回收/投资 <em>5 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">124</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584528454144884">0基础理财小白、普通人如何投资（买）黄金</a></td><td class="c-author">林夕</td><td class="c-date">2023-03</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">0-1起盘</td><td class="c-tag">教程/方法论</td><td class="c-num">9497</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">146</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/812552185115842">黄金回收从0-1保姆教程</a></td><td class="c-author">王林</td><td class="c-date">2022-03</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">0-1起盘</td><td class="c-tag">实战复盘/案例</td><td class="c-num">7614</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">136</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/212485252428221">特殊节点关注各大平台黄金无风险套利</a></td><td class="c-author">笑和尚</td><td class="c-date">2022-11</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">3578</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">20</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4848255214282828">省钱有术黄金买卖代购分享</a></td><td class="c-author">方波妮</td><td class="c-date">2024-12</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">3464</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">70</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/211451555421211">疫情下黄金回收中间商</a></td><td class="c-author">T拿铁</td><td class="c-date">2023-12</td><td class="c-tag">综合/其他</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">672</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">12</span>私域高客单 <em>4 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">103</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/214484121224251">《 珠宝高客单，如何打造好私域，静默成交高客单产品 》</a></td><td class="c-author">李米乐</td><td class="c-date">2023-06</td><td class="c-tag">微信私域</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">教程/方法论</td><td class="c-num">10497</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">123</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/412588585155418">做私域珠宝粉首饰粉的可以链接</a></td><td class="c-author">祎</td><td class="c-date">2023-03</td><td class="c-tag">微信私域</td><td class="c-tag">文玩/首饰饰品</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">2036</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">139</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/415522251121158">寻找黄金珠宝首饰古玩资源适合私域</a></td><td class="c-author">周小河</td><td class="c-date">2022-09</td><td class="c-tag">微信私域</td><td class="c-tag">黄金/K金</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">781</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">74</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/188482128884812">珠宝新私域，满足低价购买需求，年入500w</a></td><td class="c-author">霸气哥</td><td class="c-date">2023-11</td><td class="c-tag">微信私域</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">625</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">13</span>鉴定/鉴宝服务 <em>3 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">48</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/4844815288215188">低粉高销珠宝鉴定成本低私域变现更多</a></td><td class="c-author">磊爷</td><td class="c-date">2024-04</td><td class="c-tag">微信私域</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">实战复盘/案例</td><td class="c-num">800</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">108</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/584422452244814">天天鉴宝下架，珠宝鉴定引流私域加价接单+代理卖珠宝</a></td><td class="c-author">刘瘦子不睡觉</td><td class="c-date">2023-05</td><td class="c-tag">微信私域</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">政策/行业风向</td><td class="c-num">596</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">158</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/215145124415511">闲鱼上奢侈品包包鉴定、珠宝鉴定 ，还可以延伸出二手奢侈品回收、珠宝回收等</a></td><td class="c-author">肥仔梁</td><td class="c-date">2021-05</td><td class="c-tag">传统电商</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">87</td><td class="c-jing"></td></tr>
+</tbody></table>
+<h4 class="appx-group"><span class="gn">14</span>二奢/中古 <em>3 篇</em></h4>
+<table class="appx"><thead><tr><th class="c-no">#</th><th>标题</th><th class="c-author">作者</th><th class="c-date">日期</th><th class="c-tag">平台</th><th class="c-tag">品类</th><th class="c-tag">阶段</th><th class="c-tag">类型</th><th class="c-num">阅读</th><th class="c-jing">精</th></tr></thead><tbody>
+<tr><td class="c-no">54</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/588812518125184">郑州寻小红书二奢或珠宝茶叶类目从业者</a></td><td class="c-author">义玺 适性学习力</td><td class="c-date">2024-02</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">资源对接/供需</td><td class="c-num">916</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">82</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/811841412858242">小红书二手交易活跃珠宝等高价值物品成交快</a></td><td class="c-author">张大蒜</td><td class="c-date">2023-09</td><td class="c-tag">小红书</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">815</td><td class="c-jing"></td></tr>
+<tr><td class="c-no">131</td><td class="t"><a href="https://scys.com/articleDetail/xq_topic/181554541185882">视频号卖二奢/定制珠宝卖家增多，可模仿建私域反复拓客</a></td><td class="c-author">凌晗</td><td class="c-date">2023-01</td><td class="c-tag">视频号</td><td class="c-tag">综合珠宝</td><td class="c-tag">综合认知</td><td class="c-tag">行业认知/数据</td><td class="c-num">390</td><td class="c-jing"></td></tr>
+</tbody></table>
+
+<div class="foot-note">
+数据来源：生财有术社区全站检索（关键词「珠宝」，2018–2026），经去重、相关性过滤与七维人工规则打标，样本 174 篇；案例数据与引述均来自对应原帖正文。本报告为社区公开经验的归纳整理，经营数据为作者自述口径，市场与平台规则会随时间变化，落地前请以最新官方规则与实地调研为准。<br>
+报告生成日期：2026-09-09 ｜ 样本：548 篇全量 → 174 篇精选（精华 17）｜ 配套交付：多维分类 CSV、可检索珠宝知识库 HTML。
+</div>
+
+</div>
+</body>
+</html>
