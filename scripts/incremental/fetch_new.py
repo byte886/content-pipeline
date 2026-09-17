@@ -354,16 +354,70 @@ class WechatChannelsFetcher(IncrementalFetcher):
 
 
 class WechatOfficialFetcher(IncrementalFetcher):
-    """公众号增量采集 — 预留接口"""
+    """公众号增量采集 — 从网络捕获的JSON读取文章列表
+
+    公众号没有公开API，需要通过res-downloader等工具捕获文章列表页请求。
+    下载：复用已有的公众号文章采集脚本（platforms/wechat_official/）
+    """
+
+    def __init__(self, account: str, domain: str, platform: str, config: dict = None):
+        super().__init__(account, domain, platform, config)
+        self.list_file = self.config.get('list_file', '')
 
     def fetch_latest_list(self) -> List[Dict[str, Any]]:
-        raise NotImplementedError("公众号增量采集待实现（需网络捕获文章列表）")
+        """从网络捕获的JSON文件读取最新文章列表"""
+        if not self.list_file or not Path(self.list_file).exists():
+            raise Exception(
+                f"公众号列表文件不存在: {self.list_file}\n"
+                f"请先用res-downloader捕获公众号文章列表页，保存为JSON后指定 --list-file"
+            )
+        with open(self.list_file, encoding='utf-8') as f:
+            data = json.load(f)
+        if isinstance(data, list):
+            return data
+        if isinstance(data, dict) and 'list' in data:
+            return data['list']
+        if isinstance(data, dict) and 'articles' in data:
+            return data['articles']
+        return []
 
     def get_unique_key(self, item: Dict[str, Any]) -> str:
-        return item.get('url', item.get('title', ''))
+        # 公众号文章URL含__biz和mid，是唯一的
+        url = item.get('url', item.get('link', ''))
+        if url:
+            return url
+        return item.get('title', '')
 
     def download_item(self, item: Dict[str, Any], index: int) -> Optional[Path]:
-        raise NotImplementedError("公众号下载待实现")
+        """下载公众号文章（调用已有的采集脚本）"""
+        import subprocess
+        url = item.get('url', item.get('link', ''))
+        if not url:
+            return None
+
+        title = item.get('title', f'article_{index}').replace('/', '_')[:50]
+        output_dir = LIBRARY_DIR / "06_articles" / self.domain / self.account
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        # 调用已有的公众号文章采集脚本
+        article_script = PROJECT_DIR / "platforms" / "wechat_official" / "fetch_article.py"
+        if article_script.exists():
+            try:
+                cmd = [
+                    sys.executable, str(article_script),
+                    url, '--output', str(output_dir)
+                ]
+                result = subprocess.run(cmd, capture_output=True, text=True,
+                                      timeout=60, cwd=str(PROJECT_DIR))
+                # 查找新创建的文章目录
+                article_dirs = sorted(output_dir.glob("*/"), key=lambda d: d.stat().st_mtime, reverse=True)
+                if article_dirs and (article_dirs[0].stat().st_mtime > __import__('time').time() - 60):
+                    return article_dirs[0]
+            except Exception as e:
+                print(f"下载失败: {e}")
+        else:
+            print(f"公众号采集脚本不存在: {article_script}")
+        return None
 
 
 class DouyinFetcher(IncrementalFetcher):

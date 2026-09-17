@@ -152,11 +152,11 @@ python3 scripts/incremental/fetch_new.py --all            # 确认后下载
 
 | 平台 | 列表获取 | 唯一键 | 自动下载 | 状态 |
 |------|----------|--------|----------|------|
-| B站 | bili_list.py (wbi签名) | bvid | yt-dlp | ✅ 框架就绪，需调环境 |
+| B站 | 内联wbi签名（已验证） | bvid | yt-dlp | ✅ 列表+对比正常，发现1个新增 |
+| YouTube | yt-dlp flat-playlist（已验证） | video_id | media_downloader.py | ✅ 列表正常，下载待验证 |
 | 视频号 | 网络捕获JSON | 标题+大小 | 需手动捕获 | ⚠️ 需手动捕获列表 |
+| 抖音 | 手动提供列表 | aweme_id/URL | media_downloader.py | ⚠️ 框架就绪，下载403待调试 |
 | 公众号 | 网络捕获 | URL | 需手动捕获 | ⚠️ 待实现 |
-| 抖音 | （反爬403） | aweme_id | - | ❌ 暂不可用 |
-| YouTube | yt-dlp | video_id | yt-dlp | 🔲 待接入 |
 
 ---
 
