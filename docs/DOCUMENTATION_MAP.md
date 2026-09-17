@@ -67,6 +67,7 @@
 |------|------|------|
 | 视频号采集SOP | `docs/SOP-wechat-channels-capture.md` | 捕获→下载→解密→验证全流程 |
 | 公众号采集SOP | `docs/SOP-wechat-official-article.md` | 文章采集与OCR流程 |
+| 增量采集SOP | `docs/SOP-incremental-fetch.md` | 多平台内容更新发现与下载（通用框架） |
 | 高质量URL研究 | `docs/RESEARCH-video-quality-url.md` | X-snsvideoflag参数研究 |
 | 视频号API研究 | `docs/RESEARCH-wechat-channels-api.md` | 方案B API研究记录 |
 
