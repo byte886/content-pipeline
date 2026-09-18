@@ -31,9 +31,11 @@
 4. `docs/DIRECTORY_STRUCTURE.md` — 目录结构与存储分工
 5. `project-management/memory/index.md` — 工程记忆（跨会话稳定结论）
 6. `project-management/active/TASK_STATUS.md` + `active/ISSUES.md` — 当前状态
-7. 对应环节的SOP：
+7. 对应环节的SOP（按依赖顺序）：
+   - **微信基本操作（前置依赖）**：`docs/SOP-wechat-basic-operations.md`（窗口管理、搜索、鼠标控制）
    - 视频采集：`docs/SOP-wechat-channels-capture.md`
    - 文章采集：`docs/SOP-wechat-official-article.md`
+   - 增量采集：`docs/SOP-incremental-fetch.md`
    - 高质量URL：`docs/RESEARCH-video-quality-url.md`
    - API研究：`docs/RESEARCH-wechat-channels-api.md`
 

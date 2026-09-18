@@ -54,6 +54,7 @@
 
 ### 1.4 参考文档
 
+- **微信基本操作SOP（前置依赖）**：`docs/SOP-wechat-basic-operations.md`（窗口管理、搜索操作、鼠标控制最佳实践）
 - 视频号采集SOP：`docs/SOP-wechat-channels-capture.md`
 - 公众号采集SOP：`docs/SOP-wechat-official-article.md`
 - 高质量URL研究：`docs/RESEARCH-video-quality-url.md`

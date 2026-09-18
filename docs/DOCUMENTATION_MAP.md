@@ -16,6 +16,9 @@
 2. 当前到哪/下一步：`project-management/active/TASK_STATUS.md` + `active/ISSUES.md`
 3. 跨会话稳定结论：`project-management/memory/index.md`（按需沿concept下钻）
 
+### 微信基本操作（UI自动化）
+1. `docs/SOP-wechat-basic-operations.md` — 窗口管理、搜索操作、鼠标控制最佳实践（所有微信采集的前置依赖）
+
 ### 视频号内容采集
 1. `docs/SOP-wechat-channels-capture.md` — 采集流程（捕获→下载→解密→验证）
 2. `docs/RESEARCH-video-quality-url.md` — X-snsvideoflag参数、6种格式对比
@@ -65,6 +68,7 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
+| 微信基本操作SOP | `docs/SOP-wechat-basic-operations.md` | 窗口管理、搜索操作、鼠标控制最佳实践（所有微信采集的前置依赖） |
 | 视频号采集SOP | `docs/SOP-wechat-channels-capture.md` | 捕获→下载→解密→验证全流程 |
 | 公众号采集SOP | `docs/SOP-wechat-official-article.md` | 文章采集与OCR流程 |
 | 增量采集SOP | `docs/SOP-incremental-fetch.md` | 多平台内容更新发现与下载（通用框架） |

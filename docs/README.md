@@ -18,10 +18,19 @@
 
 ## SOP（标准操作流程）
 
+### 微信相关（按依赖顺序）
+
+| 文件 | 用途 | 依赖 |
+|------|------|------|
+| [SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md) | **微信基本操作**：窗口管理、搜索操作、鼠标控制最佳实践（所有微信采集的前置依赖） | 无 |
+| [SOP-wechat-channels-capture.md](SOP-wechat-channels-capture.md) | 视频号采集：捕获→下载→解密→验证 | 基本操作SOP |
+| [SOP-wechat-official-article.md](SOP-wechat-official-article.md) | 公众号文章采集与 OCR | 基本操作SOP |
+
+### 通用
+
 | 文件 | 用途 |
 |------|------|
-| [SOP-wechat-channels-capture.md](SOP-wechat-channels-capture.md) | 视频号采集：捕获→下载→解密→验证 |
-| [SOP-wechat-official-article.md](SOP-wechat-official-article.md) | 公众号文章采集与 OCR |
+| [SOP-incremental-fetch.md](SOP-incremental-fetch.md) | 增量采集：多平台内容更新发现与下载（通用框架） |
 | [SOP-books-extraction.md](SOP-books-extraction.md) | 电子资料采集与转码 |
 
 ## 研究记录

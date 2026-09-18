@@ -106,8 +106,10 @@ multiplatform-content-pipeline/
 │   ├── WORKFLOW.md                    # 工作流
 │   ├── REQUIREMENTS.md                # 需求与决策溯源
 │   ├── ROADMAP.md                     # 路线图
+│   ├── SOP-wechat-basic-operations.md   # 微信基本操作（前置依赖）
 │   ├── SOP-wechat-channels-capture.md
 │   ├── SOP-wechat-official-article.md
+│   ├── SOP-incremental-fetch.md
 │   ├── SOP-books-extraction.md
 │   ├── RESEARCH-video-quality-url.md
 │   ├── RESEARCH-wechat-channels-api.md

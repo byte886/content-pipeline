@@ -1,9 +1,10 @@
 # 视频号内容采集SOP
 
 > **文档类型**：SOP（标准操作流程）
-> **更新时间**：2026-09-15
+> **更新时间**：2026-09-18
 > **维护者**：AI自动维护 + 用户审核
-> **适用范围**：微信视频号「交易的游戏」内容自动化采集
+> **适用范围**：微信视频号内容自动化采集
+> **前置依赖**：[SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)（微信基本操作、UI自动化、鼠标控制）
 
 ---
 
@@ -168,7 +169,19 @@ python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <视频�
 
 ## 4. 采集流程
 
-### 4.1 捕获视频URL
+### 4.1 搜索并进入视频号主页
+
+> 微信UI自动化操作（搜索、导航、鼠标控制）详见 [SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)。
+
+**快速步骤**：
+1. 打开微信并激活主窗口（不要最大化）
+2. 切回聊天列表状态，退出聊天输入状态
+3. 按3次Tab键切换到搜索框
+4. 输入视频号名称（剪贴板方式）
+5. 单击第一个搜索建议触发搜索（鼠标按下并及时释放，不要搞成拖拽效果）
+6. 在搜索结果中找到视频号条目，点击进入主页
+
+### 4.2 捕获视频URL
 
 1. 启动捕获工具（推荐带上游代理）：
    ```bash
@@ -246,6 +259,14 @@ A: `-upstream http://127.0.0.1:7890` 把ClashX作为上游代理。我们的MITM
 - [x] 自动转文字（FunASR，313个短视频已全部完成，23个直播回放待转写）
 - [ ] 自动生成字幕
 - [ ] 高质量URL默认使用xWT111格式（比默认大69%）
+
+---
+
+## 8. 参考文档
+
+- 微信基本操作（UI自动化、鼠标控制）：[SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)
+- 公众号文章采集：[SOP-wechat-official-article.md](SOP-wechat-official-article.md)
+- 视频质量研究：[RESEARCH-video-quality-url.md](RESEARCH-video-quality-url.md)
 
 ---
 
