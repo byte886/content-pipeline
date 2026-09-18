@@ -172,7 +172,7 @@ multiplatform-content-pipeline/
 
 ## 关键技术
 
-- **视频号采集**：MITM代理捕获URL + 解密（详见 `docs/SOP-wechat-channels-capture.md`）
+- **视频号采集**：MITM代理捕获URL + 解密（详见 `docs/guides/wechat-channels-capture.md`）
 - **转写**：FunASR（SenseVoiceSmall模型，9.7x实时）
 - **OCR**：macOS Vision框架（编译二进制，1.5秒/张）
 - **增量采集**：水位（watermark）机制，先成功落地再推进水位
