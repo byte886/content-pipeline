@@ -1,89 +1,30 @@
-# SOP：增量采集（多平台内容更新发现与下载）
+# SOP：增量采集（多平台内容更新发现）
 
-> **文档类型**：SOP（标准操作流程）
-> **适用场景**：定期检查已关注博主是否有新内容，自动发现并下载新增视频/文章
+> **适用场景**：定期检查已关注博主是否有新内容，自动发现并下载
 > **核心工具**：`scripts/incremental/fetch_new.py`
 
 ---
 
-## 1. 设计原理
-
-### 1.1 通用框架
-
-增量采采用**平台无关的通用框架**，各平台只实现两个方法：
-
-| 方法 | 职责 | 平台差异 |
-|------|------|----------|
-| `fetch_latest_list()` | 获取博主最新内容列表 | 各平台不同（API/网络捕获/爬虫） |
-| `get_unique_key()` | 提取唯一标识符 | B站=bvid，视频号=标题+大小，公众号=URL |
-
-对比、下载、更新manifest是**通用逻辑**，不随平台变化。
-
-### 1.2 唯一标识符
-
-| 平台 | 唯一键 | 说明 |
-|------|--------|------|
-| B站 | `bvid` | 视频唯一ID，精确去重 |
-| 视频号 | `标题+大小(MB)` | 历史数据无唯一ID，用组合键（可能有重复标题） |
-| 公众号 | `文章URL` | 含__biz和mid，唯一 |
-| 抖音 | `aweme_id` | （反爬，暂不可用） |
-| YouTube | `video_id` | 视频唯一ID |
-
-### 1.3 增量流程
-
-```
-获取博主最新列表 → 与manifest对比 → 找出新增项 → 下载 → 追加到manifest → 同步网盘
-```
-
----
-
-## 2. 使用方法
-
-### 2.1 单个博主增量检查
+## 1. 使用方法
 
 ```bash
 # B站（dry-run，只对比不下载）
 python3 scripts/incremental/fetch_new.py --platform bilibili --account 宝石学家老许 --dry-run
 
-# B站（实际下载新增）
-python3 scripts/incremental/fetch_new.py --platform bilibili --account 宝石学家老许
-
-# 视频号（需先捕获列表）
-python3 scripts/incremental/fetch_new.py --platform wechat_channels --account 交易的游戏 \
-  --list-file /tmp/wechat_channels_list.json
-```
-
-### 2.2 所有启用的源批量检查
-
-```bash
-# 所有源dry-run
+# 所有启用的源批量检查
 python3 scripts/incremental/fetch_new.py --all --dry-run
 
-# 所有源实际下载
+# 确认后实际下载
 python3 scripts/incremental/fetch_new.py --all
 ```
 
-### 2.3 视频号增量的特殊步骤
-
-视频号没有公开API，需要先通过网络捕获获取列表：
-
-1. 用res-downloader捕获视频号列表页请求
-2. 保存为JSON文件（格式：列表，每项含title/size_mb）
-3. 运行增量脚本指定 `--list-file`
-
-```bash
-# 步骤1：捕获列表（参考 SOP-wechat-channels-capture.md）
-# 步骤2：保存为 /tmp/wechat_list.json
-# 步骤3：增量检查
-python3 scripts/incremental/fetch_new.py --platform wechat_channels --account 交易的游戏 \
-  --list-file /tmp/wechat_list.json --dry-run
-```
+**视频号特殊步骤**：需先通过网络捕获获取列表JSON，再指定 `--list-file` 参数。
 
 ---
 
-## 3. 配置
+## 2. 配置
 
-采集源配置在 `config/sources.json`：
+采集源配置在 `config/sources.json`，新增博主时在此文件添加即可：
 
 ```json
 {
@@ -91,96 +32,43 @@ python3 scripts/incremental/fetch_new.py --platform wechat_channels --account �
     {
       "platform": "bilibili",
       "account": "宝石学家老许",
-      "uid": "1841256325",
       "domain": "jewelry",
-      "enabled": true
-    },
-    {
-      "platform": "wechat_channels",
-      "account": "交易的游戏",
-      "domain": "stock",
       "enabled": true
     }
   ]
 }
 ```
 
-新增博主时，在此文件添加配置即可，增量脚本自动识别。
-
 ---
 
-## 4. Manifest结构
-
-每个博主目录下有一个 `manifest.json`，是已采集内容的权威清单：
-
-```
-library/01_video/jewelry/宝石学家老许/manifest.json
-library/01_video/stock/交易的游戏/manifest.json
-```
-
-增量采集时：
-- 读取manifest获取已有内容
-- 对比最新列表发现新增
-- 下载后追加到manifest
-- 编号自动续接（如已有743个，新的从744开始）
-
----
-
-## 5. 定期运行建议
-
-### 5.1 手动运行
-
-需要检查更新时手动运行：
-```bash
-python3 scripts/incremental/fetch_new.py --all --dry-run  # 先看有多少新增
-python3 scripts/incremental/fetch_new.py --all            # 确认后下载
-```
-
-### 5.2 定时任务（可选）
-
-如需自动定期检查，可配置cron：
-```bash
-# 每天早上9点检查一次（dry-run，不自动下载）
-0 9 * * * cd /path/to/project && python3 scripts/incremental/fetch_new.py --all --dry-run >> logs/incremental.log 2>&1
-```
-
-> 注意：视频号增量需要手动捕获列表，不适合完全自动化。
-
----
-
-## 6. 平台实现状态
+## 3. 平台实现状态
 
 | 平台 | 列表获取 | 唯一键 | 自动下载 | 状态 |
 |------|----------|--------|----------|------|
-| B站 | 内联wbi签名 | bvid | yt-dlp | ⚠️ API临时412（需已登录cookie，游客态被限） |
-| YouTube | yt-dlp flat-playlist | video_id | media_downloader.py | ✅ 列表+下载均已验证 |
+| B站 | 内联wbi签名 | bvid | yt-dlp | ⚠️ API临时412（需已登录cookie） |
+| YouTube | yt-dlp flat-playlist | video_id | media_downloader.py | ✅ 已验证 |
 | 视频号 | 网络捕获JSON | 标题+大小 | 需手动捕获 | ⚠️ 需手动捕获列表 |
-| 抖音 | 手动提供列表 | aweme_id/URL | media_downloader.py | ❌ 403反爬（yt-dlp最新版仍失败，需换提取方式） |
-| 公众号 | 网络捕获JSON | URL | fetcher.py | ⚠️ 框架就绪，下载需微信登录态 |
-
-### B站412解决方案
-
-B站游客态调用`x/space/wbi/arc/search`会被412限制（短时间多次请求触发）。解决方案：
-1. 导出已登录B站的Chrome cookie：`python3 platforms/bilibili/export_cookies.py`
-2. 在请求中携带SESSDATA等cookie
-3. 或降低请求频率（每次间隔≥30秒）
+| 抖音 | 手动提供列表 | aweme_id | media_downloader.py | ❌ 403反爬 |
+| 公众号 | 网络捕获JSON | URL | fetcher.py | ⚠️ 框架就绪，需微信登录态 |
 
 ---
 
-## 7. 新增平台接入步骤
+## 4. Manifest机制
 
-1. 在 `scripts/incremental/fetch_new.py` 中继承 `IncrementalFetcher`
-2. 实现 `fetch_latest_list()` 和 `get_unique_key()`
-3. 实现 `download_item()`（或复用通用下载逻辑）
-4. 在 `FETCHER_REGISTRY` 中注册
-5. 在 `config/sources.json` 中添加该平台的源
+每个博主目录下有一个 `manifest.json`，是已采集内容的权威清单：
+- 增量采集时读取manifest对比最新列表
+- 下载后追加到manifest，编号自动续接
+- 不要手动修改manifest，通过脚本更新
 
 ---
 
-## 8. 注意事项
+## 5. 注意事项
 
 - **dry-run优先**：首次运行或不确定时先用 `--dry-run` 查看新增数量
-- **视频号去重**：用标题+大小组合键，可能有重复标题（如同主题多次直播），大小可区分
-- **manifest是权威**：不要手动修改manifest，通过脚本更新
+- **视频号去重**：用标题+大小组合键区分同主题多次直播
 - **增量后同步网盘**：下载新增后运行网盘同步脚本
 - **B站API限制**：需要wbi签名，直接调用可能412，需复用bili_list.py的签名逻辑
+
+---
+
+*最后更新：2026-09-17*
