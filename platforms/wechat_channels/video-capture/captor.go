@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"compress/gzip"
 	"crypto/md5"
 	"crypto/rand"
 	"crypto/rsa"
@@ -42,9 +44,15 @@ type VideoInfo struct {
 	CoverURL    string            `json:"cover_url"`
 	Size        int64             `json:"size"`
 	Description string            `json:"description"`
+	ShortTitle  string            `json:"short_title"`
+	Duration    int               `json:"duration"`
+	Width       int               `json:"width"`
+	Height      int               `json:"height"`
+	MD5         string            `json:"md5"`
 	Classify    string            `json:"classify"`
 	Suffix      string            `json:"suffix"`
 	DecodeKey   string            `json:"decode_key"`
+	Account     string            `json:"account"`
 	OtherData   map[string]string `json:"other_data"`
 	CapturedAt  string            `json:"captured_at"`
 }
@@ -353,10 +361,11 @@ func (c *Captor) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Re
 		c.logAPIResponse(resp)
 	}
 
-	// 视频号页面 - 注入JS
+	// 视频号页面 - 注入自动滚动JS
 	if strings.HasSuffix(host, "channels.weixin.qq.com") &&
-		(strings.Contains(path, "/web/pages/feed") || strings.Contains(path, "/web/pages/home")) {
-		return c.replaceWxJsContent(resp, ".js\"", fmt.Sprintf(".js?v=%s\"", c.version))
+		(strings.Contains(path, "/web/pages/feed") || strings.Contains(path, "/web/pages/home") ||
+			strings.Contains(path, "/web/pages/profile")) {
+		return c.injectVideoFeedHook(resp)
 	}
 
 	// 公众号主页(mp_profile) - 注入文章列表提取JS
@@ -552,19 +561,25 @@ func (c *Captor) handleMedia(body []byte) {
 		return
 	}
 
-	urlSign := md5Hash(rawURL)
+	// 优先使用md5sum作为唯一标识，没有则用URL
+	uniqueKey := rawURL
+	if md5sum, ok := firstMedia["md5sum"].(string); ok && md5sum != "" {
+		uniqueKey = md5sum
+	}
+
+	urlSign := md5Hash(uniqueKey)
 	if _, loaded := c.mediaMark.Load(urlSign); loaded {
 		return
 	}
 
 	// 构建视频信息
 	video := &VideoInfo{
-		ID:          urlSign[:16],
-		URL:         rawURL,
-		Classify:    "video",
-		Suffix:      ".mp4",
-		OtherData:   make(map[string]string),
-		CapturedAt:  time.Now().Format("2006-01-02 15:04:05"),
+		ID:         urlSign[:16],
+		URL:        rawURL,
+		Classify:   "video",
+		Suffix:     ".mp4",
+		OtherData:  make(map[string]string),
+		CapturedAt: time.Now().Format("2006-01-02 15:04:05"),
 	}
 
 	// 处理图片类型
@@ -578,12 +593,16 @@ func (c *Captor) handleMedia(body []byte) {
 		video.URL += urlToken
 	}
 
-	// 文件大小
-	switch size := firstMedia["fileSize"].(type) {
-	case float64:
-		video.Size = int64(size)
-	case string:
-		fmt.Sscanf(size, "%d", &video.Size)
+	// 文件大小（优先cdnFileSize，其次fileSize）
+	if cdnSize, ok := firstMedia["cdnFileSize"].(float64); ok && cdnSize > 0 {
+		video.Size = int64(cdnSize)
+	} else {
+		switch size := firstMedia["fileSize"].(type) {
+		case float64:
+			video.Size = int64(size)
+		case string:
+			fmt.Sscanf(size, "%d", &video.Size)
+		}
 	}
 
 	// 封面URL
@@ -596,22 +615,63 @@ func (c *Captor) handleMedia(body []byte) {
 		video.DecodeKey = decodeKey
 	}
 
-	// 描述
+	// 描述（标题）
 	if desc, ok := result["description"].(string); ok {
-		video.Description = desc
+		video.Description = strings.TrimSpace(desc)
 	}
 
-	// 视频格式
+	// 短标题
+	if shortTitles, ok := result["shortTitle"].([]interface{}); ok && len(shortTitles) > 0 {
+		if st, ok := shortTitles[0].(map[string]interface{}); ok {
+			if title, ok := st["shortTitle"].(string); ok {
+				video.ShortTitle = strings.TrimSpace(title)
+			}
+		}
+	}
+
+	// 视频时长
+	if duration, ok := firstMedia["videoPlayLen"].(float64); ok {
+		video.Duration = int(duration)
+	}
+
+	// 分辨率
+	if width, ok := firstMedia["width"].(float64); ok {
+		video.Width = int(width)
+	}
+	if height, ok := firstMedia["height"].(float64); ok {
+		video.Height = int(height)
+	}
+
+	// MD5唯一标识
+	if md5sum, ok := firstMedia["md5sum"].(string); ok {
+		video.MD5 = md5sum
+	}
+
+	// 视频格式（多种清晰度）
 	if spec, ok := firstMedia["spec"].([]interface{}); ok {
 		var formats []string
+		var maxBitrate int64 = 0
+		var bestFormat string
 		for _, item := range spec {
 			if m, ok := item.(map[string]interface{}); ok {
 				if format, ok := m["fileFormat"].(string); ok {
 					formats = append(formats, format)
 				}
+				// 找最高清晰度
+				if bitrate, ok := m["videoBitrate"].(float64); ok {
+					if int64(bitrate) > maxBitrate {
+						maxBitrate = int64(bitrate)
+						if f, ok := m["fileFormat"].(string); ok {
+							bestFormat = f
+						}
+					}
+				}
 			}
 		}
 		video.OtherData["wx_file_formats"] = strings.Join(formats, "#")
+		if bestFormat != "" {
+			video.OtherData["best_format"] = bestFormat
+		}
 	}
 
 	c.mediaMark.Store(urlSign, true)
@@ -625,10 +685,13 @@ func (c *Captor) handleMedia(body []byte) {
 	// 立即保存到文件
 	c.saveVideos()
 
-	fmt.Printf("[%s] 捕获到新%s: %s\n", time.Now().Format("15:04:05"), video.Classify, truncate(video.Description, 50))
-	if video.Description == "" {
-		fmt.Printf("  URL: %s\n", truncate(video.URL, 80))
+	title := video.ShortTitle
+	if title == "" {
+		title = video.Description
 	}
+	fmt.Printf("[%s] 捕获到新%s: %s (时长:%ds 分辨率:%dx%d)\n",
+		time.Now().Format("15:04:05"), video.Classify, truncate(title, 50),
+		video.Duration, video.Width, video.Height)
 	fmt.Printf("  总计: %d 个资源\n", count)
 
 	// 自动下载
@@ -657,11 +720,27 @@ func (c *Captor) injectArticleListHook(resp *http.Response) *http.Response {
   // 发送页面HTML到代理，用于调试DOM结构
   function sendPageHTML(reason) {
     var now = Date.now();
-    if (now - lastSent < 1000) return; // 限流：最多每秒1次
+    if (now - lastSent < 500) return; // 限流：最多每秒2次
     lastSent = now;
     
-    var html = document.documentElement.outerHTML.substring(0, 80000);
-    var bodyText = document.body ? document.body.innerText.substring(0, 8000) : '';
+    var html = document.documentElement.outerHTML.substring(0, 100000);
+    var bodyText = document.body ? document.body.innerText.substring(0, 10000) : '';
+    var allText = document.body ? document.body.textContent.substring(0, 10000) : '';
+    
+    // 获取所有可见文本
+    var visibleText = '';
+    try {
+      var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      var node;
+      var count = 0;
+      while (node = walker.nextNode()) {
+        if (node.textContent && node.textContent.trim()) {
+          visibleText += node.textContent.trim() + ' | ';
+          count++;
+          if (count > 100) break;
+        }
+      }
+    } catch(e) {}
     
     fetch('https://wxapp.tc.qq.com/res-downloader/wechat?type=3', {
       method: 'POST',
@@ -670,7 +749,10 @@ func (c *Captor) injectArticleListHook(resp *http.Response) *http.Response {
         type: 'page_html', 
         html: html, 
         bodyText: bodyText,
+        allText: allText,
+        visibleText: visibleText,
         url: location.href,
+        title: document.title,
         reason: reason || 'periodic'
       })
     });
@@ -962,6 +1044,157 @@ func (c *Captor) injectVideoHook(resp *http.Response) *http.Response {
 	resp.ContentLength = int64(len(newBodyBytes))
 	resp.Header.Set("Content-Length", fmt.Sprintf("%d", len(newBodyBytes)))
 
+	return resp
+}
+
+// injectVideoFeedHook 注入视频号页面自动滚动Hook
+func (c *Captor) injectVideoFeedHook(resp *http.Response) *http.Response {
+	log.Printf("[VideoCapture] injectVideoFeedHook被调用，URL: %s", resp.Request.URL.String())
+
+	// 处理gzip压缩
+	var reader io.Reader = resp.Body
+	if strings.EqualFold(resp.Header.Get("Content-Encoding"), "gzip") {
+		log.Printf("[VideoCapture] 响应是gzip压缩，正在解压")
+		gz, err := gzip.NewReader(resp.Body)
+		if err != nil {
+			log.Printf("[VideoCapture] gzip解压失败: %v", err)
+			return resp
+		}
+		defer gz.Close()
+		reader = gz
+		resp.Header.Del("Content-Encoding")
+	}
+
+	body, err := io.ReadAll(reader)
+	if err != nil {
+		log.Printf("[VideoCapture] 读取响应体失败: %v", err)
+		return resp
+	}
+	resp.Body.Close()
+
+	log.Printf("[VideoCapture] 响应体长度: %d, 包含</head>: %v, 包含<body>: %v",
+		len(body), bytes.Contains(body, []byte("</head>")), bytes.Contains(body, []byte("<body>")))
+
+	// 自动滚动JS：持续滚动页面加载更多视频，直到滚动到底部或达到最大次数
+	autoScrollJS := `
+<script>
+(function() {
+  if (window.__videoAutoScrollStarted) return;
+  window.__videoAutoScrollStarted = true;
+  
+  var scrollCount = 0;
+  var maxScrolls = 500;
+  var noChangeCount = 0;
+  var lastVideoCount = 0;
+  var lastScrollHeight = 0;
+  
+  // 找到所有可滚动的容器
+  function findScrollContainers() {
+    var containers = [];
+    var all = document.querySelectorAll('*');
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i];
+      var style = window.getComputedStyle(el);
+      if ((style.overflowY === 'auto' || style.overflowY === 'scroll' || 
+           style.overflow === 'auto' || style.overflow === 'scroll') &&
+          el.scrollHeight > el.clientHeight) {
+        containers.push(el);
+      }
+    }
+    // 如果没有找到，使用documentElement
+    if (containers.length === 0) {
+      containers.push(document.documentElement);
+    }
+    return containers;
+  }
+  
+  // 触发鼠标滚轮事件
+  function triggerWheel(el, deltaY) {
+    var event = new WheelEvent('wheel', {
+      deltaY: deltaY,
+      bubbles: true,
+      cancelable: true
+    });
+    el.dispatchEvent(event);
+  }
+  
+  function autoScroll() {
+    if (scrollCount >= maxScrolls) {
+      console.log('[VideoCapture] 达到最大滚动次数，停止');
+      return;
+    }
+    
+    var containers = findScrollContainers();
+    console.log('[VideoCapture] 找到' + containers.length + '个可滚动容器');
+    
+    // 对每个可滚动容器执行滚动
+    for (var i = 0; i < containers.length; i++) {
+      var el = containers[i];
+      // 方法1: scrollTop
+      el.scrollTop = el.scrollHeight;
+      // 方法2: scrollTo
+      if (el.scrollTo) {
+        el.scrollTo(0, el.scrollHeight);
+      }
+      // 方法3: 鼠标滚轮事件
+      triggerWheel(el, 1000);
+    }
+    
+    // 同时滚动window
+    window.scrollTo(0, document.body.scrollHeight);
+    triggerWheel(document.body, 1000);
+    
+    scrollCount++;
+    
+    // 检查是否还有新内容（通过视频卡片数量+滚动高度双重判断）
+    setTimeout(function() {
+      var videoCards = document.querySelectorAll('[class*="video"], [class*="feed"], [class*="card"], [class*="item"]');
+      var currentVideoCount = videoCards.length;
+      var currentScrollHeight = document.body.scrollHeight;
+      
+      // 双重判断：视频数量和页面高度都没变化才算无新内容
+      var noChange = (currentVideoCount === lastVideoCount && currentScrollHeight === lastScrollHeight);
+      
+      if (noChange) {
+        noChangeCount++;
+        if (noChangeCount >= 15) {
+          console.log('[VideoCapture] 已滚动到底部，共滚动' + scrollCount + '次，视频卡片数: ' + currentVideoCount + ', 页面高度: ' + currentScrollHeight);
+          return;
+        }
+      } else {
+        noChangeCount = 0;
+        console.log('[VideoCapture] 第' + scrollCount + '次滚动，视频卡片数: ' + currentVideoCount + ' (+' + (currentVideoCount - lastVideoCount) + '), 页面高度: ' + currentScrollHeight + ' (+' + (currentScrollHeight - lastScrollHeight) + ')');
+      }
+      lastVideoCount = currentVideoCount;
+      lastScrollHeight = currentScrollHeight;
+      autoScroll();
+    }, 2000);
+  }
+  
+  // 延迟启动，等待页面加载
+  setTimeout(autoScroll, 3000);
+  console.log('[VideoCapture] 视频号自动滚动已启动');
+})();
+</script>
+`
+
+	// 在</head>前注入JS
+	modified := bytes.Replace(body, []byte("</head>"), []byte(autoScrollJS+"</head>"), 1)
+	if len(modified) == len(body) {
+		log.Printf("[VideoCapture] </head>替换失败，尝试<body>替换")
+		// 如果没有</head>，在<body>后注入
+		modified = bytes.Replace(body, []byte("<body>"), []byte("<body>"+autoScrollJS), 1)
+	}
+
+	if len(modified) > len(body) {
+		log.Printf("[VideoCapture] JS注入成功，原长度: %d, 新长度: %d", len(body), len(modified))
+	} else {
+		log.Printf("[VideoCapture] JS注入失败，长度未变化")
+	}
+
+	resp.Body = io.NopCloser(bytes.NewReader(modified))
+	resp.ContentLength = int64(len(modified))
+	resp.Header.Set("Content-Length", fmt.Sprintf("%d", len(modified)))
 	return resp
 }
 
