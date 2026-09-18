@@ -84,19 +84,22 @@ multiplatform-content-pipeline/
 │   └── 08_sources/<source_id>/        # 平台无关外部源
 ├── docs/                              # 工程文档
 │   ├── DOCUMENTATION_MAP.md           # 文档地图（先读这个）
-│   ├── DIRECTORY_STRUCTURE.md         # 本文档
+│   ├── DIRECTORY_STRUCTURE.md         # 本文档（目录结构+命名规范）
 │   ├── WORKFLOW.md                    # 工作流（五层架构流水线）
-│   ├── REQUIREMENTS.md                # 需求与决策溯源
+│   ├── REQUIREMENTS.md                # 需求与功能范围
 │   ├── ROADMAP.md                     # 路线图
-│   ├── SOP-wechat-channels-capture.md
-│   ├── SOP-wechat-official-article.md
-│   ├── RESEARCH-video-quality-url.md
-│   ├── RESEARCH-wechat-channels-api.md
-│   ├── DESIGN-knowledge-base-organization.md
-│   └── project-management/
-│       ├── decisions/                 # ADR决策记录（只增不改）
-│       ├── memory/                    # 工程记忆（跨会话稳定结论）
-│       └── standards/                 # 规范文档
+│   ├── README.md                      # docs目录说明
+│   ├── guides/                        # 操作指南（怎么做）
+│   │   ├── wechat-basic-operations.md # 微信基本操作
+│   │   ├── wechat-channels-capture.md # 视频号采集
+│   │   ├── wechat-official-article.md # 公众号采集
+│   │   ├── incremental-fetch.md       # 增量采集
+│   │   └── books-extraction.md        # 电子资料处理
+│   ├── research/                      # 技术研究（已验证结论）
+│   │   ├── video-quality-url.md
+│   │   └── wechat-channels-api.md
+│   └── design/                       # 架构设计
+│       └── knowledge-base-organization.md
 ├── project-management/
 │   └── active/
 │       ├── TASK_STATUS.md             # 任务状态（单一进度真相）
@@ -225,4 +228,35 @@ class PlatformFetcher(ABC):
 
 ---
 
-*本文档随项目演进持续更新。目录结构变更时必须同步更新本文档。*
+## 八、文件命名规范
+
+> 参考高顿项目命名规范简化，适用于本项目所有工程文档。
+
+### 8.1 五类命名形态速查
+
+| 类型 | 命名风格 | 什么时候用 | 示例 |
+|------|---------|-----------|------|
+| **固定名** | 原样不改 | 社区/工具约定名 | README.md、AGENTS.md |
+| **治理/骨架** | 大写 UPPER_SNAKE_CASE | 规范、模板、全局索引、顶层骨架 | WORKFLOW.md、REQUIREMENTS.md、DOCUMENTATION_MAP.md |
+| **方法/SOP** | 小写 kebab-case | 怎么做一件事（操作指南、流程、工具用法） | wechat-basic-operations.md、incremental-fetch.md |
+| **脚本** | 小写 snake_case | .py/.sh/.js 可执行脚本 | baidu_upload.py、fetch_new.py |
+| **ADR** | ADR-NNN-中文 | 架构决策记录 | ADR-001-项目文档架构与治理规范.md |
+
+### 8.2 关键判据
+
+- "**必须遵守什么 / 标准是什么 / 当前状态**" → **大写**
+- "**怎么做一件事 / SOP / 操作指南**" → **小写 kebab-case**
+
+### 8.3 docs目录分类
+
+```
+docs/
+├── guides/          # 操作指南（怎么做，小写kebab-case）
+├── research/        # 技术研究（已验证结论，小写kebab-case）
+├── design/          # 架构设计（方案设计，小写kebab-case）
+└── *.md             # 根目录骨架文档（大写UPPER_SNAKE_CASE）
+```
+
+---
+
+*本文档随项目演进持续更新。目录结构或命名规范变更时必须同步更新本文档。*
