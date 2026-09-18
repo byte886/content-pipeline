@@ -1,273 +1,110 @@
 # 视频号内容采集SOP
 
-> **文档类型**：SOP（标准操作流程）
+> **文档类型**：SOP
 > **更新时间**：2026-09-18
-> **维护者**：AI自动维护 + 用户审核
-> **适用范围**：微信视频号内容自动化采集
-> **前置依赖**：[SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)（微信基本操作、UI自动化、鼠标控制）
+> **前置依赖**：[SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)（窗口管理、搜索、鼠标控制）
 
 ---
 
-## 1. 概述
+## 快速参考
 
-本文档描述微信视频号内容的自动化采集流程，包括视频URL捕获、下载、解密和存档。
-
-**目标账号**：
-- 视频号名称：交易的游戏
-- 认证：证券投资顾问（刘广义，执业编号A0630624060004）
-- 关联公众号：顶底之王
-
----
-
-## 2. 核心技术突破
-
-### 2.1 微信代理问题（关键）
-
-**问题**：微信完全不走系统代理，传统的只设置Wi-Fi代理的方式无效。
-
-**根本原因**：微信使用Ethernet接口（IP 192.168.2.9），而不是Wi-Fi。
-
-**解决方案**：必须对**所有活动网络服务**设置代理，而不仅仅是Wi-Fi。
-
-```bash
-# 获取所有活动网络服务
-networksetup -listallnetworkservices
-
-# 对每个活动服务设置HTTP和HTTPS代理
-networksetup -setwebproxy "Ethernet" 127.0.0.1 8899
-networksetup -setsecurewebproxy "Ethernet" 127.0.0.1 8899
-networksetup -setwebproxy "Wi-Fi" 127.0.0.1 8899
-networksetup -setsecurewebproxy "Wi-Fi" 127.0.0.1 8899
-```
-
-**参考**：RES Downloader源码 `core/system_darwin.go` 的 `setProxy()` 函数。
-
-### 2.2 视频解密机制（关键）
-
-**问题**：微信视频号的短视频是加密的，直接下载后无法播放。
-
-**解密原理**：
-1. 每个视频有一个 `DecodeKey`（9-10位数字字符串，如 `950135168`）
-2. 用 `DecodeKey` 作为种子，通过 **ISAAC64** 伪随机数生成器生成 128KB 字节数组
-3. 将这个字节数组与文件前 128KB 进行 XOR 解密
-4. 解密后的文件是标准 MP4 格式
-
-**实现方式**：
-- 使用 Node.js 运行 RES Downloader 自带的 `decrypt.js`（Emscripten 编译的 WASM）
-- 关键函数：`Module.WxIsaac64(seed).generate(131072)` 生成 128KB 数组
-- 解密脚本：`platforms/wechat_channels/video-downloader/wechat_decrypt.js`
-
-**直播回放**：不需要解密（无 DecodeKey），可直接下载播放。
-
-### 2.3 视频质量说明
-
-- **默认URL**：返回xWT113格式（约2.32MB/个，720x1280）
-- **高质量URL**：在URL后添加 `&X-snsvideoflag=xWT111` 可获取最大格式（约3.92MB/个，比默认大69%）
-- **6种格式大小**：xWT111(3.92MB) > xWT112(3.01MB) > xWT126(2.68MB) > xWT113(2.32MB,默认) > xWT127(2.15MB) > xWT128(1.63MB)
-- **原始版本**：原始视频可达48.5MB，Quality=1方式（只保留encfilekey+token）测试下载0字节，尚未找到正确构建方式
-- **当前策略**：使用默认URL下载，后续可优化为xWT111格式
-- **详细研究**：见 `docs/RESEARCH-video-quality-url.md`
+| 任务 | 命令 |
+|------|------|
+| 启动捕获（直连） | `cd platforms/wechat_channels/video-capture && ./video-capture -port 8899 -output /tmp/capture.json -upstream ""` |
+| 启动捕获（带ClashX上游） | `./video-capture -port 8899 -output /tmp/capture.json -upstream http://127.0.0.1:7890` |
+| 停止捕获 | Ctrl+C（自动清除代理），或 `bash stop.sh` |
+| 批量下载+解密 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <list.json> <outdir> <live\|short>` |
+| 手动解密 | `node platforms/wechat_channels/video-downloader/wechat_decrypt.js <DecodeKey> <file.mp4>` |
 
 ---
 
-## 3. 工具说明
+## 1. 采集流程
 
-### 3.1 视频捕获工具
+### 1.1 启动捕获工具
 
-**位置**：`platforms/wechat_channels/video-capture/`
-
-**功能**：
-- 启动时自动设置系统代理（对所有活动网络服务）
-- 退出时自动清除系统代理
-- 通过 MITM 代理注入 JS Hook，捕获视频号视频 URL
-- 支持自动下载（可选）
-- 支持上游代理（如 ClashX），实现国内直连/国外自动VPN
-
-**使用方法**：
-```bash
-# 默认模式（自动使用ClashX，国内直连/国外自动VPN）
-./video-capture -port 8899 -output videos.json
-
-# 直连模式（禁用上游代理）
-./video-capture -port 8899 -output videos.json -upstream ""
-
-# 自定义上游代理地址
-./video-capture -port 8899 -output videos.json -upstream http://127.0.0.1:1080
-
-# 不自动设置系统代理（需手动配置）
-./video-capture -port 8899 -output videos.json -no-auto-proxy
-```
-
-**上游代理健康检查**：
-- 启动时自动检查上游代理（默认ClashX 7890端口）是否可用
-- 如果ClashX未启动或端口不通，**自动降级为直连模式**并打印警告
-- 警告示例：`⚠️ 上游代理不可用 (http://127.0.0.1:7890)，将自动降级为直连模式`
-- 降级后国内视频号仍可正常采集，国外资源可能无法访问
-
-**启动前检查清单**：
-```bash
-# 1. 检查ClashX是否运行
-nc -z 127.0.0.1 7890 && echo "ClashX正常" || echo "ClashX未运行"
-
-# 2. 如果ClashX未运行，可选择：
-#    a) 启动ClashX后再运行捕获工具
-#    b) 使用 -upstream "" 直连模式（国内视频号足够）
-```
-
-**上游代理说明**：
-- `-upstream` 参数指定上游代理地址（通常是 ClashX 的 `http://127.0.0.1:7890`）
-- 设置后，所有上游请求走 ClashX，由 ClashX 根据规则自动选择直连或 VPN
-- 国内域名（finder.video.qq.com、mp.weixin.qq.com 等）自动直连
-- 国外域名自动走 VPN 节点
-- 不影响 iTerm 的 Shell 环境变量和 TUN 模式
-
-**代理影响范围**：
-| 程序 | 是否受影响 | 原因 |
-|------|-----------|------|
-| Chrome（无代理扩展） | ✅ 受影响 | 读系统代理 |
-| Chrome（SwitchyOmega） | ❌ 不受影响 | 扩展覆盖系统代理 |
-| iTerm 命令行工具 | ❌ 不受影响 | 读 Shell 环境变量，不读系统代理 |
-| TUN 模式下的程序 | ❌ 基本不受影响 | TUN 在网络层接管，绕过本地回环 |
-| 微信 | ✅ 受影响（正是需要的） | 读系统代理 |
-
-> **注意**：仅捕获 URL 阶段需要代理（几分钟），下载阶段完全不走代理。捕获工具退出时自动清除系统代理。
-
-**使用方法**：
 ```bash
 cd platforms/wechat_channels/video-capture
-./video-capture -port 8899 -output videos.json -upstream ""
-# 按 Ctrl+C 停止，会自动清除代理
+# 直连模式（国内视频号足够，推荐）
+nohup ./video-capture -port 8899 -output /tmp/capture.json -upstream "" > /tmp/video_capture_stdout.log 2>&1 &
+echo $! > /tmp/video_capture_pid.txt
 ```
 
-**关键文件**：
-- `main.go` - 入口，代理设置/清除
-- `captor.go` - 核心捕获逻辑（代理+JS注入+URL保存）
-- `proxy_darwin.go` - macOS 系统代理设置/清除
-- `ca.crt` / `ca.key` - 自签名 CA 证书（已信任，持久加载）
+工具启动时自动设置系统代理，退出时自动清除。启动时自动检查ClashX(7890)是否可用，不可用则降级直连。
 
-### 3.2 视频下载工具
+### 1.2 在微信中操作
 
-**位置**：`platforms/wechat_channels/video-downloader/`
-
-**功能**：
-- 批量下载视频
-- 自动解密（调用 Node.js 解密脚本）
-- 验证 MP4 有效性
-- 去重（跳过已下载的有效文件）
-
-**使用方法**：
-```bash
-python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <视频列表.json> <输出目录> <类型:live/short> [起始序号]
-```
-
-**关键文件**：
-- `batch_download_v4.py` - 批量下载脚本
-- `wechat_decrypt.js` - 视频解密脚本（Node.js）
-- `decrypt_node.js` - RES Downloader 的 decrypt.js（去掉 export）
-
----
-
-## 4. 采集流程
-
-### 4.1 搜索并进入视频号主页
-
-> 微信UI自动化操作（搜索、导航、鼠标控制）详见 [SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)。
-
-**快速步骤**：
-1. 打开微信并激活主窗口（不要最大化）
-2. 切回聊天列表状态，退出聊天输入状态
-3. 按3次Tab键切换到搜索框
-4. 输入视频号名称（剪贴板方式）
-5. 单击第一个搜索建议触发搜索（鼠标按下并及时释放，不要搞成拖拽效果）
-6. 在搜索结果中找到视频号条目，点击进入主页
-
-### 4.2 捕获视频URL
-
-1. 启动捕获工具（推荐带上游代理）：
-   ```bash
-   ./video-capture -port 8899 -output videos.json
-   ```
-2. 在微信中搜索「交易的游戏」，进入视频号主页
-3. 切换到「视频」标签，滚动列表到底部
+按 [basic-operations SOP](SOP-wechat-basic-operations.md) 完成：
+1. 激活主窗口，Cmd+F 搜索视频号名称
+2. 在搜索结果中点击视频号条目（悬停确认灰色后点击）
+3. 进入视频号主页后，切换到「视频」标签，滚动列表到底部
 4. 切换到「直播回放」标签，滚动列表到底部
-5. 按 Ctrl+C 停止捕获，工具自动清除系统代理
 
-### 4.2 导出和去重
+> 滚动时鼠标必须放在列表区域内，否则滚动无效。
 
-1. 从捕获工具输出的 `videos.json` 中提取视频
-2. 按 `encfilekey` 去重
-3. 按大小分类：<100MB 为短视频，>=100MB 为直播回放
-4. 过滤掉没有标题的视频
+### 1.3 停止捕获
 
-### 4.3 下载和解密
+```bash
+bash platforms/wechat_channels/video-capture/stop.sh
+# 或 kill $(cat /tmp/video_capture_pid.txt)
+```
 
-1. 短视频：使用 `batch_download_v4.py` 下载，自动解密
-2. 直播回放：使用 `batch_download_v4.py` 下载，无需解密
-3. 验证：检查文件头是否为 `ftyp`（有效 MP4）
+> ⚠️ 禁止用kill -9，否则系统代理不会自动清除。
 
-### 4.4 存档
+### 1.4 导出与去重
 
-1. U盘存档：`/Volumes/Ubuntu-Serv/主播视频/交易的游戏/`
-   - `短视频/` - 短视频 MP4
-   - `直播回放/` - 直播回放 MP4
-   - `短视频清单.csv` - 短视频清单
-   - `直播回放清单.csv` - 直播回放清单
-2. 命名格式：`序号_标题.mp4`
+从 `/tmp/capture.json` 提取视频，按 `encfilekey` 去重，按大小分类（<100MB短视频，>=100MB直播回放）。
 
----
+### 1.5 下载与解密
 
-## 5. 数据统计（截至2026-09-15）
+```bash
+# 短视频（自动解密）
+python3 platforms/wechat_channels/video-downloader/batch_download_v4.py videos_short.json output_dir short
 
-| 类型 | 数量 | 说明 |
-|------|------|------|
-| 短视频 | 313个（有效标题） | 需解密，低分辨率版本 |
-| 直播回放 | 23个（无DecodeKey） | 无需解密 |
-| 公众号文章 | 277篇 | 已采集完成 |
+# 直播回放（无需解密）
+python3 platforms/wechat_channels/video-downloader/batch_download_v4.py videos_live.json output_dir live
+```
+
+验证：文件头为 `ftyp` 即为有效MP4。
 
 ---
 
-## 6. 常见问题
+## 2. 技术要点
 
-### Q1: 微信不走代理怎么办？
-A: 确保对所有活动网络服务设置代理，不仅仅是Wi-Fi。使用 `networksetup -listallnetworkservices` 查看所有服务。
+### 2.1 代理说明
 
-### Q2: 下载的视频无法播放怎么办？
-A: 短视频需要解密。使用 `node platforms/wechat_channels/video-downloader/wechat_decrypt.js <DecodeKey> <文件路径>` 解密。
+微信不走Wi-Fi代理，必须对**所有活动网络服务**设置代理。video-capture自动处理此问题。
 
-### Q3: 如何获取 DecodeKey？
-A: DecodeKey 在捕获的视频数据中，字段名为 `decode_key`（9-10位数字）。
+**代理影响范围**：仅捕获URL阶段（几分钟）设置系统代理，下载阶段不走代理。Chrome等读系统代理的GUI程序会受影响，iTerm/TUN模式不受影响。
 
-### Q4: 直播回放需要解密吗？
-A: 不需要。直播回放没有 DecodeKey，下载后可直接播放。
+### 2.2 视频解密
 
-### Q5: 下载的视频很小（2-5MB）是怎么回事？
-A: 默认URL返回的是xWT113格式（约2.32MB）。添加 `&X-snsvideoflag=xWT111` 可获取最大格式（约3.92MB，比默认大69%）。原始视频可达48.5MB，但Quality=1方式（只保留encfilekey+token）测试下载0字节，尚未找到正确构建方式。详见 `docs/RESEARCH-video-quality-url.md`。
+短视频加密：用 `DecodeKey`（9-10位数字）通过ISAAC64生成128KB字节数组，与文件前128KB做XOR。直播回放无需解密。
 
-### Q6: 设置全局代理会不会影响其他程序？
-A: 影响有限。仅捕获URL阶段（几分钟）设置全局代理，下载阶段完全不走代理。iTerm命令行工具（读Shell环境变量）和TUN模式下的程序不受影响，只有Chrome等读系统代理的GUI程序会受影响。工具退出时自动清除代理。如需完全隔离，可使用`-upstream`参数走ClashX规则路由。
+> 详细原理见源码 `platforms/wechat_channels/video-downloader/wechat_decrypt.js`。
 
-### Q7: 上游代理和ClashX是什么关系？
-A: `-upstream http://127.0.0.1:7890` 把ClashX作为上游代理。我们的MITM代理负责解密HTTPS和注入JS，ClashX负责根据规则选择直连或VPN。国内域名（视频号、公众号）自动直连，国外域名自动走VPN。
+### 2.3 视频质量
+
+- 默认URL：xWT113格式，约2.32MB/个
+- 高质量：URL后加 `&X-snsvideoflag=xWT111`，约3.92MB/个（大69%）
+- 详细研究：[RESEARCH-video-quality-url.md](RESEARCH-video-quality-url.md)
 
 ---
 
-## 7. 待优化项
+## 3. 常见问题
 
-- [ ] 研究原始版本URL的正确构建方式（48.5MB，Quality=1方式测试下载0字节）
-- [ ] 优化解密速度（预生成解密数组缓存）
-- [ ] 增量采集接入实际流程（core/watermark.py框架已搭好，待接入采集脚本）
-- [x] 自动转文字（FunASR，313个短视频已全部完成，23个直播回放待转写）
-- [ ] 自动生成字幕
-- [ ] 高质量URL默认使用xWT111格式（比默认大69%）
+| 问题 | 解决方案 |
+|------|---------|
+| 微信不走代理 | video-capture自动对所有活动网络服务设置代理，无需手动 |
+| 视频无法播放 | 短视频需解密，batch_download_v4.py自动处理 |
+| DecodeKey在哪 | 捕获数据中字段 `decode_key` |
+| 直播回放要解密吗 | 不需要 |
+| 视频只有2-5MB | 默认低分辨率，见§2.3 |
+| 设置全局代理影响其他程序 | 仅捕获阶段几分钟，工具退出自动清除代理 |
 
 ---
 
-## 8. 参考文档
+## 4. 参考文档
 
-- 微信基本操作（UI自动化、鼠标控制）：[SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)
-- 公众号文章采集：[SOP-wechat-official-article.md](SOP-wechat-official-article.md)
+- 微信基本操作：[SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)
+- 公众号采集：[SOP-wechat-official-article.md](SOP-wechat-official-article.md)
 - 视频质量研究：[RESEARCH-video-quality-url.md](RESEARCH-video-quality-url.md)
-
----
-
-*本文档随技术演进而更新。发现新问题或解决方案时，按"问题驱动更新"原则立即补充。*
