@@ -2,8 +2,6 @@
 
 > **文档类型**：Reference（参考资料 — 文档索引）
 > **更新频率**：每次新增/删除/移动文档时
-> **维护者**：AI自动维护
-> **读者**：AI代理（快速定位文档）和人类（查找文档时）
 
 > 本文档是项目所有文档的导航入口，告诉AI和人"先读什么、去哪里找什么"。
 
@@ -14,79 +12,73 @@
 ### 开始新任务前
 1. 先判冷启动还是续接，按 `AGENTS.md` 第2章读对应文档
 2. 当前到哪/下一步：`project-management/active/TASK_STATUS.md` + `active/ISSUES.md`
-3. 跨会话稳定结论：`project-management/memory/index.md`（按需沿concept下钻）
 
 ### 微信基本操作（UI自动化）
-1. `docs/SOP-wechat-basic-operations.md` — 窗口管理、搜索操作、鼠标控制最佳实践（所有微信采集的前置依赖）
+1. `docs/guides/wechat-basic-operations.md` — 窗口管理、搜索操作、鼠标控制最佳实践
 
 ### 视频号内容采集
-1. `docs/SOP-wechat-channels-capture.md` — 采集流程（捕获→下载→解密→验证）
-2. `docs/RESEARCH-video-quality-url.md` — X-snsvideoflag参数、6种格式对比
-3. `docs/RESEARCH-wechat-channels-api.md` — 方案B API研究记录
-4. 工具：`platforms/wechat_channels/video-capture/`（MITM捕获）、`platforms/wechat_channels/video-downloader/`（下载+解密）
+1. `docs/guides/wechat-channels-capture.md` — 采集流程（捕获→下载→解密→验证）
+2. `docs/research/video-quality-url.md` — X-snsvideoflag参数、6种格式对比
+3. `docs/research/wechat-channels-api.md` — 方案B API研究记录
 
 ### 公众号文章采集
-1. `docs/SOP-wechat-official-article.md` — 文章采集流程
-2. 工具：`platforms/wechat_official/article/`
+1. `docs/guides/wechat-official-article.md` — 文章采集流程
+
+### 增量采集
+1. `docs/guides/incremental-fetch.md` — 多平台内容更新发现与下载
+
+### 电子资料处理
+1. `docs/guides/books-extraction.md` — PDF/PPTX等电子资料转码与精华提取
 
 ### 视频转文字 / 图文OCR
 1. 转写工具：`processing/transcription/tools/batch_transcribe.py`（FunASR本地离线）
 2. OCR工具：`processing/ocr/tools/batch_article_images.py`（macOS Vision）
-3. 输出：`library/04_transcript/wechat_channels/短视频/{视频名}/transcript.md`
 
 ### 知识提取与知识库
-1. `docs/DESIGN-knowledge-base-organization.md` — 知识库架构设计+内容规范（合并了原知识库规范）
-2. 工具：`processing/knowledge_extraction/tools/`
+1. `docs/design/knowledge-base-organization.md` — 知识库架构设计+内容规范
 
 ### 遇到问题/异常
 1. `grep -rn "关键词" docs/` — 搜索相关文档
-2. `AGENTS.md` 第3章 — 证书与代理核心规则（多次踩坑）
-3. `AGENTS.md` 第5章 — 常见问题
-4. `project-management/active/ISSUES.md` — 已知问题清单
-
-### 项目维护/文档更新
-1. `docs/DIRECTORY_STRUCTURE.md` — 目录结构与存储分工
-2. `project-management/decisions/` — ADR架构决策记录（做重要决策前先查历史）
-3. `project-management/memory/` — 工程记忆（稳定结论变化时同步更新）
+2. `project-management/active/ISSUES.md` — 已知问题清单
 
 ---
 
 ## 文档完整清单
 
-### 零、根目录标准文档
+### 零、根目录标准文档（大写骨架）
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
 | 项目介绍 | `README.md` | 项目目标、存储分工、快速开始 |
 | AI操作手册 | `AGENTS.md` | 全局执行规则、核心约束、常见问题 |
 | 文档地图 | `docs/DOCUMENTATION_MAP.md` | 本文档 |
-| 项目需求 | `docs/REQUIREMENTS.md` | 需求与决策溯源、已关闭方案留痕 |
+| 项目需求 | `docs/REQUIREMENTS.md` | 需求与功能范围 |
 | 整体工作流 | `docs/WORKFLOW.md` | 四阶段流水线 + 各阶段校验门 |
-| 目录结构 | `docs/DIRECTORY_STRUCTURE.md` | 四地存储分工、目录说明 |
+| 目录结构 | `docs/DIRECTORY_STRUCTURE.md` | 存储分工、目录说明、命名规范 |
+| 路线图 | `docs/ROADMAP.md` | 项目长期规划 |
 
-### 一、操作指南（SOP — 怎么做）
-
-| 文档 | 路径 | 用途 |
-|------|------|------|
-| 微信基本操作SOP | `docs/SOP-wechat-basic-operations.md` | 窗口管理、搜索操作、鼠标控制最佳实践（所有微信采集的前置依赖） |
-| 视频号采集SOP | `docs/SOP-wechat-channels-capture.md` | 捕获→下载→解密→验证全流程 |
-| 公众号采集SOP | `docs/SOP-wechat-official-article.md` | 文章采集与OCR流程 |
-| 增量采集SOP | `docs/SOP-incremental-fetch.md` | 多平台内容更新发现与下载（通用框架） |
-| 高质量URL研究 | `docs/RESEARCH-video-quality-url.md` | X-snsvideoflag参数研究 |
-| 视频号API研究 | `docs/RESEARCH-wechat-channels-api.md` | 方案B API研究记录 |
-
-### 二、产品与规划（What & Why）
+### 一、操作指南（guides/ — 怎么做）
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 需求文档 | `docs/REQUIREMENTS.md` | 项目需求与决策溯源（合并了原PRD，多平台多行业） |
-| 路线图 | `docs/ROADMAP.md` | 项目路线图与当前状态 |
+| 微信基本操作SOP | `docs/guides/wechat-basic-operations.md` | 窗口管理、搜索操作、鼠标控制最佳实践 |
+| 视频号采集SOP | `docs/guides/wechat-channels-capture.md` | 捕获→下载→解密→验证全流程 |
+| 公众号采集SOP | `docs/guides/wechat-official-article.md` | 文章采集与OCR流程 |
+| 增量采集SOP | `docs/guides/incremental-fetch.md` | 多平台内容更新发现与下载 |
+| 电子资料转码SOP | `docs/guides/books-extraction.md` | PDF/PPTX等电子资料处理 |
 
-### 三、知识库
+### 二、技术研究（research/ — 已验证的结论）
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 知识库组织与规范 | `docs/DESIGN-knowledge-base-organization.md` | 知识库架构设计+内容规范+标签体系（合并了原知识库规范） |
+| 高质量URL研究 | `docs/research/video-quality-url.md` | X-snsvideoflag参数研究 |
+| 视频号API研究 | `docs/research/wechat-channels-api.md` | 方案B API研究记录 |
+
+### 三、架构设计（design/ — 方案设计）
+
+| 文档 | 路径 | 用途 |
+|------|------|------|
+| 知识库组织与规范 | `docs/design/knowledge-base-organization.md` | 知识库架构设计+内容规范+标签体系 |
 
 ### 四、项目治理
 
@@ -94,29 +86,20 @@
 |------|------|------|
 | 任务状态 | `project-management/active/TASK_STATUS.md` | 当前进度、下一步（单一进度真相） |
 | 问题清单 | `project-management/active/ISSUES.md` | 已知问题、阻塞项 |
-| ADR决策 | `project-management/decisions/` | 架构决策记录（只增不改，4条） |
+| ADR决策 | `project-management/decisions/` | 架构决策记录（只增不改） |
 | 工程记忆 | `project-management/memory/` | 跨会话稳定结论编译层 |
-| 规范文档 | `project-management/standards/` | 文档同步检查清单、批量任务执行规范 |
-| 运行时工作区 | `workspace/README.md` | 过程件管理规范（logs/tmp/capture） |
 
 ---
 
-## 工具清单（快速索引）
+## 命名规范速查
 
-> 完整说明见各工具目录的README或 `AGENTS.md` 第4章
-
-| 任务 | 工具 | 位置 | 运行目录 |
-|------|------|------|---------|
-| 视频捕获(MITM) | video-capture | `platforms/wechat_channels/video-capture/` | 任意目录（证书相对于可执行文件） |
-| 视频下载+解密 | batch_download_v4.py | `platforms/wechat_channels/video-downloader/` | 项目根目录 |
-| 自动化采集 | auto_capture.py | `platforms/wechat_channels/auto-capture/` | 项目根目录 |
-| 增量采集 | incremental_collect.py | `platforms/wechat_channels/auto-capture/` | 项目根目录 |
-| 视频转文字 | batch_transcribe.py | `processing/transcription/tools/` | 项目根目录 |
-| 图文OCR | batch_article_images.py | `processing/ocr/tools/` | 项目根目录 |
-| 知识提取 | extract_knowledge.py | `processing/knowledge_extraction/tools/` | 项目根目录 |
-| 知识库查询 | knowledge_base.py | `processing/knowledge_extraction/tools/` | 项目根目录 |
-| 文章采集 | fetch_articles_*.py | `platforms/wechat_official/article/` | 项目根目录 |
-| 网盘同步 | sync_stock.sh | `scripts/netdisk/` | 项目根目录 |
+| 类型 | 命名风格 | 示例 |
+|------|---------|------|
+| 固定名 | 原样 | README.md、AGENTS.md |
+| 治理/规范/骨架 | 大写 UPPER_SNAKE_CASE | WORKFLOW.md、REQUIREMENTS.md、DOCUMENTATION_MAP.md |
+| 方法/SOP/操作 | 小写 kebab-case | wechat-basic-operations.md、incremental-fetch.md |
+| 脚本 | 小写 snake_case | baidu_upload.py |
+| ADR | ADR-NNN-中文 | ADR-001-项目文档架构与治理规范.md |
 
 ---
 

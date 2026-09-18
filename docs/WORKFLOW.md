@@ -54,11 +54,11 @@
 
 ### 1.4 参考文档
 
-- **微信基本操作SOP（前置依赖）**：`docs/SOP-wechat-basic-operations.md`（窗口管理、搜索操作、鼠标控制最佳实践）
-- 视频号采集SOP：`docs/SOP-wechat-channels-capture.md`
-- 公众号采集SOP：`docs/SOP-wechat-official-article.md`
-- 高质量URL研究：`docs/RESEARCH-video-quality-url.md`
-- 视频号API研究：`docs/RESEARCH-wechat-channels-api.md`
+- **微信基本操作SOP（前置依赖）**：`docs/guides/wechat-basic-operations.md`（窗口管理、搜索操作、鼠标控制最佳实践）
+- 视频号采集SOP：`docs/guides/wechat-channels-capture.md`
+- 公众号采集SOP：`docs/guides/wechat-official-article.md`
+- 高质量URL研究：`docs/research/video-quality-url.md`
+- 视频号API研究：`docs/research/wechat-channels-api.md`
 
 ---
 
@@ -104,7 +104,7 @@
 ### 3.3 参考文档
 
 - 知识提取工具：`processing/knowledge_extraction/tools/extract_knowledge.py`
-- 知识库组织方案：`docs/DESIGN-knowledge-base-organization.md`
+- 知识库组织方案：`docs/design/knowledge-base-organization.md`
 
 ---
 
@@ -126,7 +126,7 @@
 
 ### 4.3 参考文档
 
-- 知识库组织方案：`docs/DESIGN-knowledge-base-organization.md`
+- 知识库组织方案：`docs/design/knowledge-base-organization.md`
 - 知识库查询工具：`processing/knowledge_extraction/tools/knowledge_base.py`
 - 网盘同步脚本：`scripts/netdisk/sync_stock.sh`
 
@@ -140,7 +140,7 @@
 2. 新增内容走阶段①→②→③完整流程
 3. 更新知识库汇总
 
-详见：`docs/SOP-wechat-channels-capture.md`「采集流程」章节
+详见：`docs/guides/wechat-channels-capture.md`「采集流程」章节
 
 ---
 

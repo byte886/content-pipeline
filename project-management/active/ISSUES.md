@@ -26,7 +26,7 @@
 - **状态**：研究中
 - **问题描述**：当前最大格式xWT111只有3.92MB，而元数据显示原始大小48.5MB
 - **可能方向**：从objectDesc.media[0].spec数组中获取每个格式的独立URL
-- **参考**：`docs/RESEARCH-video-quality-url.md`
+- **参考**：`docs/research/video-quality-url.md`
 
 ### ISSUE-004: 文章采集脚本目录统一 ✅ 已解决
 - **状态**：已解决（2026-09-15，架构重构）

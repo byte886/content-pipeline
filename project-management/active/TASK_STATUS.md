@@ -49,7 +49,7 @@
 ## 关键口径（指针，不展开）
 
 - **视频解密原理**：DecodeKey → ISAAC64 → XOR前128KB → 见工程记忆 `workflow-video-capture`
-- **高质量URL参数**：X-snsvideoflag=xWT111 → 见 `docs/RESEARCH-video-quality-url.md`
+- **高质量URL参数**：X-snsvideoflag=xWT111 → 见 `docs/research/video-quality-url.md`
 - **证书与代理方案**：相对可执行文件路径 + 上游代理 → 见 ADR-002
 - **转写工具**：FunASR SenseVoiceSmall → 见 `processing/transcription/tools/`
 - **OCR工具**：macOS Vision → 见 `processing/ocr/tools/`
