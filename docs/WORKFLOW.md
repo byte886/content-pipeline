@@ -140,7 +140,7 @@
 2. 新增内容走阶段①→②→③完整流程
 3. 更新知识库汇总
 
-详见：`docs/SOP-wechat-channels-capture.md`「增量采集」章节
+详见：`docs/SOP-wechat-channels-capture.md`「采集流程」章节
 
 ---
 

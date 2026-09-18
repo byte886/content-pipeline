@@ -176,39 +176,32 @@ done
 
 ## 4. 工具快速索引
 
-> 完整清单见 `docs/DOCUMENTATION_MAP.md`「工具清单」
+> 完整工具清单与用法见 `docs/DOCUMENTATION_MAP.md`「工具清单」
 
-| 任务 | 工具 | 位置 |
-|------|------|------|
-| 视频捕获（MITM） | video-capture | `platforms/wechat_channels/video-capture/` |
-| 视频下载+解密 | batch_download_v4.py | `platforms/wechat_channels/video-downloader/` |
-| 自动化采集 | auto_capture.py | `platforms/wechat_channels/auto-capture/` |
-| 增量采集 | incremental_collect.py | `platforms/wechat_channels/auto-capture/` |
-| 视频转文字 | batch_transcribe.py | `processing/transcription/tools/` |
-| 图文OCR | batch_article_images.py | `processing/ocr/tools/` |
-| 知识提取 | extract_knowledge.py | `processing/knowledge_extraction/tools/` |
-| 知识库查询 | knowledge_base.py | `processing/knowledge_extraction/tools/` |
-| 方法提炼 | method_extractor.py | `processing/method_extraction/` |
-| 文章采集 | fetch_articles_*.py | `platforms/wechat_official/article/` |
-| 网盘同步 | sync_stock.sh | `scripts/netdisk/` |
-| 流水线编排 | pipeline.py | `core/` |
-| 增量水位 | watermark.py | `core/` |
+| 核心工具 | 位置 |
+|---------|------|
+| 视频捕获（MITM） | `platforms/wechat_channels/video-capture/` |
+| 视频下载+解密 | `platforms/wechat_channels/video-downloader/` |
+| 视频转文字 | `processing/transcription/tools/` |
+| 图文OCR | `processing/ocr/tools/` |
+| 知识库查询 | `processing/knowledge_extraction/tools/` |
 
 ---
 
-## 5. 常见问题
+## 5. 紧急恢复与全局问题
 
-### Q: 为什么捕获工具启动后全网断了？
-A: 证书路径问题。检查项目根目录是否有ca.crt，如果有说明运行目录错了。删除根目录的ca.crt，从`platforms/wechat_channels/video-capture/`目录运行。
+> 技术细节问题见对应SOP的「常见问题」章节，这里只放全局级、影响整个项目的问题。
 
-### Q: 视频下载后无法播放？
-A: 短视频是加密的，需要用DecodeKey解密。直播回放不需要解密。运行`node platforms/wechat_channels/video-downloader/wechat_decrypt.js <decodeKey> <file>`。
-
-### Q: 下载的视频只有2-5MB，太小了？
-A: 默认是低分辨率版本。用`quality=max`参数下载xWT111格式（大69%）。真正的原始高清版本尚未找到，见`docs/RESEARCH-video-quality-url.md`。
-
-### Q: 转写输出在哪里？
-A: `data/transcripts/短视频/{视频名}/transcript.md`（注意是子目录，不是直接md文件）。待迁移到`library/04_transcript/stock/交易的游戏/`。
+### Q: 捕获工具启动后全网断了，所有网页打不开？
+A: 证书路径问题。**紧急恢复**：
+```bash
+pkill -9 -f video-capture
+for s in "Ethernet" "Wi-Fi"; do
+  networksetup -setwebproxystate "$s" off
+  networksetup -setsecurewebproxystate "$s" off
+done
+```
+正常原因见 §3.1 证书与代理。
 
 ---
 
