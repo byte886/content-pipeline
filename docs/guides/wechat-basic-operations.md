@@ -147,9 +147,10 @@ osascript -e 'tell application "System Events" to tell process "WeChat" to perfo
 > ❌ 不要在浏览器中用Cmd+A，会全选整个网页。必须先点搜索框确保焦点。
 
 #### 识别并打开视频号/公众号
-1. 鼠标悬停条目上，确认变浅灰色高亮
-2. 视频号有"视频号"字样，公众号有"公众号"字样
-3. 确认灰色后再点击
+1. **必须先切到"全部"标签页**（默认可能停留在"划线"等其他标签，看不到完整结果）
+2. 鼠标悬停条目上，确认变浅灰色高亮
+3. 视频号有"视频号"字样，公众号有"公众号"字样
+4. 确认灰色后再点击
 
 #### 关闭多余标签页
 - 点标签页右侧×按钮，或按 `Cmd+W`
@@ -199,6 +200,45 @@ cliclick dd:x1,y1 dm:x2,y2 du:x2,y2  # 拖拽
 | 关闭标签页 | Cmd+W |
 | 中文输入 | 剪贴板 pbcopy+Cmd+V |
 
+### 4.6 cliclick坐标计算规范（强制）
+
+**cliclick使用屏幕绝对坐标**：(0,0)是屏幕左上角。
+
+**正确计算步骤**：
+
+1. **获取窗口位置**：
+   ```bash
+   win_pos=$(osascript -e 'tell application "System Events" to tell process "WeChat" to get position of window 1')
+   IFS=', ' read -r win_x win_y <<< "$win_pos"
+   ```
+
+2. **计算相对偏移**：先截图，观察元素在窗口中的相对位置
+
+3. **计算绝对坐标**：
+   ```bash
+   abs_x=$((win_x + rel_x))
+   abs_y=$((win_y + rel_y))
+   ```
+
+4. **先悬停确认**：
+   ```bash
+   cliclick m:$abs_x,$abs_y  # 悬停
+   sleep 0.3
+   screencapture -x /tmp/hover_check.png  # 截图确认
+   ```
+
+5. **确认位置正确后再点击**：
+   ```bash
+   cliclick c:$abs_x,$abs_y  # 点击
+   ```
+
+**常见错误**：
+- ❌ 不要凭记忆写死坐标（窗口位置会变）
+- ❌ 不要跳过悬停确认步骤（容易点错）
+- ❌ 不要混淆窗口索引（窗口1可能是主窗口也可能是搜索窗口，要看标题）
+- ✅ 每次操作前都要重新获取窗口位置
+- ✅ 点击前必须悬停截图确认
+
 ---
 
 ## 5. 常见问题
@@ -213,6 +253,8 @@ cliclick dd:x1,y1 dm:x2,y2 du:x2,y2  # 拖拽
 | 中文输入失败 | 用剪贴板，osascript keystroke不支持中文 |
 | Computer use截图过期 | 重试，频繁出现则换cliclick |
 | 误发消息 | 确认搜索框有绿色边框再输入 |
+| 搜索结果看不到视频号/公众号 | 停留在"划线"或其他标签页，必须先点"全部"标签页 |
+| cliclick点击位置不准 | 坐标计算错误，必须按§4.6规范计算 |
 
 ---
 
