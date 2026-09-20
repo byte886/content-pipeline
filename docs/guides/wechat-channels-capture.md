@@ -33,11 +33,12 @@ echo $! > /tmp/video_capture_pid.txt
 
 ### 1.2 在微信中操作
 
-按 [basic-operations SOP](SOP-wechat-basic-operations.md) 完成：
+按 [wechat-basic-operations SOP](wechat-basic-operations.md) 完成：
 1. 激活主窗口，Cmd+F 搜索视频号名称
 2. 在搜索结果中点击视频号条目（悬停确认灰色后点击）
-3. 进入视频号主页后，切换到「视频」标签，滚动列表到底部
-4. 切换到「直播回放」标签，滚动列表到底部
+3. 进入视频号主页后，及时关掉多余的搜一搜标签页，只保留视频号当前页面
+4. 切换到「视频」标签，滚动列表到底部
+5. 切换到「直播回放」标签，滚动列表到底部
 
 > 滚动时鼠标必须放在列表区域内，否则滚动无效。
 
@@ -105,6 +106,6 @@ python3 platforms/wechat_channels/video-downloader/batch_download_v4.py videos_l
 
 ## 4. 参考文档
 
-- 微信基本操作：[SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)
-- 公众号采集：[SOP-wechat-official-article.md](SOP-wechat-official-article.md)
+- 微信基本操作：[wechat-basic-operations.md](wechat-basic-operations.md)
+- 公众号采集：[wechat-official-article.md](wechat-official-article.md)
 - 视频质量研究：[RESEARCH-video-quality-url.md](RESEARCH-video-quality-url.md)
