@@ -1,8 +1,8 @@
 # 视频号内容采集SOP
 
 > **文档类型**：SOP
-> **更新时间**：2026-09-18
-> **前置依赖**：[SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md)（窗口管理、搜索、鼠标控制）
+> **更新时间**：2026-09-20
+> **前置依赖**：[wechat-basic-operations.md](wechat-basic-operations.md)（必读：工具选型边界、核心操作铁律、窗口管理、主窗口搜索流程、浏览器窗口操作；常见问题章节遇到问题再查）
 
 ---
 
@@ -33,7 +33,8 @@ echo $! > /tmp/video_capture_pid.txt
 
 ### 1.2 在微信中操作
 
-按 [wechat-basic-operations SOP](wechat-basic-operations.md) 完成：
+按 [wechat-basic-operations SOP](wechat-basic-operations.md) 完成，必读章节：工具选型边界、核心操作铁律、窗口管理、主窗口搜索流程、浏览器窗口操作；常见问题章节遇到问题再查，无需一开始通读。
+操作步骤：
 1. 激活主窗口，Cmd+F 搜索视频号名称
 2. 在搜索结果中点击视频号条目（悬停确认灰色后点击）
 3. 进入视频号主页后，及时关掉多余的搜一搜标签页，只保留视频号当前页面
