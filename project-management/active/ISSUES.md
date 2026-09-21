@@ -60,14 +60,20 @@
 - **问题描述**：processing/method_extraction/method_extractor.py框架已创建，但实际的方法提炼需要LLM深度分析
 - **方案**：接入LLM，分析转写稿中的拍摄技巧、AI使用、内容呈现，提炼可复用的生成方法
 
-### ISSUE-014: 百度凭证解密口令曾明文进入 public git 历史（高优先级·安全）
-- **状态**：工作区已止血，**历史未清除，待用户拍板**
+### ISSUE-014: 百度凭证解密口令曾明文进入 public git 历史（高优先级·安全）✅ 已解决
+- **状态**：✅ 已解决（2026-09-22：工作区止血 + filter-repo 全历史清除并强推，本地与全新克隆双路复验 0 命中）
 - **发现时间**：2026-09-21（doc_health_check 首次扫描命中）
-- **问题描述**：百度网盘加密凭证 `.secrets/baidu_credentials.enc` 的解密口令（与本机 sudo、GitHub PAT 解密口令相同）曾被硬编码在 `scripts/netdisk/sync_stock.sh`、`sync_library.sh`、`sync_netdisk.sh`、`baidu_upload.py` 示例中，并随提交 `deb39f9`、`bd45204`、`1e4f917`、`55455ec` 推送到 public GitHub。
-- **已做止血**：4 个脚本改为强制从环境变量 `BAIDU_ENC_PASS` 读取（未设置即报错退出），删除全部明文；体检脚本将明文口令/票据列为 ERROR。**改工作区不能清除 git 历史。**
-- **待用户决定（L2）**：
-  1. 建议尽快**更换该口令**（它同时是 sudo / GitHub PAT 解密口令 / 百度凭证口令，泄露面最大）；
-  2. 若要彻底从 public 历史移除，需 `git filter-repo`（或 filter-branch）重写历史并强推，会改变所有 commit 哈希、需各克隆重新同步——执行前必须用户确认。
+- **问题描述**：百度网盘加密凭证 `.secrets/baidu_credentials.enc` 的解密口令（与本机 sudo、GitHub PAT 解密口令相同）曾被硬编码在 `scripts/netdisk/sync_stock.sh`、`sync_library.sh`、`sync_netdisk.sh`、`baidu_upload.py` 示例中，并随多个历史提交推送到 public GitHub；同时 `.enc` 加密件本身也被跟踪入库，另有 3 个视频号捕获 JSON（含真实签名直链）曾入库。
+- **处置（已全部完成）**：
+  1. 工作区止血：4 个脚本改为强制从环境变量 `BAIDU_ENC_PASS` 读取（未设置即报错退出）；体检脚本把明文口令/票据列为 ERROR，弱口令检测规则改字面量拼接（规则自身不再含连续明文）。
+  2. 入库策略收紧：`.gitignore` 改为整个 `.secrets/` 目录不入库（含 `.enc`，移除原先对 `*.enc` 的放行）；`.enc` 改为本地持有（工作区保留、仓外备份于 `~/.config/multiplatform-content-pipeline/.secrets/`）。
+  3. 全历史重写：`git filter-repo --replace-text`（口令→`***REMOVED***`）+ `--invert-paths` 移除 `.secrets/` 与 3 个捕获 JSON（`capture_result_20260918.json`、`capture_wushi_20260918.json`、`capture_mp_credential.json`），改写全部提交哈希后 `--force` 强推 master（旧 HEAD `146e007` → 新 HEAD `55596ef`）。
+  4. 复验：本地与"从 GitHub 全新克隆"双路全历史 `git grep` 口令 / PAT / 私钥 / 真实票据均 0 命中；`py_compile`、`bash -n`、captor `go build`、doc_health_check 全通过（0 ERROR/0 WARN）。
+- **filter-repo 无法消除的残留风险（须知悉）**：
+  1. 强推不保证已泄露副本消失：旧提交哈希在 GitHub 侧可能短时仍可经直接 URL/缓存访问，**已存在的 fork / 他人 clone / 第三方抓取不受影响、无法收回**。要彻底抹除 GitHub 侧残留需联系 GitHub Support 或删仓重建（会丢 issue/star，本次未做）。
+  2. 用户决定**口令不更换**。鉴于口令与 `.enc` 曾同时公开，应按"百度凭证已等同泄露"处置：建议重新走一次百度网盘 OAuth 授权，使旧 access_token/refresh_token 失效（access_token 约 30 天自然过期，refresh_token 约 10 年；**重新授权是否立即作废旧 refresh_token 取决于百度规则，尚未实测、不确定**）。这是不改口令前提下最有效的补救。
+  3. 其他机器/历史克隆无法 fast-forward，必须删除后重新克隆。
+- **备份处置**：重写前全量兜底 `~/Desktop/mcp-PRE-CLEANUP-20260922.bundle`（8MB，**含原始敏感历史**）仅用于回滚；确认新仓无误后应删除，勿长期保留或外传。
 - **关联**：ADR-003 密钥管理；`docs/项目维护SOP.md` 安全红线。
 
 ### ISSUE-015: sync_netdisk.sh 疑为高顿项目遗留脚本（低优先级）
@@ -101,4 +107,4 @@
 
 ---
 
-*最后更新：2026-09-21*
+*最后更新：2026-09-22（ISSUE-014 历史清除完成）*

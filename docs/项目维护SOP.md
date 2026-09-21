@@ -54,7 +54,7 @@
 
 1. 易变进度只在台账，他处无写死的过时数字；HANDOFF 已追加本轮重要决策。
 2. 新增/移动文档已在 DOCUMENTATION_MAP 登记；ADR 只增不改；空目录/空章节/0 引用脚本已处理（AGENTS §2.6）。
-3. **无凭证/票据/原始素材误入 git**：禁止视频/音频/PDF/逐字稿原文/明文密钥/`exportkey`/`pass_ticket`/`sessionInfo`/`/tmp/capture*`；加密凭证仅允许 `.secrets/*.enc`。
+3. **无凭证/票据/原始素材误入 git**：禁止视频/音频/PDF/逐字稿原文/明文密钥/`exportkey`/`pass_ticket`/`sessionInfo`/`/tmp/capture*`；**`.secrets/` 整个目录不入库（含 `.enc` 加密件），凭证仅本地持有**（见 ADR-003、ISSUE-014）。
 4. 跑体检（仓库根），**必须 0 ERROR**（WARN 可记录后提交）：
    ```bash
    python3 scripts/doc_health_check.py

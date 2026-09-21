@@ -59,10 +59,17 @@
 
 ---
 
+## 最近完成（2026-09-22）
+
+- 🔐 **ISSUE-014 凭证明文历史清除（filter-repo 全历史重写 + 强推）**：全历史扫描锁定敏感面（明文口令、被跟踪的 `.secrets/baidu_credentials.enc`、3 个含真实签名直链的捕获 JSON；无 PAT/私钥/百度 token 明文，"AKIA" 为 wasm 误报）；`.gitignore` 收紧为**整个 `.secrets/` 不入库**、`.enc` 本地持有（仓外备份 `~/.config/multiplatform-content-pipeline/.secrets/`）；体检弱口令检测改字面量拼接；`git filter-repo --replace-text + --invert-paths` 重写全部提交并 `--force` 强推（旧 HEAD `146e007` → 新 HEAD `55596ef`）；本地与"从 GitHub 全新克隆"双路全历史 grep 口令/PAT/私钥/真实票据均 **0 命中**，py/sh/go 构建与体检全过（0 ERROR/0 WARN）。
+  - **残留动作（非阻塞）**：①建议重新走百度 OAuth 授权作废旧 token（口令用户选择不改，这是最有效补救；refresh_token 约 10 年，重新授权是否立即作废旧 refresh 未实测）；②确认新仓无误后删除桌面兜底 `mcp-PRE-CLEANUP-20260922.bundle`（含原始敏感历史）；③其他机器的旧克隆需删除重克隆。详见 ISSUE-014。
+
+---
+
 ## 最近完成（2026-09-21）
 
 - ✅ **新窗口接手闭环建成（对标 astock-quant）**：新增 `docs/项目维护SOP.md`（SSOT 路由/维护节奏/冷启动六问/提交检查）、`docs/新窗口接手开场白.md`（开窗触发词+收口四步+标准句+六问验收+换机兜底）、`docs/HANDOFF.md`（30秒画像+倒序日志+当前纠结+产物地图）、`scripts/doc_health_check.py`（核心文件/断链/登记/禁入内容/明文凭证检查，0 ERROR 才提交）；AGENTS §1.1 冷启动六问、§2.7 体检门，README「🚑新会话快速恢复」，DOCUMENTATION_MAP 全部登记
-- 🔧 **体检首跑 43 ERROR 全部清零（复检 0 ERROR / 0 WARN）**：修复 docs/README 8 条旧文件名断链、design 文档 3 条缺 `../`、memory/index 3 个不存在的幽灵 concept 链接、解密研究文档漏登记；珠宝知识成品 videos 下 20 个 md 相对链接多一层 `../`（`../../topics/`→`../topics/`）；**4 个网盘脚本明文解密口令止血（改环境变量强制）→ 见 ISSUE-014：口令已在 4 个历史提交进入 public GitHub，改工作区不清历史，待用户拍板改密码/是否 filter-repo 清历史**；sync_netdisk.sh 疑高顿遗留见 ISSUE-015
+- 🔧 **体检首跑 43 ERROR 全部清零（复检 0 ERROR / 0 WARN）**：修复 docs/README 8 条旧文件名断链、design 文档 3 条缺 `../`、memory/index 3 个不存在的幽灵 concept 链接、解密研究文档漏登记；珠宝知识成品 videos 下 20 个 md 相对链接多一层 `../`（`../../topics/`→`../topics/`）；**4 个网盘脚本明文解密口令止血（改环境变量强制）→ ISSUE-014 已于 2026-09-22 filter-repo 全历史清除并强推（见上"最近完成 2026-09-22"）**；sync_netdisk.sh 疑高顿遗留见 ISSUE-015
 - ✅ **T-10 B方案（Pinia action 驱动）端到端验证成功**：注入脚本直接调 `profile.fetchMoreData({username})` 翻短视频到 `noMore`、切"直播回放"tab 后 `liveCardObjects` 首屏即全量，**不滚 DOM**。交易的游戏实测 cardObjects 340（339视频 mediaType=4 + 1图文 mediaType=2）、liveCardObjects 28，oid/nid 双唯一零重复，纯视频339与旧滚动manifest精确一致（回放多1为新增）。代码 `replay_list_hook.go:actionDrive()`，结论落 api.md §6.2 / capture SOP §2.1。待办：把 action 全量接入下游下载管道（decode_key 沿用 -short-probe）、按339权威值重对账落库410口径
 - ✅ **T-10 视频号API深挖完成**：列表不走HTTP，走XWEB原生桥(postMessage)+Vue Pinia状态树；凭证在主页URL(username+exportkey+pass_ticket)；结论落 docs/research/wechat-channels-api.md §6
 - ✅ **视频号增量脚本** `platforms/wechat_channels/video-downloader/incremental_sync.py`：按 encfilekey(=捕获id) 对账，dry-run验证通过，只下新增差集，待实跑
@@ -76,7 +83,7 @@
 - ✅ 视频号短视频解密闭环端到端验证：Isaac64 算法确认（非AES、仅前128KB加密）；仓内自包含 `decrypt_node.js` 与官方 wasm 密钥流逐字节一致；完整样本解密后 h264 1080x1920+aac、时长134.86s 与记录吻合
 - ✅ 下载编排 `batch_download_v4.py` 修复（解密器同目录路径、可选代理 WC_PROXY、WC_LIMIT、md5 对账、规格差异标注）
 - ✅ 捕获代理 `-short-probe` 静默探针落库换签直链+decode_key（captor.go/main.go/short_probe_hook.go，go vet/build 通过）
-- ✅ 安全：含签名票据的捕获产物加入 video-capture/.gitignore，旧 capture_*.json 停止跟踪（git 历史清理待用户决策）
+- ✅ 安全：含签名票据的捕获产物加入 video-capture/.gitignore，旧 capture_*.json 停止跟踪；其历史痕迹已于 2026-09-22 随 ISSUE-014 一并 filter-repo 清除
 - 📄 新增权威技术文档 docs/research/wechat-short-video-decryption.md，采集SOP同步更新
 
 ---
@@ -90,4 +97,4 @@
 
 ---
 
-*最后更新：2026-09-21*
+*最后更新：2026-09-22（ISSUE-014 历史清除完成）*
