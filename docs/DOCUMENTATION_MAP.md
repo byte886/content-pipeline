@@ -31,8 +31,9 @@
 1. `docs/guides/books-extraction.md` — PDF/PPTX等电子资料转码与精华提取
 
 ### 视频转文字 / 图文OCR
-1. 转写工具：`processing/transcription/tools/batch_transcribe.py`（FunASR本地离线）
-2. OCR工具：`processing/ocr/tools/batch_article_images.py`（macOS Vision）
+1. `docs/guides/audio-transcription.md` — FunASR 本地离线转写：环境搭建、批量脚本用法、输出目录、空稿判定
+2. 批量转写脚本：`platforms/wechat_channels/video-transcribe/batch_transcribe.py`（模型只加载一次、断点续跑）
+3. OCR工具：`processing/ocr/tools/batch_article_images.py`（macOS Vision）
 
 ### 知识提取与知识库
 1. `docs/design/knowledge-base-organization.md` — 知识库架构设计+内容规范
@@ -66,6 +67,7 @@
 | 公众号采集SOP | `docs/guides/wechat-official-article.md` | 文章采集与OCR流程 |
 | 增量采集SOP | `docs/guides/incremental-fetch.md` | 多平台内容更新发现与下载 |
 | 电子资料转码SOP | `docs/guides/books-extraction.md` | PDF/PPTX等电子资料处理 |
+| 视频转写SOP | `docs/guides/audio-transcription.md` | FunASR本地离线转文字：环境/批量脚本/输出/空稿判定 |
 
 ### 二、技术研究（research/ — 已验证的结论）
 
