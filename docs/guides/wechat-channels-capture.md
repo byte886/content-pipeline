@@ -114,3 +114,40 @@ python3 $DL <capture.json> <outdir> live                                        
 - **短视频解密（已验证权威结论）**：[`../research/wechat-short-video-decryption.md`](../research/wechat-short-video-decryption.md)
 - 视频质量URL研究：[`../research/video-quality-url.md`](../research/video-quality-url.md)
 - 解密器源码：`platforms/wechat_channels/video-downloader/wechat_decrypt.js`、`batch_decrypt.js`（自包含 wasm2js `decrypt_node.js`）
+
+---
+
+## 6. 凭证（token）获取最短路径（2026-09-21 明确）
+
+视频号**不需要单独"拿 token"**——点进视频号主页的那一刻，凭证就在 URL 和 Cookie 里：
+
+```
+https://channels.weixin.qq.com/web/pages/profile?username=<USERNAME>&exportkey=<EXPORTKEY>&pass_ticket=<PASSTICKET>&wx_header=0
+```
+- `username` = `v2_xxxx@finder`：视频号唯一 ID（稳定，换号才变）
+- `exportkey` + `pass_ticket`：临时凭证（**几小时过期**，刷新/重进主页就换新）
+- Cookie `sessionInfo=...`：登录态
+
+**最短路径**：微信主窗口搜索博主名称 → 搜一搜结果里点"视频号"条目进主页 → 主页 URL 即自带上述全部凭证。无需额外抓包、无需单独激活。
+→ 这就是"根据博主名称定位 + 拿 token"的合并最短路径：一步进主页，什么都有了。
+
+**与公众号的区别**（别混）：
+- 视频号：列表走 XWEB/Pinia（见 `../research/wechat-channels-api.md` §6），凭证在主页 URL。
+- 公众号：文章列表走 HTTP `profile_ext?action=getmsg`，需 `__biz` + `appmsg_token`（见 §7，待攻关）。
+
+---
+
+## 7. 人机协作边界（设计原则，勿追求全自动）
+
+> **微信系采集 = 人工触发一次拿 token + 脚本后续全自动。不要追求完全无人值守。**
+
+| 环节 | 谁做 | 说明 |
+|---|---|---|
+| 触发拿 token | **人**（微信里点一下/刷新/发链接激活） | 必须微信登录态，无法绕过 |
+| 翻页全量列表 | 脚本自动 | autoscroll / getmsg 翻页 |
+| 下载、解密 | 脚本自动 | 短视频 Isaac64 / 回放明文 |
+| 转写、增量、落库 | 脚本自动 | FunASR + incremental_sync |
+
+- **视频号**：人工搜博主 → 点进主页（或刷新）→ exportkey/pass_ticket 进 URL，脚本接管。
+- **公众号**：人工把 `profile_ext?action=home&__biz=...` 发文件助手并打开激活 → appmsg_token 到手，脚本接管。
+- 人工动作的成本就是"点一下/刷新一下"，这是微信系（视频号/公众号）绕不开的触发点；B站/抖音/YouTube 等公开平台无此触发。

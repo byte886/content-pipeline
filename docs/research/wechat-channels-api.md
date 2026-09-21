@@ -111,3 +111,62 @@ https://finder.video.qq.com/251/20302/stodownload?encfilekey=<...>&token=<...>
 ---
 
 *本文档随研究进展持续更新。*
+
+---
+
+## 六、深挖结论（2026-09-21，方案A逆向 B方案源头）
+
+### 6.1 列表数据根本不走 HTTP
+抓包日志（capture_full3_api.log）里**没有任何** `/web/api/feed/list` 类列表请求。视频号列表数据走两条非 HTTP 通道：
+1. **XWEB 原生桥**：页面 `window.xweb.worker.port.postMessage({apiName:'...'})`，列表 RPC 由微信客户端原生层完成，MITM 抓不到 body。
+2. **Vue3 / Pinia 状态树**：profile 页是 Vue3（`#app.__vue_app__`，globalProperties 有 `$store`/`$pinia`/`$router`），**列表 feed 数组最终落在 Pinia state 里**。
+
+→ 这解释了"纯 HTTP API（appmsg_token）不可行"：列表不在网络层，拿 cookie curl 后端也没用。
+
+### 6.2 已验证可行的"准 B 方案"（不滚 DOM，直接读状态树）
+`replay_list_hook.go` 已实现：注入 JS 滚动加载卡片后，**深读 `$pinia.state` / `$store.state`**，用封面 encfilekey/时长作锚点定位 feed 数组，整块 JSON 上报（RLIST_FEEDARR）。这就是当前 339 短视频 + 27 回放的来源。比"读渲染好的 DOM"干净，但仍需滚动触发懒加载。
+
+### 6.3 凭证（"刷新=换 token"）
+视频号主页 URL：`channels.weixin.qq.com/web/pages/profile?username=v2_...@finder&exportkey=<...>&pass_ticket=<...>&wx_header=0`，Cookie 带 `sessionInfo=<...>`。
+→ exportkey + pass_ticket + sessionInfo 就是进入凭证；刷新/重新点进视频号就是换这组凭证。
+
+### 6.4 视频文件
+- 下载地址：`finder.video.qq.com/251/2030x/stodownload?encfilekey=<...>&token=<...>`
+- **短视频**：Isaac64 流加密，仅前 128KB 加密，decode_key(9-10位数字) 作 seed 经官方 wasm `WxIsaac64.generate(131072)` 生成密钥流异或解密。
+- **直播回放**：明文 MP4，无需解密。
+
+### 6.5 下一步（未完成）
+- 找 Pinia 里的**翻页 action / cursor**，实现"不滚动、调 action 主动拉下一页"——这是 B 方案的终极简化。
+- 需在微信里打开视频号、hook 翻页一次，录下列表 apiName 与 cursor 参数。
+
+---
+
+## 七、公众号文章 HTTP API（2026-09-21，与视频号区分）
+
+> 关键区分：**公众号文章走 HTTP API，视频号不走 HTTP**。别混。
+
+### 7.1 激活链接
+```
+https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=<BIZ>&scene=124#wechat_redirect
+```
+- `__biz` = 公众号唯一 ID（固定）。
+- 把此链接发到文件传输助手 → 微信里打开激活 → 拿到 `appmsg_token` + `pass_ticket`。
+
+### 7.2 文章列表接口（真 HTTP，不用滚页面）
+```
+GET https://mp.weixin.qq.com/mp/profile_ext?action=getmsg
+  &__biz=<BIZ>
+  &f=json
+  &offset=<0开始，用返回里的下一页offset，非递增>
+  &count=10
+  &appmsg_token=<从激活页抓>
+  &pass_ticket=<从激活页抓，几小时过期>
+```
+- 返回 json 含文章列表 + 下一页 offset。
+- 循环到 offset 不再变化即到底。
+- 另有公众号后台素材接口 `cgi-bin/appmsgpublish?sub=list&begin=&count=20`（需公众号自身登录态）。
+
+### 7.3 与视频号的边界
+- 公众号文章 = HTTP，可纯 API 翻页（本方案）。
+- 视频号 = XWEB/Pinia，必须注入脚本（见 6.2）。
+- 待实测：在微信里激活一次，抓 appmsg_token，跑 getmsg 翻页验证全量。
