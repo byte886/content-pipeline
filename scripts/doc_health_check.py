@@ -6,7 +6,7 @@
   1. 核心文件齐备（冷启动链可达）
   2. Markdown 相对链接不断链
   3. docs/ 下文档都在 DOCUMENTATION_MAP 登记
-  4. 禁入内容未进 git（原始音视频/PDF/Office、明文凭证/临时票据；.secrets 仅允许 .enc）
+  4. 禁入内容未进 git（原始音视频/PDF/Office、明文凭证/临时票据；.secrets/ 整个不入库）
   5. 正式文档无占位词残留（WARN，不阻塞）
 
 退出码：出现 ERROR 返回 1；仅 WARN 返回 0。
@@ -123,7 +123,7 @@ SECRET_PATTERNS = [
     re.compile(r"pass_ticket=[A-Za-z0-9%_\-]{12,}"),
     re.compile(r"sessionInfo=[A-Za-z0-9%_+\-]{12,}"),
     re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
-    re.compile(r"***REMOVED***"),
+    re.compile("lov" "er123"),  # 相邻字面量拼接=目标弱口令；源码不连续出现明文，避免检测规则自身进历史（ISSUE-014）
 ]
 SCAN_TEXT_EXT = {".md", ".py", ".go", ".sh", ".js", ".json", ".txt", ".yaml", ".yml"}
 
@@ -136,10 +136,9 @@ def check_git_hygiene() -> None:
     for rel in tracked:
         p = ROOT / rel
         suffix = p.suffix.lower()
-        # .secrets 只允许 .enc / .gitignore / 说明
+        # .secrets/ 整个目录不入库（含 .enc 加密件；凭证本地持有，见 ADR-003/ISSUE-014）
         if rel.startswith(".secrets/"):
-            if not (suffix == ".enc" or p.name in {".gitignore", "README.md"}):
-                err(f"[凭证非加密入库] .secrets 下仅允许 .enc：{rel}")
+            err(f"[凭证目录入库] .secrets/ 整个目录不入库（加密件也本地持有）：{rel}")
         # 禁入扩展名
         if suffix in BANNED_EXT:
             err(f"[禁入文件类型入库] {rel}")

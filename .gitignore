@@ -20,13 +20,11 @@ __pycache__/
 *.pyo
 *.egg-info/
 
-# --- 环境变量与密钥（明文不入库；.secrets下.enc加密件显式放行）---
+# --- 环境变量与密钥（整个 .secrets/ 一律不入库，含 .enc 加密件；凭证仅本地持有，见 ADR-003/ISSUE-014）---
 .env
-.secrets/*.json
-.secrets/*.txt
-.secrets/*.key
-.secrets/*.pem
-!*.enc
+.secrets/
+*.pem
+*.key
 
 # --- 视频/音频/转写产物（大文件，走网盘不入库）---
 *.mp4
