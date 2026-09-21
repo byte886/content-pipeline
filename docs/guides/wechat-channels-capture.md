@@ -14,8 +14,8 @@
 | **全自动抓全量（推荐，自动滚动+自动切tab）** | `./video-capture -short-probe -autoscroll -output capture_full.json -upstream http://127.0.0.1:7890`，启动后只需**刷新一次视频号主页**，见 §2.1 |
 | 合并多次捕获并对账 | 见 §2.2（输出为多段 JSON 拼接，需 raw_decode 展平；按 encfilekey 去重、md5 对账） |
 | 停止捕获 | `bash platforms/wechat_channels/video-capture/stop.sh`（禁止kill -9，否则系统代理不会自动清除） |
-| 批量下载短视频 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <capture.json> <outdir> short` |
-| 批量下载直播回放 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <capture.json> <outdir> live` |
+| 批量下载短视频 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <capture.json> <outdir> short [start] [min\|default\|max]`，知识型默认 `min` |
+| 批量下载直播回放 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <capture.json> <outdir> live [start] [min\|default\|max]` |
 
 ---
 
@@ -104,7 +104,7 @@ python3 $DL <capture.json> <outdir> live                                        
 | 短视频无法播放 | 短视频需要解密，批量下载脚本自动处理 |
 | DecodeKey获取位置 | 捕获数据中的`decode_key`字段 |
 | 直播回放是否需要解密 | 不需要 |
-| 下载的视频只有2-5MB | 默认低分辨率，按§3高质量URL参数获取 |
+| 下载的视频只有2-5MB | **不是缺陷**：知识型内容默认 min 偏小(2-4MB)是预期目标（最终转文字）；只有珠宝/艺术等需高清才加第5参 `max` |
 
 ---
 
