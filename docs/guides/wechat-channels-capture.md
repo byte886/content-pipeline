@@ -11,8 +11,9 @@
 | 启动捕获（直连，推荐） | `cd platforms/wechat_channels/video-capture && ./video-capture -port 8899 -output /tmp/capture.json -upstream ""` |
 | 启动捕获（带ClashX上游） | `./video-capture -port 8899 -output /tmp/capture.json -upstream http://127.0.0.1:7890` |
 | 启动捕获（换签直链+decode_key，短视频解密必需） | `./video-capture -short-probe -output capture_shortprobe.json -upstream http://127.0.0.1:7890`（须在 Cmd+Q 重启微信**之前**启动） |
-| **全自动抓全量（推荐，自动滚动+自动切tab）** | `./video-capture -short-probe -autoscroll -output capture_full.json -upstream http://127.0.0.1:7890`，启动后只需**刷新一次视频号主页**，见 §2.1 |
-| 合并多次捕获并对账 | 见 §2.2（输出为多段 JSON 拼接，需 raw_decode 展平；按 encfilekey 去重、md5 对账） |
+| **B方案抓全量（首选：Pinia action 驱动、不滚 DOM）** | `./video-capture -replay-list -short-probe -output /tmp/cap.json -upstream ""`，启动后只需**刷新一次视频号主页**，见 §2.1 |
+| 备选：全自动滚动抓全量（`-autoscroll`） | `./video-capture -short-probe -autoscroll -output capture_full.json -upstream http://127.0.0.1:7890`，见 §2.2 |
+| 合并多次捕获并对账 | 见 §2.3（输出为多段 JSON 拼接，需 raw_decode 展平；按 encfilekey 去重、md5 对账） |
 | 停止捕获 | `bash platforms/wechat_channels/video-capture/stop.sh`（禁止kill -9，否则系统代理不会自动清除） |
 | 批量下载短视频 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <capture.json> <outdir> short [start] [min\|default\|max]`，知识型默认 `min` |
 | 批量下载直播回放 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <capture.json> <outdir> live [start] [min\|default\|max]` |
@@ -38,9 +39,27 @@
 
 > 代理仅在捕获URL的几分钟内设置，下载阶段不走代理；Chrome等读系统代理的GUI程序会短暂受影响，iTerm/TUN模式不受影响。
 
-### 2.1 全自动列表抓取（`-autoscroll`，✅ 2026-09-21 验证）
+### 2.1 B方案：Pinia action 驱动抓全量（首选，✅ 2026-09-21 验证，不滚 DOM）
 
-启动带 `-short-probe -autoscroll` 的捕获后，**人工只需刷新一次视频号主页**，注入 JS 自动完成两个标签的全量翻页，无需手动滚动、无需手动切 tab：
+视频号列表**不走 HTTP**，走 XWEB 原生桥、最终落在 profile 页 Vue3/Pinia 的 `profile` store。注入脚本直接枚举并调用 store 自带的"加载更多" action，由服务端 `noMore` 权威终止，不依赖 DOM 滚动/虚拟列表。
+
+启动 `./video-capture -replay-list -short-probe -output /tmp/cap.json -upstream ""` 后，**人工只需刷新一次视频号主页**，注入的 `actionDrive()` 自动：
+1. 先 JS 点击切到「视频」tab（`.tab` 文案匹配，绕开鼠标坐标）；
+2. 循环 `await profile.fetchMoreData({username})`（username = `$state.username`），每次 await `isFetchingMore` 回 false，直到 `$state.noMore===true`；
+3. JS 点击切「直播回放」tab，`liveCardObjects` 首屏即全量（`liveNoMore===true`，一般无需翻页；必要时 `getLiveUserPage()`）；
+4. 全量列表经 slim 映射以 `RLIST_FEED__` 分块上报（与旧滚动方案**同格式，下游解析/下载/解密管道不变**），进度看 `RLIST_DRIVE__`（在 `*_api.log`，不在 stdout）。
+
+关键契约与坑（勿回退）：
+- **签名必须是 `fetchMoreData({username})`**：空参 `fetchMoreData({})` 会误置 `noMore=true` 污染状态、只拉一页就停；无参直接抛 `reading 'username'`。
+- 游标 `refSessionBuffer/refObjectId` 由 action 内部自更新，**不要手传**。
+- **mediaType：4=视频，2=图文**；采集视频时过滤 2。
+- 改注入 JS 必须 `go build -o video-capture .` 并重启代理、**刷新主页**（旧页跑旧 JS）。
+
+实测「交易的游戏」：短视频 cardObjects 340（= **339 视频 + 1 图文**）、直播回放 28，oid/nid 双唯一零重复；纯视频 339 与旧滚动 manifest 精确一致，回放比旧 27 多 1（新增）。约 20–30s 拉完，肉眼可见"停顿不翻滚、随后自动切回放"即正常。
+
+### 2.2 备选：DOM 自动滚动抓取（`-autoscroll`，✅ 2026-09-21 验证）
+
+> B方案失效时的兜底。启动带 `-short-probe -autoscroll`，人工刷新一次主页，注入 JS 自动翻两 tab，无需手动滚动/切 tab：
 
 1. 「视频」tab：每 800ms 把列表容器直接跳到底（`scrollTop=scrollHeight` + wheel + window.scrollBy 三管齐下）触发懒加载下一页；连续 8 次（约 6.4s）高度不增且仍在底部判“无更多”，回顶再扫一遍补漏。
 2. 视频翻完后，自动对 `.tab` 中文本为「直播回放」的元素派发完整 `pointerover/move/down→mousedown→pointerup/mouseup→click` 事件（标签 DOM 实测为 `<div class="tab">视频</div>` / `<div class="tab tab--active">…</div>`），冷却 4 拍等面板加载。
@@ -54,7 +73,7 @@
 
 实测「交易的游戏」（=公众号顶底之王）：刷新后约 1 分钟抓到 **339 个真实短视频（均带 decode_key 换签直链）+ 27 个直播回放（明文直链）**。
 
-### 2.2 合并、去重与对账
+### 2.3 合并、去重与对账
 
 - `-output` 文件是代理**追加写的多段 JSON 拼接**（不是单个合法 JSON 数组），解析要用 `JSONDecoder.raw_decode` 从偏移量循环读出多个块再展平。
 - 多次捕获取并集：短视频以有 `decode_key` 为准、按 URL 的 `encfilekey` 去重；回放按无 `decode_key` 且 `stodownload`、体积 >30MB 归类，同样按 `encfilekey` 去重。
@@ -88,7 +107,7 @@ python3 $DL <capture.json> <outdir> live                                        
 
 - **落库目录（参数化，不写死）**：`library/01_video/<domain>/<account>/{short,live}/`。`domain`/`account` 来自 `config/sources.json`（如 stock/交易的游戏）；`outdir` 是 `batch_download_v4.py` 的第 2 位置参数，新源只改配置与入参、不改代码。原始文件 gitignore、不进公有仓。
 - **默认质量 = min（知识型偏小）**：股票/知识型内容最终转文字，第 5 位置参数用 `min`（xWT128，单条短视频 2–4MB、回放约为记录的 1/3）。只有珠宝/艺术品等需高清时才显式指定 `max`。
-- **自动过滤图文动态**：下载前必须过滤非视频条目，判定规则 = **无 `decode_key` 或时长 ≤3 秒**（即 §2.2 的 `mediaType=2`、0 秒、`specs=[]` 图文动态），不下载、不计入数量。
+- **自动过滤图文动态**：下载前必须过滤非视频条目，判定规则 = **无 `decode_key` 或时长 ≤3 秒或 `mediaType=2`**（即 §2.1/§2.3 的图文动态），不下载、不计入数量。
 - **对账口径**：
   - 短视频按标题对齐——现有文件名形如 `short_NNN_正文_标签1_标签2.mp4`，**取去序号前缀后第一个 `_` 之前的正文段**再归一化（去 `#标签`/标点/空白）；不要把 `_` 当标点删，否则正文与标签粘连。
   - 直播回放同名多（"回调就是进场机会"等），不能按标题去重；按**完整下载后文件字节数**对清单 `size`（容差 2%）匹配。
@@ -144,7 +163,7 @@ https://channels.weixin.qq.com/web/pages/profile?username=<USERNAME>&exportkey=<
 | 环节 | 谁做 | 说明 |
 |---|---|---|
 | 触发拿 token | **人**（微信里点一下/刷新/发链接激活） | 必须微信登录态，无法绕过 |
-| 翻页全量列表 | 脚本自动 | autoscroll / getmsg 翻页 |
+| 翻页全量列表 | 脚本自动 | 视频号走 Pinia action（§2.1，备选 autoscroll）；公众号走 getmsg |
 | 下载、解密 | 脚本自动 | 短视频 Isaac64 / 回放明文 |
 | 转写、增量、落库 | 脚本自动 | FunASR + incremental_sync |
 

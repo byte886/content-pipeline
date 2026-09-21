@@ -123,21 +123,42 @@ https://finder.video.qq.com/251/20302/stodownload?encfilekey=<...>&token=<...>
 
 → 这解释了"纯 HTTP API（appmsg_token）不可行"：列表不在网络层，拿 cookie curl 后端也没用。
 
-### 6.2 已验证可行的"准 B 方案"（不滚 DOM，直接读状态树）
-`replay_list_hook.go` 已实现：注入 JS 滚动加载卡片后，**深读 `$pinia.state` / `$store.state`**，用封面 encfilekey/时长作锚点定位 feed 数组，整块 JSON 上报（RLIST_FEEDARR）。这就是当前 339 短视频 + 27 回放的来源。比"读渲染好的 DOM"干净，但仍需滚动触发懒加载。
+### 6.2 B 方案已验证成功：直接调 Pinia action 翻页（不滚 DOM）
+
+profile 页 Pinia 有 11 个 store，负责列表的是 **`profile` store**（经 `document.querySelector('#app').__vue_app__.config.globalProperties.$pinia._s.get('profile')` 获取）。
+
+**state（列表与翻页游标/标志）**：
+- 短视频：`cardObjects`（列表）、`noMore`（到底）、`isFetchingMore`（加载锁）、`refSessionBuffer`/`refObjectId`（翻页游标，action 内部自更新，无需手传）。
+- 直播回放：`liveCardObjects`（列表）、`liveNoMore`、`isLiveFetchingMore`、`liveLastBuffer`。
+
+**action（返回 Promise）**：
+- 短视频翻页：**`fetchMoreData({username})`** —— 参数必须带 `{username}`（= `$state.username`，finder username）。
+  - ⚠️ 空参 `fetchMoreData({})` 会**误把 `noMore` 置为 true 污染状态**，导致只拉一页就停；无参 `fetchMoreData()` 直接抛 `Cannot read properties of undefined (reading 'username')`。
+  - 循环调用直到 `$state.noMore===true`，每次 await `isFetchingMore` 回 false。
+- 直播回放：切到"直播回放"tab（点 `.tab` 中文案为"直播回放"的元素）后，**`liveCardObjects` 首屏即全量、`liveNoMore===true`**，通常无需翻页；如需补拉用 `getLiveUserPage()`。
+
+实现见 `replay_list_hook.go` 的 `actionDrive()`（`-replay-list` 注入，进 profile 页自动执行）：先切"视频"tab → 循环 `fetchMoreData({username})` → 切"直播回放" → 读 `liveCardObjects`；进度经 `RLIST_DRIVE__` 上报，全量经 `RLIST_FEED__`（slim 映射，与旧滚动方案同格式，**下游解析/下载/解密管道不变**）。
+
+**mediaType 口径**：`4`=视频，`2`=图文（采集视频时过滤图文）。
 
 ### 6.3 凭证（"刷新=换 token"）
 视频号主页 URL：`channels.weixin.qq.com/web/pages/profile?username=v2_...@finder&exportkey=<...>&pass_ticket=<...>&wx_header=0`，Cookie 带 `sessionInfo=<...>`。
-→ exportkey + pass_ticket + sessionInfo 就是进入凭证；刷新/重新点进视频号就是换这组凭证。
+→ exportkey + pass_ticket + sessionInfo 就是进入凭证；刷新/重新点进视频号就是换这组凭证。**人工只需"搜博主→点进主页/刷新"这一下触发拿凭证，之后 action 翻页、下载、解密、转写全自动。**
 
 ### 6.4 视频文件
 - 下载地址：`finder.video.qq.com/251/2030x/stodownload?encfilekey=<...>&token=<...>`
 - **短视频**：Isaac64 流加密，仅前 128KB 加密，decode_key(9-10位数字) 作 seed 经官方 wasm `WxIsaac64.generate(131072)` 生成密钥流异或解密。
 - **直播回放**：明文 MP4，无需解密。
 
-### 6.5 下一步（未完成）
-- 找 Pinia 里的**翻页 action / cursor**，实现"不滚动、调 action 主动拉下一页"——这是 B 方案的终极简化。
-- 需在微信里打开视频号、hook 翻页一次，录下列表 apiName 与 cursor 参数。
+### 6.5 全量对账（2026-09-21，交易的游戏，B 方案首次跑通）
+| 列表 | action 驱动结果 | 构成 | 旧滚动 manifest | 结论 |
+|---|---|---|---|---|
+| 短视频 cardObjects | 340 | 339 视频(mediaType=4) + 1 图文(mediaType=2) | 339 shorts | 纯视频 **339 精确一致**，另识别出 1 条图文 |
+| 直播回放 liveCardObjects | 28 | 28 全视频 | 27 replays | 多 1 场（新增回放） |
+
+- 340 条 oid/nid 双唯一、零重复，`noMore` 由服务端置位 → **无遗漏、无重复，且天然可按 mediaType 过滤图文**。
+- 台账 inventory 的 `short_total=410` 是**落库 mp4 文件口径**（含历史累积/重复/低清版本），非服务端列表全量，需以 action 全量（339 视频）为准重新对账；`live_total=25` 同样落后，应为 28。
+- B 方案相比滚动：更快（短视频 22 次 action 调用、约 20–30s 拉完）、不依赖 DOM 滚动、不受懒加载/虚拟列表影响、数量由服务端 noMore 权威终止。
 
 ---
 

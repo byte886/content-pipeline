@@ -24,7 +24,7 @@
 
 | 编号 | 标题 | 类型 | 状态 | 说明 |
 |------|------|------|------|------|
-| T-10 | 视频号API研究（方案B） | research | ✅ 深挖完成 | 列表不走HTTP，走XWEB原生桥+Vue Pinia状态树；凭证在主页URL(username+exportkey+pass_ticket)；结论见 docs/research/wechat-channels-api.md §6 |
+| T-10 | 视频号API研究（方案B） | research | ✅ B方案验证成功 | 列表不走HTTP，走XWEB桥+Pinia；**已验证直接调 `profile.fetchMoreData({username})` 翻页到 noMore、回放切tab首屏即全量，不滚DOM**。实测339视频+1图文/回放28，与旧滚动manifest 339/27精确对账；契约/坑见 docs/research/wechat-channels-api.md §6.2、capture SOP §2.1。⚠️台账410为落库mp4口径(含累积/重复)，需按339权威值重新对账 |
 | T-22 | 方法提炼（MethodNote）LLM分析 | feature | blocked | 框架已搭，抖音反爬403，等用户手动下载视频后继续 |
 | T-31 | 指定博主全量采集 | feature | todo | 抖音反爬403，暂时跳过 |
 | T-32 | 艺术/博物馆站点采集 | research | todo | 6个站点，待评估爬虫友好度 |
@@ -60,6 +60,7 @@
 
 ## 最近完成（2026-09-21）
 
+- ✅ **T-10 B方案（Pinia action 驱动）端到端验证成功**：注入脚本直接调 `profile.fetchMoreData({username})` 翻短视频到 `noMore`、切"直播回放"tab 后 `liveCardObjects` 首屏即全量，**不滚 DOM**。交易的游戏实测 cardObjects 340（339视频 mediaType=4 + 1图文 mediaType=2）、liveCardObjects 28，oid/nid 双唯一零重复，纯视频339与旧滚动manifest精确一致（回放多1为新增）。代码 `replay_list_hook.go:actionDrive()`，结论落 api.md §6.2 / capture SOP §2.1。待办：把 action 全量接入下游下载管道（decode_key 沿用 -short-probe）、按339权威值重对账落库410口径
 - ✅ **T-10 视频号API深挖完成**：列表不走HTTP，走XWEB原生桥(postMessage)+Vue Pinia状态树；凭证在主页URL(username+exportkey+pass_ticket)；结论落 docs/research/wechat-channels-api.md §6
 - ✅ **视频号增量脚本** `platforms/wechat_channels/video-downloader/incremental_sync.py`：按 encfilekey(=捕获id) 对账，dry-run验证通过，只下新增差集，待实跑
 - ✅ **凭证最短路径+人机协作边界**：视频号=人工点进主页即拿凭证；公众号=人工激活文章链接拿appmsg_token；"人工触发一次拿token+脚本全自动"原则落 docs/guides/wechat-channels-capture.md §6/§7

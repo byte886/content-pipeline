@@ -10,15 +10,18 @@ import (
 	"strings"
 )
 
-// injectReplayListHook 注入"回放列表提取器"。
+// injectReplayListHook 注入视频号 profile 页"全量列表提取器"（B方案，action 驱动，不滚 DOM）。
 //
-// 主通道：视频号 profile 页是 Vue3 应用（#app 暴露 __vue_app__，globalProperties 同时有
-// $store / $pinia / $router / $route）。列表数据最终落在 Pinia/Vuex 的状态树里。
-// 脚本滚动加载全部回放卡片后，深度遍历 $store.state 与 $pinia.state，用卡片封面
-// encfilekey / 时长文本作为锚点定位 feed 数组，并按"元素同时含 id 类与 nonce 类字段"
-// 识别列表，把整个数组 JSON 分块上报（RLIST_FEEDARR__）。
-// 辅助：hook fetch/XHR/worker（RLIST_API__/RLIST_WK__）、上报状态树结构（RLIST_STATEMAP__）。
-// 全程零副作用：不点击、不导航、不播放。
+// 视频号 profile 是 Vue3 + Pinia 应用，列表数据在 profile store，翻页由 store action 完成，
+// 全程不走可抓的 HTTP（走 XWEB 原生桥）。本脚本直接枚举并调用 Pinia action 拉全量：
+//   - 短视频：循环 profile.fetchMoreData({username}) 直到 $state.noMore===true，读 cardObjects；
+//   - 直播回放：切到"直播回放"tab 后 liveCardObjects 首屏即全量（liveNoMore===true），必要时 getLiveUserPage()。
+// 翻页进度经 RLIST_DRIVE__ 上报；全量列表用 slim 映射经 RLIST_FEED__ 分块上报（与旧滚动方案同格式，
+// 下游解析/下载/解密管道不变）。mediaType：4=视频，2=图文（采集视频时过滤）。
+// 实测（交易的游戏，2026-09-21）：339 视频 + 1 图文、回放 28，oid/nid 双唯一零重复，
+// 与旧滚动方案 manifest 的 339/27 精确对账一致（回放多 1 为新增）。
+// 辅助通道（保留作兜底/排查）：滚动 scanStore、hook fetch/XHR/worker、枚举 store actions。
+// 全程零副作用：不播放、不发布，只在页面内调用其自身的"加载更多"action。
 func (c *Captor) injectReplayListHook(resp *http.Response) *http.Response {
 	log.Printf("[ReplayList] injectReplayListHook被调用，URL: %s", resp.Request.URL.String())
 
@@ -121,9 +124,104 @@ const replayListJS = `
   }
   function stateMap(root){var m={};try{var o=root.v;Object.keys(o).slice(0,60).forEach(function(k){var s=o[k];if(s&&typeof s==='object'){m[k]=Object.keys(s).slice(0,25);}else m[k]=typeof s;});}catch(e){m.err=''+e;}return m;}
 
+  function enumActions(){
+    if(window.__rlEnum)return; window.__rlEnum=true;
+    try{
+      var app=document.querySelector('#app').__vue_app__;var gp=app.config.globalProperties;var out=[];
+      if(gp.$pinia&&gp.$pinia._s){
+        gp.$pinia._s.forEach(function(store,id){
+          var methods=[];try{Object.getOwnPropertyNames(store).forEach(function(k){try{if(typeof store[k]==='function')methods.push(k);}catch(e){}});}catch(e){}
+          var skeys=[];try{skeys=Object.keys(store.$state||{});}catch(e){}
+          out.push({src:'pinia',id:id,methods:methods,stateKeys:skeys});
+        });
+      }
+      if(gp.$store&&gp.$store._actions){out.push({src:'vuex',actions:Object.keys(gp.$store._actions)});}
+      postRaw('RLIST_STORE_ACTIONS__',JSON.stringify(out));
+    }catch(e){post('RLIST_ENUM_ERR__'+e);}
+  }
+  // B方案探针：读 profile store 的翻页 action 源码 + 当前游标/状态，确认能否直接调 action 翻页（不滚动）
+  function probeProfile(){
+    if(window.__rlProbe)return; window.__rlProbe=true;
+    try{
+      var app=document.querySelector('#app').__vue_app__;var pinia=app.config.globalProperties.$pinia;
+      var p=pinia._s.get('profile');if(!p){window.__rlProbe=false;return;}
+      var st=p.$state;
+      var info={state:{
+        cardLen:(st.cardObjects||[]).length, liveLen:(st.liveCardObjects||[]).length,
+        noMore:st.noMore, liveNoMore:st.liveNoMore,
+        isFetchingMore:st.isFetchingMore, isLiveFetchingMore:st.isLiveFetchingMore,
+        isProfileDataReady:st.isProfileDataReady,
+        refSessionBuffer:st.refSessionBuffer, refObjectId:st.refObjectId, liveLastBuffer:st.liveLastBuffer},
+        fn:{fetchMoreData:String(p.fetchMoreData).slice(0,1800),
+            getLiveUserPage:String(p.getLiveUserPage).slice(0,1800)}};
+      postRaw('RLIST_PROFILE__',JSON.stringify(info));
+      window.__rlProbe=true;
+    }catch(e){post('RLIST_PROFILE_ERR__'+e);}
+  }
+  // ===== B方案核心：action 驱动翻页（不滚 DOM）=====
+  // 短视频循环 profile.fetchMoreData() 直到 noMore；切"直播回放"tab 后循环 getLiveUserPage() 直到 liveNoMore。
+  function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+  function PStore(){var app=document.querySelector('#app').__vue_app__;return app.config.globalProperties.$pinia._s.get('profile');}
+  function clickTab(name){var done=false;document.querySelectorAll('.tab').forEach(function(e){if((e.textContent||'').trim()===name){e.click();done=true;}});return done;}
+  function driveReport(stage,o){postRaw('RLIST_DRIVE__',JSON.stringify(Object.assign({stage:stage},o||{})));}
+  async function waitFetch(p,flag){var w=0;while(p.$state[flag]&&w<60){await sleep(200);w++;}return w;}
+  async function loadShort(p){
+    var u=p.$state.username;
+    driveReport('short-username',{username:u?(''+u).slice(0,16)+'…':u});
+    if(!u)return {len:(p.$state.cardObjects||[]).length,guard:0,why:'no-username'};
+    // 已实测正确签名 fetchMoreData({username})；严禁空参 {}（会误置 noMore=true 污染状态）
+    var guard=0,stagnant=0,lastLen=(p.$state.cardObjects||[]).length,errs=0;
+    while(guard<300){
+      var len=(p.$state.cardObjects||[]).length;
+      if(p.$state.noMore)return {len:len,guard:guard,why:'noMore'};
+      if(p.$state.isFetchingMore){await sleep(300);continue;}
+      if(len===lastLen){stagnant++;if(stagnant>6)return {len:len,guard:guard,why:'stagnant'};}else stagnant=0;
+      lastLen=len;
+      try{ await p.fetchMoreData({username:u}); errs=0; }catch(e){ errs++; if(errs>4)return {len:len,guard:guard,why:'err:'+e}; await sleep(500); continue; }
+      await waitFetch(p,'isFetchingMore');await sleep(120);guard++;
+      if(guard%5===0)driveReport('short-progress',{guard:guard,len:len,noMore:p.$state.noMore});
+    }
+    return {len:(p.$state.cardObjects||[]).length,guard:guard,why:'guard'};
+  }
+  async function loadLive(p){
+    var guard=0,stagnant=0,lastLen=-1;
+    var w0=0;while(p.$state.isLiveFetchingMore&&w0<40){await sleep(300);w0++;}
+    while(guard<300){
+      var len=(p.$state.liveCardObjects||[]).length;
+      if(p.$state.liveNoMore)return {len:len,guard:guard,why:'liveNoMore'};
+      if(p.$state.isLiveFetchingMore){await sleep(300);continue;}
+      if(len===lastLen){stagnant++;if(stagnant>6)return {len:len,guard:guard,why:'stagnant'};}else stagnant=0;
+      lastLen=len;
+      try{await p.getLiveUserPage();}catch(e){return {len:len,guard:guard,why:'err:'+e};}
+      var w=0;while(p.$state.isLiveFetchingMore&&w<60){await sleep(200);w++;}
+      await sleep(120);guard++;
+      if(guard%8===0)driveReport('live-progress',{guard:guard,len:len,noMore:p.$state.liveNoMore});
+    }
+    return {len:(p.$state.liveCardObjects||[]).length,guard:guard,why:'guard'};
+  }
+  async function actionDrive(){
+    if(window.__rlDrive)return; window.__rlDrive=true;
+    try{
+      var p=PStore();if(!p){window.__rlDrive=false;window.__rlDriveStarted=false;return;}
+      var t=0;while(!p.$state.isProfileDataReady&&t<50){await sleep(200);t++;}
+      // 无论刷新时停在哪个 tab，先切回"视频"，保证短视频从头拉全
+      clickTab('视频');await sleep(1500);p=PStore();
+      driveReport('start',{cardLen:(p.$state.cardObjects||[]).length});
+      var sr=await loadShort(p);
+      driveReport('short-done',sr);window.__rlShortDone=true;
+      await sleep(600);
+      var switched=clickTab('直播回放');
+      driveReport('tab-switch',{switched:switched});
+      await sleep(1800);
+      p=PStore();
+      var lr=await loadLive(p);
+      driveReport('live-done',lr);window.__rlDriveAllDone=true;
+      scanStore();
+      driveReport('all-done',{short:sr.len,live:lr.len});
+    }catch(e){post('RLIST_DRIVE_ERR__'+(e.stack||e));}
+  }
   var reported={};
-  function scanStore(){
-    var rs=roots();if(!rs.length)return;
+  function scanStore(){    var rs=roots();if(!rs.length)return;
     if(!window.__rlMap){window.__rlMap=true;rs.forEach(function(r){postRaw('RLIST_STATEMAP__'+r.name,JSON.stringify(stateMap(r)));});}
     rs.forEach(function(r){
       walkArrays(r.v,r.name,0,function(arr,path){
@@ -142,10 +240,15 @@ const replayListJS = `
 
   var state={stable:0,lastN:-1,tab:'',tabTicks:0};
   function tick(){
+    enumActions();
+    probeProfile();
     var tab=activeTab();var profile=/\/web\/pages\/profile/.test(location.href);
     if(!profile||(tab!=='视频'&&tab!=='直播回放'))return;
     if(tab!==state.tab){state.tab=tab;state.tabTicks=0;state.stable=0;state.lastN=-1;}
     state.tabTicks++;
+    // B方案：action 驱动翻页（fetchMoreData/getLiveUserPage），启动后不再滚 DOM；不依赖当前停留 tab
+    if(!window.__rlDriveStarted){window.__rlDriveStarted=true; actionDrive();}
+    if(window.__rlDriveStarted){ scanStore(); return; }
     var cs=cards();var box=scrollBox();
     if(box){box.scrollTop=box.scrollHeight;if(box.scrollTo)box.scrollTo(0,box.scrollHeight);}
     window.scrollBy(0,3000);
