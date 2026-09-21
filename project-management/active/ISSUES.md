@@ -81,6 +81,16 @@
 - **问题描述**：`scripts/netdisk/sync_netdisk.sh` 引用 `data/_workspace/...`、`scripts/upload_course.sh`、`GAODUN_COURSE_PROFILE`，是高顿课程同步脚本复制而来，在本仓目录结构下疑似 0 引用、不可直接运行。
 - **方案**：确认无引用后删除或迁入归档；当前仅已去除其中明文口令。
 
+### ISSUE-016: 短视频重复文件去重、3场缺回放补下、inventory 台账重建（高优先级）
+- **状态**：待执行（删除动作需用户确认）；方案见 `project-management/active/wechat-channels-dedup-and-inventory.md`
+- **问题描述**：ffprobe 严格对账（catalog 339 短视频/28 回放为全集）确认：短视频 410 文件覆盖 339、0 缺、71 组各 2 个重复（71 个多余、约 300MB）；回放 25 文件缺 3 场（`1fb195bc2a6b5838` 上涨中继2266s、`6ea0215f7f0297e2` 再次缩量见底2415s、`bdfd5f9fb4fccd6d` 再次缩量见底2018s）。旧 inventory 台账 150 条 shorts encfilekey 为 null、lives 同名不同场次被错标同一 id，需按 catalog id 重建。
+- **方案**：①新 hook 刷新换签（ISSUE-017）→ ②补 3 场回放并转写 → ③出 71 组 keep/drop 清单（keep 须解密可播放+有转写），用户确认后删视频并同步去重转写目录 → ④按 catalog id 重建 inventory，audit_disk.py 跑到缺/重/游离/歧义全 0。
+
+### ISSUE-017: 新 hook 换签字段覆盖率与主动换签 action 待刷新验证（高优先级·阻塞补下载）
+- **状态**：代码已改并 go build 通过，待用户刷新主页验证
+- **问题描述**：`replay_list_hook.go` 的 slim() 已补 urlToken/decodeKey/cdnFileSize/hlsSpec，并新增 probeSignActions()（RLIST_ACTSRC 上报换签 action 源码）。旧页跑旧 JS，必须用新二进制让用户刷新/重进主页才生效；当前 catalog signed_coverage 全 0（旧 slim 未取 token）。
+- **方案**：启动新 captor（`-upstream ""` 国内直连，绝不动 ClashX）→ 用户刷新「交易的游戏」主页 → parse_capture_log.py 看覆盖率：近 100% 即一次刷新拿全；仅首屏带则 grep RLIST_ACTSRC 定位 feed/home.getObjectAsyncLoadInfo 源码与参数契约，对缺签条目逐条节流换签，二次刷新验证。拿到有效直链后供 ISSUE-016 补 3 场回放。
+
 ---
 
 ## 已解决问题（Closed）
@@ -107,4 +117,4 @@
 
 ---
 
-*最后更新：2026-09-22（ISSUE-014 历史清除完成）*
+*最后更新：2026-09-22（ISSUE-016/017 登记；ISSUE-014 历史清除完成）*

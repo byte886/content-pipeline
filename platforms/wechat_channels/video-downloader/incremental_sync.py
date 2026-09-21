@@ -65,7 +65,7 @@ def main():
     inv = load(a.inventory)
 
     new_s, dup_s, filt_s = diff_section(cap.get("shorts", []), inv.get("shorts", []), require_decode_key=True)
-    new_r, dup_r, filt_r = diff_section(cap.get("replays", []), inv.get("live", []), require_decode_key=False)
+    new_r, dup_r, filt_r = diff_section(cap.get("replays", []), inv.get("lives", []), require_decode_key=False)
 
     print(f"短视频: 已有 {dup_s} | 新增 {len(new_s)} | 过滤图文 {filt_s}")
     print(f"直播回放: 已有 {dup_r} | 新增 {len(new_r)} | 过滤图文 {filt_r}")
@@ -90,7 +90,7 @@ def main():
     dl = Path(__file__).parent / "batch_download_v4.py"
     for tag, miss_json, cur_list, outdir in [
         ("short", miss_s, inv["shorts"], a.outdir),
-        ("live", miss_r, inv["live"], a.outdir),
+        ("live", miss_r, inv["lives"], a.outdir),
     ]:
         if not miss_json.exists() or len(json.load(open(miss_json))) == 0:
             continue
@@ -109,7 +109,7 @@ def main():
             })
             start_seq += 1
     inv["summary"]["short_total"] = len(inv["shorts"])
-    inv["summary"]["live_total"] = len(inv["live"])
+    inv["summary"]["live_total"] = len(inv["lives"])
     json.dump(inv, open(a.inventory, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(f"✅ 已下载并更新台账: {a.inventory}")
 

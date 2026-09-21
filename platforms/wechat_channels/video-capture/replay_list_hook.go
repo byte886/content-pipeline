@@ -108,7 +108,9 @@ const replayListJS = `
     var pd=e.playhistoryInfo||{};
     return {oid:e.id,nid:e.objectNonceId,desc:od.description||'',ct:e.createtime,
       durMs:pd.breakpointTimeMs||0,
-      url:mm.url||'',fileSize:mm.fileSize||0,videoPlayLen:mm.videoPlayLen||0,
+      url:mm.url||'',urlToken:mm.urlToken||'',decodeKey:(mm.decodeKey==null?'':mm.decodeKey),
+      cdnFileSize:mm.cdnFileSize||0,hlsSpec:mm.hlsSpec||null,
+      fileSize:mm.fileSize||0,videoPlayLen:mm.videoPlayLen||0,
       w:mm.width||0,h:mm.height||0,md5:mm.md5sum||'',cover:mm.coverUrl||mm.thumbUrl||'',
       mediaType:mm.mediaType||0,specs:specs,
       like:e.likeCount||0,fav:e.favCount||0,fwd:e.forwardCount||0,cmt:e.commentCount||0,read:e.readCount||0,ip:(e.ipRegionInfo||{}).regionText||''};
@@ -157,6 +159,22 @@ const replayListJS = `
       postRaw('RLIST_PROFILE__',JSON.stringify(info));
       window.__rlProbe=true;
     }catch(e){post('RLIST_PROFILE_ERR__'+e);}
+  }
+  // 换签探针：枚举各 store 中疑似"按 oid/nid 异步取播放信息(含 token url + decodeKey)"的 action 源码，
+  // 用于在 store 列表对象天然不带 urlToken 时，确定主动逐条换签应调用的方法与参数契约。
+  function probeSignActions(){
+    if(window.__rlActSrc)return; window.__rlActSrc=true;
+    try{
+      var pinia=document.querySelector('#app').__vue_app__.config.globalProperties.$pinia;
+      var want=/AsyncLoad|updateFeedMedia|updateObjectMedia|getProfileUserpage|PreloadInit|LiveData|getRelatedList|checkStoreData|checkPrefetch|Media|Sign|Token|Url/i;
+      var out={};
+      pinia._s.forEach(function(store,id){
+        Object.getOwnPropertyNames(store).forEach(function(k){
+          try{ if(typeof store[k]==='function'&&want.test(k)) out[id+'.'+k]=String(store[k]).slice(0,2600); }catch(e){}
+        });
+      });
+      postRaw('RLIST_ACTSRC__',JSON.stringify(out));
+    }catch(e){post('RLIST_ACTSRC_ERR__'+e);}
   }
   // ===== B方案核心：action 驱动翻页（不滚 DOM）=====
   // 短视频循环 profile.fetchMoreData() 直到 noMore；切"直播回放"tab 后循环 getLiveUserPage() 直到 liveNoMore。
@@ -242,6 +260,7 @@ const replayListJS = `
   function tick(){
     enumActions();
     probeProfile();
+    probeSignActions();
     var tab=activeTab();var profile=/\/web\/pages\/profile/.test(location.href);
     if(!profile||(tab!=='视频'&&tab!=='直播回放'))return;
     if(tab!==state.tab){state.tab=tab;state.tabTicks=0;state.stable=0;state.lastN=-1;}
