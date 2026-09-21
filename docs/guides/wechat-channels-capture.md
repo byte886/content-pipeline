@@ -11,6 +11,8 @@
 | 启动捕获（直连，推荐） | `cd platforms/wechat_channels/video-capture && ./video-capture -port 8899 -output /tmp/capture.json -upstream ""` |
 | 启动捕获（带ClashX上游） | `./video-capture -port 8899 -output /tmp/capture.json -upstream http://127.0.0.1:7890` |
 | 启动捕获（换签直链+decode_key，短视频解密必需） | `./video-capture -short-probe -output capture_shortprobe.json -upstream http://127.0.0.1:7890`（须在 Cmd+Q 重启微信**之前**启动） |
+| **全自动抓全量（推荐，自动滚动+自动切tab）** | `./video-capture -short-probe -autoscroll -output capture_full.json -upstream http://127.0.0.1:7890`，启动后只需**刷新一次视频号主页**，见 §2.1 |
+| 合并多次捕获并对账 | 见 §2.2（输出为多段 JSON 拼接，需 raw_decode 展平；按 encfilekey 去重、md5 对账） |
 | 停止捕获 | `bash platforms/wechat_channels/video-capture/stop.sh`（禁止kill -9，否则系统代理不会自动清除） |
 | 批量下载短视频 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <capture.json> <outdir> short` |
 | 批量下载直播回放 | `python3 platforms/wechat_channels/video-downloader/batch_download_v4.py <capture.json> <outdir> live` |
@@ -35,6 +37,30 @@
 4.  从捕获结果提取URL，按`encfilekey`全局去重，按文件大小分类：<100MB为短视频，≥100MB为直播回放
 
 > 代理仅在捕获URL的几分钟内设置，下载阶段不走代理；Chrome等读系统代理的GUI程序会短暂受影响，iTerm/TUN模式不受影响。
+
+### 2.1 全自动列表抓取（`-autoscroll`，✅ 2026-09-21 验证）
+
+启动带 `-short-probe -autoscroll` 的捕获后，**人工只需刷新一次视频号主页**，注入 JS 自动完成两个标签的全量翻页，无需手动滚动、无需手动切 tab：
+
+1. 「视频」tab：每 800ms 把列表容器直接跳到底（`scrollTop=scrollHeight` + wheel + window.scrollBy 三管齐下）触发懒加载下一页；连续 8 次（约 6.4s）高度不增且仍在底部判“无更多”，回顶再扫一遍补漏。
+2. 视频翻完后，自动对 `.tab` 中文本为「直播回放」的元素派发完整 `pointerover/move/down→mousedown→pointerup/mouseup→click` 事件（标签 DOM 实测为 `<div class="tab">视频</div>` / `<div class="tab tab--active">…</div>`），冷却 4 拍等面板加载。
+3. 容器切换靠“元素引用 + 可见性滞回”检测（旧容器从可见列表消失＝真正切了 tab），随后对回放列表重复快速翻页；两 tab 都翻完自动停止。
+
+关键工程点（曾踩坑，勿回退）：
+- **容器标识绝不能拼 `scrollHeight`**：懒加载会让总高度持续变大，拼进 key 会被误判成“切换列表”而每加一屏就 `scrollTop=0` 反复回顶，永远滚不到底（现象：滚一会儿又从头开始，条数停在 ~105）。
+- **网页内伪造 `KeyboardEvent(keydown/PageDown)` 不会触发浏览器默认滚动**，所以直接改 `scrollTop`，等效且快得多。
+- 改了注入 JS 必须重新 `go build` 并重启代理；**已打开的视频号页是在旧 JS 下加载的，必须刷新/重进一次新 JS 才生效**。
+- 仅滚动列表（不逐条点开播放）就能让翻页 API 返回带 `decode_key` 的 media 数据，这是全自动可行的决定性事实。
+
+实测「交易的游戏」（=公众号顶底之王）：刷新后约 1 分钟抓到 **339 个真实短视频（均带 decode_key 换签直链）+ 27 个直播回放（明文直链）**。
+
+### 2.2 合并、去重与对账
+
+- `-output` 文件是代理**追加写的多段 JSON 拼接**（不是单个合法 JSON 数组），解析要用 `JSONDecoder.raw_decode` 从偏移量循环读出多个块再展平。
+- 多次捕获取并集：短视频以有 `decode_key` 为准、按 URL 的 `encfilekey` 去重；回放按无 `decode_key` 且 `stodownload`、体积 >30MB 归类，同样按 `encfilekey` 去重。
+- 与历史清单（如 `shorts_*_slim.json`）对账：主键用 `encfilekey`，并用 `md5` 交叉验证。
+- **数量对不上的常见原因不是漏抓**：0 秒、`durMs/videoPlayLen=0`、`specs=[]`、仅几百 KB 的条目 `mediaType=2` 是**图文/图片动态，不是视频**，视频流采集中本就不会出现。本次 340 清单与 339 视频的唯一差额正是此类。
+- 直链 Range 抽验返回 `206` 即可下；token/svrnonce 有时效，抓完尽快下载，过期重新刷新换签。
 
 ---
 
