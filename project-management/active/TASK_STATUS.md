@@ -30,6 +30,7 @@
 | T-32 | 艺术/博物馆站点采集 | research | todo | 6个站点，待评估爬虫友好度 |
 | T-33 | 视频提到的书籍收集 | feature | 进行中 | 5本完成，《广义趋势理论》待用户决策 |
 | T-34 | 通用增量采集框架 | feature | ✅ 完成 | B站/YouTube验证通过，抖音/公众号/视频号待验证 |
+| T-35 | 视频号短视频换签直链+Isaac64解密闭环 | feature | 进行中 | ✅解密算法与工具链已端到端验证（见 docs/research/wechat-short-video-decryption.md）；清单340短视频/27回放，当前15条短视频+27回放有换签直链可闭环，余约325条短视频需滚动/播放捕获换签；best_format高清md5对账待做 |
 
 ---
 
@@ -48,12 +49,22 @@
 
 ## 关键口径（指针，不展开）
 
-- **视频解密原理**：DecodeKey → ISAAC64 → XOR前128KB → 见工程记忆 `workflow-video-capture`
+- **视频解密原理（✅已验证）**：decode_key→WxIsaac64 生成128KB密钥流(reverse)→前128KB XOR → 见 `docs/research/wechat-short-video-decryption.md`（工具：`platforms/wechat_channels/video-downloader/`）
 - **高质量URL参数**：X-snsvideoflag=xWT111 → 见 `docs/research/video-quality-url.md`
 - **证书与代理方案**：相对可执行文件路径 + 上游代理 → 见 ADR-002
 - **转写工具**：FunASR SenseVoiceSmall → 见 `processing/transcription/tools/`
 - **OCR工具**：macOS Vision → 见 `processing/ocr/tools/`
 - **存储分工**：GitHub(代码) / 本地library(数据) / 百度网盘(镜像) → 见 ADR-001
+
+---
+
+## 最近完成（2026-09-21）
+
+- ✅ 视频号短视频解密闭环端到端验证：Isaac64 算法确认（非AES、仅前128KB加密）；仓内自包含 `decrypt_node.js` 与官方 wasm 密钥流逐字节一致；完整样本解密后 h264 1080x1920+aac、时长134.86s 与记录吻合
+- ✅ 下载编排 `batch_download_v4.py` 修复（解密器同目录路径、可选代理 WC_PROXY、WC_LIMIT、md5 对账、规格差异标注）
+- ✅ 捕获代理 `-short-probe` 静默探针落库换签直链+decode_key（captor.go/main.go/short_probe_hook.go，go vet/build 通过）
+- ✅ 安全：含签名票据的捕获产物加入 video-capture/.gitignore，旧 capture_*.json 停止跟踪（git 历史清理待用户决策）
+- 📄 新增权威技术文档 docs/research/wechat-short-video-decryption.md，采集SOP同步更新
 
 ---
 
@@ -66,4 +77,4 @@
 
 ---
 
-*最后更新：2026-09-18*
+*最后更新：2026-09-21*

@@ -64,6 +64,9 @@ type Captor struct {
 	autoDownload  bool
 	downloadDir   string
 	upstreamProxy string
+	autoScroll    bool
+	replayList    bool
+	shortProbe    bool
 	proxy         *goproxy.ProxyHttpServer
 	server        *http.Server
 	videos        map[string]*VideoInfo
@@ -79,13 +82,16 @@ var (
 )
 
 // NewCaptor 创建捕获器
-func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir string, upstreamProxy string) (*Captor, error) {
+func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir string, upstreamProxy string, autoScroll bool, replayList bool, shortProbe bool) (*Captor, error) {
 	c := &Captor{
 		port:          port,
 		outputFile:    outputFile,
 		autoDownload:  autoDownload,
 		downloadDir:   downloadDir,
 		upstreamProxy: upstreamProxy,
+		autoScroll:    autoScroll,
+		replayList:    replayList,
+		shortProbe:    shortProbe,
 		videos:        make(map[string]*VideoInfo),
 		version:       "1.0.0",
 	}
@@ -361,11 +367,24 @@ func (c *Captor) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Re
 		c.logAPIResponse(resp)
 	}
 
-	// 视频号页面 - 注入自动滚动JS
-	if strings.HasSuffix(host, "channels.weixin.qq.com") &&
+	// 视频号页面 - 仅在 -autoscroll 开启时注入自动滚动JS；关闭时页面保持静止，
+	// 但响应体仍由上方 logAPIResponse 完整记录，可手动滚动控制采集节奏。
+	if c.replayList && strings.HasSuffix(host, "channels.weixin.qq.com") &&
+		strings.Contains(path, "/web/pages/profile") {
+		return c.injectReplayListHook(resp)
+	}
+	if c.autoScroll && strings.HasSuffix(host, "channels.weixin.qq.com") &&
 		(strings.Contains(path, "/web/pages/feed") || strings.Contains(path, "/web/pages/home") ||
 			strings.Contains(path, "/web/pages/profile")) {
 		return c.injectVideoFeedHook(resp)
+	}
+
+	// 短视频播放换签探针（静默：不自动滚动、不自动点击；滚动与点开播放由人工控制）。
+	// 覆盖 profile（列表/弹层）与 feed/home（可能的独立播放页 document），抓播放瞬间的签名直链。
+	if c.shortProbe && strings.HasSuffix(host, "channels.weixin.qq.com") &&
+		(strings.Contains(path, "/web/pages/profile") || strings.Contains(path, "/web/pages/feed") ||
+			strings.Contains(path, "/web/pages/home")) {
+		return c.injectShortProbeHook(resp)
 	}
 
 	// 公众号主页(mp_profile) - 注入文章列表提取JS
@@ -415,13 +434,29 @@ func (c *Captor) logAPIResponse(resp *http.Response) {
 		len(body),
 	)
 
-	// 只记录JSON或文本响应的前2000字符
+	// 记录响应体。视频号列表API/页面内嵌JSON必须完整记录（含视频URL、类型、标题），
+	// 其余JSON/文本只记录前2000字符避免日志过大。
 	contentType := resp.Header.Get("Content-Type")
-	if strings.Contains(contentType, "json") || strings.Contains(contentType, "text") || strings.Contains(contentType, "javascript") {
-		if len(body) > 2000 {
-			entry += fmt.Sprintf("  Body: %s...(truncated)\n", string(body[:2000]))
+	host := resp.Request.Host
+	bodyStr := string(body)
+	isVideoData := strings.Contains(host, "channels.weixin.qq.com") ||
+		strings.Contains(bodyStr, "stodownload?encfilekey=") ||
+		strings.Contains(bodyStr, "finder.video.qq.com") ||
+		strings.Contains(bodyStr, "finderUserName") ||
+		strings.Contains(bodyStr, "liveReplay") || strings.Contains(bodyStr, "live_replay")
+	if strings.Contains(contentType, "json") || strings.Contains(contentType, "text") ||
+		strings.Contains(contentType, "javascript") || strings.Contains(contentType, "html") {
+		const fullCap = 20 * 1024 * 1024
+		if isVideoData && len(body) > 2000 {
+			limit := len(body)
+			if limit > fullCap {
+				limit = fullCap
+			}
+			entry += fmt.Sprintf("  Body(FULL len=%d): %s\n", len(body), bodyStr[:limit])
+		} else if len(body) > 2000 {
+			entry += fmt.Sprintf("  Body: %s...(truncated)\n", bodyStr[:2000])
 		} else {
-			entry += fmt.Sprintf("  Body: %s\n", string(body))
+			entry += fmt.Sprintf("  Body: %s\n", bodyStr)
 		}
 	} else {
 		entry += fmt.Sprintf("  Content-Type: %s (not logged)\n", contentType)
@@ -1079,101 +1114,236 @@ func (c *Captor) injectVideoFeedHook(resp *http.Response) *http.Response {
 	autoScrollJS := `
 <script>
 (function() {
-  if (window.__videoAutoScrollStarted) return;
-  window.__videoAutoScrollStarted = true;
-  
-  var scrollCount = 0;
-  var maxScrolls = 500;
-  var noChangeCount = 0;
-  var lastVideoCount = 0;
-  var lastScrollHeight = 0;
-  
-  // 找到所有可滚动的容器
-  function findScrollContainers() {
-    var containers = [];
-    var all = document.querySelectorAll('*');
-    for (var i = 0; i < all.length; i++) {
-      var el = all[i];
-      var style = window.getComputedStyle(el);
-      if ((style.overflowY === 'auto' || style.overflowY === 'scroll' || 
-           style.overflow === 'auto' || style.overflow === 'scroll') &&
-          el.scrollHeight > el.clientHeight) {
-        containers.push(el);
+  if (window.__vcAutoScroll) return; window.__vcAutoScroll = true;
+
+  // ===== xweb.worker 消息hook（原型层拦截，覆盖getter返回的任意port实例）=====
+  (function(){
+    if(window.__wkh)return;window.__wkh=true;
+    var CH=12000,seen={},seenN=0,sampleN=0,structSent=false,installed={post:false,oms:false,ael:false};
+    function post(html){try{fetch('https://wxapp.tc.qq.com/res-downloader/wechat?type=3',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'page_html',url:location.href+'#wk',html:html})});}catch(e){}}
+    function sendRaw(tag,str){
+      if(str.length<=CH){post(tag+'__0__'+str);return;}
+      var rid=Date.now()+''+Math.floor(Math.random()*1e6),n=Math.ceil(str.length/CH);
+      for(var i=0;i<n;i++)post('WKCHUNK__'+rid+'__'+i+'__'+n+'__'+str.slice(i*CH,(i+1)*CH));
+    }
+    function send(tag,payload){try{sendRaw(tag,JSON.stringify(payload));}catch(e){}}
+    function hot(s){
+      if(!s)return false;
+      if(s.indexOf('findermp')>=0||s.indexOf('stodownload')>=0)return true;
+      return /decodeKey|decode_key|videoUrl|video_url|fileSize|file_size|playUrl|play_url|mediaList|coverUrl|objectNonceId|urlToken|exportKey|"spec"|spec:/.test(s);
+    }
+    function shape(data){
+      try{
+        if(data==null)return String(data);
+        if(typeof data!=='object')return typeof data+':'+String(data).slice(0,80);
+        var info={keys:Object.keys(data).slice(0,20)};
+        if(data.data&&typeof data.data==='object')info.dataKeys=Object.keys(data.data).slice(0,40);
+        if(data.apiName)info.apiName=data.apiName;
+        if(data.data&&data.data.api)info.innerApi=data.data.api;
+        if(data.id!==undefined)info.id=data.id;
+        var js=JSON.stringify(data);info.len=js.length;
+        info.hasFinder=/findermp|stodownload|spec|decodeKey|videoUrl|playUrl/.test(js);
+        return info;
+      }catch(e){return 'shape_err:'+e;}
+    }
+    function handle(dir,data){try{
+      var key=typeof data==='string'?data:JSON.stringify(data);
+      if(sampleN<40){sampleN++;send('WKSAMPLE_'+dir,{n:sampleN,shape:shape(data)});}
+      if(!hot(key))return;
+      var h=key.length+':'+key.slice(0,160)+key.slice(-80);
+      if(seen[h])return;seen[h]=1;seenN++;if(seenN>200)seen={};
+      send('WK_'+dir,{dir:dir,href:location.href,data:data});
+    }catch(e){}}
+    if(window.MessagePort){
+      // 1) postMessage 原型包装 → 抓请求
+      var OP=MessagePort.prototype.postMessage;
+      MessagePort.prototype.postMessage=function(m){try{handle('REQ',m);}catch(e){}return OP.apply(this,arguments);};
+      MessagePort.prototype.postMessage.__wk=true;installed.post=true;
+      // 2) addEventListener 原型包装 → 兜底抓响应
+      var OA=MessagePort.prototype.addEventListener;
+      MessagePort.prototype.addEventListener=function(t,fn){
+        if(t==='message'&&typeof fn==='function'&&!fn.__wkw){var w=function(e){try{handle('RSP_AE',e.data);}catch(x){}return fn.apply(this,arguments);};w.__wkw=true;arguments[1]=w;installed.ael=true;}
+        return OA.apply(this,arguments);
+      };
+      // 3) onmessage 原型访问器包装 → 拦截 worker-client 的 port.onmessage=fn 赋值
+      try{
+        var od=Object.getOwnPropertyDescriptor(MessagePort.prototype,'onmessage');
+        Object.defineProperty(MessagePort.prototype,'onmessage',{configurable:true,enumerable:true,
+          get:function(){return od&&od.get?od.get.call(this):this.__wk_om;},
+          set:function(fn){
+            if(typeof fn==='function'&&!fn.__wkom){
+              var wrapped=function(e){try{handle('RSP_OM',e.data);}catch(x){}return fn.apply(this,arguments);};
+              wrapped.__wkom=true;installed.oms=true;
+              if(od&&od.set)od.set.call(this,wrapped);else this.__wk_om=wrapped;
+            }else{ if(od&&od.set)od.set.call(this,fn);else this.__wk_om=fn; }
+          }});
+      }catch(e){send('WK_OMHOOK_ERR',{e:''+e});}
+    }
+    function sendStruct(){
+      if(structSent)return;structSent=true;
+      try{
+        var w=window.xweb&&window.xweb.worker&&window.xweb.worker.port;
+        send('WKSTRUCT',{href:location.href,hasWorker:!!(window.xweb&&window.xweb.worker),
+          installed:installed,
+          portProto:window.MessagePort?MessagePort.prototype.postMessage.__wk===true:false,
+          hasPort:!!w,
+          portIsMP:window.MessagePort&&w?(w instanceof MessagePort):false});
+      }catch(e){send('WKSTRUCT_ERR',{e:''+e});}
+    }
+    var tries=0;var iv=setInterval(function(){tries++;try{sendStruct();}catch(e){}if(tries>30)clearInterval(iv);},300);
+  })();
+  var TICK = 3000, STEP_RATIO = 0.6, PASSES = 3;
+  var state = {key:null, pass:0, sameTop:0};
+  function containers(){
+    var out=[]; var all=document.querySelectorAll('div,ul,section,main');
+    for(var i=0;i<all.length;i++){var el=all[i];var st=getComputedStyle(el);
+      if((st.overflowY==='auto'||st.overflowY==='scroll')&&el.scrollHeight>el.clientHeight+200){out.push(el);}}
+    out.sort(function(a,b){return b.scrollHeight-a.scrollHeight;});
+    return out;
+  }
+  function wheel(el,dy){var e=new WheelEvent('wheel',{deltaY:dy,bubbles:true,cancelable:true});el.dispatchEvent(e);}
+  function tick(){
+    var cs=containers(); if(!cs.length) return;
+    var el=cs[0];
+    var key=(el.className||'')+'|'+el.scrollWidth+'|'+el.scrollHeight;
+    if(key!==state.key){
+      state.key=key; state.pass=0; state.sameTop=0;
+      el.scrollTop=0; if(el.scrollTo)el.scrollTo(0,0);
+      console.log('[VC] 检测到新列表(可能切换了标签)，回顶开始第1遍');
+    }
+    var top=el.scrollTop, h=el.scrollHeight, ch=el.clientHeight;
+    var step=Math.max(200,Math.floor(ch*STEP_RATIO));
+    if(top+ch < h-50){
+      el.scrollTop=top+step; if(el.scrollTo)el.scrollTo(0,el.scrollTop); wheel(el,step);
+      window.scrollBy(0,step); wheel(document.body,step); state.sameTop=0;
+    }else{
+      state.sameTop++;
+      if(state.sameTop>=3){
+        state.pass++;
+        console.log('[VC] 第'+state.pass+'遍滚到底(高度'+h+')');
+        if(state.pass<PASSES){ el.scrollTop=0; if(el.scrollTo)el.scrollTo(0,0); state.sameTop=0; }
+        else { state.sameTop=0; el.scrollTop=Math.max(0,el.scrollTop-step); if(el.scrollTo)el.scrollTo(0,el.scrollTop); }
       }
     }
-    // 如果没有找到，使用documentElement
-    if (containers.length === 0) {
-      containers.push(document.documentElement);
-    }
-    return containers;
   }
-  
-  // 触发鼠标滚轮事件
-  function triggerWheel(el, deltaY) {
-    var event = new WheelEvent('wheel', {
-      deltaY: deltaY,
-      bubbles: true,
-      cancelable: true
-    });
-    el.dispatchEvent(event);
+  setInterval(tick, TICK);
+  // ===== DOM 探测：上报标签栏与视频/回放卡片结构，供编写精准点击逻辑 =====
+  var __lastProbeSig = '';
+  function probe(){
+    try{
+      var info = {url: location.href, tabs: [], cards: []};
+      document.querySelectorAll('a,div,span,li,button').forEach(function(e){
+        var t=(e.textContent||'').trim();
+        if((t==='直播回放'||t==='视频'||t==='文章'||t==='账号'||t==='全部'||t==='直播') && e.children.length<=3){
+          info.tabs.push({tag:e.tagName, cls:(''+e.className).slice(0,60), text:t});
+        }
+      });
+      var seen=new Set();
+      document.querySelectorAll('[class*="feed"],[class*="card"],[class*="item"],[class*="replay"],[class*="live"],a[href*="feed"],a[href*="pages"]').forEach(function(e){
+        var r=e.getBoundingClientRect();
+        if(r.width<80||r.height<80) return;
+        var img=e.querySelector('img');
+        var bg=getComputedStyle(e).backgroundImage||'';
+        var key=(''+e.className)+'|'+Math.round(r.top)+'|'+Math.round(r.left);
+        if(seen.has(key)) return; seen.add(key);
+        if(info.cards.length<40){
+          info.cards.push({tag:e.tagName, cls:(''+e.className).slice(0,80),
+            href:e.getAttribute('href')||'',
+            img:img?(img.src||'').slice(0,100):'',
+            bg:bg.indexOf('url')>=0?bg.slice(0,100):'',
+            txt:(e.textContent||'').trim().slice(0,40),
+            w:Math.round(r.width), h:Math.round(r.height)});
+        }
+      });
+      var sig = info.tabs.map(function(t){return t.text;}).join(',')+'|'+info.cards.length+'|'+info.url;
+      if(sig === __lastProbeSig) return; __lastProbeSig = sig;
+      fetch('https://wxapp.tc.qq.com/res-downloader/wechat?type=3',{method:'POST',mode:'no-cors',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({type:'page_html', url:location.href+'#probe', html:'PROBE__'+JSON.stringify(info)})});
+      console.log('[VCProbe] tabs='+info.tabs.length+' cards='+info.cards.length);
+    }catch(ex){ console.log('[VCProbe] err', ex); }
   }
-  
-  function autoScroll() {
-    if (scrollCount >= maxScrolls) {
-      console.log('[VideoCapture] 达到最大滚动次数，停止');
+  setTimeout(probe, 4000);
+  setTimeout(probe, 9000);
+  setInterval(probe, 6000);
+  // ===== 回放批量采集：逐个点击卡片，用performance API收集findermp视频URL =====
+  var __rp={started:false,done:false,idx:0,testMax:0,urls:{},order:[],closed:0};
+  function rpPost(tag,payload){
+    var body=Object.assign({tag:tag,url:location.href,
+      grid:document.querySelectorAll('.card-grid').length,
+      cards:document.querySelectorAll('.object-card.profile-object-card.inner-clickable').length,
+      videos:document.querySelectorAll('video').length,
+      collected:__rp.order.length},payload||{});
+    fetch('https://wxapp.tc.qq.com/res-downloader/wechat?type=3',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({type:'page_html',url:location.href+'#rp',html:'RPLOG__'+JSON.stringify(body)})});
+  }
+  function rpTab(){var t='';document.querySelectorAll('.tab').forEach(function(e){if((''+e.className).indexOf('active')>=0)t=(e.textContent||'').trim();});return t;}
+  function rpCollect(){var arr=[],seen={};document.querySelectorAll('.object-card.profile-object-card.inner-clickable').forEach(function(e){var r=e.getBoundingClientRect();if(r.width<60||r.height<60)return;var im=e.querySelector('img');var k=im?im.src:((e.textContent||'').trim().slice(0,20)+'_'+Math.round(r.top));if(seen[k])return;seen[k]=1;arr.push(e);});return arr;}
+  function rpFinderURLs(){
+    var out=[];
+    try{performance.getEntriesByType('resource').forEach(function(en){
+      if(en.name.indexOf('findermp.video.qq.com')>=0 && en.name.indexOf('/20302/stodownload')>=0){
+        // 去掉query中可能的Range，保留完整票据URL
+        if(!__rp.urls[en.name]){__rp.urls[en.name]=1;__rp.order.push(en.name);out.push(en.name);}
+      }
+    });}catch(e){}
+    return out;
+  }
+  function rpEsc(){['keydown','keyup'].forEach(function(tt){document.dispatchEvent(new KeyboardEvent(tt,{key:'Escape',code:'Escape',keyCode:27,which:27,bubbles:true,cancelable:true}));});}
+  function rpClose(){
+    var bs=document.querySelectorAll('.weui-icon-outlined-close,[class*="close"],[aria-label*="关闭"],[aria-label*="返回"]');
+    // 只点播放器层的关闭（最后一个可见的close图标），避免误关页面
+    for(var i=bs.length-1;i>=0;i--){var r=bs[i].getBoundingClientRect();if(r.width>0&&r.height>0){try{bs[i].click();__rp.closed++;}catch(e){}break;}}
+    setTimeout(rpEsc,150);
+  }
+  function rpNext(){
+    if(__rp.idx>=__rp.testMax){
+      __rp.done=true;
+      // 分批上报收集到的URL
+      var us=__rp.order.slice();
+      rpPost('TEST_DONE',{total:us.length});
+      for(var i=0;i<us.length;i+=5){
+        rpPost('URLBATCH_'+i,{urls:us.slice(i,i+5).map(function(u){return u.slice(0,160);})});
+      }
       return;
     }
-    
-    var containers = findScrollContainers();
-    console.log('[VideoCapture] 找到' + containers.length + '个可滚动容器');
-    
-    // 对每个可滚动容器执行滚动
-    for (var i = 0; i < containers.length; i++) {
-      var el = containers[i];
-      // 方法1: scrollTop
-      el.scrollTop = el.scrollHeight;
-      // 方法2: scrollTo
-      if (el.scrollTo) {
-        el.scrollTo(0, el.scrollHeight);
-      }
-      // 方法3: 鼠标滚轮事件
-      triggerWheel(el, 1000);
-    }
-    
-    // 同时滚动window
-    window.scrollTo(0, document.body.scrollHeight);
-    triggerWheel(document.body, 1000);
-    
-    scrollCount++;
-    
-    // 检查是否还有新内容（通过视频卡片数量+滚动高度双重判断）
-    setTimeout(function() {
-      var videoCards = document.querySelectorAll('[class*="video"], [class*="feed"], [class*="card"], [class*="item"]');
-      var currentVideoCount = videoCards.length;
-      var currentScrollHeight = document.body.scrollHeight;
-      
-      // 双重判断：视频数量和页面高度都没变化才算无新内容
-      var noChange = (currentVideoCount === lastVideoCount && currentScrollHeight === lastScrollHeight);
-      
-      if (noChange) {
-        noChangeCount++;
-        if (noChangeCount >= 15) {
-          console.log('[VideoCapture] 已滚动到底部，共滚动' + scrollCount + '次，视频卡片数: ' + currentVideoCount + ', 页面高度: ' + currentScrollHeight);
-          return;
-        }
-      } else {
-        noChangeCount = 0;
-        console.log('[VideoCapture] 第' + scrollCount + '次滚动，视频卡片数: ' + currentVideoCount + ' (+' + (currentVideoCount - lastVideoCount) + '), 页面高度: ' + currentScrollHeight + ' (+' + (currentScrollHeight - lastScrollHeight) + ')');
-      }
-      lastVideoCount = currentVideoCount;
-      lastScrollHeight = currentScrollHeight;
-      autoScroll();
-    }, 2000);
+    var cards=rpCollect();
+    if(cards.length<3){setTimeout(rpNext,1200);return;}
+    var el=cards[__rp.idx];
+    el.scrollIntoView({block:'center'});
+    ['mouseover','mouseenter','mousemove'].forEach(function(t){el.dispatchEvent(new MouseEvent(t,{bubbles:true,cancelable:true,view:window}));});
+    var before=__rp.order.length;
+    setTimeout(function(){
+      el.click();
+      rpPost('clicked_'+(__rp.idx+1),{txt:(el.textContent||'').trim().slice(0,28)});
+      setTimeout(function(){
+        var nu=rpFinderURLs();
+        rpPost('after4s_'+(__rp.idx+1),{newUrls:nu.length,newSamples:nu.slice(0,4).map(function(u){var m=u.match(/encfilekey=([^&]{0,46})/);return m?m[1]:u.slice(0,40);})});
+        rpClose();
+        setTimeout(function(){__rp.idx++;rpNext();},1800);
+      },4000);
+    },600);
   }
-  
-  // 延迟启动，等待页面加载
-  setTimeout(autoScroll, 3000);
-  console.log('[VideoCapture] 视频号自动滚动已启动');
+  function rpCardProbe(){
+    var cards=document.querySelectorAll('.object-card.profile-object-card.inner-clickable');
+    if(!cards.length)return;
+    var el=cards[0];var kids=[];
+    el.querySelectorAll('*').forEach(function(k){var r=k.getBoundingClientRect();
+      kids.push(k.tagName+'.'+((''+k.className).replace(/\s+/g,'.').slice(0,40))+(r.width>0?'':'(hid)'));});
+    rpPost('CARDHTML',{outer:el.outerHTML.slice(0,1400),kids:kids.slice(0,30)});
+  }
+  function rpBoot(){
+    if(__rp.started||__rp.done)return;
+    if(rpTab().indexOf('回放')<0)return;
+    __rp.started=true;rpPost('replayTab');
+    var cont=null;document.querySelectorAll('div').forEach(function(d){if(d.scrollHeight>d.clientHeight+200&&getComputedStyle(d).overflowY!=='visible'){if(!cont||d.scrollHeight>cont.scrollHeight)cont=d;}});
+    var rounds=0;
+    var li=setInterval(function(){if(cont)cont.scrollTop=cont.scrollHeight;rounds++;var n=rpCollect().length;
+      if(rounds>=10||n>=27){clearInterval(li);if(cont)cont.scrollTop=0;setTimeout(function(){rpPost('loaded',{n:n});rpCardProbe();rpNext();},1500);}
+      else rpPost('loading',{n:n});},1200);
+  }
+  setInterval(rpBoot,2500);
+  console.log('[VC] 健壮版自动滚动已启动(逐屏0.6/3s, 切标签自动回顶, 滚3遍)');
 })();
 </script>
 `

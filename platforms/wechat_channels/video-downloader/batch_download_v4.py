@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 """
 微信视频号批量下载脚本 v4
-- 使用原始URL下载（稳定）
-- 支持XOR解密（调用Node.js解密脚本）
-- 支持去重和命名
-- 修复文件名清理
+- 使用换签后的可播放直链下载（URL 须含 token，来自 video-capture 捕获的 handleMedia 落库）
+- 短视频(Isaac64 加密前128KB)调用同目录 Node 解密器；直播回放为明文 MP4 不解密
+- ftyp 校验 + md5 对账 + 去重命名 + 结果 manifest
+
+环境变量（可选）:
+  WC_PROXY   下载代理，如 http://127.0.0.1:8899（默认直连；finder.video.qq.com 国内 CDN 通常直连即可）
+  WC_LIMIT   只处理前 N 条（验证用）
+  WC_NODE    node 可执行文件路径（默认 PATH 中的 node）
 """
+import hashlib
 import json
 import os
 import re
@@ -13,39 +18,67 @@ import subprocess
 import sys
 import time
 
+HERE = os.path.dirname(os.path.abspath(__file__))
+DECRYPT_JS = os.path.join(HERE, 'wechat_decrypt.js')
+PROXY = os.environ.get('WC_PROXY', '').strip()
+NODE = os.environ.get('WC_NODE', 'node').strip() or 'node'
+
+
 def download_video(url, output, max_retries=3, quality='default'):
     """下载视频
     quality: default(默认), max(最大xWT111), min(最小xWT128)
     """
-    # 根据质量参数修改URL
+    # 根据质量参数修改URL（URL 未显式带清晰度标识时才追加）
     if quality == 'max' and 'X-snsvideoflag' not in url:
         url += '&X-snsvideoflag=xWT111'
     elif quality == 'min' and 'X-snsvideoflag' not in url:
         url += '&X-snsvideoflag=xWT128'
-    
+
     for attempt in range(max_retries):
+        if os.path.exists(output):
+            os.remove(output)
         cmd = [
-            'curl', '-L', '-s', '-o', output,
+            'curl', '-L', '-sS', '-f', '-o', output,
             '-H', 'Referer: https://channels.weixin.qq.com/',
-            '-H', 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+            '-H', 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
+                  'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36',
             '--connect-timeout', '30',
             '--max-time', '600',
-            url
         ]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
-        if result.returncode == 0 and os.path.exists(output) and os.path.getsize(output) > 1000:
+        if PROXY:
+            cmd += ['-x', PROXY, '-k']
+        cmd.append(url)
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+        except subprocess.TimeoutExpired:
+            result = None
+        if result is not None and result.returncode == 0 and os.path.exists(output) \
+                and os.path.getsize(output) > 1000:
             return True
+        if result is not None and result.stderr:
+            print(f"  curl: {result.stderr.strip()[:200]}")
         time.sleep(2)
     return False
 
+
+def md5_of(path):
+    h = hashlib.md5()
+    with open(path, 'rb') as f:
+        for chunk in iter(lambda: f.read(1 << 20), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 def decrypt_video(filepath, decode_key):
-    """解密视频"""
+    """解密视频（仅前128KB，原地）"""
     if not decode_key:
         return True
-    
-    cmd = ['node', '/tmp/wechat_decrypt.js', decode_key, filepath]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
-    return result.returncode == 0
+    cmd = [NODE, DECRYPT_JS, str(decode_key), filepath]
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        return result.returncode == 0
+    except subprocess.TimeoutExpired:
+        return False
 
 def verify_mp4(filepath):
     """验证是否为有效MP4"""
@@ -86,9 +119,13 @@ def main():
     
     with open(json_file, encoding='utf-8') as f:
         videos = json.load(f)
-    
+
+    limit = os.environ.get('WC_LIMIT', '').strip()
+    if limit:
+        videos = videos[:int(limit)]
+
     print(f"开始下载 {len(videos)} 个视频到 {output_dir}")
-    print(f"类型: {video_type}, 起始序号: {start_idx}")
+    print(f"类型: {video_type}, 起始序号: {start_idx}, 代理: {PROXY or '直连'}")
     
     results = []
     for i, v in enumerate(videos):
@@ -118,27 +155,36 @@ def main():
         # 使用原始URL下载
         success = download_video(url, output, quality=quality)
         
+        expected_md5 = (v.get('md5') or '').lower()
         if success:
             actual_size = os.path.getsize(output)
             print(f"  下载完成: {actual_size/1024/1024:.1f}MB")
-            
-            # 解密
+
+            # 解密（仅短视频需要）后做 ftyp 校验
             if decode_key:
                 print(f"  解密中...")
-                decrypt_success = decrypt_video(output, decode_key)
-                if decrypt_success and verify_mp4(output):
-                    print(f"  ✓ 解密成功")
-                    results.append({'idx': idx, 'title': title, 'status': 'success', 'size': actual_size, 'decrypted': True})
-                else:
-                    print(f"  ✗ 解密失败")
-                    results.append({'idx': idx, 'title': title, 'status': 'decrypt_failed', 'size': actual_size})
+                ok = decrypt_video(output, decode_key) and verify_mp4(output)
             else:
-                if verify_mp4(output):
-                    print(f"  ✓ 无需解密，验证通过")
-                    results.append({'idx': idx, 'title': title, 'status': 'success', 'size': actual_size, 'decrypted': False})
-                else:
-                    print(f"  ✗ 验证失败")
-                    results.append({'idx': idx, 'title': title, 'status': 'verify_failed', 'size': actual_size})
+                ok = verify_mp4(output)
+
+            if ok:
+                actual_md5 = md5_of(output)
+                md5_match = (actual_md5 == expected_md5) if expected_md5 else None
+                tag = '解密成功' if decode_key else '明文MP4'
+                print(f"  ✓ {tag} ftyp校验通过  md5={actual_md5[:12]}"
+                      f"{'  ✓md5一致' if md5_match is True else ('  (md5规格不同)' if md5_match is False else '')}")
+                results.append({
+                    'idx': idx, 'title': title, 'status': 'success',
+                    'file': os.path.basename(output), 'size': actual_size,
+                    'expected_size': expected_size, 'decrypted': bool(decode_key),
+                    'md5': actual_md5, 'expected_md5': expected_md5 or None,
+                    'md5_match': md5_match,
+                })
+            else:
+                print(f"  ✗ 解密/校验失败")
+                results.append({'idx': idx, 'title': title,
+                                'status': 'decrypt_failed' if decode_key else 'verify_failed',
+                                'size': actual_size})
         else:
             print(f"  ✗ 下载失败")
             results.append({'idx': idx, 'title': title, 'status': 'download_failed'})

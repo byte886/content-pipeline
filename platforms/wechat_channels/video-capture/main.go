@@ -18,6 +18,9 @@ var (
 	caKeyPath     string
 	noAutoProxy   bool
 	upstreamProxy string
+	autoScroll    bool
+	replayList    bool
+	shortProbe    bool
 )
 
 func main() {
@@ -29,6 +32,9 @@ func main() {
 	flag.StringVar(&caKeyPath, "ca-key", "", "CA私钥路径(留空则自动生成)")
 	flag.BoolVar(&noAutoProxy, "no-auto-proxy", false, "不自动设置系统代理(需手动配置)")
 	flag.StringVar(&upstreamProxy, "upstream", "http://127.0.0.1:7890", "上游代理地址(默认ClashX，传空字符串禁用上游代理直连)")
+	flag.BoolVar(&autoScroll, "autoscroll", false, "注入JS强制自动滚动视频号列表(默认关闭，由人工控制滚动)")
+	flag.BoolVar(&replayList, "replay-list", false, "注入回放列表提取器:滚动加载全部回放卡片并从Vue组件提取oid/nid清单(不点击/不导航/不播放)")
+	flag.BoolVar(&shortProbe, "short-probe", false, "注入短视频播放换签探针(静默不滚动/不点击;人工点开播放时抓带token签名直链)")
 	flag.Parse()
 
 	fmt.Println("========================================")
@@ -38,6 +44,8 @@ func main() {
 	fmt.Printf("输出文件: %s\n", outputFile)
 	fmt.Printf("自动下载: %v\n", autoDownload)
 	fmt.Printf("自动设置代理: %v\n", !noAutoProxy)
+	fmt.Printf("强制自动滚动: %v\n", autoScroll)
+	fmt.Printf("短视频播放探针: %v\n", shortProbe)
 	if upstreamProxy != "" {
 		fmt.Printf("上游代理: %s (ClashX规则路由)\n", upstreamProxy)
 	} else {
@@ -59,7 +67,7 @@ func main() {
 	}
 
 	// 初始化捕获器
-	captor, err := NewCaptor(port, outputFile, autoDownload, downloadDir, upstreamProxy)
+	captor, err := NewCaptor(port, outputFile, autoDownload, downloadDir, upstreamProxy, autoScroll, replayList, shortProbe)
 	if err != nil {
 		// 退出前清除代理
 		if !noAutoProxy {

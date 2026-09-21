@@ -12,3 +12,21 @@ downloads/
 
 # 测试文件
 test_*.json
+
+# --- 运行时捕获产物（含临时签名票据 token/sign/svrbypass/svrnonce，禁止入 public 仓）---
+# 抓包原始落库：换签直链、decode_key、签名 URL 都在里面
+capture_*.json
+capture_*.log
+run_*.out
+run_*.log
+*.pid
+
+# 含完整签名直链的清单/台账（回放换签 URL 带 sign/svrbypass/svrnonce）
+shorts_*_slim.json
+replays_*_slim.json
+replays_*_manifest.json
+*_manifest_signed.json
+
+# 放行：脱敏后的台账（去掉签名 URL，仅保留 oid/标题/时长/size/md5/encfilekey 等元数据）
+!catalog_*.json
+!registry_*.json

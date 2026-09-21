@@ -1,7 +1,9 @@
 const fs = require('fs');
 const vm = require('vm');
+const path = require('path');
 
-const decryptCode = fs.readFileSync('/tmp/decrypt_node.js', 'utf8');
+// 自包含 wasm2js 解密模块（内嵌 Isaac64/wasm，离线可跑，无需外部 .wasm 文件）
+const decryptCode = fs.readFileSync(path.join(__dirname, 'decrypt_node.js'), 'utf8');
 
 const sandbox = {
     console: { log: () => {}, error: () => {}, warn: () => {} },
@@ -9,8 +11,8 @@ const sandbox = {
     clearTimeout: clearTimeout,
     setInterval: setInterval,
     clearInterval: clearInterval,
-    __dirname: '/tmp',
-    __filename: '/tmp/decrypt.js',
+    __dirname: __dirname,
+    __filename: __filename,
     process: process,
     Buffer: Buffer,
     Uint8Array: Uint8Array,
