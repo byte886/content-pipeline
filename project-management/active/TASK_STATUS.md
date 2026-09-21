@@ -36,14 +36,15 @@
 
 ## 下一步（按优先级）
 
-> **2026-09-18 更新：SOP瘦身完成，AGENTS/WORKFLOW通路去重完成**
+> **2026-09-21 更新：视频号 B方案（Pinia action 驱动）已验证成功并入库（commit 4339a4b）。前两项是把它端到端接通的收尾，新会话从这里接手。**
 
-1. **百度网盘统一重新同步**（用户明确暂停，等所有前置问题解决后统一执行）
-2. **视频号增量采集验证**（框架就绪，需网络捕获元数据补充唯一ID）
-3. **广义趋势理论课程**（用户决策是否付费获取）
-4. **股票书籍知识详解生成**（13本书拆解）
-5. **珠宝书籍补充**（当前0本）
-6. **高质量URL原始版本研究**（当前2-5MB/个，真正原始48.5MB待找）
+1. **【视频号B方案收尾-A】action 全量接入下载管道**：从 `*_api.log` 的 `RLIST_FEED__`（slim 数组；postRaw 按 11000 字符分块，需按 `tag__<rid>__<i>__<n>__<chunk>` 重组，日志里引号被转义成 `\"` 需还原）解析出全量 manifest（339视频 mediaType=4 + 1图文 mediaType=2 / 回放28，采集视频过滤 mediaType=2）；确认 action 模式下短视频 decode_key/换签直链如何随 `-short-probe` 一并拿到（slim 的 `url`=media[0].url，核对是否已含 decode_key，否则补探针）；复用 `batch_download_v4.py` 下载、`wechat_decrypt.js` 解密。依据：capture SOP §2.1、api.md §6.2、`replay_list_hook.go:actionDrive()`
+2. **【视频号B方案收尾-B】按 339 权威值重对账落库**：现 `library/00_manifest/交易的游戏_inventory.json` summary short_total=410/live_total=25 是**落库 mp4 口径**（含历史累积/重复/低清，约 150 short + 25 live 的 encfilekey 为 null）；以 action 全量 339视频/28回放为准，跑 `incremental_sync.py --apply` 核差集，决定是否回填 null encfilekey（**待用户拍板**），修正台账数字
+3. **公众号文章全量导出（HTTP API，待实测）**：`profile_ext?action=home` 激活拿 `__biz/appmsg_token/pass_ticket`，再 `action=getmsg`（offset 取返回的下一页值、count=10、offset 不变即到底）；专档 `project-management/active/wechat-article-full-export-task.md`；人工只触发拿 token 一下，之后全自动
+4. **百度网盘统一重新同步**（用户明确暂停，等所有前置解决后统一执行；股票/珠宝各开应用，视频原片曾出现空目录需检查，直播回放同步位置待核）
+5. **《广义趋势理论》《金融炼金术》**：用户称已拿到电子版，晚点提供
+6. **股票书籍知识详解生成**：桌面 `~/Desktop/股票书籍/` 10 个 PDF/PPTX，扫描件走 RapidOCR（work-doc-extract 技能，Python3.12 venv）；电子资料单独目录统一放、梳理后进知识详解，珠宝同理形成 SOP
+7. **高质量URL原始版本研究**（当前 min 2–5MB/个，真正原始 48.5MB 待找，ISSUE-003，best_format md5 对账）
 
 ---
 
