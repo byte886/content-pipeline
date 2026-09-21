@@ -10,8 +10,11 @@
 ## 快速入口（按场景）
 
 ### 开始新任务前
-1. 先判冷启动还是续接，按 `AGENTS.md` 第2章读对应文档
-2. 当前到哪/下一步：`project-management/active/TASK_STATUS.md` + `active/ISSUES.md`
+1. 开新窗口/换新窗口：直接按 `docs/新窗口接手开场白.md` 走（选项目文件夹 + 发标准句）
+2. 冷启动/续接读什么、冷启动六问：`AGENTS.md` §1.1 与 `docs/项目维护SOP.md` §5
+3. 最近怎么讨论过来、现在卡在哪：`docs/HANDOFF.md`（§1 倒序日志 + §3 当前纠结）
+4. 当前到哪/下一步：`project-management/active/TASK_STATUS.md` + `active/ISSUES.md`
+5. 提交前：`python3 scripts/doc_health_check.py`，0 ERROR 才提交
 
 ### 微信基本操作（UI自动化）
 1. `docs/guides/wechat-basic-operations.md` — 窗口管理、搜索操作、鼠标控制最佳实践
@@ -73,8 +76,9 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 高质量URL研究 | `docs/research/video-quality-url.md` | X-snsvideoflag参数研究 |
-| 视频号API研究 | `docs/research/wechat-channels-api.md` | 方案B API研究记录 |
+| 高质量URL研究 | `docs/research/video-quality-url.md` | X-snsvideoflag参数研究、清晰度对比 |
+| 视频号API研究 | `docs/research/wechat-channels-api.md` | XWEB/Pinia、B方案 action 契约、公众号 HTTP API |
+| 短视频解密研究 | `docs/research/wechat-short-video-decryption.md` | Isaac64 流加密原理、wasm 密钥流、解密验证 |
 
 ### 三、架构设计（design/ — 方案设计）
 
@@ -86,10 +90,14 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
+| 新窗口接手SOP | `docs/新窗口接手开场白.md` | 开窗触发词、老窗口收口、标准句、六问验收、换机兜底 |
+| 项目维护SOP | `docs/项目维护SOP.md` | 单一真相源路由、维护节奏、冷启动六问、提交前检查 |
+| 项目日志（HANDOFF） | `docs/HANDOFF.md` | 倒序过程日志（聊了什么→结论→为什么）、当前纠结、产物地图 |
 | 任务状态 | `project-management/active/TASK_STATUS.md` | 当前进度、下一步（单一进度真相） |
 | 问题清单 | `project-management/active/ISSUES.md` | 已知问题、阻塞项 |
 | ADR决策 | `project-management/decisions/` | 架构决策记录（只增不改） |
 | 工程记忆 | `project-management/memory/` | 跨会话稳定结论编译层 |
+| 文档体检脚本 | `scripts/doc_health_check.py` | 核心文件/断链/登记/禁入内容检查，0 ERROR 才提交 |
 
 ---
 

@@ -24,7 +24,13 @@ KB_NAME="$1"
 LOCAL_SUBDIR="$2"
 REMOTE_SUBDIR="$3"
 PARALLEL="${4:-1}"
-export BAIDU_ENC_PASS="***REMOVED***"
+# 百度凭证解密口令必须由环境变量提供，禁止明文写入仓库（public）
+if [ -z "${BAIDU_ENC_PASS:-}" ]; then
+    echo "错误：未设置 BAIDU_ENC_PASS（.secrets/baidu_credentials.enc 的解密口令）。" >&2
+    echo "请先 export BAIDU_ENC_PASS='<你的口令>'（或放入不入库的本地文件后 source）。" >&2
+    exit 1
+fi
+export BAIDU_ENC_PASS
 
 LOCAL_BASE="$PROJECT_DIR/library/$LOCAL_SUBDIR"
 REMOTE_BASE="/apps/CPA课程归档/$KB_NAME/$REMOTE_SUBDIR"
@@ -59,10 +65,10 @@ find -L "$LOCAL_BASE" -type f -print0 2>/dev/null | while IFS= read -r -d '' loc
     COUNT=$((COUNT + 1))
     
     # 确保网盘子目录存在（mkdir已存在会返回31064，忽略）
-    BAIDU_ENC_PASS=***REMOVED*** python3 "$SCRIPT_DIR/baidu_upload.py" mkdir "$remote_dir" 2>/dev/null
+    python3 "$SCRIPT_DIR/baidu_upload.py" mkdir "$remote_dir" 2>/dev/null
     
     # 上传
-    if BAIDU_ENC_PASS=***REMOVED*** python3 "$SCRIPT_DIR/baidu_upload.py" upload "$local_file" "$remote_file" 2>&1 | grep -q "Done! fs_id"; then
+    if python3 "$SCRIPT_DIR/baidu_upload.py" upload "$local_file" "$remote_file" 2>&1 | grep -q "Done! fs_id"; then
         echo "[OK $COUNT/$TOTAL] $rel_path"
     else
         echo "[FAIL $COUNT/$TOTAL] $rel_path"

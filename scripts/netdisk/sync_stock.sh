@@ -23,7 +23,13 @@ cd "$PROJECT_DIR"
 LOCAL_SUBDIR="$1"
 REMOTE_SUBDIR="$2"
 PARALLEL="${3:-2}"
-export BAIDU_ENC_PASS="***REMOVED***"
+# 百度凭证解密口令必须由环境变量提供，禁止明文写入仓库（public）
+if [ -z "${BAIDU_ENC_PASS:-}" ]; then
+  echo "错误：未设置 BAIDU_ENC_PASS（.secrets/baidu_credentials.enc 的解密口令）。" >&2
+  echo "请先 export BAIDU_ENC_PASS='<你的口令>'（或放入不入库的本地文件后 source）。" >&2
+  exit 1
+fi
+export BAIDU_ENC_PASS
 
 LOCAL_BASE="$PROJECT_DIR/library/$LOCAL_SUBDIR"
 REMOTE_BASE="/apps/CPA课程归档/股票知识库/$REMOTE_SUBDIR"
@@ -42,7 +48,7 @@ echo " 开始: $(date '+%Y-%m-%d %H:%M:%S')"
 echo "============================================"
 
 # 确保网盘目录存在
-BAIDU_ENC_PASS=***REMOVED*** python3 "$SCRIPT_DIR/baidu_upload.py" mkdir "$REMOTE_BASE" 2>/dev/null
+python3 "$SCRIPT_DIR/baidu_upload.py" mkdir "$REMOTE_BASE" 2>/dev/null
 
 # 统计文件数
 TOTAL=$(find -L "$LOCAL_BASE" -type f 2>/dev/null | wc -l | tr -d ' ')
@@ -57,10 +63,10 @@ upload_file() {
     
     # 确保网盘子目录存在
     local remote_dir=$(dirname "$remote_file")
-    BAIDU_ENC_PASS=***REMOVED*** python3 "$SCRIPT_DIR/baidu_upload.py" mkdir "$remote_dir" 2>/dev/null
+    python3 "$SCRIPT_DIR/baidu_upload.py" mkdir "$remote_dir" 2>/dev/null
     
     # 上传
-    if BAIDU_ENC_PASS=***REMOVED*** python3 "$SCRIPT_DIR/baidu_upload.py" upload "$local_file" "$remote_file" 2>&1 | tail -1; then
+    if python3 "$SCRIPT_DIR/baidu_upload.py" upload "$local_file" "$remote_file" 2>&1 | tail -1; then
         echo "[OK] $rel_path"
     else
         echo "[FAIL] $rel_path"

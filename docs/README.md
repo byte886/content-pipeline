@@ -16,32 +16,34 @@
 | **目录结构** | [DIRECTORY_STRUCTURE.md](DIRECTORY_STRUCTURE.md) | 仓库目录说明 |
 | **文档地图** | [DOCUMENTATION_MAP.md](DOCUMENTATION_MAP.md) | 全部文档索引与分工 |
 
-## SOP（标准操作流程）
+## SOP（标准操作流程，guides/）
 
 ### 微信相关（按依赖顺序）
 
 | 文件 | 用途 | 依赖 |
 |------|------|------|
-| [SOP-wechat-basic-operations.md](SOP-wechat-basic-operations.md) | **微信基本操作**：窗口管理、搜索操作、鼠标控制最佳实践（所有微信采集的前置依赖） | 无 |
-| [SOP-wechat-channels-capture.md](SOP-wechat-channels-capture.md) | 视频号采集：捕获→下载→解密→验证 | 基本操作SOP |
-| [SOP-wechat-official-article.md](SOP-wechat-official-article.md) | 公众号文章采集与 OCR | 基本操作SOP |
+| [wechat-basic-operations.md](guides/wechat-basic-operations.md) | **微信基本操作**：窗口管理、搜索操作、鼠标控制最佳实践（所有微信采集的前置依赖） | 无 |
+| [wechat-channels-capture.md](guides/wechat-channels-capture.md) | 视频号采集：捕获→下载→解密→验证（B方案首选） | 基本操作SOP |
+| [wechat-official-article.md](guides/wechat-official-article.md) | 公众号文章采集与 OCR | 基本操作SOP |
 
 ### 通用
 
 | 文件 | 用途 |
 |------|------|
-| [SOP-incremental-fetch.md](SOP-incremental-fetch.md) | 增量采集：多平台内容更新发现与下载（通用框架） |
-| [SOP-books-extraction.md](SOP-books-extraction.md) | 电子资料采集与转码 |
+| [incremental-fetch.md](guides/incremental-fetch.md) | 增量采集：多平台内容更新发现与下载（通用框架） |
+| [books-extraction.md](guides/books-extraction.md) | 电子资料采集与转码 |
+| [audio-transcription.md](guides/audio-transcription.md) | FunASR 本地离线转文字：环境/批量脚本/输出/空稿判定 |
 
-## 研究记录
-
-| 文件 | 用途 |
-|------|------|
-| [RESEARCH-video-quality-url.md](RESEARCH-video-quality-url.md) | 视频号高质量 URL 参数研究 |
-| [RESEARCH-wechat-channels-api.md](RESEARCH-wechat-channels-api.md) | 视频号 API 方案研究 |
-
-## 设计文档
+## 研究记录（research/）
 
 | 文件 | 用途 |
 |------|------|
-| [DESIGN-knowledge-base-organization.md](DESIGN-knowledge-base-organization.md) | 知识库架构设计与内容规范 |
+| [video-quality-url.md](research/video-quality-url.md) | 视频号高质量 URL 参数与清晰度对比 |
+| [wechat-channels-api.md](research/wechat-channels-api.md) | 视频号 XWEB/Pinia API 与 B方案 action 契约 |
+| [wechat-short-video-decryption.md](research/wechat-short-video-decryption.md) | 短视频 Isaac64 流加密解密原理与验证 |
+
+## 设计文档（design/）
+
+| 文件 | 用途 |
+|------|------|
+| [knowledge-base-organization.md](design/knowledge-base-organization.md) | 知识库架构设计与内容规范 |

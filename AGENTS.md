@@ -10,16 +10,21 @@
 
 ## 1. 执行前必读
 
-### 1.1 冷启动（首次接触/跨阶段切换）
-按序读：
-1. `docs/DOCUMENTATION_MAP.md` — 文档地图（快速入口）
-2. `docs/WORKFLOW.md` — 整体工作流（四阶段流水线）
-3. `project-management/active/TASK_STATUS.md` + `active/ISSUES.md` — 当前状态
-4. 对应环节的SOP（按依赖顺序）：
+### 1.1 冷启动（首次接触 / 开新窗口 / 跨阶段切换）
+按序读，不凭文件名猜测、不直接写代码：
+1. `README.md` — 项目概览与新会话快速恢复
+2. `docs/DOCUMENTATION_MAP.md` — 文档地图（快速入口）
+3. `docs/WORKFLOW.md` — 四阶段流水线（判断当前阶段）
+4. `docs/HANDOFF.md` — §1 倒序项目日志（聊了什么→结论→为什么）+ §3 当前纠结
+5. `project-management/active/TASK_STATUS.md` + `active/ISSUES.md` — 当前进度/下一步/坑（唯一进度真相）
+6. 按当前任务读对应 SOP（微信系先读基本操作前置依赖）：
    - **微信基本操作（前置依赖）**：`docs/guides/wechat-basic-operations.md`
-   - 视频采集：`docs/guides/wechat-channels-capture.md`
-   - 文章采集：`docs/guides/wechat-official-article.md`
+   - 视频号采集：`docs/guides/wechat-channels-capture.md`
+   - 公众号采集：`docs/guides/wechat-official-article.md`
    - 增量采集：`docs/guides/incremental-fetch.md`
+
+读完用 `docs/项目维护SOP.md` §5「冷启动六问」自测，把六个答案讲给用户听，**答不上或文档自相矛盾先修文档再动手**。
+开新任务窗口的固定动作（触发词、老窗口收口、标准句、兜底）见 `docs/新窗口接手开场白.md`。
 
 ### 1.2 续接（继续同一阶段的任务）
 只读：
@@ -86,6 +91,12 @@ done
 - **"不改写历史"的边界**：ADR/git历史只增不改；现行规范/活态台账完全过期的内容直接删改
 - 文件和目录有变化时必须检查 .gitignore
 - 提交前运行 `git status` 检查
+
+### 2.7 提交前体检与交接（强制）
+
+- `git commit` 前必须在仓库根跑 `python3 scripts/doc_health_check.py`，**0 ERROR 才提交**（WARN 记录后可放行）：查核心文件齐备、Markdown 断链、docs 文档登记、禁入内容（原始音视频/PDF/Office/明文凭证/临时票据）入库。
+- 信息落点、维护节奏、冷启动六问统一见 `docs/项目维护SOP.md`；过程日志往 `docs/HANDOFF.md` §1 倒序追加。
+- 用户说"开新窗口/换新窗口/新窗口接手"时，按 `docs/新窗口接手开场白.md` 收口，不自创交接长文。
 
 ---
 

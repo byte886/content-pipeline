@@ -4,7 +4,7 @@
 > **更新时间**：2026-09-18
 > **目标**：构建多行业知识库，为量化系统、内容创作、方法提炼提供数据基础
 
-> 本文档是知识库组织的**唯一权威源**。目录结构见 [DIRECTORY_STRUCTURE.md](DIRECTORY_STRUCTURE.md)，数据流转见 [WORKFLOW.md](WORKFLOW.md)，本文档不重复。
+> 本文档是知识库组织的**唯一权威源**。目录结构见 [DIRECTORY_STRUCTURE.md](../DIRECTORY_STRUCTURE.md)，数据流转见 [WORKFLOW.md](../WORKFLOW.md)，本文档不重复。
 
 ---
 
@@ -142,7 +142,7 @@ domain: stock | jewelry | general
 
 ## 八、实施路线图
 
-> 详细路线图见 [ROADMAP.md](ROADMAP.md)
+> 详细路线图见 [ROADMAP.md](../ROADMAP.md)
 
 | 阶段 | 状态 |
 |------|------|

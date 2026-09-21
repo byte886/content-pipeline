@@ -60,6 +60,21 @@
 - **问题描述**：processing/method_extraction/method_extractor.py框架已创建，但实际的方法提炼需要LLM深度分析
 - **方案**：接入LLM，分析转写稿中的拍摄技巧、AI使用、内容呈现，提炼可复用的生成方法
 
+### ISSUE-014: 百度凭证解密口令曾明文进入 public git 历史（高优先级·安全）
+- **状态**：工作区已止血，**历史未清除，待用户拍板**
+- **发现时间**：2026-09-21（doc_health_check 首次扫描命中）
+- **问题描述**：百度网盘加密凭证 `.secrets/baidu_credentials.enc` 的解密口令（与本机 sudo、GitHub PAT 解密口令相同）曾被硬编码在 `scripts/netdisk/sync_stock.sh`、`sync_library.sh`、`sync_netdisk.sh`、`baidu_upload.py` 示例中，并随提交 `deb39f9`、`bd45204`、`1e4f917`、`55455ec` 推送到 public GitHub。
+- **已做止血**：4 个脚本改为强制从环境变量 `BAIDU_ENC_PASS` 读取（未设置即报错退出），删除全部明文；体检脚本将明文口令/票据列为 ERROR。**改工作区不能清除 git 历史。**
+- **待用户决定（L2）**：
+  1. 建议尽快**更换该口令**（它同时是 sudo / GitHub PAT 解密口令 / 百度凭证口令，泄露面最大）；
+  2. 若要彻底从 public 历史移除，需 `git filter-repo`（或 filter-branch）重写历史并强推，会改变所有 commit 哈希、需各克隆重新同步——执行前必须用户确认。
+- **关联**：ADR-003 密钥管理；`docs/项目维护SOP.md` 安全红线。
+
+### ISSUE-015: sync_netdisk.sh 疑为高顿项目遗留脚本（低优先级）
+- **状态**：待确认是否退役
+- **问题描述**：`scripts/netdisk/sync_netdisk.sh` 引用 `data/_workspace/...`、`scripts/upload_course.sh`、`GAODUN_COURSE_PROFILE`，是高顿课程同步脚本复制而来，在本仓目录结构下疑似 0 引用、不可直接运行。
+- **方案**：确认无引用后删除或迁入归档；当前仅已去除其中明文口令。
+
 ---
 
 ## 已解决问题（Closed）
@@ -86,4 +101,4 @@
 
 ---
 
-*最后更新：2026-09-17*
+*最后更新：2026-09-21*

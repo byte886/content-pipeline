@@ -14,15 +14,15 @@
 
 # 链路（Workflow）
 
-* [视频号采集链路](concepts/workflow-video-capture.md) - MITM捕获→下载→解密→验证、高质量URL参数
-* [公众号文章采集链路](concepts/workflow-article-capture.md) - 文章下载→图片OCR→结构化存储
-* [视频转文字与OCR链路](concepts/workflow-transcription-ocr.md) - FunASR本地转写、macOS Vision OCR、编译二进制提速
+* [视频号采集链路](concepts/workflow-video-capture.md) - MITM捕获→下载→解密→验证、高质量URL参数、B方案 action 驱动
+* [视频转文字与OCR链路](concepts/workflow-transcription-ocr.md) - FunASR本地转写、OCR、编译二进制提速
+* 公众号文章采集链路：尚未单独立 concept，权威源见 `../../docs/guides/wechat-official-article.md`（文章下载→图片OCR→结构化存储）
 
 # 治理（Standard）
 
-* [证书与代理核心规则](concepts/standard-cert-proxy.md) - 证书路径坑、全网阻断紧急恢复、代理设置
-* [故障排查先验顺序](concepts/standard-debugging-first-principles.md) - 九成失败是自身问题、凭证最后怀疑
+* 证书与代理核心规则：见 `../decisions/ADR-002-视频号采集的证书与代理方案.md` 与 `concepts/architecture-tool-runtime.md`（证书路径坑、全网阻断紧急恢复、代理设置）
+* 故障排查先验顺序：见 `../../docs/WORKFLOW.md`「异常处理原则」与 `../../AGENTS.md`（九成失败是自身问题、凭证最后怀疑、重登录是最后手段）
 
 ---
 
-*最后更新：2026-09-15*
+*最后更新：2026-09-21*

@@ -26,7 +26,13 @@ LOCAL_BASE="$1"
 REMOTE_BASE="$2"
 PARALLEL="${3:-3}"
 FILTER="${4:-.*}"
-export BAIDU_ENC_PASS="***REMOVED***"
+# 百度凭证解密口令必须由环境变量提供，禁止明文写入仓库（public）
+if [ -z "${BAIDU_ENC_PASS:-}" ]; then
+  echo "错误：未设置 BAIDU_ENC_PASS（.secrets/baidu_credentials.enc 的解密口令）。" >&2
+  echo "请先 export BAIDU_ENC_PASS='<你的口令>'（或放入不入库的本地文件后 source）。" >&2
+  exit 1
+fi
+export BAIDU_ENC_PASS
 
 PROFILE="${GAODUN_COURSE_PROFILE:-_shared}"
 WS="$PROJECT_DIR/data/_workspace/$PROFILE"

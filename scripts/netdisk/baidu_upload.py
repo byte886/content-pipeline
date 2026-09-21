@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """百度网盘文件管理脚本 - 上传、列出、重命名、删除、创建目录
 
-用法:
-  BAIDU_ENC_PASS=***REMOVED*** python3 baidu_upload.py upload <本地文件> <网盘路径>
-  BAIDU_ENC_PASS=***REMOVED*** python3 baidu_upload.py list <网盘目录>
-  BAIDU_ENC_PASS=***REMOVED*** python3 baidu_upload.py rename <网盘路径> <新名称>
-  BAIDU_ENC_PASS=***REMOVED*** python3 baidu_upload.py delete <网盘路径>
-  BAIDU_ENC_PASS=***REMOVED*** python3 baidu_upload.py mkdir <网盘目录>
+用法（解密口令经环境变量 BAIDU_ENC_PASS 提供，禁止把明文口令写进仓库或命令历史）:
+  export BAIDU_ENC_PASS='<.secrets/baidu_credentials.enc 的解密口令>'
+  python3 baidu_upload.py upload <本地文件> <网盘路径>
+  python3 baidu_upload.py list <网盘目录>
+  python3 baidu_upload.py rename <网盘路径> <新名称>
+  python3 baidu_upload.py delete <网盘路径>
+  python3 baidu_upload.py mkdir <网盘目录>
+（未设置 BAIDU_ENC_PASS 时会交互式提示输入。）
 
 兼容旧用法: python3 baidu_upload.py <本地文件> <网盘路径> [token]
 
