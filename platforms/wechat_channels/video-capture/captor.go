@@ -1192,37 +1192,85 @@ func (c *Captor) injectVideoFeedHook(resp *http.Response) *http.Response {
     }
     var tries=0;var iv=setInterval(function(){tries++;try{sendStruct();}catch(e){}if(tries>30)clearInterval(iv);},300);
   })();
-  var TICK = 3000, STEP_RATIO = 0.6, PASSES = 3;
-  var state = {key:null, pass:0, sameTop:0};
+  var TICK = 800, PASSES = 2, IDLE_TICKS = 8;
+  // 快速翻页 + 视频tab翻完自动点击“直播回放”tab，两个标签都翻完后停止，全程无需人工。
+  // 每 tick 直接把容器跳到底部触发懒加载追加，连续 IDLE_TICKS 次高度不增且仍在底部即判“无更多”。
+  // 容器用元素引用 + 可见性滞回跟踪，不把 scrollHeight 拼进标识，避免懒加载被误判成切 tab 而回顶。
+  var state = {el:null, pass:0, idle:0, lastH:-1, done:false, seq:0, switchedReplay:false, allDone:false, cooldown:0};
+  function visible(el){
+    var r=el.getBoundingClientRect();
+    return el.clientHeight>200 && r.height>200 && r.bottom>0 && r.top<window.innerHeight;
+  }
   function containers(){
     var out=[]; var all=document.querySelectorAll('div,ul,section,main');
     for(var i=0;i<all.length;i++){var el=all[i];var st=getComputedStyle(el);
-      if((st.overflowY==='auto'||st.overflowY==='scroll')&&el.scrollHeight>el.clientHeight+200){out.push(el);}}
+      if((st.overflowY==='auto'||st.overflowY==='scroll')&&el.scrollHeight>el.clientHeight+200&&visible(el)){out.push(el);}}
     out.sort(function(a,b){return b.scrollHeight-a.scrollHeight;});
     return out;
   }
   function wheel(el,dy){var e=new WheelEvent('wheel',{deltaY:dy,bubbles:true,cancelable:true});el.dispatchEvent(e);}
+  function jumpBottom(el){
+    var ch=el.clientHeight,h=el.scrollHeight;
+    el.scrollTop=h; if(el.scrollTo)el.scrollTo(0,h); wheel(el,ch*1.5);
+    window.scrollBy(0,ch*1.5); wheel(document.body,ch*1.5);
+  }
+  function activeTabText(){
+    var t='';
+    document.querySelectorAll('.tab').forEach(function(e){ if((''+e.className).indexOf('active')>=0) t=(e.textContent||'').trim(); });
+    return t;
+  }
+  function clickTabByName(name){
+    var target=null;
+    document.querySelectorAll('.tab').forEach(function(e){ if((e.textContent||'').trim().indexOf(name)>=0) target=e; });
+    if(!target) return false;
+    try{target.scrollIntoView({block:'center'});}catch(e){}
+    var r=target.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2;
+    function fire(C,tt){try{target.dispatchEvent(new C(tt,{bubbles:true,cancelable:true,view:window,clientX:cx,clientY:cy}));}catch(e){}}
+    ['pointerover','pointermove','pointerdown','mousedown','pointerup','mouseup','click'].forEach(function(tt){
+      if(tt.indexOf('pointer')===0){fire(window.PointerEvent||MouseEvent,tt);} else {fire(MouseEvent,tt);}
+    });
+    try{target.click();}catch(e){}
+    return true;
+  }
   function tick(){
+    if(state.allDone) return;
+    if(state.cooldown>0){ state.cooldown--; return; }
     var cs=containers(); if(!cs.length) return;
-    var el=cs[0];
-    var key=(el.className||'')+'|'+el.scrollWidth+'|'+el.scrollHeight;
-    if(key!==state.key){
-      state.key=key; state.pass=0; state.sameTop=0;
+    var el=state.el;
+    if(!(el && cs.indexOf(el)>=0)){
+      el=cs[0]; state.el=el; state.pass=0; state.idle=0; state.lastH=-1; state.done=false; state.seq++;
       el.scrollTop=0; if(el.scrollTo)el.scrollTo(0,0);
-      console.log('[VC] 检测到新列表(可能切换了标签)，回顶开始第1遍');
+      console.log('[VC] 可见列表容器切换，快速翻页开始 seq='+state.seq+' activeTab='+activeTabText());
+      return;
     }
-    var top=el.scrollTop, h=el.scrollHeight, ch=el.clientHeight;
-    var step=Math.max(200,Math.floor(ch*STEP_RATIO));
-    if(top+ch < h-50){
-      el.scrollTop=top+step; if(el.scrollTo)el.scrollTo(0,el.scrollTop); wheel(el,step);
-      window.scrollBy(0,step); wheel(document.body,step); state.sameTop=0;
-    }else{
-      state.sameTop++;
-      if(state.sameTop>=3){
-        state.pass++;
-        console.log('[VC] 第'+state.pass+'遍滚到底(高度'+h+')');
-        if(state.pass<PASSES){ el.scrollTop=0; if(el.scrollTo)el.scrollTo(0,0); state.sameTop=0; }
-        else { state.sameTop=0; el.scrollTop=Math.max(0,el.scrollTop-step); if(el.scrollTo)el.scrollTo(0,el.scrollTop); }
+    if(state.done) return;
+    jumpBottom(el);
+    var h=el.scrollHeight, ch=el.clientHeight, top=el.scrollTop;
+    var atBottom=(top+ch>=h-120);
+    if(h===state.lastH && atBottom){ state.idle++; } else { state.idle=0; }
+    state.lastH=h;
+    if(state.idle>=IDLE_TICKS){
+      state.pass++;
+      console.log('[VC] 第'+state.pass+'遍快速翻页到底(高度'+h+') activeTab='+activeTabText());
+      if(state.pass<PASSES){ el.scrollTop=0; if(el.scrollTo)el.scrollTo(0,0); state.idle=0; state.lastH=-1; }
+      else {
+        state.done=true;
+        var at=activeTabText();
+        if(at.indexOf('回放')<0){
+          var ok=clickTabByName('直播回放');
+          if(ok && !state.switchedReplay){
+            state.switchedReplay=true;
+            console.log('[VC] 视频列表完成，已自动点击“直播回放”，等待面板加载');
+            state.el=null; state.done=false; state.pass=0; state.idle=0; state.lastH=-1; state.cooldown=4;
+          } else if(!ok){
+            console.log('[VC] 未找到“直播回放”标签，稍后重试');
+            state.done=false; state.idle=0;
+          } else {
+            state.allDone=true; console.log('[VC] 视频+直播回放全部抓取完成');
+          }
+        } else {
+          state.allDone=true; console.log('[VC] 直播回放翻完，视频+回放全部抓取完成');
+        }
       }
     }
   }

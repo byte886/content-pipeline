@@ -30,3 +30,7 @@ replays_*_manifest.json
 # 放行：脱敏后的台账（去掉签名 URL，仅保留 oid/标题/时长/size/md5/encfilekey 等元数据）
 !catalog_*.json
 !registry_*.json
+
+# 全量换签直链合集（短视频+回放，含临时 token/sign，禁止入 public 仓）
+finder_*_manifest.json
+*_full_manifest.json
