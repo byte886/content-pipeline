@@ -6,9 +6,15 @@
 ---
 
 ## 快速参考
+
+> ✅ **首选一键（人工只开一次窗，其余全自动）**：
+> `python3 platforms/wechat_channels/collect_channels.py "<视频号名>" --domain stock --quality min`
+> 完整步骤见 [wechat-channels-collect-sop.md](wechat-channels-collect-sop.md)。
+> 下表是分步**手动原语**，仅排障 / 研究用。
+
 | 任务 | 命令 |
 |------|------|
-| 启动捕获（直连，推荐） | `cd platforms/wechat_channels/video-capture && ./video-capture -port 8899 -output /tmp/capture.json -upstream ""` |
+| 手动原语：启动捕获（直连） | `cd platforms/wechat_channels/video-capture && ./video-capture -port 8899 -output /tmp/capture.json -upstream ""` |
 | 启动捕获（带ClashX上游） | `./video-capture -port 8899 -output /tmp/capture.json -upstream http://127.0.0.1:7890` |
 | 启动捕获（换签直链+decode_key，短视频解密必需） | `./video-capture -short-probe -output capture_shortprobe.json -upstream http://127.0.0.1:7890`（须在 Cmd+Q 重启微信**之前**启动） |
 | **B方案抓全量（首选：Pinia action 驱动、不滚 DOM）** | `./video-capture -replay-list -short-probe -output /tmp/cap.json -upstream ""`，启动后只需**刷新一次视频号主页**，见 §2.1 |
@@ -22,6 +28,8 @@
 
 ## 1. UI操作流程（视频号特有）
 通用激活、搜索、窗口操作全部走基础SOP，视频号特有步骤：
+> ⚠️ **首选 B 方案（§2.1）由注入的 Pinia action 自动翻页，人工开窗后无需任何滚动/切 tab。**
+> 下面的手动滚动/切 tab 仅用于 `-autoscroll` 兜底（§2.2）或手动排障。
 1.  主窗口搜索目标视频号名称，在搜一搜结果页确认条目下方有"视频号"灰色标签，点击进入视频号主页
 2.  进入视频号主页后，及时关掉多余的搜一搜标签页，只保留视频号当前页面
 3.  标签切换优先用JS注入直接点击DOM元素，绕开鼠标坐标点不准的问题
@@ -55,7 +63,7 @@
 - **mediaType：4=视频，2=图文**；采集视频时过滤 2。
 - 改注入 JS 必须 `go build -o video-capture .` 并重启代理、**刷新主页**（旧页跑旧 JS）。
 
-实测「交易的游戏」：短视频 cardObjects 340（= **339 视频 + 1 图文**）、直播回放 28，oid/nid 双唯一零重复；纯视频 339 与旧滚动 manifest 精确一致，回放比旧 27 多 1（新增）。约 20–30s 拉完，肉眼可见"停顿不翻滚、随后自动切回放"即正常。
+实测「交易的游戏」（2026-09-22 最新）：cardObjects 341 = **340 视频 + 1 图文**（图文 mediaType=2 拆到 image_posts 过滤），直播回放 28，oid/nid 双唯一零重复；parse 后 catalog counts = shorts 340 / replays 28 / image_posts 1，340 短视频与 28 回放均已下载、转写、台账对账全 0。约 20–30s 拉完，肉眼可见"停顿不翻滚、随后自动切回放"即正常。换「巫师财经」验证通用性：244 视频 / 0 回放（tab 兼容 0/1/2/N）。
 
 ### 2.2 备选：DOM 自动滚动抓取（`-autoscroll`，✅ 2026-09-21 验证）
 
@@ -76,8 +84,7 @@
 ### 2.3 合并、去重与对账
 
 - `-output` 文件是代理**追加写的多段 JSON 拼接**（不是单个合法 JSON 数组），解析要用 `JSONDecoder.raw_decode` 从偏移量循环读出多个块再展平。
-- 多次捕获取并集：短视频以有 `decode_key` 为准、按 URL 的 `encfilekey` 去重；回放按无 `decode_key` 且 `stodownload`、体积 >30MB 归类，同样按 `encfilekey` 去重。
-- 与历史清单（如 `shorts_*_slim.json`）对账：主键用 `encfilekey`，并用 `md5` 交叉验证。
+- 多次捕获取并集、与历史清单对账，统一用稳定主键 **16 位 hex `id`（= `md5(md5sum)[:16]`，无 md5sum 时退化 `md5(url)`）**，跨刷新稳定；`incremental_sync.py` / inventory / audit 三处口径一致。`encfilekey` 是早期叫法，已废弃。
 - **数量对不上的常见原因不是漏抓**：0 秒、`durMs/videoPlayLen=0`、`specs=[]`、仅几百 KB 的条目 `mediaType=2` 是**图文/图片动态，不是视频**，视频流采集中本就不会出现。本次 340 清单与 339 视频的唯一差额正是此类。
 - 直链 Range 抽验返回 `206` 即可下；token/svrnonce 有时效，抓完尽快下载，过期重新刷新换签。
 
@@ -112,7 +119,7 @@ python3 $DL <capture.json> <outdir> live                                        
   - 短视频按标题对齐——现有文件名形如 `short_NNN_正文_标签1_标签2.mp4`，**取去序号前缀后第一个 `_` 之前的正文段**再归一化（去 `#标签`/标点/空白）；不要把 `_` 当标点删，否则正文与标签粘连。
   - 直播回放同名多（"回调就是进场机会"等），不能按标题去重；按**完整下载后文件字节数**对清单 `size`（容差 2%）匹配。
 - **编号续接与断点**：新补文件从现有最大编号 +1 开始（避免重号）；后台长任务中断（exit -1 多为任务被回收、非下载错误）时，用 `nohup ... &` 脱离会话，按已成功条数切片续跑，不要从头重下。
-- **台账**：落库后生成 `library/00_manifest/<account>_inventory.json`，登记每条的 seq/文件名/标题/时长/磁盘大小/encfilekey，支撑增量水位与后续同步。
+- **台账**：由 `rebuild_inventory.py` 生成 `library/00_manifest/<account>_inventory.json`，登记每条的 16hex `id`（关联 catalog）/seq/文件名/标题/ffprobe 实测时长/磁盘大小/转写状态，过严格校验门（缺/游离/无转写/时长不符全空）才写入，支撑增量水位与后续同步。增量对账用 `incremental_sync.py`，下载后统一 转写→rebuild→audit，不要手写台账。
 
 ---
 

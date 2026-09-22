@@ -44,7 +44,7 @@
 
 | 平台 | 状态 | 说明（采集量为易变数字，统一以 `library/00_manifest/` 台账与 TASK_STATUS 为准，此处不写死） |
 |------|------|---------|
-| 微信视频号 | ✅ B方案已验证 | Pinia action 直枚举全量；「交易的游戏」服务端 339视频+28回放（2026-09-21），落库口径对账中 |
+| 微信视频号 | ✅ 已端到端跑通 | Pinia action 直枚举全量，一键 `collect_channels.py`（人工只开一次窗）；「交易的游戏」已全量下载+转写+台账对账（具体数以 `library/00_manifest/` 台账为准） |
 | 微信公众号 | 🔧 全量方案待实测 | 本地库仅得最近几篇；HTTP `getmsg` 方案待人工激活一次凭证后跑通 |
 | B站 | ✅ 已接入（珠宝源） | 采集量以台账为准；subprocess 环境走代理会 412，须直连 |
 | 抖音 | ⏸ 暂缓 | 网页反爬 403，指定博主任务待用户手动提供视频 |
@@ -96,7 +96,12 @@ python3 scripts/doc_health_check.py
 # 查看采集源配置
 cat config/sources.json
 
-# 运行增量采集（dry-run）
+# 视频号一键采集（人工只在微信搜索→点「视频号」行进入主页，约15秒；其余全自动）
+# 首次=全量，之后=只下新增；自动完成 捕获→解密→转写→台账→对账
+python3 platforms/wechat_channels/collect_channels.py "交易的游戏" --domain stock --quality min
+# 一步一步 SOP：docs/guides/wechat-channels-collect-sop.md
+
+# 运行增量采集（dry-run，多平台调度）
 python3 scripts/incremental/fetch_new.py --all --dry-run
 ```
 

@@ -1,5 +1,21 @@
 # 自动化采集工具
 
+> ⚠️ **已废弃（DEPRECATED），请勿使用本目录脚本。**
+>
+> - `auto_capture.py` 用 osascript 自动操控微信窗口（搜索/点击/切 tab/滚动）。
+>   微信是腾讯桌面客户端，其界面**不允许 AI 自动化**，这条路在边界上不可用。
+> - `incremental_collect.py` 自维护 manifest 的增量逻辑，已被
+>   `video-downloader/incremental_sync.py`（按 inventory 的 16hex `id` 对账）取代。
+>
+> **现行正路**：`platforms/wechat_channels/collect_channels.py`
+> （captor 注入 Pinia action **自动翻页枚举**，人工只需搜索账号→点「视频号」行
+> 进入主页，无需滚动/播放；之后增量下载、转写、台账、对账全自动）。
+> 操作 SOP 见 `docs/guides/wechat-channels-collect-sop.md`。
+>
+> 以下内容仅作演进历史保留。
+
+---
+
 一键采集微信视频号的所有视频和直播回放，无需人工滚动页面。
 
 ## 功能

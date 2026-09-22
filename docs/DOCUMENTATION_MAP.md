@@ -20,9 +20,10 @@
 1. `docs/guides/wechat-basic-operations.md` — 窗口管理、搜索操作、鼠标控制最佳实践
 
 ### 视频号内容采集
-1. `docs/guides/wechat-channels-capture.md` — 采集流程（捕获→下载→解密→验证）
-2. `docs/research/video-quality-url.md` — X-snsvideoflag参数、6种格式对比
-3. `docs/research/wechat-channels-api.md` — 方案B API研究记录
+1. `docs/guides/wechat-channels-collect-sop.md` — **一键采集 SOP（首选，人工只开一次窗）**
+2. `docs/guides/wechat-channels-capture.md` — 采集流程与手动原语（捕获→下载→解密→验证、排障原理）
+3. `docs/research/video-quality-url.md` — X-snsvideoflag参数、6种格式对比
+4. `docs/research/wechat-channels-api.md` — 方案B API研究记录
 
 ### 公众号文章采集
 1. `docs/guides/wechat-official-article.md` — 文章采集流程
@@ -66,7 +67,8 @@
 | 文档 | 路径 | 用途 |
 |------|------|------|
 | 微信基本操作SOP | `docs/guides/wechat-basic-operations.md` | 窗口管理、搜索操作、鼠标控制最佳实践 |
-| 视频号采集SOP | `docs/guides/wechat-channels-capture.md` | 捕获→下载→解密→验证全流程 |
+| 视频号一键采集SOP | `docs/guides/wechat-channels-collect-sop.md` | **首选**：collect_channels.py 一键，人工只开一次窗 |
+| 视频号采集SOP（手动原语） | `docs/guides/wechat-channels-capture.md` | 捕获→下载→解密→验证全流程、排障原理 |
 | 公众号采集SOP | `docs/guides/wechat-official-article.md` | 文章采集与OCR流程 |
 | 增量采集SOP | `docs/guides/incremental-fetch.md` | 多平台内容更新发现与下载 |
 | 电子资料转码SOP | `docs/guides/books-extraction.md` | PDF/PPTX等电子资料处理 |

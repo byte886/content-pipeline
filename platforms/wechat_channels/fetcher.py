@@ -1,10 +1,13 @@
 """
 微信视频号采集插件（WeChat Channels Fetcher）
 
-实现PlatformFetcher接口，封装现有的MITM代理捕获+解密下载流程。
+实现 PlatformFetcher 接口，薄封装 captor MITM 捕获 + 解密下载流程。
 
-注意：视频号采集需要人工干预（启动代理后在微信中滚动列表页面），
-fetch_urls方法会启动捕获工具并等待人工完成滚动。
+人机边界：captor 注入的 Pinia action 驱动会【自动翻页枚举全量】，人工只需在
+微信里搜索账号名 → 点「视频号」行进入主页（约 15 秒），无需滚动、无需播放。
+
+端到端采集推荐直接用同目录 collect_channels.py 一键编排（启动→人工开窗→
+all-done→增量下载→转写→台账），本类只保留接口级原语。
 """
 
 import json
@@ -21,11 +24,12 @@ from platforms.base import PlatformFetcher, ContentItem
 class WechatChannelsFetcher(PlatformFetcher):
     """微信视频号采集插件"""
 
-    def __init__(self, capture_port: int = 9999, proxy_port: int = None):
+    def __init__(self, capture_port: int = 8899, proxy_port: int = None):
         """
         Args:
-            capture_port: MITM捕获工具监听端口
-            proxy_port: 上游代理端口（如ClashX的7890，可选）
+            capture_port: captor MITM 监听端口（默认 8899）
+            proxy_port: 上游代理端口（如 ClashX 的 7890）；None=国内直连（默认）。
+                视频号是国内站点默认直连，仅在需要走代理时才传。
         """
         self.capture_port = capture_port
         self.proxy_port = proxy_port
@@ -58,10 +62,11 @@ class WechatChannelsFetcher(PlatformFetcher):
         cmd = [
             str(self._capture_bin),
             "-port", str(self.capture_port),
+            "-replay-list", "-short-probe",   # 注入 Pinia action 自动翻页枚举
             "-output", output_file,
+            # 国内视频号默认直连（显式空串），仅在给了上游端口时才走代理
+            "-upstream", (f"http://127.0.0.1:{self.proxy_port}" if self.proxy_port else ""),
         ]
-        if self.proxy_port:
-            cmd.extend(["-upstream", f"http://127.0.0.1:{self.proxy_port}"])
 
         self._capture_process = subprocess.Popen(
             cmd,
@@ -86,10 +91,10 @@ class WechatChannelsFetcher(PlatformFetcher):
         """
         采集指定视频号的全部视频列表。
 
-        注意：此方法需要人工干预！
-        1. 启动捕获工具后，需要在微信中打开视频号列表页面
-        2. 手动滚动列表到底部，触发所有视频URL加载
-        3. 滚动完成后按回车继续
+        注意：此方法需要一次人工开窗（微信 GUI 不允许 AI 自动化）！
+        1. 启动捕获后，在微信搜索账号名 → 点「视频号」行进入主页
+        2. 注入的 action 驱动会自动翻页枚举全量，无需手动滚动、无需播放
+        3. 看到日志 all-done 后按回车继续
 
         Args:
             account: 视频号名称（如 "交易的游戏"）
@@ -107,8 +112,8 @@ class WechatChannelsFetcher(PlatformFetcher):
             # 启动捕获
             self.start_capture(output_file)
             print(f"捕获工具已启动（端口 {self.capture_port}）")
-            print(f"请在微信中打开视频号「{account}」的列表页面，并滚动到底部")
-            print("滚动完成后按回车继续...")
+            print(f"请在微信搜索「{account}」并点【视频号】行进入主页（无需滚动/播放）")
+            print("看到日志 all-done 后按回车继续...")
             input()
             self.stop_capture()
             time.sleep(1)  # 等待文件写入完成

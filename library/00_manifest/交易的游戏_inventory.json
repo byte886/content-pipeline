@@ -2,15 +2,15 @@
   "account": "交易的游戏",
   "platform": "wechat_channels",
   "domain": "stock",
-  "catalog_generated_at": "2026-09-22 15:29:11",
-  "inventory_generated_at": "2026-09-22T15:53:50+08:00",
+  "catalog_generated_at": "2026-09-22 17:09:30",
+  "inventory_generated_at": "2026-09-22T17:18:18+08:00",
   "id_strategy": "id = md5(md5sum)[:16]（与 parse_capture_log.py / captor handleMedia 一致）",
   "summary": {
-    "shorts": 339,
+    "shorts": 340,
     "lives": 28,
-    "shorts_with_transcript": 339,
+    "shorts_with_transcript": 340,
     "lives_with_transcript": 28,
-    "shorts_disk_size_mb": 1798.4,
+    "shorts_disk_size_mb": 1804.0,
     "lives_disk_size_mb": 6105.7
   },
   "shorts": [
@@ -5437,6 +5437,22 @@
       "has_transcript": true,
       "transcript_chars": 95,
       "transcript_path": "library/04_transcript/stock/交易的游戏/short/short_411_历史总会重复，但细节不一样。_财经_股票_股民_指数/transcript.md"
+    },
+    {
+      "id": "149416e7a0f2c958",
+      "oid": "15016173846851160152",
+      "seq": 412,
+      "file": "library/01_video/stock/交易的游戏/short/short_412_房地产具备成为下一轮主线板块的条件！复盘历史对比解读_财经_大盘分析_复盘_股票.mp4",
+      "title": "房地产具备成为下一轮主线板块的条件！复盘历史对比解读#财经#大盘分析#复盘#股票",
+      "duration_s": 99,
+      "catalog_duration_s": 99,
+      "disk_size_mb": 5.6,
+      "md5sum": "bc26b8a7ce18262f1b5e0f644f0840f5",
+      "media_type": 4,
+      "createtime": 1790067416,
+      "has_transcript": true,
+      "transcript_chars": 922,
+      "transcript_path": "library/04_transcript/stock/交易的游戏/short/short_412_房地产具备成为下一轮主线板块的条件！复盘历史对比解读_财经_大盘分析_复盘_股票/transcript.md"
     }
   ],
   "lives": [

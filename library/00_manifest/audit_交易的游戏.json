@@ -3,14 +3,14 @@
   "platform": "wechat_channels",
   "video_root": "library/01_video/stock/交易的游戏",
   "catalog_counts": {
-    "shorts": 339,
+    "shorts": 340,
     "replays": 28,
     "image_posts": 1
   },
   "short": {
-    "catalog_total": 339,
-    "disk_files": 339,
-    "covered": 339,
+    "catalog_total": 340,
+    "disk_files": 340,
+    "covered": 340,
     "missing_count": 0,
     "missing": [],
     "duplicate_groups_count": 0,
