@@ -86,7 +86,12 @@ const replayListJS = `
 
   // ===== DOM 工具 =====
   function cards(){return Array.prototype.slice.call(document.querySelectorAll('.object-card.profile-object-card.inner-clickable')).filter(function(e){var r=e.getBoundingClientRect();return r.width>60&&r.height>60;});}
-  function activeTab(){var t='';document.querySelectorAll('.tab').forEach(function(e){if((''+e.className).indexOf('tab--active')>=0){var x=(e.textContent||'').trim();if(x==='视频'||x==='直播回放'||x==='文章'||x==='直播')t=x;}});return t;}
+  function tabCandidates(){var out=[];try{document.querySelectorAll('.tab,[role="tab"],[class*="tab"]').forEach(function(e){var x=(e.textContent||'').trim();if(!x||x.length>14)return;
+      // 排除同时含视频与直播/回放关键词的父容器（其 textContent 是多个子 tab 拼接，如"视频(0)直播回放(0)"），只保留最内层真实 tab
+      if(/视频|作品|短视频/.test(x)&&/直播|回放/.test(x))return;
+      var cls=''+(e.className||'');var active=/tab--active|(^|[ _-])active([ _-]|$)|selected|current|(^|[ _-])on([ _-]|$)/i.test(cls)||e.getAttribute('aria-selected')==='true';if(out.length<24)out.push({cls:cls.slice(0,80),text:x,active:!!active});});}catch(e){}return out;}
+  function tabKind(text){if(/回放|直播/.test(text))return 'live';if(/视频|作品|短视频/.test(text))return 'video';return '';}
+  function activeTab(){var k='';tabCandidates().forEach(function(c){if(c.active&&!k){var z=tabKind(c.text);if(z)k=z;}});return k;}
   function scrollBox(){var c=null;document.querySelectorAll('div').forEach(function(d){var s=getComputedStyle(d);if((s.overflowY==='auto'||s.overflowY==='scroll')&&d.scrollHeight>d.clientHeight+200){if(!c||d.scrollHeight>c.scrollHeight)c=d;}});return c;}
   function anchors(){var cs=cards();if(!cs.length)return{};var el=cs[0];var img=el.querySelector('img.prev-i,img');var dur=el.querySelector('.duration');var mk=(img&&img.src&&(img.src.match(/encfilekey=([^&]{12,48})/)||[])[1])||'';return {coverKey:mk,dur:dur?dur.textContent.trim():'',n:cs.length};}
 
@@ -180,11 +185,12 @@ const replayListJS = `
   // 短视频循环 profile.fetchMoreData() 直到 noMore；切"直播回放"tab 后循环 getLiveUserPage() 直到 liveNoMore。
   function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
   function PStore(){var app=document.querySelector('#app').__vue_app__;return app.config.globalProperties.$pinia._s.get('profile');}
-  function clickTab(name){var done=false;document.querySelectorAll('.tab').forEach(function(e){if((e.textContent||'').trim()===name){e.click();done=true;}});return done;}
+  function clickTab(kind){var done=false;document.querySelectorAll('.tab,[role="tab"],[class*="tab"]').forEach(function(e){if(done)return;var x=(e.textContent||'').trim();if(tabKind(x)===kind){try{e.click();done=true;}catch(err){}}});return done;}
   function driveReport(stage,o){postRaw('RLIST_DRIVE__',JSON.stringify(Object.assign({stage:stage},o||{})));}
   async function waitFetch(p,flag){var w=0;while(p.$state[flag]&&w<60){await sleep(200);w++;}return w;}
   async function loadShort(p){
     var u=p.$state.username;
+    if(!u){var m=location.href.match(/[?&]username=([^&]+)/);if(m){try{u=decodeURIComponent(m[1]);}catch(e){u=m[1];}}}
     driveReport('short-username',{username:u?(''+u).slice(0,16)+'…':u});
     if(!u)return {len:(p.$state.cardObjects||[]).length,guard:0,why:'no-username'};
     // 已实测正确签名 fetchMoreData({username})；严禁空参 {}（会误置 noMore=true 污染状态）
@@ -222,16 +228,15 @@ const replayListJS = `
     try{
       var p=PStore();if(!p){window.__rlDrive=false;window.__rlDriveStarted=false;return;}
       var t=0;while(!p.$state.isProfileDataReady&&t<50){await sleep(200);t++;}
-      // 无论刷新时停在哪个 tab，先切回"视频"，保证短视频从头拉全
-      clickTab('视频');await sleep(1500);p=PStore();
-      driveReport('start',{cardLen:(p.$state.cardObjects||[]).length});
+      // 无论刷新时停在哪个 tab，先切回"视频"，保证短视频从头拉全；单 tab/无 tab 栏账号切不动也继续
+      var sv=clickTab('video');await sleep(sv?1500:300);p=PStore();
+      driveReport('start',{cardLen:(p.$state.cardObjects||[]).length,switchedVideo:sv,tabs:tabCandidates().map(function(c){return c.text+(c.active?'*':'');})});
       var sr=await loadShort(p);
       driveReport('short-done',sr);window.__rlShortDone=true;
       await sleep(600);
-      var switched=clickTab('直播回放');
+      var switched=clickTab('live');
       driveReport('tab-switch',{switched:switched});
-      await sleep(1800);
-      p=PStore();
+      if(switched){await sleep(1800);p=PStore();}
       var lr=await loadLive(p);
       driveReport('live-done',lr);window.__rlDriveAllDone=true;
       scanStore();
@@ -261,8 +266,22 @@ const replayListJS = `
     enumActions();
     probeProfile();
     probeSignActions();
-    var tab=activeTab();var profile=/\/web\/pages\/profile/.test(location.href);
-    if(!profile||(tab!=='视频'&&tab!=='直播回放'))return;
+    var tab=activeTab();
+    var profile=/\/web\/pages\/profile|\/web\/pages\/mp_profile/.test(location.href);
+    var cands=tabCandidates();
+    var ready=false,cardN=0;
+    try{var pp=PStore();if(pp&&pp.$state){ready=!!pp.$state.isProfileDataReady;cardN=(pp.$state.cardObjects||[]).length;}}catch(e){}
+    // 探针：限幅上报真实 tab DOM + profile 就绪态，兜底诊断单 tab/无 tab 栏/文案差异账号
+    window.__rlTabTick=(window.__rlTabTick||0)+1;
+    if(window.__rlTabTick%2===1){try{postRaw('RLIST_TABS__',JSON.stringify({href:location.href,profile:profile,kind:tab,tabCount:cands.length,tabs:cands.slice(0,10),ready:ready,cardLen:cardN}));}catch(e){}}
+    if(!profile)return;
+    // tab 数量 0/1/2/N 都可能：0=默认视频流，1=仅视频/作品，2=视频+直播回放，N=还可能有图文/合集/商品等（本任务只采视频与回放，其余忽略）
+    var hasMediaTab=false;
+    for(var ci=0;ci<cands.length;ci++){var ck=tabKind(cands[ci].text);if(ck==='video'||ck==='live'){hasMediaTab=true;break;}}
+    if(!ready&&!cardN)return;
+    // 短视频(cardObjects)是 profile 默认主列表：profile 就绪且首屏有卡片即启动；或虽首屏空但存在视频/直播 tab（切过去后会加载）
+    var canStart=ready&&(cardN>0||hasMediaTab);
+    if(!canStart)return;
     if(tab!==state.tab){state.tab=tab;state.tabTicks=0;state.stable=0;state.lastN=-1;}
     state.tabTicks++;
     // B方案：action 驱动翻页（fetchMoreData/getLiveUserPage），启动后不再滚 DOM；不依赖当前停留 tab
