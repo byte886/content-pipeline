@@ -1,0 +1,1429 @@
+{
+  "account": "交易的游戏",
+  "type": "short",
+  "groups": 71,
+  "action": "每组删除 drop（冗余副本及其转写目录），保留 keep（更小、已解密、有合格转写）；不重命名保留文件，权威关联用 catalog id 而非 seq",
+  "total_saving_mb": 319.3,
+  "plan": [
+    {
+      "id": "99a83dd4e5a58e14",
+      "duration": 40,
+      "title": "A股如期反弹，而反弹仅仅是个开始！ #财经 #A股 #金融",
+      "keep": {
+        "seq": 331,
+        "file": "short_331_A股如期反弹，而反弹仅仅是个开始！_财经__A股__金融.mp4",
+        "size_mb": 1.6,
+        "ftyp": true,
+        "transcript_chars": 423
+      },
+      "drop": {
+        "seq": 1,
+        "file": "short_001_A股如期反弹，而反弹仅仅是个开始！_财经__A股__金融.mp4",
+        "size_mb": 2.3,
+        "ftyp": true,
+        "transcript_chars": 358
+      },
+      "saving_mb": 2.3
+    },
+    {
+      "id": "605d7d4f656cdf4a",
+      "duration": 64,
+      "title": "9月27日午评，十一节前要离场吗？20年数据说话！ #牛市来了吗 #财经 #沪指创4年多来最大单日涨幅",
+      "keep": {
+        "seq": 2,
+        "file": "short_002_9月27日午评，十一节前要离场吗？20年数据说话！__牛市来了吗__财经__沪指创4年多来最大单日涨幅.mp4",
+        "size_mb": 4.3,
+        "ftyp": true,
+        "transcript_chars": 526
+      },
+      "drop": {
+        "seq": 329,
+        "file": "short_329_9月27日午评，十一节前要离场吗？20年数据说话！__牛市来了吗__财经__沪指创4年多来最大单日涨幅.mp4",
+        "size_mb": 4.3,
+        "ftyp": true,
+        "transcript_chars": 631
+      },
+      "saving_mb": 4.3
+    },
+    {
+      "id": "f129f09cce5c547b",
+      "duration": 28,
+      "title": "缩量上涨  还会上涨#财经#大盘分析#股票#股民",
+      "keep": {
+        "seq": 9,
+        "file": "short_009_缩量上涨_还会上涨_财经_大盘分析_股票_股民.mp4",
+        "size_mb": 2.0,
+        "ftyp": true,
+        "transcript_chars": 293
+      },
+      "drop": {
+        "seq": 400,
+        "file": "short_400_缩量上涨_还会上涨_财经_大盘分析_股票_股民.mp4",
+        "size_mb": 2.0,
+        "ftyp": true,
+        "transcript_chars": 320
+      },
+      "saving_mb": 2.0
+    },
+    {
+      "id": "6af3da03f7f121b8",
+      "duration": 123,
+      "title": "12.10日直播   重点板块分析！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 359,
+        "file": "short_359_12.10日直播_重点板块分析！_财经__金融__A股.mp4",
+        "size_mb": 3.2,
+        "ftyp": true,
+        "transcript_chars": 1147
+      },
+      "drop": {
+        "seq": 83,
+        "file": "short_083_12.10日直播_重点板块分析！_财经__金融__A股.mp4",
+        "size_mb": 4.8,
+        "ftyp": true,
+        "transcript_chars": 936
+      },
+      "saving_mb": 4.8
+    },
+    {
+      "id": "29015e1432407ae1",
+      "duration": 55,
+      "title": "11.28直播  12月走势分析及板块机会！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 372,
+        "file": "short_372_11.28直播_12月走势分析及板块机会！_财经__金融__A股.mp4",
+        "size_mb": 1.7,
+        "ftyp": true,
+        "transcript_chars": 530
+      },
+      "drop": {
+        "seq": 85,
+        "file": "short_085_11.28直播_12月走势分析及板块机会！_财经__金融__A股.mp4",
+        "size_mb": 3.1,
+        "ftyp": true,
+        "transcript_chars": 464
+      },
+      "saving_mb": 3.1
+    },
+    {
+      "id": "9d864dffa3f27671",
+      "duration": 54,
+      "title": "板块都轮动一遍了！又到新一轮上涨趋势的开始了。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 398,
+        "file": "short_398_板块都轮动一遍了！又到新一轮上涨趋势的开始了。_财经__金融__A股.mp4",
+        "size_mb": 3.2,
+        "ftyp": true,
+        "transcript_chars": 540
+      },
+      "drop": {
+        "seq": 143,
+        "file": "short_143_板块都轮动一遍了！又到新一轮上涨趋势的开始了。_财经__金融__A股.mp4",
+        "size_mb": 3.8,
+        "ftyp": true,
+        "transcript_chars": 478
+      },
+      "saving_mb": 3.8
+    },
+    {
+      "id": "9dcf36678503cbcc",
+      "duration": 59,
+      "title": "回调就是进场机会！减仓是不可能减仓的。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 378,
+        "file": "short_378_回调就是进场机会！减仓是不可能减仓的。_财经__金融__A股.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 569
+      },
+      "drop": {
+        "seq": 146,
+        "file": "short_146_回调就是进场机会！减仓是不可能减仓的。_财经__金融__A股.mp4",
+        "size_mb": 4.7,
+        "ftyp": true,
+        "transcript_chars": 505
+      },
+      "saving_mb": 4.7
+    },
+    {
+      "id": "8713eca322639402",
+      "duration": 69,
+      "title": "A股如期上涨，下方还有一个补仓机会！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 317,
+        "file": "short_317_A股如期上涨，下方还有一个补仓机会！_财经__金融__A股.mp4",
+        "size_mb": 5.8,
+        "ftyp": true,
+        "transcript_chars": 722
+      },
+      "drop": {
+        "seq": 148,
+        "file": "short_148_A股如期上涨，下方还有一个补仓机会！_财经__金融__A股.mp4",
+        "size_mb": 8.4,
+        "ftyp": true,
+        "transcript_chars": 632
+      },
+      "saving_mb": 8.4
+    },
+    {
+      "id": "b7ec2a0f011a5d31",
+      "duration": 63,
+      "title": "又是拉券商保险！前两次都见顶了，但这次不一样！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 316,
+        "file": "short_316_又是拉券商保险！前两次都见顶了，但这次不一样！_财经__金融__A股.mp4",
+        "size_mb": 5.0,
+        "ftyp": true,
+        "transcript_chars": 657
+      },
+      "drop": {
+        "seq": 149,
+        "file": "short_149_又是拉券商保险！前两次都见顶了，但这次不一样！_财经__金融__A股.mp4",
+        "size_mb": 5.6,
+        "ftyp": true,
+        "transcript_chars": 554
+      },
+      "saving_mb": 5.6
+    },
+    {
+      "id": "5c28bfdcc92507cc",
+      "duration": 86,
+      "title": "6月12日（昨日直播）直播回放，短线回调在所难免。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 151,
+        "file": "short_151_6月12日（昨日直播）直播回放，短线回调在所难免。_财经__金融__A股.mp4",
+        "size_mb": 10.1,
+        "ftyp": true,
+        "transcript_chars": 705
+      },
+      "drop": {
+        "seq": 386,
+        "file": "short_386_6月12日（昨日直播）直播回放，短线回调在所难免。_财经__金融__A股.mp4",
+        "size_mb": 10.1,
+        "ftyp": true,
+        "transcript_chars": 798
+      },
+      "saving_mb": 10.1
+    },
+    {
+      "id": "c566851cf8a16da8",
+      "duration": 136,
+      "title": "大盘支撑在这，出现这种情况可以进场！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 375,
+        "file": "short_375_大盘支撑在这，出现这种情况可以进场！_财经__金融__A股.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 1158
+      },
+      "drop": {
+        "seq": 152,
+        "file": "short_152_大盘支撑在这，出现这种情况可以进场！_财经__金融__A股.mp4",
+        "size_mb": 5.2,
+        "ftyp": true,
+        "transcript_chars": 991
+      },
+      "saving_mb": 5.2
+    },
+    {
+      "id": "2d03d331707ed966",
+      "duration": 205,
+      "title": "A股随时会出现变盘！技术面详细分析。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 352,
+        "file": "short_352_A股随时会出现变盘！技术面详细分析。_财经__金融__A股.mp4",
+        "size_mb": 6.0,
+        "ftyp": true,
+        "transcript_chars": 1713
+      },
+      "drop": {
+        "seq": 154,
+        "file": "short_154_A股随时会出现变盘！技术面详细分析。_财经__金融__A股.mp4",
+        "size_mb": 7.4,
+        "ftyp": true,
+        "transcript_chars": 1358
+      },
+      "saving_mb": 7.4
+    },
+    {
+      "id": "51368b1e07962a78",
+      "duration": 163,
+      "title": "放量未必是好事，做好先跌后涨的准备 #财经 #金融 #A股",
+      "keep": {
+        "seq": 328,
+        "file": "short_328_放量未必是好事，做好先跌后涨的准备_财经__金融__A股.mp4",
+        "size_mb": 4.8,
+        "ftyp": true,
+        "transcript_chars": 1515
+      },
+      "drop": {
+        "seq": 156,
+        "file": "short_156_放量未必是好事，做好先跌后涨的准备_财经__金融__A股.mp4",
+        "size_mb": 5.9,
+        "ftyp": true,
+        "transcript_chars": 1029
+      },
+      "saving_mb": 5.9
+    },
+    {
+      "id": "b7c47088e1695c6b",
+      "duration": 77,
+      "title": "利好消息，明天高开后怎么走？详细分析！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 338,
+        "file": "short_338_利好消息，明天高开后怎么走？详细分析！_财经__金融__A股.mp4",
+        "size_mb": 5.1,
+        "ftyp": true,
+        "transcript_chars": 718
+      },
+      "drop": {
+        "seq": 161,
+        "file": "short_161_利好消息，明天高开后怎么走？详细分析！_财经__金融__A股.mp4",
+        "size_mb": 10.7,
+        "ftyp": true,
+        "transcript_chars": 626
+      },
+      "saving_mb": 10.7
+    },
+    {
+      "id": "35c62ea5e43fa4d4",
+      "duration": 69,
+      "title": "忽略短期波动，A股距离真正顶部还早。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 162,
+        "file": "short_162_忽略短期波动，A股距离真正顶部还早。_财经__金融__A股.mp4",
+        "size_mb": 4.4,
+        "ftyp": true,
+        "transcript_chars": 583
+      },
+      "drop": {
+        "seq": 374,
+        "file": "short_374_忽略短期波动，A股距离真正顶部还早。_财经__金融__A股.mp4",
+        "size_mb": 4.4,
+        "ftyp": true,
+        "transcript_chars": 684
+      },
+      "saving_mb": 4.4
+    },
+    {
+      "id": "0e51ed1ae0ff1450",
+      "duration": 62,
+      "title": "绝大多数板块走势都很健康！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 163,
+        "file": "short_163_绝大多数板块走势都很健康！_财经__金融__A股.mp4",
+        "size_mb": 4.3,
+        "ftyp": true,
+        "transcript_chars": 507
+      },
+      "drop": {
+        "seq": 393,
+        "file": "short_393_绝大多数板块走势都很健康！_财经__金融__A股.mp4",
+        "size_mb": 4.3,
+        "ftyp": true,
+        "transcript_chars": 609
+      },
+      "saving_mb": 4.3
+    },
+    {
+      "id": "094730d6f467ae30",
+      "duration": 63,
+      "title": "正常震荡回调，但短期确实有几个不好的现象！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 166,
+        "file": "short_166_正常震荡回调，但短期确实有几个不好的现象！_财经__金融__A股.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 538
+      },
+      "drop": {
+        "seq": 382,
+        "file": "short_382_正常震荡回调，但短期确实有几个不好的现象！_财经__金融__A股.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 639
+      },
+      "saving_mb": 4.1
+    },
+    {
+      "id": "974909911cc5c0c6",
+      "duration": 58,
+      "title": "目前没有任何顶部迹象，继续持股待涨。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 167,
+        "file": "short_167_目前没有任何顶部迹象，继续持股待涨。_财经__金融__A股.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 491
+      },
+      "drop": {
+        "seq": 356,
+        "file": "short_356_目前没有任何顶部迹象，继续持股待涨。_财经__金融__A股.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 555
+      },
+      "saving_mb": 4.1
+    },
+    {
+      "id": "42645cd844ebe6f9",
+      "duration": 70,
+      "title": "大盘正在酝酿行情，银行还有半个月强势期！ #财经 #金融#A股",
+      "keep": {
+        "seq": 169,
+        "file": "short_169_大盘正在酝酿行情，银行还有半个月强势期！_财经__金融_A股.mp4",
+        "size_mb": 4.8,
+        "ftyp": true,
+        "transcript_chars": 571
+      },
+      "drop": {
+        "seq": 358,
+        "file": "short_358_大盘正在酝酿行情，银行还有半个月强势期！_财经__金融_A股.mp4",
+        "size_mb": 4.8,
+        "ftyp": true,
+        "transcript_chars": 673
+      },
+      "saving_mb": 4.8
+    },
+    {
+      "id": "9acdf1cc0183d03d",
+      "duration": 61,
+      "title": "下半月走势不会好，但回调就是进场机会！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 171,
+        "file": "short_171_下半月走势不会好，但回调就是进场机会！_财经__金融__A股.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 522
+      },
+      "drop": {
+        "seq": 333,
+        "file": "short_333_下半月走势不会好，但回调就是进场机会！_财经__金融__A股.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 623
+      },
+      "saving_mb": 4.1
+    },
+    {
+      "id": "03e088cf6c054026",
+      "duration": 52,
+      "title": "A股破位下跌，冷静分析，先等反弹。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 184,
+        "file": "short_184_A股破位下跌，冷静分析，先等反弹。_财经__金融__A股.mp4",
+        "size_mb": 3.6,
+        "ftyp": true,
+        "transcript_chars": 448
+      },
+      "drop": {
+        "seq": 341,
+        "file": "short_341_A股破位下跌，冷静分析，先等反弹。_财经__金融__A股.mp4",
+        "size_mb": 3.6,
+        "ftyp": true,
+        "transcript_chars": 514
+      },
+      "saving_mb": 3.6
+    },
+    {
+      "id": "98d8eaa681afaf20",
+      "duration": 56,
+      "title": "震荡企稳等反弹，但只看反弹。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 186,
+        "file": "short_186_震荡企稳等反弹，但只看反弹。_财经__金融__A股.mp4",
+        "size_mb": 3.8,
+        "ftyp": true,
+        "transcript_chars": 484
+      },
+      "drop": {
+        "seq": 404,
+        "file": "short_404_震荡企稳等反弹，但只看反弹。_财经__金融__A股.mp4",
+        "size_mb": 3.8,
+        "ftyp": true,
+        "transcript_chars": 545
+      },
+      "saving_mb": 3.8
+    },
+    {
+      "id": "a69fba5f25a7b00c",
+      "duration": 59,
+      "title": "继续缩量十字星，继续看震荡调整。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 190,
+        "file": "short_190_继续缩量十字星，继续看震荡调整。_财经__金融__A股.mp4",
+        "size_mb": 4.0,
+        "ftyp": true,
+        "transcript_chars": 492
+      },
+      "drop": {
+        "seq": 377,
+        "file": "short_377_继续缩量十字星，继续看震荡调整。_财经__金融__A股.mp4",
+        "size_mb": 4.0,
+        "ftyp": true,
+        "transcript_chars": 556
+      },
+      "saving_mb": 4.0
+    },
+    {
+      "id": "be6b76cfe8b7aa98",
+      "duration": 64,
+      "title": "大盘又是低开高走，但什么都说明不了！ #财经#金融 #A股",
+      "keep": {
+        "seq": 195,
+        "file": "short_195_大盘又是低开高走，但什么都说明不了！_财经_金融__A股.mp4",
+        "size_mb": 3.7,
+        "ftyp": true,
+        "transcript_chars": 533
+      },
+      "drop": {
+        "seq": 347,
+        "file": "short_347_大盘又是低开高走，但什么都说明不了！_财经_金融__A股.mp4",
+        "size_mb": 3.7,
+        "ftyp": true,
+        "transcript_chars": 636
+      },
+      "saving_mb": 3.7
+    },
+    {
+      "id": "4d14cced187f1193",
+      "duration": 63,
+      "title": "金融板块突然拉升，大小盘风格转折点？ #财经 #金融 #A股",
+      "keep": {
+        "seq": 343,
+        "file": "short_343_金融板块突然拉升，大小盘风格转折点？_财经__金融__A股.mp4",
+        "size_mb": 2.2,
+        "ftyp": true,
+        "transcript_chars": 637
+      },
+      "drop": {
+        "seq": 199,
+        "file": "short_199_金融板块突然拉升，大小盘风格转折点？_财经__金融__A股.mp4",
+        "size_mb": 3.3,
+        "ftyp": true,
+        "transcript_chars": 536
+      },
+      "saving_mb": 3.3
+    },
+    {
+      "id": "09a88bd14d93f8b2",
+      "duration": 55,
+      "title": "又一次放量滞涨，顶部信号越来越多了！ #财经#金融 #A股",
+      "keep": {
+        "seq": 209,
+        "file": "short_209_又一次放量滞涨，顶部信号越来越多了！_财经_金融__A股.mp4",
+        "size_mb": 3.3,
+        "ftyp": true,
+        "transcript_chars": 507
+      },
+      "drop": {
+        "seq": 389,
+        "file": "short_389_又一次放量滞涨，顶部信号越来越多了！_财经_金融__A股.mp4",
+        "size_mb": 3.3,
+        "ftyp": true,
+        "transcript_chars": 569
+      },
+      "saving_mb": 3.3
+    },
+    {
+      "id": "0e2b556af72b7f7c",
+      "duration": 56,
+      "title": "高开低走不担心，2月份上涨概率很高。 #财经 #金融#A股",
+      "keep": {
+        "seq": 216,
+        "file": "short_216_高开低走不担心，2月份上涨概率很高。_财经__金融_A股.mp4",
+        "size_mb": 3.8,
+        "ftyp": true,
+        "transcript_chars": 488
+      },
+      "drop": {
+        "seq": 397,
+        "file": "short_397_高开低走不担心，2月份上涨概率很高。_财经__金融_A股.mp4",
+        "size_mb": 3.8,
+        "ftyp": true,
+        "transcript_chars": 550
+      },
+      "saving_mb": 3.8
+    },
+    {
+      "id": "9cf65e46da86eb02",
+      "duration": 155,
+      "title": "小盘反弹接近尾声，指数要波动起来了！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 230,
+        "file": "short_230_小盘反弹接近尾声，指数要波动起来了！_财经__金融__A股.mp4",
+        "size_mb": 6.2,
+        "ftyp": true,
+        "transcript_chars": 1017
+      },
+      "drop": {
+        "seq": 390,
+        "file": "short_390_小盘反弹接近尾声，指数要波动起来了！_财经__金融__A股.mp4",
+        "size_mb": 6.2,
+        "ftyp": true,
+        "transcript_chars": 1696
+      },
+      "saving_mb": 6.2
+    },
+    {
+      "id": "c706b1c91a0d21aa",
+      "duration": 73,
+      "title": "大盘股回调是机会，小盘股反弹要出局 #财经 #金融 #A股",
+      "keep": {
+        "seq": 231,
+        "file": "short_231_大盘股回调是机会，小盘股反弹要出局_财经__金融__A股.mp4",
+        "size_mb": 4.5,
+        "ftyp": true,
+        "transcript_chars": 583
+      },
+      "drop": {
+        "seq": 392,
+        "file": "short_392_大盘股回调是机会，小盘股反弹要出局_财经__金融__A股.mp4",
+        "size_mb": 4.5,
+        "ftyp": true,
+        "transcript_chars": 684
+      },
+      "saving_mb": 4.5
+    },
+    {
+      "id": "cdafbbe7acab309c",
+      "duration": 57,
+      "title": "银行红利上涨是开始，小盘高标下跌没结束。 #财经 #金融 #",
+      "keep": {
+        "seq": 232,
+        "file": "short_232_银行红利上涨是开始，小盘高标下跌没结束。_财经__金融.mp4",
+        "size_mb": 3.3,
+        "ftyp": true,
+        "transcript_chars": 475
+      },
+      "drop": {
+        "seq": 388,
+        "file": "short_388_银行红利上涨是开始，小盘高标下跌没结束。_财经__金融.mp4",
+        "size_mb": 3.3,
+        "ftyp": true,
+        "transcript_chars": 539
+      },
+      "saving_mb": 3.3
+    },
+    {
+      "id": "5bc68e7b98a1d818",
+      "duration": 84,
+      "title": "继续看好银行红利，小盘下跌还未结束。 #财经 #金融 #A股",
+      "keep": {
+        "seq": 233,
+        "file": "short_233_继续看好银行红利，小盘下跌还未结束。_财经__金融__A股.mp4",
+        "size_mb": 3.2,
+        "ftyp": true,
+        "transcript_chars": 635
+      },
+      "drop": {
+        "seq": 340,
+        "file": "short_340_继续看好银行红利，小盘下跌还未结束。_财经__金融__A股.mp4",
+        "size_mb": 3.2,
+        "ftyp": true,
+        "transcript_chars": 846
+      },
+      "saving_mb": 3.2
+    },
+    {
+      "id": "9608271092a902e2",
+      "duration": 158,
+      "title": "美股大跌带崩A股，短线反弹不改下跌趋势！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 236,
+        "file": "short_236_美股大跌带崩A股，短线反弹不改下跌趋势！_财经__金融__A股.mp4",
+        "size_mb": 5.2,
+        "ftyp": true,
+        "transcript_chars": 1079
+      },
+      "drop": {
+        "seq": 360,
+        "file": "short_360_美股大跌带崩A股，短线反弹不改下跌趋势！_财经__金融__A股.mp4",
+        "size_mb": 5.2,
+        "ftyp": true,
+        "transcript_chars": 1719
+      },
+      "saving_mb": 5.2
+    },
+    {
+      "id": "8b920db84011eb72",
+      "duration": 43,
+      "title": "大小盘分化还会继续，有小票的朋友要小心 #财经 #A股 #金融",
+      "keep": {
+        "seq": 238,
+        "file": "short_238_大小盘分化还会继续，有小票的朋友要小心_财经__A股__金融.mp4",
+        "size_mb": 2.4,
+        "ftyp": true,
+        "transcript_chars": 380
+      },
+      "drop": {
+        "seq": 365,
+        "file": "short_365_大小盘分化还会继续，有小票的朋友要小心_财经__A股__金融.mp4",
+        "size_mb": 2.4,
+        "ftyp": true,
+        "transcript_chars": 444
+      },
+      "saving_mb": 2.4
+    },
+    {
+      "id": "38a87484288741a2",
+      "duration": 59,
+      "title": "大盘红利大涨，这个风格未来还会延续！ #财经 #金融 #A股",
+      "keep": {
+        "seq": 239,
+        "file": "short_239_大盘红利大涨，这个风格未来还会延续！_财经__金融__A股.mp4",
+        "size_mb": 3.0,
+        "ftyp": true,
+        "transcript_chars": 470
+      },
+      "drop": {
+        "seq": 410,
+        "file": "short_410_大盘红利大涨，这个风格未来还会延续！_财经__金融__A股.mp4",
+        "size_mb": 3.0,
+        "ftyp": true,
+        "transcript_chars": 532
+      },
+      "saving_mb": 3.0
+    },
+    {
+      "id": "3651edbc478568ac",
+      "duration": 57,
+      "title": "A股还会继续反弹，但要时刻准备离场！ #财经 #金融 A股",
+      "keep": {
+        "seq": 241,
+        "file": "short_241_A股还会继续反弹，但要时刻准备离场！_财经__金融_A股.mp4",
+        "size_mb": 2.6,
+        "ftyp": true,
+        "transcript_chars": 460
+      },
+      "drop": {
+        "seq": 408,
+        "file": "short_408_A股还会继续反弹，但要时刻准备离场！_财经__金融_A股.mp4",
+        "size_mb": 2.6,
+        "ftyp": true,
+        "transcript_chars": 522
+      },
+      "saving_mb": 2.6
+    },
+    {
+      "id": "1abfc058283591d5",
+      "duration": 61,
+      "title": "12月2日午评，别被大盘最后的上涨骗进去了！ #A股 #牛市行情 #金融财经",
+      "keep": {
+        "seq": 243,
+        "file": "short_243_12月2日午评，别被大盘最后的上涨骗进去了！__A股__牛市行情__金融财经.mp4",
+        "size_mb": 3.2,
+        "ftyp": true,
+        "transcript_chars": 508
+      },
+      "drop": {
+        "seq": 406,
+        "file": "short_406_12月2日午评，别被大盘最后的上涨骗进去了！__A股__牛市行情__金融财经.mp4",
+        "size_mb": 3.2,
+        "ftyp": true,
+        "transcript_chars": 612
+      },
+      "saving_mb": 3.2
+    },
+    {
+      "id": "de18d33ff76a13d8",
+      "duration": 104,
+      "title": "11月29日午评，中期下跌趋势已定，短线再冲别被骗进去！ #金融财经 #上证指数 #大A",
+      "keep": {
+        "seq": 244,
+        "file": "short_244_11月29日午评，中期下跌趋势已定，短线再冲别被骗进去！__金融财经__上证指数__大A.mp4",
+        "size_mb": 3.5,
+        "ftyp": true,
+        "transcript_chars": 757
+      },
+      "drop": {
+        "seq": 405,
+        "file": "short_405_11月29日午评，中期下跌趋势已定，短线再冲别被骗进去！__金融财经__上证指数__大A.mp4",
+        "size_mb": 3.5,
+        "ftyp": true,
+        "transcript_chars": 1319
+      },
+      "saving_mb": 3.5
+    },
+    {
+      "id": "ccb341e5c29d35f8",
+      "duration": 53,
+      "title": "11月28日午评，阻力差不多到了，择机出局离场！ #上证指数 #大盘 #金融",
+      "keep": {
+        "seq": 245,
+        "file": "short_245_11月28日午评，阻力差不多到了，择机出局离场！__上证指数__大盘__金融.mp4",
+        "size_mb": 3.3,
+        "ftyp": true,
+        "transcript_chars": 474
+      },
+      "drop": {
+        "seq": 391,
+        "file": "short_391_11月28日午评，阻力差不多到了，择机出局离场！__上证指数__大盘__金融.mp4",
+        "size_mb": 3.3,
+        "ftyp": true,
+        "transcript_chars": 537
+      },
+      "saving_mb": 3.3
+    },
+    {
+      "id": "5cc1fbaea5a87b7f",
+      "duration": 66,
+      "title": "11月26日午评，别慌，反弹是大概率事件！ #慢牛行情 #金融财经 #上证指数",
+      "keep": {
+        "seq": 247,
+        "file": "short_247_11月26日午评，别慌，反弹是大概率事件！__慢牛行情__金融财经__上证指数.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 550
+      },
+      "drop": {
+        "seq": 361,
+        "file": "short_361_11月26日午评，别慌，反弹是大概率事件！__慢牛行情__金融财经__上证指数.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 654
+      },
+      "saving_mb": 3.9
+    },
+    {
+      "id": "263a83a061051fe5",
+      "duration": 52,
+      "title": "11月25日午评，趋势转空，反弹出局！ #金融财经 #慢牛 #上证指数",
+      "keep": {
+        "seq": 248,
+        "file": "short_248_11月25日午评，趋势转空，反弹出局！__金融财经__慢牛__上证指数.mp4",
+        "size_mb": 2.9,
+        "ftyp": true,
+        "transcript_chars": 437
+      },
+      "drop": {
+        "seq": 346,
+        "file": "short_346_11月25日午评，趋势转空，反弹出局！__金融财经__慢牛__上证指数.mp4",
+        "size_mb": 2.9,
+        "ftyp": true,
+        "transcript_chars": 501
+      },
+      "saving_mb": 2.9
+    },
+    {
+      "id": "055942ad6e5ceeb8",
+      "duration": 45,
+      "title": "11月22日收评，光头大阴线，下周如何操作？ #财经 #金融 #短线交易 #慢牛",
+      "keep": {
+        "seq": 249,
+        "file": "short_249_11月22日收评，光头大阴线，下周如何操作？__财经__金融__短线交易__慢牛.mp4",
+        "size_mb": 2.2,
+        "ftyp": true,
+        "transcript_chars": 415
+      },
+      "drop": {
+        "seq": 342,
+        "file": "short_342_11月22日收评，光头大阴线，下周如何操作？__财经__金融__短线交易__慢牛.mp4",
+        "size_mb": 2.2,
+        "ftyp": true,
+        "transcript_chars": 477
+      },
+      "saving_mb": 2.2
+    },
+    {
+      "id": "3f4065d8d86b01fc",
+      "duration": 109,
+      "title": "11月22日午评，大盘突然跳水，但他还是支撑！ #金融财经  #趋势理论 #慢牛",
+      "keep": {
+        "seq": 250,
+        "file": "short_250_11月22日午评，大盘突然跳水，但他还是支撑！__金融财经__趋势理论__慢牛.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 764
+      },
+      "drop": {
+        "seq": 407,
+        "file": "short_407_11月22日午评，大盘突然跳水，但他还是支撑！__金融财经__趋势理论__慢牛.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 1052
+      },
+      "saving_mb": 3.9
+    },
+    {
+      "id": "9f2c1401c5da4bcb",
+      "duration": 132,
+      "title": "11月21日午评，十字星酝酿反弹，不过大小盘风格有变！ #趋势理论  #慢牛行情  #金融 #财经",
+      "keep": {
+        "seq": 251,
+        "file": "short_251_11月21日午评，十字星酝酿反弹，不过大小盘风格有变！__趋势理论__慢牛行情__金融__财经.mp4",
+        "size_mb": 4.4,
+        "ftyp": true,
+        "transcript_chars": 882
+      },
+      "drop": {
+        "seq": 376,
+        "file": "short_376_11月21日午评，十字星酝酿反弹，不过大小盘风格有变！__趋势理论__慢牛行情__金融__财经.mp4",
+        "size_mb": 4.4,
+        "ftyp": true,
+        "transcript_chars": 1399
+      },
+      "saving_mb": 4.4
+    },
+    {
+      "id": "1cd5fdc40394a7bf",
+      "duration": 148,
+      "title": "11月20日午评，A股反弹还会继续！ #上证指数走势分析 #慢牛 #金融财经",
+      "keep": {
+        "seq": 252,
+        "file": "short_252_11月20日午评，A股反弹还会继续！__上证指数走势分析__慢牛__金融财经.mp4",
+        "size_mb": 4.7,
+        "ftyp": true,
+        "transcript_chars": 1047
+      },
+      "drop": {
+        "seq": 357,
+        "file": "short_357_11月20日午评，A股反弹还会继续！__上证指数走势分析__慢牛__金融财经.mp4",
+        "size_mb": 4.7,
+        "ftyp": true,
+        "transcript_chars": 2077
+      },
+      "saving_mb": 4.7
+    },
+    {
+      "id": "b17236f019fda831",
+      "duration": 123,
+      "title": "11月19日午评，反弹会随时出现！ #行情分析 #慢牛行情 #金融财经 #股票",
+      "keep": {
+        "seq": 253,
+        "file": "short_253_11月19日午评，反弹会随时出现！__行情分析__慢牛行情__金融财经__股票.mp4",
+        "size_mb": 4.0,
+        "ftyp": true,
+        "transcript_chars": 818
+      },
+      "drop": {
+        "seq": 335,
+        "file": "short_335_11月19日午评，反弹会随时出现！__行情分析__慢牛行情__金融财经__股票.mp4",
+        "size_mb": 4.0,
+        "ftyp": true,
+        "transcript_chars": 1504
+      },
+      "saving_mb": 4.0
+    },
+    {
+      "id": "3eec2c015076f80a",
+      "duration": 141,
+      "title": "11月18日午评，A股支撑已到，反弹都会来的。 #慢牛 #交易风格 #金融财经",
+      "keep": {
+        "seq": 254,
+        "file": "short_254_11月18日午评，A股支撑已到，反弹都会来的。__慢牛__交易风格__金融财经.mp4",
+        "size_mb": 4.9,
+        "ftyp": true,
+        "transcript_chars": 943
+      },
+      "drop": {
+        "seq": 334,
+        "file": "short_334_11月18日午评，A股支撑已到，反弹都会来的。__慢牛__交易风格__金融财经.mp4",
+        "size_mb": 4.9,
+        "ftyp": true,
+        "transcript_chars": 1583
+      },
+      "saving_mb": 4.9
+    },
+    {
+      "id": "bad2e37a3018fb41",
+      "duration": 163,
+      "title": "11月15日午评，A股支撑在这，再跌一下就到！ #慢牛行情 #财经 #大盘",
+      "keep": {
+        "seq": 255,
+        "file": "short_255_11月15日午评，A股支撑在这，再跌一下就到！__慢牛行情__财经__大盘.mp4",
+        "size_mb": 6.0,
+        "ftyp": true,
+        "transcript_chars": 1108
+      },
+      "drop": {
+        "seq": 321,
+        "file": "short_321_11月15日午评，A股支撑在这，再跌一下就到！__慢牛行情__财经__大盘.mp4",
+        "size_mb": 6.0,
+        "ftyp": true,
+        "transcript_chars": 2671
+      },
+      "saving_mb": 6.0
+    },
+    {
+      "id": "6e81a7aea9c440e1",
+      "duration": 67,
+      "title": "11月14日午评，小盘股全面回调，该轮到大盘股表现了！ #慢牛行情 #金融 #财经",
+      "keep": {
+        "seq": 256,
+        "file": "short_256_11月14日午评，小盘股全面回调，该轮到大盘股表现了！__慢牛行情__金融__财经.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 576
+      },
+      "drop": {
+        "seq": 385,
+        "file": "short_385_11月14日午评，小盘股全面回调，该轮到大盘股表现了！__慢牛行情__金融__财经.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 677
+      },
+      "saving_mb": 3.9
+    },
+    {
+      "id": "d5c91c36e99ca706",
+      "duration": 73,
+      "title": "11月13日午评，注意大小盘风格已经开始切换！ #牛市行情 #金融财经 #慢牛",
+      "keep": {
+        "seq": 257,
+        "file": "short_257_11月13日午评，注意大小盘风格已经开始切换！__牛市行情__金融财经__慢牛.mp4",
+        "size_mb": 4.3,
+        "ftyp": true,
+        "transcript_chars": 566
+      },
+      "drop": {
+        "seq": 370,
+        "file": "short_370_11月13日午评，注意大小盘风格已经开始切换！__牛市行情__金融财经__慢牛.mp4",
+        "size_mb": 4.3,
+        "ftyp": true,
+        "transcript_chars": 667
+      },
+      "saving_mb": 4.3
+    },
+    {
+      "id": "7b21706b87707813",
+      "duration": 78,
+      "title": "11月12日午评，大盘继续震荡筑顶，但板块还有上涨空间！ #牛市行情 #金融 #财经",
+      "keep": {
+        "seq": 258,
+        "file": "short_258_11月12日午评，大盘继续震荡筑顶，但板块还有上涨空间！__牛市行情__金融__财经.mp4",
+        "size_mb": 5.0,
+        "ftyp": true,
+        "transcript_chars": 591
+      },
+      "drop": {
+        "seq": 315,
+        "file": "short_315_11月12日午评，大盘继续震荡筑顶，但板块还有上涨空间！__牛市行情__金融__财经.mp4",
+        "size_mb": 5.0,
+        "ftyp": true,
+        "transcript_chars": 694
+      },
+      "saving_mb": 5.0
+    },
+    {
+      "id": "35178d882f4f340d",
+      "duration": 88,
+      "title": "11月11日午评，大盘开始震荡筑顶，切换低位医药红利！ #金融 #牛市行情 #财",
+      "keep": {
+        "seq": 259,
+        "file": "short_259_11月11日午评，大盘开始震荡筑顶，切换低位医药红利！__金融__牛市行情__财.mp4",
+        "size_mb": 5.3,
+        "ftyp": true,
+        "transcript_chars": 673
+      },
+      "drop": {
+        "seq": 379,
+        "file": "short_379_11月11日午评，大盘开始震荡筑顶，切换低位医药红利！__金融__牛市行情__财.mp4",
+        "size_mb": 5.3,
+        "ftyp": true,
+        "transcript_chars": 842
+      },
+      "saving_mb": 5.3
+    },
+    {
+      "id": "bc8ac461f40f654e",
+      "duration": 96,
+      "title": "11月8日午评，可以开始减仓离场了，还是数据说话！ #牛市行情 #金融 #财经",
+      "keep": {
+        "seq": 260,
+        "file": "short_260_11月8日午评，可以开始减仓离场了，还是数据说话！__牛市行情__金融__财经.mp4",
+        "size_mb": 4.8,
+        "ftyp": true,
+        "transcript_chars": 735
+      },
+      "drop": {
+        "seq": 344,
+        "file": "short_344_11月8日午评，可以开始减仓离场了，还是数据说话！__牛市行情__金融__财经.mp4",
+        "size_mb": 4.8,
+        "ftyp": true,
+        "transcript_chars": 906
+      },
+      "saving_mb": 4.8
+    },
+    {
+      "id": "460a93fe78cbc112",
+      "duration": 81,
+      "title": "11月6日午评，A股放量滞涨，小心鱼尾巴行情结束！ #金融财经 #牛市行情解读   #趋势理论",
+      "keep": {
+        "seq": 261,
+        "file": "short_261_11月6日午评，A股放量滞涨，小心鱼尾巴行情结束！__金融财经__牛市行情解读__趋势理论.mp4",
+        "size_mb": 4.8,
+        "ftyp": true,
+        "transcript_chars": 648
+      },
+      "drop": {
+        "seq": 403,
+        "file": "short_403_11月6日午评，A股放量滞涨，小心鱼尾巴行情结束！__金融财经__牛市行情解读__趋势理论.mp4",
+        "size_mb": 4.8,
+        "ftyp": true,
+        "transcript_chars": 741
+      },
+      "saving_mb": 4.8
+    },
+    {
+      "id": "547d5a8ead13a729",
+      "duration": 67,
+      "title": "11月3日，这波牛市，大多数散户最后都会亏钱！ #牛市行情分析 #金融财经 #交易心得",
+      "keep": {
+        "seq": 262,
+        "file": "short_262_11月3日，这波牛市，大多数散户最后都会亏钱！__牛市行情分析__金融财经__交易心得.mp4",
+        "size_mb": 4.2,
+        "ftyp": true,
+        "transcript_chars": 543
+      },
+      "drop": {
+        "seq": 384,
+        "file": "short_384_11月3日，这波牛市，大多数散户最后都会亏钱！__牛市行情分析__金融财经__交易心得.mp4",
+        "size_mb": 4.2,
+        "ftyp": true,
+        "transcript_chars": 644
+      },
+      "saving_mb": 4.2
+    },
+    {
+      "id": "5a2f22f8001bf80e",
+      "duration": 69,
+      "title": "11月1日午评，接下来该轮到银行、保险、红利等权重股表现了！ #牛市行情分析 #金融财经 #投资理财",
+      "keep": {
+        "seq": 263,
+        "file": "short_263_11月1日午评，接下来该轮到银行、保险、红利等权重股表现了！__牛市行情分析__金融财经__投资理财.mp4",
+        "size_mb": 3.7,
+        "ftyp": true,
+        "transcript_chars": 569
+      },
+      "drop": {
+        "seq": 326,
+        "file": "short_326_11月1日午评，接下来该轮到银行、保险、红利等权重股表现了！__牛市行情分析__金融财经__投资理财.mp4",
+        "size_mb": 3.7,
+        "ftyp": true,
+        "transcript_chars": 670
+      },
+      "saving_mb": 3.7
+    },
+    {
+      "id": "61b7ef2f1d56441b",
+      "duration": 73,
+      "title": "10月31日午评，券商大涨的背后！大涨出局，回调不慌！ #金融财经 #牛市行情分析 #上证走势",
+      "keep": {
+        "seq": 264,
+        "file": "short_264_10月31日午评，券商大涨的背后！大涨出局，回调不慌！__金融财经__牛市行情分析__上证走势.mp4",
+        "size_mb": 4.2,
+        "ftyp": true,
+        "transcript_chars": 579
+      },
+      "drop": {
+        "seq": 362,
+        "file": "short_362_10月31日午评，券商大涨的背后！大涨出局，回调不慌！__金融财经__牛市行情分析__上证走势.mp4",
+        "size_mb": 4.2,
+        "ftyp": true,
+        "transcript_chars": 684
+      },
+      "saving_mb": 4.2
+    },
+    {
+      "id": "d2ae0af0c63b6707",
+      "duration": 68,
+      "title": "10月30日午评，中阴线终于来了，看3220支撑反弹力度！ #牛市行情分析 #金融财经 #A股",
+      "keep": {
+        "seq": 265,
+        "file": "short_265_10月30日午评，中阴线终于来了，看3220支撑反弹力度！__牛市行情分析__金融财经__A股.mp4",
+        "size_mb": 4.0,
+        "ftyp": true,
+        "transcript_chars": 556
+      },
+      "drop": {
+        "seq": 395,
+        "file": "short_395_10月30日午评，中阴线终于来了，看3220支撑反弹力度！__牛市行情分析__金融财经__A股.mp4",
+        "size_mb": 4.0,
+        "ftyp": true,
+        "transcript_chars": 661
+      },
+      "saving_mb": 4.0
+    },
+    {
+      "id": "1e8c63640f145f5d",
+      "duration": 57,
+      "title": "10月29日午评，午盘跳水不用慌！但如果再冲起来就要小心！ #牛市行情分析 #金融财经 #股民在燃烧",
+      "keep": {
+        "seq": 266,
+        "file": "short_266_10月29日午评，午盘跳水不用慌！但如果再冲起来就要小心！__牛市行情分析__金融财经__股民在燃烧.mp4",
+        "size_mb": 3.8,
+        "ftyp": true,
+        "transcript_chars": 482
+      },
+      "drop": {
+        "seq": 396,
+        "file": "short_396_10月29日午评，午盘跳水不用慌！但如果再冲起来就要小心！__牛市行情分析__金融财经__股民在燃烧.mp4",
+        "size_mb": 3.8,
+        "ftyp": true,
+        "transcript_chars": 544
+      },
+      "saving_mb": 3.8
+    },
+    {
+      "id": "c2a0baa3ae4836e1",
+      "duration": 67,
+      "title": "10月28日午评，小心A股向下变盘！但跌下去是进场机会！ #牛市行情分析 #金融财经 #股民在燃烧",
+      "keep": {
+        "seq": 267,
+        "file": "short_267_10月28日午评，小心A股向下变盘！但跌下去是进场机会！__牛市行情分析__金融财经__股民在燃烧.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 576
+      },
+      "drop": {
+        "seq": 324,
+        "file": "short_324_10月28日午评，小心A股向下变盘！但跌下去是进场机会！__牛市行情分析__金融财经__股民在燃烧.mp4",
+        "size_mb": 3.9,
+        "ftyp": true,
+        "transcript_chars": 677
+      },
+      "saving_mb": 3.9
+    },
+    {
+      "id": "4ef69fcdd621ebef",
+      "duration": 58,
+      "title": "10月27日周评，大盘后两周有机会大涨吗？数据说话！#金融财经 #牛市行情分析 #A股",
+      "keep": {
+        "seq": 268,
+        "file": "short_268_10月27日周评，大盘后两周有机会大涨吗？数据说话！_金融财经__牛市行情分析__A股.mp4",
+        "size_mb": 2.4,
+        "ftyp": true,
+        "transcript_chars": 504
+      },
+      "drop": {
+        "seq": 325,
+        "file": "short_325_10月27日周评，大盘后两周有机会大涨吗？数据说话！_金融财经__牛市行情分析__A股.mp4",
+        "size_mb": 2.4,
+        "ftyp": true,
+        "transcript_chars": 566
+      },
+      "saving_mb": 2.4
+    },
+    {
+      "id": "4f6be18426ac5dd7",
+      "duration": 60,
+      "title": "10月25日午评，大盘还会震荡反弹！这样操作游刃有余。#金融财经 #A股 #牛市行情分析",
+      "keep": {
+        "seq": 269,
+        "file": "short_269_10月25日午评，大盘还会震荡反弹！这样操作游刃有余。_金融财经__A股__牛市行情分析.mp4",
+        "size_mb": 3.4,
+        "ftyp": true,
+        "transcript_chars": 508
+      },
+      "drop": {
+        "seq": 363,
+        "file": "short_363_10月25日午评，大盘还会震荡反弹！这样操作游刃有余。_金融财经__A股__牛市行情分析.mp4",
+        "size_mb": 3.4,
+        "ftyp": true,
+        "transcript_chars": 612
+      },
+      "saving_mb": 3.4
+    },
+    {
+      "id": "91344c27af273071",
+      "duration": 150,
+      "title": "10月24日午评，再出一根阴线，就可以开始进场了！ #牛市行情分析 #金融财经 #A股",
+      "keep": {
+        "seq": 270,
+        "file": "short_270_10月24日午评，再出一根阴线，就可以开始进场了！__牛市行情分析__金融财经__A股.mp4",
+        "size_mb": 5.0,
+        "ftyp": true,
+        "transcript_chars": 904
+      },
+      "drop": {
+        "seq": 355,
+        "file": "short_355_10月24日午评，再出一根阴线，就可以开始进场了！__牛市行情分析__金融财经__A股.mp4",
+        "size_mb": 5.0,
+        "ftyp": true,
+        "transcript_chars": 1858
+      },
+      "saving_mb": 5.0
+    },
+    {
+      "id": "c448545786a9f32b",
+      "duration": 66,
+      "title": "10月23日收评，A股还会震荡反弹，但最好等出阴线再进场！ #牛市行情分析 #金融财经",
+      "keep": {
+        "seq": 271,
+        "file": "short_271_10月23日收评，A股还会震荡反弹，但最好等出阴线再进场！__牛市行情分析__金融财经.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 546
+      },
+      "drop": {
+        "seq": 339,
+        "file": "short_339_10月23日收评，A股还会震荡反弹，但最好等出阴线再进场！__牛市行情分析__金融财经.mp4",
+        "size_mb": 4.1,
+        "ftyp": true,
+        "transcript_chars": 650
+      },
+      "saving_mb": 4.1
+    },
+    {
+      "id": "47e3c0b0494826ec",
+      "duration": 48,
+      "title": "10月22日收评：继续看震荡反弹，A股本周先跌后涨！#牛市行情分析 #金融财经 #新股民",
+      "keep": {
+        "seq": 272,
+        "file": "short_272_10月22日收评：继续看震荡反弹，A股本周先跌后涨！_牛市行情分析__金融财经__新股民.mp4",
+        "size_mb": 2.9,
+        "ftyp": true,
+        "transcript_chars": 421
+      },
+      "drop": {
+        "seq": 373,
+        "file": "short_373_10月22日收评：继续看震荡反弹，A股本周先跌后涨！_牛市行情分析__金融财经__新股民.mp4",
+        "size_mb": 2.9,
+        "ftyp": true,
+        "transcript_chars": 487
+      },
+      "saving_mb": 2.9
+    },
+    {
+      "id": "12f6d18e920eac9f",
+      "duration": 61,
+      "title": "10月17日午评，房地产如期下跌！大盘很难从这直接拉升。 #金融财经 #牛市行情分析 #新股民",
+      "keep": {
+        "seq": 274,
+        "file": "short_274_10月17日午评，房地产如期下跌！大盘很难从这直接拉升。__金融财经__牛市行情分析__新股民.mp4",
+        "size_mb": 4.2,
+        "ftyp": true,
+        "transcript_chars": 509
+      },
+      "drop": {
+        "seq": 367,
+        "file": "short_367_10月17日午评，房地产如期下跌！大盘很难从这直接拉升。__金融财经__牛市行情分析__新股民.mp4",
+        "size_mb": 4.2,
+        "ftyp": true,
+        "transcript_chars": 612
+      },
+      "saving_mb": 4.2
+    },
+    {
+      "id": "1ef7d5e9df7526cf",
+      "duration": 75,
+      "title": "0月16日午评，大盘反弹后还会下跌，银行、贵金属如期大涨！ #牛市行情分析 #新股民 #金融财经",
+      "keep": {
+        "seq": 275,
+        "file": "short_275_0月16日午评，大盘反弹后还会下跌，银行、贵金属如期大涨！__牛市行情分析__新股民__金融财经.mp4",
+        "size_mb": 4.7,
+        "ftyp": true,
+        "transcript_chars": 608
+      },
+      "drop": {
+        "seq": 337,
+        "file": "short_337_0月16日午评，大盘反弹后还会下跌，银行、贵金属如期大涨！__牛市行情分析__新股民__金融财经.mp4",
+        "size_mb": 4.7,
+        "ftyp": true,
+        "transcript_chars": 711
+      },
+      "saving_mb": 4.7
+    },
+    {
+      "id": "c6c40153627b663d",
+      "duration": 68,
+      "title": "10月15日午评，有阳线是出场机会，追涨的都会被埋！#新股民 #金融财经 #牛市行情分析",
+      "keep": {
+        "seq": 276,
+        "file": "short_276_10月15日午评，有阳线是出场机会，追涨的都会被埋！_新股民__金融财经__牛市行情分析.mp4",
+        "size_mb": 3.6,
+        "ftyp": true,
+        "transcript_chars": 552
+      },
+      "drop": {
+        "seq": 336,
+        "file": "short_336_10月15日午评，有阳线是出场机会，追涨的都会被埋！_新股民__金融财经__牛市行情分析.mp4",
+        "size_mb": 3.6,
+        "ftyp": true,
+        "transcript_chars": 656
+      },
+      "saving_mb": 3.6
+    },
+    {
+      "id": "e257dc020761cc64",
+      "duration": 60,
+      "title": "10月11日午评，缩量整理是好事，大幅反弹快来了！#牛市行情分析 #金融财经 #新股民",
+      "keep": {
+        "seq": 277,
+        "file": "short_277_10月11日午评，缩量整理是好事，大幅反弹快来了！_牛市行情分析__金融财经__新股民.mp4",
+        "size_mb": 4.0,
+        "ftyp": true,
+        "transcript_chars": 514
+      },
+      "drop": {
+        "seq": 394,
+        "file": "short_394_10月11日午评，缩量整理是好事，大幅反弹快来了！_牛市行情分析__金融财经__新股民.mp4",
+        "size_mb": 4.0,
+        "ftyp": true,
+        "transcript_chars": 621
+      },
+      "saving_mb": 4.0
+    },
+    {
+      "id": "3330601ced27bb01",
+      "duration": 70,
+      "title": "10月10日午评，A股如期反弹，但只是反弹！#牛市行情分析 #金融财经 #炒股",
+      "keep": {
+        "seq": 278,
+        "file": "short_278_10月10日午评，A股如期反弹，但只是反弹！_牛市行情分析__金融财经__炒股.mp4",
+        "size_mb": 4.5,
+        "ftyp": true,
+        "transcript_chars": 568
+      },
+      "drop": {
+        "seq": 348,
+        "file": "short_348_10月10日午评，A股如期反弹，但只是反弹！_牛市行情分析__金融财经__炒股.mp4",
+        "size_mb": 4.5,
+        "ftyp": true,
+        "transcript_chars": 670
+      },
+      "saving_mb": 4.5
+    },
+    {
+      "id": "5cab2ad3e2ae8e14",
+      "duration": 75,
+      "title": "10月9日午评，大跌之后该怎么做？复盘历史，数据说话。#牛市行情分析 #金融财经 #炒股",
+      "keep": {
+        "seq": 279,
+        "file": "short_279_10月9日午评，大跌之后该怎么做？复盘历史，数据说话。_牛市行情分析__金融财经__炒股.mp4",
+        "size_mb": 5.4,
+        "ftyp": true,
+        "transcript_chars": 599
+      },
+      "drop": {
+        "seq": 322,
+        "file": "short_322_10月9日午评，大跌之后该怎么做？复盘历史，数据说话。_牛市行情分析__金融财经__炒股.mp4",
+        "size_mb": 5.4,
+        "ftyp": true,
+        "transcript_chars": 702
+      },
+      "saving_mb": 5.4
+    },
+    {
+      "id": "5091dd9a70f2f7ba",
+      "duration": 127,
+      "title": "6月14日A股收评，未来一个月行情走势图。#大盘#技术分析",
+      "keep": {
+        "seq": 299,
+        "file": "short_299_6月14日A股收评，未来一个月行情走势图。_大盘_技术分析.mp4",
+        "size_mb": 16.3,
+        "ftyp": true,
+        "transcript_chars": 799
+      },
+      "drop": {
+        "seq": 409,
+        "file": "short_409_6月14日A股收评，未来一个月行情走势图。_大盘_技术分析.mp4",
+        "size_mb": 16.3,
+        "ftyp": true,
+        "transcript_chars": 1480
+      },
+      "saving_mb": 16.3
+    }
+  ]
+}
