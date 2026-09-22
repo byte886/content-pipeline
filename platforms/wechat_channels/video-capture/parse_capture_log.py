@@ -23,7 +23,8 @@
 
 稳定主键与 captor.go handleMedia 完全一致：
   id = md5(md5sum)[:16]；无 md5sum 时退化为 md5(rawURL)[:16]。
-  可播放直链 = media.url + media.urlToken（urlToken 形如 "&token=..."，直接拼接）。
+  可播放直链：短视频 = media.url + media.urlToken（urlToken 形如 "&token=..."，直接拼接）；
+  回放 = url 本身已内嵌 "&token=..."（urlToken 留空）。统一以最终 URL 是否含 "token=" 判定已签名。
 
 用法（在仓库根目录执行）:
   python3 platforms/wechat_channels/video-capture/parse_capture_log.py <capture_api.log> \
@@ -213,7 +214,14 @@ def extract(c: dict):
     except Exception:
         dur = 0
     uid = md5_hex(md5)[:16] if md5 else md5_hex(raw_url)[:16]
-    signed_url = (raw_url + url_token) if url_token else raw_url
+    # 可播放直链两种形态：
+    #   短视频 = 无 token 的 url + 独立 urlToken（urlToken 形如 "&token=…"）
+    #   回放   = url 本身已内嵌 "?encfilekey=…&token=…"，urlToken 字段留空
+    if url_token and "token=" not in raw_url:
+        signed_url = raw_url + url_token
+    else:
+        signed_url = raw_url
+    has_token = "token=" in signed_url
     return {
         "id": uid,
         "oid": str(c.get("oid") or c.get("objectId") or c.get("id") or ""),
@@ -237,7 +245,7 @@ def extract(c: dict):
         "_raw_url": raw_url,
         "_signed_url": signed_url,
         "_decode_key": decode_key,
-        "_has_url_token": bool(url_token),
+        "_has_url_token": has_token,
         "_hls": hls,
     }
 
