@@ -79,14 +79,15 @@
 - **问题描述**：`scripts/netdisk/sync_netdisk.sh` 引用 `data/_workspace/...`、`scripts/upload_course.sh`、`GAODUN_COURSE_PROFILE`，是高顿课程同步脚本复制而来，在本仓目录结构下疑似 0 引用、不可直接运行。
 - **方案**：确认无引用后删除或迁入归档；当前仅已去除其中明文口令。
 
-### ISSUE-016: 短视频重复文件去重、3场缺回放补下、inventory 台账重建（高优先级）
-- **状态**：进行中。②补 3 场回放 + 转写已完成（commit c5f7e43，回放 28/28 下载与转写全覆盖、ffprobe 时长零误差）；①去重清单已出并入库（commit 641d813，71 组逐组 ftyp+转写双合格、0 冲突），**删除 71 个冗余视频+71 个冗余转写目录（省约 319MB）待用户明确确认**；④inventory 重建待去重后执行。方案见 `project-management/active/wechat-channels-dedup-and-inventory.md`，清单见 `project-management/active/short-dedup-checklist.md` 与 `library/00_manifest/dedup_plan_交易的游戏.json`。
-- **问题描述**：ffprobe 严格对账（catalog 339 短视频/28 回放为全集）确认：短视频 410 文件覆盖 339、0 缺、71 组各 2 个重复（71 个多余、约 319MB）；回放原 25 文件缺 3 场（`1fb195bc2a6b5838` 上涨中继2266s、`6ea0215f7f0297e2` 再次缩量见底2415s、`bdfd5f9fb4fccd6d` 再次缩量见底2018s）——**3 场已补下并转写完成（31331/33796/29777 字），live 现 28 视频/28 转写严格一一对应、缺/重/游离/歧义全 0**。旧 inventory 台账 150 条 shorts encfilekey 为 null、lives 同名不同场次被错标同一 id，需按 catalog id 重建。
-- **方案与进度**：①新 hook 刷新换签（ISSUE-017，✅闭环）→ ②补 3 场回放并转写（✅完成）→ ③出 71 组 keep/drop 清单（✅已出，keep/drop 均已解密可播放且有 >50 字合格转写，**待用户确认后删视频并同步去重转写目录，不重命名保留文件**）→ ④按 catalog id 重建 inventory，audit_disk.py 跑到 short/live 缺/重/游离/歧义全 0。
-
 ---
 
 ## 已解决问题（Closed）
+
+### ISSUE-016: 短视频去重、缺回放补齐、inventory 台账重建 ✅
+- **解决时间**：2026-09-22
+- **结果**：短视频去重后 **339/339**、直播回放补齐后 **28/28**，两类均缺/重/游离/歧义全 0，367 个视频全部有合格转写。
+- **执行**：①删除 71 组冗余短视频 + 71 个同名转写目录（释放约 319.5MB，删除前逐组校验 keep 已解密可播放且有转写，0 冲突）；②补齐 3 场缺回放（live_026/027/028，ffprobe 时长零误差）并转写（31331/33796/29777 字）；③新增 `rebuild_inventory.py`，以 catalog 16hex id 为主键、复用 audit_disk 严格匹配重建台账，过校验门（无缺/重/游离/歧义、转写一一对应）。
+- **产物**：`library/00_manifest/交易的游戏_inventory.json`（339 shorts + 28 lives，含相对路径/实测时长/md5/转写路径）、`audit_交易的游戏.json`（全 0）、`dedup_plan_交易的游戏.json`、`short-dedup-checklist.md`。
 
 ### ISSUE-017: 新 hook 一次刷新全量换签覆盖率验证 ✅
 - **解决时间**：2026-09-22
@@ -118,4 +119,4 @@
 
 ---
 
-*最后更新：2026-09-22（ISSUE-017 闭环、3 场缺回放补齐并转写、ISSUE-002 回放转写 28/28 完成；ISSUE-016 去重清单待用户确认；ISSUE-014 历史清除完成）*
+*最后更新：2026-09-22（ISSUE-016/017 闭环：视频号 339 短视频+28 回放全量下载转写、去重、inventory 重建全 0；ISSUE-014 历史清除完成）*
