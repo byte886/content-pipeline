@@ -1444,32 +1444,10 @@
   },
   "live": {
     "catalog_total": 28,
-    "disk_files": 25,
-    "covered": 25,
-    "missing_count": 3,
-    "missing": [
-      {
-        "id": "1fb195bc2a6b5838",
-        "oid": "15015560011216521706",
-        "title": "上涨中继",
-        "duration": 2266,
-        "size": 757784219
-      },
-      {
-        "id": "6ea0215f7f0297e2",
-        "oid": "15014836784938684250",
-        "title": "再次缩量见底",
-        "duration": 2415,
-        "size": 807392839
-      },
-      {
-        "id": "bdfd5f9fb4fccd6d",
-        "oid": "15011933721162549688",
-        "title": "再次缩量见底",
-        "duration": 2018,
-        "size": 674940978
-      }
-    ],
+    "disk_files": 28,
+    "covered": 28,
+    "missing_count": 0,
+    "missing": [],
     "duplicate_groups_count": 0,
     "duplicate_files_to_remove": 0,
     "duplicate_groups": [],
