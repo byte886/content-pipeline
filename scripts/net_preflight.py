@@ -9,7 +9,7 @@ Tailscale 状态 / （可选增强）物理网络服务明细，并给出确定�
 设计：核心决策【不依赖 networksetup】（系统网络框架异常时 networksetup 会挂死）：
   · 默认路由：route get / ip route
   · 代理能力：TCP 连通 + 经该端口实测国内/外网（socket/urllib，短超时）
-  · Tailscale：pgrep 进程 + ifconfig（不调用会挂死的 tailscale CLI）
+  · Tailscale：pgrep 进程 + ifconfig 查 100.x 接口判定是否真正连接（不调用会挂死的 tailscale CLI）
  依赖 networksetup / tailscale CLI 的"物理服务明细、Tailscale 服务残留"作为
 【硬时间预算内的可选增强】，超时即降级并明确告警，绝不拖垮整个预检。
 
@@ -35,6 +35,7 @@ import argparse
 import json
 import os
 import platform
+import re
 import shutil
 import socket
 import subprocess
@@ -190,18 +191,60 @@ def probe_candidates(cfg):
     return out
 
 
-# ── 核心：Tailscale 快速检测（pgrep + ifconfig，不调用挂死的 CLI）────────
+# ── 核心：Tailscale 真实连接检测（100.x 接口，不调用挂死的 CLI）──────────
+def tailscale_connected_iface(timeout=2.0):
+    """检测 Tailscale 是否真正建立连接，返回 (connected, iface, ip)。
+    Tailscale 节点会拿到 100.x.y.z 的点对点地址；只解析只读的 ifconfig /
+    ip / ipconfig，不调用会挂死的 tailscale status CLI。"""
+    sysname = platform.system()
+    if sysname == "Windows":
+        code, out, _ = run_cmd(["ipconfig"], timeout=timeout)
+        m = re.search(r"(100\.\d+\.\d+\.\d+)", out or "")
+        return ((code == 0 and bool(m)), None, m.group(1) if m else None)
+    if sysname == "Darwin":
+        cmd, iface_re = ["ifconfig"], re.compile(r"^(\w+):")
+    elif sysname == "Linux":
+        cmd, iface_re = ["ip", "-4", "addr"], re.compile(r"^\d+:\s+([\w.]+):")
+    else:
+        return False, None, None
+    code, out, _ = run_cmd(cmd, timeout=timeout)
+    if code != 0:
+        return False, None, None
+    iface = None
+    for line in (out or "").splitlines():
+        mi = iface_re.match(line.strip())
+        if mi:
+            iface = mi.group(1)
+        ma = re.search(r"inet (100\.\d+\.\d+\.\d+)", line)
+        if ma and iface:
+            return True, iface, ma.group(1)
+    return False, None, None
+
+
+# ── 核心：Tailscale 快速检测（进程 + 100.x 接口，不调用挂死的 CLI）────────
 def quick_tailscale(cfg):
     tscfg = cfg["tailscale"]
     installed = shutil.which(tscfg["cli"]) is not None
-    running = False
-    if platform.system() != "Windows":
+    proc = False
+    if platform.system() == "Windows":
+        code, out, _ = run_cmd(["tasklist"], timeout=2)
+        proc = code == 0 and "tailscale" in (out or "").lower()
+    else:
         code, out, _ = run_cmd(["pgrep", "-fl", "ailscale"], timeout=2)
         if code == 0:
-            running = any(("ailscaled" in l) or ("tailscale" in l.lower())
-                          for l in out.splitlines())
-    state = "running" if running else ("stopped" if installed else "not_installed")
-    return {"state": state, "installed": installed, "running": running}
+            proc = any(("ailscaled" in l) or ("tailscale" in l.lower())
+                       for l in (out or "").splitlines())
+    connected, iface, ip = tailscale_connected_iface()
+    if connected:
+        state = "running"                  # 有 100.x：真正连接
+    elif proc:
+        state = "installed_not_connected"  # 进程在但无 100.x：未登录/网络扩展关
+    elif installed:
+        state = "stopped"
+    else:
+        state = "not_installed"
+    return {"state": state, "installed": installed, "running": connected,
+            "process": proc, "connected": connected, "iface": iface, "ip": ip}
 
 
 # ── 增强：networksetup 明细 + tailscale CLI，硬预算内、超时降级 ───────────
@@ -219,8 +262,10 @@ def enhance_network(cfg, budget=None):
 
     if platform.system() == "Darwin":
         code, hw, _ = q(["networksetup", "-listallhardwareports"])
+        if code != 0:  # 首个调用偶发超时：configd 多为瞬时抖动，重试一次再降级
+            code, hw, _ = q(["networksetup", "-listallhardwareports"], cap=2.0)
         if code != 0:
-            return detail, ts_extra, True  # 首个调用就挂：系统网络框架异常，快速降级
+            return detail, ts_extra, True  # 重试仍挂：系统网络框架异常，快速降级
         dev = {}
         for b in hw.split("\n\n"):
             name = mac = device = None
@@ -242,15 +287,24 @@ def enhance_network(cfg, budget=None):
         names = [l.lstrip("* ").strip() for l in svcs.splitlines() if l.strip()]
         ts_service = next((s for s in names
                            if s.lower().startswith(cfg["tailscale"]["service_prefix"])), None)
+        # 只对默认路由所在物理设备读代理明细（探针也只改它）；遍历全部服务会
+        # 在硬预算内串行调用十几次 networksetup、累计超时产生"系统网络层异常"误报。
+        want_dev = default_route().get("interface")
+        target = None
         for s in names:
             if time.time() > deadline:
                 degraded = True
                 break
+            if s == ts_service:
+                continue
             _, info, _ = q(["networksetup", "-getinfo", s])
             device = next((l.split(":", 1)[1].strip() for l in info.splitlines()
                            if l.strip().startswith("Device:")), None)
-            if not device or device not in dev or not dev[device]["mac"]:
-                continue  # 无硬件 MAC = 虚拟/未连接（Tailscale utun 在此过滤）
+            if device == want_dev and device in dev and dev[device]["mac"]:
+                target = (s, device)
+                break  # 找到默认物理设备即停（Ethernet 通常排在最前）
+        if target:
+            s, device = target
             _, http, _ = q(["networksetup", "-getwebproxy", s])
             _, https, _ = q(["networksetup", "-getsecurewebproxy", s])
             detail.append({"name": s, "device": device, "mac": dev[device]["mac"],
@@ -303,7 +357,10 @@ def decide(cfg, candidates, tailscale):
         warnings.append(f"Tailscale 服务残留代理（{sp.get('server')}:{sp.get('port')}）；"
                         "请在 Tailscale 运行时执行 scripts/fix_tailscale_proxy.sh 清理。")
     if tailscale.get("state") == "running":
-        warnings.append("Tailscale 运行中：流量走 utun 点对点、不经系统代理，探针不影响。")
+        warnings.append("Tailscale 已连接（%s，%s）：流量走 utun 点对点、不经系统代理，探针不影响。"
+                        % (tailscale.get("iface") or "utun", tailscale.get("ip") or "100.x"))
+    elif tailscale.get("state") == "installed_not_connected":
+        warnings.append("Tailscale 已安装但未连接（网络扩展关闭/未登录）；本次未验证 Tailscale 共存，需要时请先连接。")
 
     return {"upstream": upstream, "vpn_ok": bool(foreign),
             "direct_domains": cfg["direct_domains"], "warnings": warnings}
@@ -320,10 +377,19 @@ def main():
     sysname = platform.system()
 
     candidates = probe_candidates(cfg)          # 核心：代理能力
-    tailscale = quick_tailscale(cfg)            # 核心：Tailscale 进程
-    detail, ts_extra, degraded = enhance_network(cfg)  # 增强：预算内
+    tailscale = quick_tailscale(cfg)            # 核心：Tailscale 真实连接
+    # 物理服务明细（networksetup）只在完整报告里需要；--upstream-only 只取核心
+    # upstream，跳过它——系统网络框架抖动/挂死时既不拖慢 collect，也不影响结论。
+    detail, ts_extra, degraded = [], {}, False
+    if not args.upstream_only:
+        detail, ts_extra, degraded = enhance_network(cfg)
     tailscale.update(ts_extra)
     recommendation = decide(cfg, candidates, tailscale)
+
+    if args.upstream_only:
+        print(recommendation["upstream"])
+        return
+
     if degraded:
         recommendation["warnings"].insert(
             0, "系统网络框架（networksetup）无响应或缓慢（系统网络层可能异常）；"
@@ -343,10 +409,6 @@ def main():
         "tailscale": tailscale,
         "recommendation": recommendation,
     }
-
-    if args.upstream_only:
-        print(recommendation["upstream"])
-        return
 
     text = json.dumps(report, ensure_ascii=False, indent=2)
     print(text)
