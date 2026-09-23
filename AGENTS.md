@@ -18,6 +18,7 @@
 4. `docs/HANDOFF.md` — §1 倒序项目日志（聊了什么→结论→为什么）+ §3 当前纠结
 5. `project-management/active/TASK_STATUS.md` + `active/ISSUES.md` — 当前进度/下一步/坑（唯一进度真相）
 6. 按当前任务读对应 SOP（微信系先读基本操作前置依赖）：
+   - **网络预检（任何会改系统代理的采集前必读）**：`docs/guides/network-preflight.md`
    - **微信基本操作（前置依赖）**：`docs/guides/wechat-basic-operations.md`
    - 视频号采集：`docs/guides/wechat-channels-capture.md`
    - 公众号采集：`docs/guides/wechat-official-article.md`
@@ -37,6 +38,8 @@
 ## 2. 核心规则
 
 ### 2.1 证书与代理（重要！多次踩坑）
+
+> 采集前先跑只读预检 `python3 scripts/net_preflight.py`（`collect_channels.py --upstream auto` 已自动跑）；决策规则与跨机器配置见 `docs/guides/network-preflight.md`。
 
 **正确操作**：
 1. 证书相对可执行文件加载、已在系统钥匙串信任

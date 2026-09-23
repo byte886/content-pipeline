@@ -16,8 +16,9 @@ python3 platforms/wechat_channels/collect_channels.py "交易的游戏" --domain
 
 - `--domain`：行业目录（stock / jewelry / …），决定落到 `library/01_video/<行业>/<账号>/`。
 - `--quality`：`min`（默认，知识型转文字够用，短视频约 5–15MB）/ `default` / `max`。
-- `--upstream ""`：默认国内直连（视频号是国内站点，**不需要开 ClashX**）；
-  确需走代理时传 `--upstream http://127.0.0.1:7890`。
+- `--upstream auto`（默认）：启动前自动跑网络预检——探测到**能翻墙**的本地代理
+  （如 ClashX 7890）就把它作上游（仅外网域名走它），否则直连；微信/腾讯域名始终直连。
+  一般无需手动指定；强制直连传 `--upstream ""`。
 - `--no-download`：只捕获+重组+落 catalog，先不下载/转写。
 - `--build`：启动前重新 `go build` captor（改过注入 JS 后用）。
 
@@ -74,8 +75,8 @@ python3 platforms/wechat_channels/collect_channels.py "交易的游戏" --domain
 | 只有 15 条、驱动不启动 | 注入 JS 没生效或二进制过旧；`--build` 重编译，确认命令带 `-replay-list -short-probe`。 |
 | 标签数/回放为 0 | 部分账号没有直播回放（巫师财经类），属正常；tab 可能是 0/1/2/N 个，驱动自动兼容。 |
 | 票据失效 / 下载 403 | signed 直链几小时过期，重新跑一次采集开窗换签即可。 |
-| 跑完上不了网 | captor 正常退出会自清代理；异常中断时运行 `bash platforms/wechat_channels/video-capture/stop.sh`，或系统设置里关掉网页代理。 |
-| ClashX 要不要开 | 国内视频号**直连即可，不要开 ClashX**；历史上多次因动 ClashX 系统代理导致断网。 |
+| 跑完上不了网 | captor 正常退出会自动快照恢复代理；异常中断按 `AGENTS.md` §2.1「紧急恢复」处理，或系统设置里关掉网页代理。 |
+| ClashX 要不要开 | 可保持开启：预检自动识别，仅让外网走它、微信直连，采集期间外网不断。**不要手动改系统代理**，也不要在采集时切换 ClashX 开关；历史断网多因手动抢改代理。 |
 
 ## 6. 跟踪更新（增量）
 
