@@ -12,8 +12,8 @@
 
 | 阶段 | 状态 | 说明 |
 |------|------|------|
-| ① 资源采集 | 进行中 | 权威全集 339短视频/28回放（catalog）；磁盘短视频339全有（410文件含71重复）、回放缺3场（ISSUE-016）；公众号文章待全量导出 |
-| ② 内容处理 | ✅ 完成 | 短视频转写✅、图文OCR✅、直播回放转写✅（共435份FunASR稿）；补回放后需补转写 |
+| ① 资源采集 | 进行中 | 视频号权威全集 **340短视频/29回放/1图文**（catalog 09-23），磁盘 340+29 全有、去重干净（ISSUE-016/017 已闭环）；公众号文章待全量导出 |
+| ② 内容处理 | ✅ 完成 | 转写 **340+29 全齐**（含 09-23 新增 live_029），图文 OCR ✅ |
 | ③ 知识提取 | 进行中 | 规则版已完成，LLM深度提取待接入 |
 | ④ 知识库组织 | 方案就绪 | 待执行 |
 | 项目治理 | ✅ 完成 | 文档架构、ADR、工程记忆、SOP |
@@ -24,28 +24,27 @@
 
 | 编号 | 标题 | 类型 | 状态 | 说明 |
 |------|------|------|------|------|
-| T-10 | 视频号API研究（方案B） | research | ✅ B方案验证成功 | 列表不走HTTP，走XWEB桥+Pinia；**已验证直接调 `profile.fetchMoreData({username})` 翻页到 noMore、回放切tab首屏即全量，不滚DOM**。实测339视频+1图文/回放28。✅ 2026-09-22 已用 ffprobe 严格对账（audit_disk.py）：短视频339全有/0缺/71重复、回放缺3，权威基准落 `library/00_manifest/catalog_交易的游戏.json`，报告落 `audit_交易的游戏.json` |
+| T-10 | 视频号API研究（方案B） | research | ✅ B方案验证成功 | 列表不走HTTP，走XWEB桥+Pinia；**已验证直接调 `profile.fetchMoreData({username})` 翻页到 noMore、回放切tab首屏即全量，不滚DOM**。实测340视频+1图文/回放29（09-23 增量后）。✅ 2026-09-22 已用 ffprobe 严格对账（audit_disk.py）：短视频339全有/0缺/71重复、回放缺3，权威基准落 `library/00_manifest/catalog_交易的游戏.json`，报告落 `audit_交易的游戏.json` |
 | T-22 | 方法提炼（MethodNote）LLM分析 | feature | blocked | 框架已搭，抖音反爬403，等用户手动下载视频后继续 |
 | T-31 | 指定博主全量采集 | feature | todo | 抖音反爬403，暂时跳过 |
 | T-32 | 艺术/博物馆站点采集 | research | todo | 6个站点，待评估爬虫友好度 |
 | T-33 | 视频提到的书籍收集 | feature | 进行中 | 5本完成，《广义趋势理论》待用户决策 |
-| T-34 | 通用增量采集框架 | feature | ✅ 完成 | B站/YouTube验证通过；视频号增量脚本 `incremental_sync.py` 已写好（按encfilekey对账，待实跑） |
-| T-35 | 视频号短视频换签直链+Isaac64解密闭环 | feature | 进行中 | ✅解密算法与工具链已端到端验证（见 docs/research/wechat-short-video-decryption.md）；slim() 已补 urlToken/decodeKey/cdnFileSize/hlsSpec + 新增 probeSignActions（RLIST_ACTSRC），go build 通过；**待用户刷新主页验证换签覆盖率（ISSUE-017）**，近100%即一次刷新拿全，否则据 ACTSRC 对缺签条目逐条换签；best_format高清md5对账（ISSUE-003）后做 |
-| T-36 | 去重/补3场回放/台账重建 | feature | 待执行 | 方案见 `wechat-channels-dedup-and-inventory.md`（ISSUE-016）：刷新换签→补3场回放+转写→用户确认后删71重复视频并同步去重转写→按catalog id重建inventory至audit全0 |
+| T-34 | 通用增量采集框架 | feature | ✅ 完成 | B站/YouTube验证通过；视频号 `incremental_sync.py` 已于 09-23 实跑成功（对账补下 live_029） |
+| T-35 | 视频号短视频换签直链+Isaac64解密闭环 | feature | 进行中 | ✅解密算法与工具链已端到端验证（见 docs/research/wechat-short-video-decryption.md）；slim() 已补 urlToken/decodeKey/cdnFileSize/hlsSpec + 新增 probeSignActions（RLIST_ACTSRC），go build 通过；**ISSUE-017 已闭环（09-22）：一次刷新全量换签、urlToken/decodeKey 全覆盖**，近100%即一次刷新拿全，否则据 ACTSRC 对缺签条目逐条换签；best_format高清md5对账（ISSUE-003）后做 |
+| T-36 | 去重/补3场回放/台账重建 | feature | ✅ 完成 | ISSUE-016 已闭环（09-22）；方案见 `wechat-channels-dedup-and-inventory.md`（ISSUE-016）：刷新换签→补3场回放+转写→用户确认后删71重复视频并同步去重转写→按catalog id重建inventory至audit全0 |
 
 ---
 
 ## 下一步（按优先级）
 
-> **2026-09-22 更新：B 方案离线全量链路与文件盘严格对账已完成并入库（parse_capture_log.py / audit_disk.py / catalog / audit 报告）。当前唯一阻塞是需要用户在场刷新一次主页验证新 hook 换签覆盖率，随后补 3 场回放、去重、重建台账。新会话从这里接手。**
+> **2026-09-23 更新：视频号「交易的游戏」已全量闭环——340 短视频 / 29 回放全部下载、转写，audit 缺/重/游离/歧义全 0，inventory 重建。下一步首要 = 公众号文章全量导出（需用户 GUI 配合触发拿凭证一次，之后全自动）。新会话从这里接手。**
 
-1. **【需用户 GUI 一次·ISSUE-017】新 hook 刷新验证换签覆盖率**：启动新 captor（`./video-capture -replay-list -short-probe -output /tmp/x.json -upstream ""`，国内直连、绝不动 ClashX），请用户刷新/重进「交易的游戏」视频号主页（旧页跑旧 JS，必须刷新），action 自动拉全量后用 `parse_capture_log.py` 重组：看 signed_coverage，近 100% 即一次刷新拿全 decodeKey/urlToken；仅首屏带则 grep 日志 `RLIST_ACTSRC` 定位 feed/home.getObjectAsyncLoadInfo 源码与参数契约，对缺签条目逐条节流换签，二次刷新验证。
-2. **【ISSUE-016】补 3 场缺回放 → 去重 → 重建台账**：拿到有效直链后用 `batch_download_v4.py ... live` 补下 3 场（ids 见 ISSUE-016）并转写；输出 71 组短视频 keep/drop 清单（keep 须解密可播放+有转写），**用户确认后**删 71 个重复视频并同步去重转写目录（省约 300MB）；按 catalog 16hex id 重建 inventory，跑 `audit_disk.py` 至缺/重/游离/歧义全 0。方案与检查点见 `project-management/active/wechat-channels-dedup-and-inventory.md`。
-3. **公众号文章全量导出（HTTP API，待实测）**：`profile_ext?action=home` 激活拿 `__biz/appmsg_token/pass_ticket`，再 `action=getmsg`（offset 取返回的下一页值、count=10、offset 不变即到底）；专档 `project-management/active/wechat-article-full-export-task.md`；人工只触发拿 token 一下，之后全自动
-4. **百度网盘统一重新同步**（用户明确暂停，等所有前置解决后统一执行；股票/珠宝各开应用，视频原片曾出现空目录需检查，直播回放同步位置待核）
-5. **《广义趋势理论》《金融炼金术》**：用户称已拿到电子版，晚点提供
-6. **股票书籍知识详解生成**：桌面 `~/Desktop/股票书籍/` 10 个 PDF/PPTX，扫描件走 RapidOCR（work-doc-extract 技能，Python3.12 venv）；电子资料单独目录统一放、梳理后进知识详解，珠宝同理形成 SOP
-7. **高质量URL原始版本研究**（当前 min 2–5MB/个，真正原始 48.5MB 待找，ISSUE-003，best_format md5 对账）
+1. **公众号文章全量导出（HTTP API，待实测）**：`profile_ext?action=home` 激活拿 `__biz/appmsg_token/pass_ticket`，再 `action=getmsg`（offset 取返回的下一页值、count=10、offset 不变即到底）；专档 `project-management/active/wechat-article-full-export-task.md`；人工只触发拿 token 一下，之后全自动。
+   - 若标准 HTTP 路线仍不通，参考 wechat-article-exporter 作者付费版的取凭证方法：https://wechat.zoro.build/guide/first-sync （SPA，需 Chrome 渲染）。
+   - ✅ 已完成前置：ISSUE-017 一次刷新全量换签、ISSUE-016 去重/补回放/台账重建（视频号 340/29 全齐）。
+2. **百度网盘统一重新同步**（用户明确暂停，等所有前置解决后统一执行；股票/珠宝各开应用，视频原片曾出现空目录需检查，直播回放同步位置待核）
+3. **股票书籍知识详解 + 《广义趋势理论》《金融炼金术》**：用户称已拿到两本电子版、晚点提供；桌面 `~/Desktop/股票书籍/` 10 个 PDF/PPTX，扫描件走 RapidOCR（work-doc-extract 技能，Python3.12 venv）；电子资料单独目录统一放、梳理后进知识详解，珠宝同理形成 SOP
+4. **高质量URL原始版本研究**（当前 min 2–5MB/个，真正原始 48.5MB 待找，ISSUE-003，best_format md5 对账）
 
 ---
 
@@ -57,6 +56,14 @@
 - **转写工具**：FunASR SenseVoiceSmall（共享venv `~/.venvs/funasr`）→ 见 `docs/guides/audio-transcription.md`，批量脚本 `platforms/wechat_channels/video-transcribe/batch_transcribe.py`
 - **OCR工具**：macOS Vision → 见 `processing/ocr/tools/`
 - **存储分工**：GitHub(代码) / 本地library(数据) / 百度网盘(镜像) → 见 ADR-001
+
+---
+
+## 最近完成（2026-09-23）
+
+- ✅ **视频号「交易的游戏」增量收尾（全量闭环）**：重跑全量捕获（action 驱动翻页 + 换签），catalog = 340 短视频 / 29 回放 / 1 图文（mediaType=2 已过滤）。脚本现算对齐 inventory/catalog/磁盘：短视频 340 磁盘/转写全有（台账文字 339 为滞后口径）；唯一新增为回放 live_029。
+- ⬇️ incremental_sync.py 实跑：补下载 live_029「上涨中继」（2182s、190.3MB 明文 MP4，ftyp 校验通过，md5 `6eecb32403c1`，直连），FunASR 转写 28646 字。
+- 🧮 audit_disk：短视频 340/340、回放 29/29，缺/重/游离/歧义全 0；rebuild_inventory 重建台账（short 1804MB / live 6296MB，转写 340+29 全齐）。原料（视频/转写）按 .gitignore 不入库，仅台账（catalog/audit/inventory）入库。
 
 ---
 
@@ -99,4 +106,4 @@
 
 ---
 
-*最后更新：2026-09-22（视频号严格对账+工具固化，ISSUE-016/017 登记）*
+*最后更新：2026-09-23（视频号 340/29 全量闭环：增量 live_029 补齐转写、台账重建、audit 全 0）*

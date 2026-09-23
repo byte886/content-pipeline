@@ -4,7 +4,7 @@
   "video_root": "library/01_video/stock/交易的游戏",
   "catalog_counts": {
     "shorts": 340,
-    "replays": 28,
+    "replays": 29,
     "image_posts": 1
   },
   "short": {
@@ -22,9 +22,9 @@
     "ambiguous": []
   },
   "live": {
-    "catalog_total": 28,
-    "disk_files": 28,
-    "covered": 28,
+    "catalog_total": 29,
+    "disk_files": 29,
+    "covered": 29,
     "missing_count": 0,
     "missing": [],
     "duplicate_groups_count": 0,

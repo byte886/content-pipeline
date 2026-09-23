@@ -2,16 +2,16 @@
   "account": "交易的游戏",
   "platform": "wechat_channels",
   "domain": "stock",
-  "catalog_generated_at": "2026-09-22 17:09:30",
-  "inventory_generated_at": "2026-09-22T17:18:18+08:00",
+  "catalog_generated_at": "2026-09-23 15:25:31",
+  "inventory_generated_at": "2026-09-23T15:47:14+08:00",
   "id_strategy": "id = md5(md5sum)[:16]（与 parse_capture_log.py / captor handleMedia 一致）",
   "summary": {
     "shorts": 340,
-    "lives": 28,
+    "lives": 29,
     "shorts_with_transcript": 340,
-    "lives_with_transcript": 28,
+    "lives_with_transcript": 29,
     "shorts_disk_size_mb": 1804.0,
-    "lives_disk_size_mb": 6105.7
+    "lives_disk_size_mb": 6296.0
   },
   "shorts": [
     {
@@ -5903,6 +5903,22 @@
       "has_transcript": true,
       "transcript_chars": 29776,
       "transcript_path": "library/04_transcript/stock/交易的游戏/live/live_028_再次缩量见底/transcript.md"
+    },
+    {
+      "id": "9d5c2d21ca678dd8",
+      "oid": "15016284420244311129",
+      "seq": 29,
+      "file": "library/01_video/stock/交易的游戏/live/live_029_上涨中继.mp4",
+      "title": "上涨中继",
+      "duration_s": 2183,
+      "catalog_duration_s": 2182,
+      "disk_size_mb": 190.3,
+      "md5sum": "582842a3f1414aabdb9bdd0d133b6fae",
+      "media_type": 4,
+      "createtime": 1790080597,
+      "has_transcript": true,
+      "transcript_chars": 28726,
+      "transcript_path": "library/04_transcript/stock/交易的游戏/live/live_029_上涨中继/transcript.md"
     }
   ]
 }
