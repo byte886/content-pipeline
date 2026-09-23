@@ -19,7 +19,8 @@
       [--upstream ""] [--capture-timeout 360] [--no-download] [--build]
 
   --quality   min(默认,知识型转文字)/default/max
-  --upstream  上游代理；默认空串=国内直连。需要走 ClashX 时传 http://127.0.0.1:7890
+  --upstream  auto(默认)=探测 ClashX 7890：在则外网链式转发、不在则直连；
+              传 "" 强制直连，或显式 URL
   --no-download  只捕获+重组+对账打印，不下载/转写/重建
   --build     启动前先 go build 编译 captor
 """
@@ -83,19 +84,23 @@ def funasr_python():
 
 
 def clear_system_proxy_fallback(port):
-    """captor 正常退出会自清代理；这里仅在检测到仍指向本端口时兜底关闭。"""
+    """captor 正常退出会自清代理（proxy_darwin.go 快照恢复）；这里仅在检测到
+    某物理服务仍指向本端口时兜底关闭。Tailscale 等虚拟服务 stopped 时改不了
+    （exit=5），跳过它，残留交给 scripts/fix_tailscale_proxy.sh。"""
     try:
         out = subprocess.run(["networksetup", "-listallnetworkservices"],
                              capture_output=True, text=True).stdout
-        services = [l.strip() for l in out.splitlines()[1:] if l.strip()]
-        for svc in services[:1]:  # 通常只有 Wi-Fi
+        services = [l.lstrip("* ").strip() for l in out.splitlines()[1:] if l.strip()]
+        for svc in services:
+            if svc.lower().startswith("tailscale"):
+                continue
             state = subprocess.run(["networksetup", "-getsecurewebproxy", svc],
                                    capture_output=True, text=True).stdout
             if f"{port}" in state and "Enabled: Yes" in state:
-                log(f"⚠️  系统代理仍指向 {port}，兜底关闭")
+                log(f"⚠️  {svc} 代理仍指向 {port}，兜底关闭")
                 subprocess.run(["networksetup", "-setwebproxystate", svc, "off"],
                                capture_output=True)
-                subprocess.run(["networksetup", "-setsecureproxystate", svc, "off"],
+                subprocess.run(["networksetup", "-setsecurewebproxystate", svc, "off"],
                                capture_output=True)
     except FileNotFoundError:
         pass
@@ -109,13 +114,19 @@ def main():
     ap.add_argument("account", help="视频号名称，如 交易的游戏")
     ap.add_argument("--domain", default="stock", help="行业目录，如 stock/jewelry")
     ap.add_argument("--quality", default="min", choices=["min", "default", "max"])
-    ap.add_argument("--upstream", default="",
-                    help='上游代理；空串=国内直连（默认），ClashX 传 http://127.0.0.1:7890')
+    ap.add_argument("--upstream", default="auto",
+                    help='auto(默认)=探测 ClashX 7890：在则链式转发外网、不在则直连；'
+                         '传 "" 强制直连；或显式 URL 如 http://127.0.0.1:7890')
     ap.add_argument("--port", type=int, default=8899)
     ap.add_argument("--capture-timeout", type=int, default=360)
     ap.add_argument("--no-download", action="store_true")
     ap.add_argument("--build", action="store_true")
     a = ap.parse_args()
+
+    if a.upstream == "auto":
+        clash = "http://127.0.0.1:7890"
+        a.upstream = clash if port_listening(7890) else ""
+        log(f"upstream=auto → {'ClashX 7890（外网链式转发，微信域名直连）' if a.upstream else '直连（未检测到 ClashX 7890）'}")
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     video_root = ROOT / "library" / "01_video" / a.domain / a.account

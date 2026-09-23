@@ -39,13 +39,17 @@
 ### 2.1 证书与代理（重要！多次踩坑）
 
 **正确操作**：
-1. 捕获工具使用相对于可执行文件的路径加载证书，可从任意目录运行
-2. 证书已在系统钥匙串信任
-3. 捕获完成后必须清除系统代理（工具退出时自动清除）
+1. 证书相对可执行文件加载、已在系统钥匙串信任
+2. 探针只对**默认路由的物理服务**（`route get default` → en0 = Ethernet，凭真实 MAC 判定）设代理；设置前快照、退出时**恢复原代理**（如 ClashX 的 7890），**永不触碰 Tailscale 等 utun/虚拟服务**
+3. 捕获完成后探针 SIGTERM 自动恢复代理（禁 kill -9）
+
+**Tailscale 共存规则（wj）**：
+- Tailscale 未用 exit node，可常开、与采集共存；**不要开 exit node**，不要在探针运行（Ethernet=8899）瞬间切换 Tailscale
+- Tailscale 服务若残留指向 8899 的死代理：stopped 时改不了（exit=5），须在 Tailscale 运行时跑 `bash scripts/fix_tailscale_proxy.sh`
 
 **紧急恢复**（如果全网阻断）：
 ```bash
-pkill -9 -f video-capture
+pkill -TERM -f video-capture
 for s in "Ethernet" "Wi-Fi"; do
   networksetup -setwebproxystate "$s" off
   networksetup -setsecurewebproxystate "$s" off

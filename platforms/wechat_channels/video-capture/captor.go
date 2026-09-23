@@ -67,6 +67,7 @@ type Captor struct {
 	autoScroll    bool
 	replayList    bool
 	shortProbe    bool
+	mpRecon       bool
 	proxy         *goproxy.ProxyHttpServer
 	server        *http.Server
 	videos        map[string]*VideoInfo
@@ -82,7 +83,7 @@ var (
 )
 
 // NewCaptor 创建捕获器
-func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir string, upstreamProxy string, autoScroll bool, replayList bool, shortProbe bool) (*Captor, error) {
+func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir string, upstreamProxy string, autoScroll bool, replayList bool, shortProbe bool, mpRecon bool) (*Captor, error) {
 	c := &Captor{
 		port:          port,
 		outputFile:    outputFile,
@@ -92,6 +93,7 @@ func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir strin
 		autoScroll:    autoScroll,
 		replayList:    replayList,
 		shortProbe:    shortProbe,
+		mpRecon:       mpRecon,
 		videos:        make(map[string]*VideoInfo),
 		version:       "1.0.0",
 	}
@@ -150,7 +152,8 @@ func (c *Captor) initProxy() error {
 		IdleConnTimeout:       30 * time.Second,
 	}
 
-	// 设置上游代理（如ClashX），实现规则路由
+	// 设置上游代理（如 ClashX）。按目标域名分流：微信/腾讯国内域名直连（最快、
+	// 不依赖 ClashX 规则），其余域名走 ClashX，保证采集期间其他程序外网不中断。
 	if c.upstreamProxy != "" {
 		// 先检查上游代理是否可用
 		if !checkProxyAvailable(c.upstreamProxy) {
@@ -161,8 +164,25 @@ func (c *Captor) initProxy() error {
 			if err != nil {
 				log.Printf("上游代理URL解析失败(%s)，将直连: %v", c.upstreamProxy, err)
 			} else {
-				transport.Proxy = http.ProxyURL(proxyURL)
-				fmt.Printf("上游代理已设置: %s (国内直连/国外自动VPN)\n", c.upstreamProxy)
+				directDomain := func(host string) bool {
+					h := strings.ToLower(host)
+					if sh, _, e := net.SplitHostPort(h); e == nil {
+						h = sh
+					}
+					for _, s := range []string{"qq.com", "qpic.cn", "weixin.com"} {
+						if h == s || strings.HasSuffix(h, "."+s) {
+							return true
+						}
+					}
+					return false
+				}
+				transport.Proxy = func(req *http.Request) (*url.URL, error) {
+					if directDomain(req.URL.Host) {
+						return nil, nil // 微信/腾讯国内域名：直连
+					}
+					return proxyURL, nil // 其余（外网）：走 ClashX
+				}
+				fmt.Printf("上游代理已设置(域名分流): 微信/腾讯域名直连，其余走 %s\n", c.upstreamProxy)
 			}
 		}
 	}
@@ -390,6 +410,9 @@ func (c *Captor) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Re
 	// 公众号主页(mp_profile) - 注入文章列表提取JS
 	if strings.HasSuffix(host, "channels.weixin.qq.com") &&
 		strings.Contains(path, "/web/pages/mp_profile") {
+		if c.mpRecon {
+			return c.injectMpProfileReconHook(resp)
+		}
 		return c.injectArticleListHook(resp)
 	}
 
@@ -438,16 +461,27 @@ func (c *Captor) logAPIResponse(resp *http.Response) {
 	// 其余JSON/文本只记录前2000字符避免日志过大。
 	contentType := resp.Header.Get("Content-Type")
 	host := resp.Request.Host
+	reqPath := resp.Request.URL.Path
+	reqQuery := resp.Request.URL.RawQuery
 	bodyStr := string(body)
-	isVideoData := strings.Contains(host, "channels.weixin.qq.com") ||
+	// 公众号历史文章接口（profile_ext action=home/getmsg）响应必须完整落盘，
+	// 否则 >2KB 截断后拿不到 general_msg_list/next_offset/can_msg_continue，无法翻页取全量；
+	// body 特征作双保险，兜住 path 因重定向变化。
+	isArticleListAPI := strings.HasSuffix(host, "mp.weixin.qq.com") &&
+		strings.Contains(reqPath, "/mp/profile_ext") &&
+		(strings.Contains(reqQuery, "action=getmsg") || strings.Contains(reqQuery, "action=home"))
+	fullCapture := strings.Contains(host, "channels.weixin.qq.com") ||
+		isArticleListAPI ||
 		strings.Contains(bodyStr, "stodownload?encfilekey=") ||
 		strings.Contains(bodyStr, "finder.video.qq.com") ||
 		strings.Contains(bodyStr, "finderUserName") ||
+		strings.Contains(bodyStr, "general_msg_list") ||
+		strings.Contains(bodyStr, "can_msg_continue") ||
 		strings.Contains(bodyStr, "liveReplay") || strings.Contains(bodyStr, "live_replay")
 	if strings.Contains(contentType, "json") || strings.Contains(contentType, "text") ||
 		strings.Contains(contentType, "javascript") || strings.Contains(contentType, "html") {
 		const fullCap = 20 * 1024 * 1024
-		if isVideoData && len(body) > 2000 {
+		if fullCapture && len(body) > 2000 {
 			limit := len(body)
 			if limit > fullCap {
 				limit = fullCap
@@ -507,7 +541,7 @@ func (c *Captor) handleArticleList(body []byte) {
 		wxtoken, _ := result["wxtoken"].(string)
 		biz, _ := result["biz"].(string)
 		reason, _ := result["reason"].(string)
-		
+
 		entry := fmt.Sprintf("[%s] ARTICLE_DETAIL_PARAMS reason=%s\n  appmsg_token=%s\n  uin=%s\n  key=%s\n  pass_ticket=%s\n  wxtoken=%s\n  biz=%s\n  url=%s\n",
 			time.Now().Format("2006-01-02 15:04:05"),
 			reason, appmsgToken, uin, key, passTicket, wxtoken, biz, page)
