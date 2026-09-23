@@ -19,8 +19,8 @@
       [--upstream ""] [--capture-timeout 360] [--no-download] [--build]
 
   --quality   min(默认,知识型转文字)/default/max
-  --upstream  auto(默认)=探测 ClashX 7890：在则外网链式转发、不在则直连；
-              传 "" 强制直连，或显式 URL
+  --upstream  auto(默认)=跑网络预检，选"真正能翻墙"的代理、否则直连；
+              传 "" 强制直连，或显式 URL（预检见 scripts/net_preflight.py）
   --no-download  只捕获+重组+对账打印，不下载/转写/重建
   --build     启动前先 go build 编译 captor
 """
@@ -115,8 +115,8 @@ def main():
     ap.add_argument("--domain", default="stock", help="行业目录，如 stock/jewelry")
     ap.add_argument("--quality", default="min", choices=["min", "default", "max"])
     ap.add_argument("--upstream", default="auto",
-                    help='auto(默认)=探测 ClashX 7890：在则链式转发外网、不在则直连；'
-                         '传 "" 强制直连；或显式 URL 如 http://127.0.0.1:7890')
+                    help='auto(默认)=网络预检，选可翻墙代理、否则直连；'
+                         '传 "" 强制直连；或显式 URL。预检: scripts/net_preflight.py')
     ap.add_argument("--port", type=int, default=8899)
     ap.add_argument("--capture-timeout", type=int, default=360)
     ap.add_argument("--no-download", action="store_true")
@@ -124,9 +124,15 @@ def main():
     a = ap.parse_args()
 
     if a.upstream == "auto":
-        clash = "http://127.0.0.1:7890"
-        a.upstream = clash if port_listening(7890) else ""
-        log(f"upstream=auto → {'ClashX 7890（外网链式转发，微信域名直连）' if a.upstream else '直连（未检测到 ClashX 7890）'}")
+        pf_script = ROOT / "scripts" / "net_preflight.py"
+        try:
+            r = subprocess.run([sys.executable, str(pf_script), "--upstream-only"],
+                               capture_output=True, text=True, timeout=40)
+            a.upstream = r.stdout.strip()
+        except (subprocess.TimeoutExpired, OSError) as e:
+            a.upstream = ""
+            log(f"网络预检异常（{e}），降级直连")
+        log(f"upstream=auto（网络预检）→ {a.upstream or '直连（未检测到可翻墙代理）'}")
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     video_root = ROOT / "library" / "01_video" / a.domain / a.account

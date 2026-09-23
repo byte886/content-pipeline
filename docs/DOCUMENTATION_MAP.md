@@ -16,6 +16,9 @@
 4. 当前到哪/下一步：`project-management/active/TASK_STATUS.md` + `active/ISSUES.md`
 5. 提交前：`python3 scripts/doc_health_check.py`，0 ERROR 才提交
 
+### 网络环境预检（任何改系统代理的采集前）
+1. `docs/guides/network-preflight.md` — 只读网络诊断与上游代理选择（代理翻墙能力实测、Tailscale、跨机器配置）
+
 ### 微信基本操作（UI自动化）
 1. `docs/guides/wechat-basic-operations.md` — 窗口管理、搜索操作、鼠标控制最佳实践
 
@@ -67,6 +70,7 @@
 | 文档 | 路径 | 用途 |
 |------|------|------|
 | 微信基本操作SOP | `docs/guides/wechat-basic-operations.md` | 窗口管理、搜索操作、鼠标控制最佳实践 |
+| 网络预检SOP | `docs/guides/network-preflight.md` | 采集前只读网络诊断、代理翻墙能力实测、上游选择、跨机器配置 |
 | 视频号一键采集SOP | `docs/guides/wechat-channels-collect-sop.md` | **首选**：collect_channels.py 一键，人工只开一次窗 |
 | 视频号采集SOP（手动原语） | `docs/guides/wechat-channels-capture.md` | 捕获→下载→解密→验证全流程、排障原理 |
 | 公众号采集SOP | `docs/guides/wechat-official-article.md` | 文章采集与OCR流程 |
