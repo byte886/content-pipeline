@@ -64,6 +64,7 @@
 | [docs/WORKFLOW.md](docs/WORKFLOW.md) | 整体工作流（四阶段流水线） |
 | [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | 项目需求与功能范围 |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | 项目长期规划 |
+| [docs/guides/codex-dev-environment.md](docs/guides/codex-dev-environment.md) | **Codex 环境、模型选型(GPT-5.6 Sol)、算力购买与操作步骤** |
 | [project-management/active/TASK_STATUS.md](project-management/active/TASK_STATUS.md) | 当前进度、下一步（单一进度真相） |
 
 ---

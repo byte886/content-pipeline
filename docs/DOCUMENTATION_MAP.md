@@ -16,6 +16,9 @@
 4. 当前到哪/下一步：`project-management/active/TASK_STATUS.md` + `active/ISSUES.md`
 5. 提交前：`python3 scripts/doc_health_check.py`，0 ERROR 才提交
 
+### 开发环境与 AI 编程工具
+1. `docs/guides/codex-dev-environment.md` — **Codex 安装、模型选型(GPT-5.6 Sol)、算力购买(订阅/中转/国产)、配置与操作步骤**
+
 ### 网络环境预检（任何改系统代理的采集前）
 1. `docs/guides/network-preflight.md` — 只读网络诊断与上游代理选择（代理翻墙能力实测、Tailscale、跨机器配置）
 
@@ -69,6 +72,7 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
+| Codex开发环境与选型 | `docs/guides/codex-dev-environment.md` | Codex安装、模型选型、算力购买、配置与操作步骤 |
 | 微信基本操作SOP | `docs/guides/wechat-basic-operations.md` | 窗口管理、搜索操作、鼠标控制最佳实践 |
 | 网络预检SOP | `docs/guides/network-preflight.md` | 采集前只读网络诊断、代理翻墙能力实测、上游选择、跨机器配置 |
 | 视频号一键采集SOP | `docs/guides/wechat-channels-collect-sop.md` | **首选**：collect_channels.py 一键，人工只开一次窗 |
