@@ -68,6 +68,7 @@ type Captor struct {
 	replayList    bool
 	shortProbe    bool
 	mpRecon       bool
+	passive       bool
 	proxy         *goproxy.ProxyHttpServer
 	server        *http.Server
 	videos        map[string]*VideoInfo
@@ -83,7 +84,7 @@ var (
 )
 
 // NewCaptor 创建捕获器
-func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir string, upstreamProxy string, autoScroll bool, replayList bool, shortProbe bool, mpRecon bool) (*Captor, error) {
+func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir string, upstreamProxy string, autoScroll bool, replayList bool, shortProbe bool, mpRecon bool, passive bool) (*Captor, error) {
 	c := &Captor{
 		port:          port,
 		outputFile:    outputFile,
@@ -94,6 +95,7 @@ func NewCaptor(port int, outputFile string, autoDownload bool, downloadDir strin
 		replayList:    replayList,
 		shortProbe:    shortProbe,
 		mpRecon:       mpRecon,
+		passive:       passive,
 		videos:        make(map[string]*VideoInfo),
 		version:       "1.0.0",
 	}
@@ -322,8 +324,8 @@ func (c *Captor) onRequest(r *http.Request, ctx *goproxy.ProxyCtx) (*http.Reques
 		r.Header.Set("If-None-Match", "")
 	}
 
-	// 处理微信视频号的回调请求
-	if strings.Contains(r.Host, "qq.com") && strings.Contains(r.URL.Path, "/res-downloader/wechat") {
+	// 处理微信视频号的回调请求（passive 诊断模式不处理，纯记录）
+	if !c.passive && strings.Contains(r.Host, "qq.com") && strings.Contains(r.URL.Path, "/res-downloader/wechat") {
 		return c.handleWechatRequest(r)
 	}
 	return r, nil
@@ -385,6 +387,11 @@ func (c *Captor) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Re
 		strings.Contains(host, "weixin") ||
 		strings.Contains(host, "wx.qq.com") {
 		c.logAPIResponse(resp)
+	}
+
+	// 纯被动诊断模式：只记录，不注入任何 JS、不自动翻页
+	if c.passive {
+		return resp
 	}
 
 	// 视频号页面 - 仅在 -autoscroll 开启时注入自动滚动JS；关闭时页面保持静止，

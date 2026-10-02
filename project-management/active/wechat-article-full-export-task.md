@@ -1,6 +1,6 @@
 # 公众号「顶底之王」全量历史文章导出 · Xcode 智能体交接任务书
 
-> 更新：2026-09-27 ｜ 状态：**待攻关（唯一卡点＝拿到全部 `/s/` 文章链接清单）**
+> 更新：2026-10-02 ｜ 状态：**已完成：全量 278 篇确认已在本地存档，927 张配图全离线；方案 B（坐标视觉 RPA）最小闭环已验证（见 §3.3、§6）**
 > 仓库根：`~/Desktop/multiplatform-content-pipeline/`（多机用 `$HOME` 派生，勿硬编码）
 > Remote：`git@github.com:byte88/multiplatform-content-pipeline.git`（public）｜ HEAD：`e5da786`（已推送）
 
@@ -52,6 +52,13 @@
   即可取完整 HTML（含正文、图、视频），**无需凭证、不受频率限制**。
 - 因此**只要有全量链接清单，正文导出立即打通**——链接清单是唯一卡点。
 
+### 3.3 全量已在本地 + 方案 B 坐标视觉 RPA 闭环（2026-10 验证）
+- **决定性结论**：`library/06_articles/stock/顶底之王/` 已有 **278 篇完整存档**（manifest 278 条、URL 唯一，含 article.html/article.json），链接枚举与正文采集**早已完成，无需重新采集**。
+- 图片已全量离线：**927 张，0 在线、0 缺失**；276 篇有文字正文，1 篇纯图帖（image_ocr 齐全）、1 篇作者已清空的空帖。
+- **方案 B（坐标视觉 RPA）最小闭环已验证**（用于新公众号 / 增量）：Android（免 root）上
+  ① 坐标 `adb input tap` 可点开 native 自绘列表卡片；② 文章以标准 WebView 打开，CDP 可读完整 URL 与 `#js_content`；
+  ③ `KEYCODE_BACK` 返回且位置保持；④ RapidOCR 以「阅读…赞…」为锚点定位标题。详见 SOP §3.2。
+
 ## 4. 已验证死路（禁止重试，附证据）
 
 | # | 方向 | 结论 / 证据 |
@@ -66,6 +73,9 @@
 | 8 | 反编译 / 重签微信 / Frida / LLDB 持续注入 | 触发风控，用户否决（见约束 3） |
 | 9 | res-downloader / mitmproxy / tcpdump 当主依赖 | 视频流可捕获，**公众号历史列表不可**；且全局代理会干扰其他程序 |
 | 10 | 追求完全无人值守 | 不现实：取短期 token 必须有一次轻量人工触发 |
+| 11 | 只读扫描微信本地缓存 URL 提取 `uin/key/pass_ticket` 再调 getmsg（tingaidehua/wechat-article-downloader-skill 方法，Windows 2026-07 仍通） | **Mac 4.1.8 不成立**：受控实验（微信内打开 profile home 并滚动）后全盘扫描 `app_data`＋活跃账号 `xwechat_files`，**无任何 `action=getmsg` URL、无 appmsg_token/poc_token/poc_sid**；cgi-mapping 显示该类接口 `netproto=2`（native 私有长连接），URL/key 不落盘浏览器或 HTTP 缓存 |
+| 12 | Android 外部存储 `bizcache/profile_resp_*`（滚到底后） | **只存第一页/概览**：顶底之王文件滚到底仅 42433→42640B（+207），归一化后仅 **12 篇唯一**；全量分页不落任何无 root 可读位置 |
+| 13 | `uiautomator dump` 读历史列表 | 列表为**自绘 UI（非标准 View）**，dump 只得 1 个空 bounds 节点 |
 
 ## 5. 关键技术资产与 ID
 

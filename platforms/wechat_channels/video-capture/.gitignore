@@ -34,3 +34,9 @@ replays_*_manifest.json
 # 全量换签直链合集（短视频+回放，含临时 token/sign，禁止入 public 仓）
 finder_*_manifest.json
 *_full_manifest.json
+
+# --- 公众号链接枚举探查过程产物（含抓取数据/凭证，禁止入 public 仓）---
+mp_articles.json
+mp_articles_*/
+mp_profile_clean.json
+test_getmsg.py

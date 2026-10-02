@@ -25,6 +25,8 @@ var (
 	mpHomeTriggered sync.Map
 	mpAppmsgTokenRe = regexp.MustCompile(`window\.appmsg_token\s*=\s*"([^"]+)"`)
 	mpNextOffsetRe  = regexp.MustCompile(`var next_offset\s*=\s*"([^"]*)"`)
+	// 服务端把凭证渲染进 HTML：var key/uin/pass_ticket = "..."
+	mpVarCredRe = regexp.MustCompile(`var (key|uin|pass_ticket)\s*=\s*"([^"]*)"`)
 )
 
 // articleExportHandler 作为独立 OnResponse handler 注册（不改写主 onResponse）
@@ -70,14 +72,20 @@ func (c *Captor) maybeAutoExportArticles(resp *http.Response) {
 	if err != nil {
 		return
 	}
-	sessKey := base.Get("key")
-	if sessKey == "" {
+	// 构造的 home 链接 URL 里通常只有 __biz；服务端把 uin/key/pass_ticket 渲染进
+	// HTML 的全局变量，从响应补全，否则 getmsg 缺凭证会空返回。
+	for _, cv := range mpVarCredRe.FindAllStringSubmatch(bodyStr, -1) {
+		if base.Get(cv[1]) == "" && cv[2] != "" {
+			base.Set(cv[1], cv[2])
+		}
+	}
+	triggerID := base.Get("__biz") + "|" + appmsgToken
+	if _, loaded := mpHomeTriggered.LoadOrStore(triggerID, true); loaded {
 		return
 	}
-	if _, loaded := mpHomeTriggered.LoadOrStore(sessKey, true); loaded {
-		return
-	}
-	c.apiLogf("检测到 home 历史页（biz=%s len=%d），启动自动翻 getmsg", base.Get("__biz"), len(bodyb))
+	c.apiLogf("检测到 home 历史页（biz=%s key=%t uin=%s pass_ticket=%t len=%d），启动自动翻 getmsg",
+		base.Get("__biz"), base.Get("key") != "", base.Get("uin"),
+		base.Get("pass_ticket") != "", len(bodyb))
 	go c.runArticleExport(rq, base, appmsgToken, bodyStr)
 }
 
@@ -185,6 +193,15 @@ func (c *Captor) runArticleExport(rq *http.Request, base url.Values, appmsgToken
 		req.Header.Set("User-Agent", ua)
 		req.Header.Set("Referer", homeURL)
 		req.Header.Set("X-Requested-With", "XMLHttpRequest")
+		if ck := rq.Header.Get("Cookie"); ck != "" {
+			req.Header.Set("Cookie", ck)
+		}
+		if k := base.Get("key"); k != "" {
+			req.Header.Set("X-WECHAT-KEY", k)
+		}
+		if u := base.Get("uin"); u != "" {
+			req.Header.Set("X-WECHAT-UIN", u)
+		}
 		resp, err := client.Do(req)
 		if err != nil {
 			c.apiLogf("getmsg page=%d 请求失败 %v", page, err)

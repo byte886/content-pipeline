@@ -22,6 +22,7 @@ var (
 	replayList    bool
 	shortProbe    bool
 	mpRecon       bool
+	passive       bool
 )
 
 func main() {
@@ -37,6 +38,7 @@ func main() {
 	flag.BoolVar(&replayList, "replay-list", false, "注入回放列表提取器:滚动加载全部回放卡片并从Vue组件提取oid/nid清单(不点击/不导航/不播放)")
 	flag.BoolVar(&shortProbe, "short-probe", false, "注入短视频播放换签探针(静默不滚动/不点击;人工点开播放时抓带token签名直链)")
 	flag.BoolVar(&mpRecon, "mp-recon", false, "公众号mp_profile只读侦察探针:枚举Vuex/Pinia、hook worker、定位文章数组与翻页action")
+	flag.BoolVar(&passive, "passive", false, "纯被动记录:只全量落盘请求/响应,不注入JS、不自动翻页(用于定位真实接口)")
 	flag.Parse()
 
 	fmt.Println("========================================")
@@ -69,7 +71,7 @@ func main() {
 	}
 
 	// 初始化捕获器
-	captor, err := NewCaptor(port, outputFile, autoDownload, downloadDir, upstreamProxy, autoScroll, replayList, shortProbe, mpRecon)
+	captor, err := NewCaptor(port, outputFile, autoDownload, downloadDir, upstreamProxy, autoScroll, replayList, shortProbe, mpRecon, passive)
 	if err != nil {
 		// 退出前清除代理
 		if !noAutoProxy {
@@ -78,8 +80,10 @@ func main() {
 		log.Fatalf("初始化失败: %v", err)
 	}
 
-	// 公众号历史页自动翻 getmsg 全量（独立 OnResponse handler）
-	captor.proxy.OnResponse().DoFunc(captor.articleExportHandler)
+	// 公众号历史页自动翻 getmsg 全量（独立 OnResponse handler）；passive 诊断模式不注册
+	if !passive {
+		captor.proxy.OnResponse().DoFunc(captor.articleExportHandler)
+	}
 
 	// 启动代理
 	go func() {

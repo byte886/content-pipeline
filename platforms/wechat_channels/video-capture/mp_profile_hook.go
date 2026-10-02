@@ -90,12 +90,313 @@ const mpReconJS = `
   try{var OX=XMLHttpRequest.prototype.open,OS=XMLHttpRequest.prototype.send;
     XMLHttpRequest.prototype.open=function(m,u){this.__u=u;return OX.apply(this,arguments);};
     XMLHttpRequest.prototype.send=function(){var self=this;this.addEventListener('load',function(){try{var t=self.responseText;if(t&&t.length>40&&looksArticle(t))raw('NET__'+encodeURIComponent(String(self.__u)).slice(0,80),t.slice(0,120000));}catch(e){}});return OS.apply(this,arguments);};}catch(e){send('ERR',{where:'xhr',e:''+e});}
-  try{if(window.MessagePort){function wk(d,src){try{var s=typeof d==='string'?d:JSON.stringify(d);if(s&&s.length>40&&looksArticle(s))raw('WK__'+src,s.slice(0,120000));}catch(e){}}
-    var OP=MessagePort.prototype.postMessage;MessagePort.prototype.postMessage=function(m){try{wk(m,'post');}catch(e){}return OP.apply(this,arguments);};
-    var OA=MessagePort.prototype.addEventListener;MessagePort.prototype.addEventListener=function(t,fn){if(t==='message'&&typeof fn==='function'&&!fn.__mpw){var w=function(e){try{wk(e.data,'msg');}catch(x){}return fn.apply(this,arguments);};w.__mpw=1;arguments[1]=w;}return OA.apply(this,arguments);};
+  try{if(window.MessagePort){
+    var wkN=0;
+    function wkdump(d,src){try{var s=typeof d==='string'?d:JSON.stringify(d);if(!s)return;
+      wkN++;
+      if(wkN<=60){raw('WKDMP__'+src+'__'+wkN,s.slice(0,80000));}
+      else if(s.length>40&&looksArticle(s)){raw('WK__'+src,s.slice(0,80000));}
+    }catch(e){}}
+    var OP=MessagePort.prototype.postMessage;MessagePort.prototype.postMessage=function(m){try{wkdump(m,'post');}catch(e){}return OP.apply(this,arguments);};
+    var OA=MessagePort.prototype.addEventListener;MessagePort.prototype.addEventListener=function(t,fn){if(t==='message'&&typeof fn==='function'&&!fn.__mpw){var w=function(e){try{wkdump(e.data,'msg');}catch(x){}return fn.apply(this,arguments);};w.__mpw=1;arguments[1]=w;}return OA.apply(this,arguments);};
     var od=Object.getOwnPropertyDescriptor(MessagePort.prototype,'onmessage');
-    Object.defineProperty(MessagePort.prototype,'onmessage',{configurable:true,enumerable:true,get:function(){return od&&od.get?od.get.call(this):this.__mp_om;},set:function(fn){if(typeof fn==='function'&&!fn.__mpom){var wf=function(e){try{wk(e.data,'onmsg');}catch(x){}return fn.apply(this,arguments);};wf.__mpom=1;if(od&&od.set)od.set.call(this,wf);else this.__mp_om=wf;}else{if(od&&od.set)od.set.call(this,fn);else this.__mp_om=fn;}}});}
+    Object.defineProperty(MessagePort.prototype,'onmessage',{configurable:true,enumerable:true,get:function(){return od&&od.get?od.get.call(this):this.__mp_om;},set:function(fn){if(typeof fn==='function'&&!fn.__mpom){var wf=function(e){try{wkdump(e.data,'onmsg');}catch(x){}return fn.apply(this,arguments);};wf.__mpom=1;if(od&&od.set)od.set.call(this,wf);else this.__mp_om=wf;}else{if(od&&od.set)od.set.call(this,fn);else this.__mp_om=fn;}}});}
   }catch(e){send('ERR',{where:'worker',e:''+e});}
+
+  // ===== 直接定位微信注入的 xweb.worker.port（自定义 shim，可能不继承标准 MessagePort）=====
+  if(typeof wkdump!=='function'){
+    var wkN2=0;
+    function wkdump(d,src){try{var s=typeof d==='string'?d:JSON.stringify(d);if(!s)return;
+      wkN2++; if(wkN2<=80){raw('WKDMP__'+src+'__'+wkN2,s.slice(0,80000));}
+      else if(s.length>40&&looksArticle(s)){raw('WK__'+src,s.slice(0,80000));}
+    }catch(e){}}
+  }
+  function hookWorkerLike(w,label,url){
+    try{
+      if(!w||w.__wHooked) return;
+      w.__wHooked=1;
+      raw('WORKERNEW__'+label,JSON.stringify({url:String(url),hasPost:typeof w.postMessage,hasAEL:typeof w.addEventListener}));
+      if(typeof w.postMessage==='function'&&!w.__pmW){
+        var opm=w.postMessage;w.__pmW=1;
+        w.postMessage=function(){try{wkdump(arguments[0],label+'.POST');}catch(e){}return opm.apply(this,arguments);};
+      }
+      if(typeof w.addEventListener==='function'){
+        w.addEventListener('message',function(e){try{wkdump(e.data,label+'.MSG');}catch(x){}});
+      }
+    }catch(e){raw('WORKERHOOKERR__'+label,''+e);}
+  }
+  try{
+    var OrigWorker=window.Worker;
+    if(OrigWorker){
+      var NW=function(url,opts){var w=new OrigWorker(url,opts);try{hookWorkerLike(w,'WKR',url);}catch(e){}return w;};
+      NW.prototype=OrigWorker.prototype;
+      window.Worker=NW;
+    }
+  }catch(e){raw('WORKERCONSERR',''+e);}
+  try{
+    var OrigSW=window.SharedWorker;
+    if(OrigSW){
+      var NSW=function(url,opts){var sw=new OrigSW(url,opts);try{hookWorkerLike(sw.port,'SHW',url);}catch(e){}return sw;};
+      NSW.prototype=OrigSW.prototype;
+      window.SharedWorker=NSW;
+    }
+  }catch(e){raw('SHAREDCONSERR',''+e);}
+
+  // ===== Hook Blob 构造器：截获 blob Worker 的脚本文本（同步可得）=====
+  try{
+    var OrigBlob=window.Blob;
+    var blobSeq=0;
+    var NB=function(parts,opts){
+      try{
+        if(parts&&parts.length){
+          for(var bi=0;bi<parts.length;bi++){
+            var bp=parts[bi];
+            if(typeof bp==='string'&&bp.length>60&&/onmessage|WebAssembly|postMessage|importScripts|self\./.test(bp)){
+              blobSeq++;
+              (function(text,seq){
+                raw('WORKERMETA__'+seq,JSON.stringify({len:text.length,opts:opts&&opts.type,
+                  hasWA:/WebAssembly/.test(text),hasMsg:/onmessage/.test(text),
+                  hasXWS:/XWebSocket|XWebXMLHttpRequest/.test(text)}));
+                for(var k=0,fi=0;k<text.length;k+=11000,fi++){
+                  raw('WORKERSRC__'+seq+'__'+fi,text.slice(k,k+11000));
+                }
+              })(bp,blobSeq);
+            }
+          }
+        }
+      }catch(e){raw('BLOBHOOKERR',''+e);}
+      return new OrigBlob(parts,opts);
+    };
+    NB.prototype=OrigBlob.prototype;
+    window.Blob=NB;
+  }catch(e){raw('BLOBCONSERR',''+e);}
+
+  // ===== Hook XWeb native 桥：XWebXMLHttpRequest / XWebSocket（底层走 native，HTTP 代理抓不到）=====
+  function describeXObj(name){
+    try{
+      var X=window[name],info={type:typeof X};
+      if(X){
+        try{info.proto=Object.getOwnPropertyNames(X.prototype);}catch(e){info.protoErr=''+e;}
+        try{info.own=Object.getOwnPropertyNames(X);}catch(e){}
+        try{info.str=Function.prototype.toString.call(X).slice(0,160);}catch(e){}
+      }
+      raw('XDESC__'+name,JSON.stringify(info));
+    }catch(e){raw('XDESCERR__'+name,''+e);}
+  }
+  describeXObj('XWebXMLHttpRequest');
+  describeXObj('XWebSocket');
+
+  var xhrSeq=0;
+  function hookXhrCtor(ctorName,tag){
+    try{
+      var Orig=window[ctorName];
+      if(typeof Orig!=='function'){raw(tag+'NOTFUNC',typeof Orig);return;}
+      var NC=function(){
+        var x=new Orig(),murl='',mm='',seq=0;
+        try{
+          x.open=function(m,u){mm=m;murl=u;return Orig.prototype.open.apply(x,arguments);};
+          x.send=function(body){
+            seq=++xhrSeq;
+            try{
+              var pre=mm+' '+murl+'\n';
+              raw(tag+'REQ__'+seq,pre+(body&&typeof body==='string'?body.slice(0,30000):(body?'[bin '+(body.byteLength||body.length)+']':'')));
+            }catch(e){}
+            try{
+              x.addEventListener('load',function(){
+                try{
+                  var rt=x.responseText;
+                  if(typeof rt==='string'&&rt.length)raw(tag+'RESP__'+seq,murl+'\n'+rt.slice(0,120000));
+                  else if(x.response)raw(tag+'RESPBIN__'+seq,murl+' [bin '+(x.response.byteLength||x.response.length)+']');
+                }catch(e){raw(tag+'RESPERR__'+seq,''+e);}
+              });
+              x.addEventListener('error',function(){raw(tag+'XERR__'+seq,murl);});
+            }catch(e){}
+            return Orig.prototype.send.apply(x,arguments);
+          };
+        }catch(e){raw(tag+'WRAPERR',''+e);}
+        return x;
+      };
+      NC.prototype=Orig.prototype;
+      window[ctorName]=NC;
+      raw(tag+'HOOKED','ok');
+    }catch(e){raw(tag+'CONSERR',''+e);}
+  }
+  hookXhrCtor('XWebXMLHttpRequest','XHR_');
+
+  var wsSeq=0;
+  function hookWsCtor(ctorName,tag){
+    try{
+      var Orig=window[ctorName];
+      if(typeof Orig!=='function'){raw(tag+'NOTFUNC',typeof Orig);return;}
+      var NC=function(url,protocols){
+        var ws=protocols?new Orig(url,protocols):new Orig(url),seq=++wsSeq,sc=0,mc=0;
+        raw(tag+'OPEN__'+seq,String(url));
+        try{
+          ws.send=function(d){
+            sc++;
+            try{raw(tag+'SEND__'+seq+'_'+sc,typeof d==='string'?d.slice(0,30000):'[bin '+(d.byteLength||d.length)+']');}catch(e){}
+            return Orig.prototype.send.apply(ws,arguments);
+          };
+          ws.addEventListener('message',function(ev){
+            mc++;
+            try{var d=ev.data;raw(tag+'MSG__'+seq+'_'+mc,typeof d==='string'?d.slice(0,120000):'[bin '+(d.byteLength||d.length)+']');}catch(e){}
+          });
+        }catch(e){raw(tag+'WRAPERR__'+seq,''+e);}
+        return ws;
+      };
+      NC.prototype=Orig.prototype;
+      window[ctorName]=NC;
+      raw(tag+'HOOKED','ok');
+    }catch(e){raw(tag+'CONSERR',''+e);}
+  }
+  hookWsCtor('XWebSocket','XWS_');
+
+  // ===== Pinia profile store 采集器：直接读 cardObjects + 自动 fetchMoreData 翻到底 =====
+  function getProfileStore(){
+    try{
+      var el=document.querySelector('#app');
+      var app=el&&(el.__vue_app__||el.__vueApp__);
+      var pinia=app&&app.config.globalProperties.$pinia;
+      if(pinia&&pinia._s&&pinia._s.get)return pinia._s.get('profile');
+    }catch(e){}
+    return null;
+  }
+  function dumpProfileCards(store,tag){
+    var arr=store.cardObjects||[];
+    try{
+      raw(tag,JSON.stringify({n:arr.length,noMore:store.noMore,cards:arr,liveCards:store.liveCardObjects||[]}));
+      return;
+    }catch(e){raw(tag+'_FULLFAIL',''+e);}
+    var ok=[];
+    for(var i=0;i<arr.length;i++){
+      try{ok.push(JSON.parse(JSON.stringify(arr[i])));}
+      catch(e){try{ok.push({__idx:i,__err:String(e),keys:Object.keys(arr[i]||{})});}catch(_){}}
+    }
+    raw(tag+'_PARTIAL',JSON.stringify({n:arr.length,cards:ok}));
+  }
+  function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+  async function profileDriver(){
+    var store=null;
+    for(var w=0;w<50;w++){store=getProfileStore();if(store)break;await sleep(500);}
+    if(!store){raw('PROFILE_NOSTORE','pinia/profile not found');return;}
+    raw('PROFILE_STOREFIND','ok');
+    var lastSig='',guard=0,dumpedSig='';
+    while(guard<400){
+      guard++;
+      var n=(store.cardObjects||[]).length;
+      var sig=n+'|'+store.noMore+'|'+store.isFetchingMore;
+      if(sig!==lastSig){raw('CARDSTATE__'+guard,JSON.stringify({n:n,noMore:store.noMore,fetching:store.isFetchingMore,liveN:(store.liveCardObjects||[]).length,liveNoMore:store.liveNoMore}));lastSig=sig;}
+      try{
+        if(n>0&&!store.noMore&&!store.isFetchingMore){
+          var p=store.fetchMoreData();
+          if(p&&typeof p.then==='function'){try{await p;}catch(e){raw('FETCHREJ__'+guard,''+e);}}
+          await sleep(1400);
+          continue;
+        }
+        if(store.noMore&&n>0){
+          if(sig!==dumpedSig){dumpProfileCards(store,'PROFILE_CARDS__'+guard);dumpedSig=sig;}
+          await sleep(2500);
+          continue;
+        }
+      }catch(e){raw('DRIVERERR__'+guard,''+e);}
+      await sleep(800);
+    }
+    raw('PROFILE_DRIVEREND','guard exhausted');
+  }
+  profileDriver();
+
+  function hookPortInstance(p,label){
+    try{
+      if(!p) return 'null';
+      if(p.__mpHooked) return 'already';
+      p.__mpHooked=1;
+      var pr=Object.getPrototypeOf(p);
+      var info={label:label,
+        ctor:p.constructor&&p.constructor.name,
+        protoCtor:pr&&pr.constructor&&pr.constructor.name,
+        ownKeys:Object.keys(p),
+        hasPost:typeof p.postMessage,
+        hasAEL:typeof p.addEventListener,
+        onMsg:Object.getOwnPropertyDescriptor(p,'onmessage')?'own':'proto'};
+      raw('PORTINFO__'+label,JSON.stringify(info));
+      if(typeof p.postMessage==='function'&&!p.__pmW){
+        var opm=p.postMessage;p.__pmW=1;
+        p.postMessage=function(){try{wkdump(arguments[0],label+'.POST');}catch(e){}return opm.apply(this,arguments);};
+      }
+      if(typeof p.addEventListener==='function'){
+        p.addEventListener('message',function(e){try{wkdump(e.data,label+'.MSG');}catch(x){}});
+      }else if(typeof p.onmessage==='function'){
+        var om=p.onmessage;
+        var wom=function(e){try{wkdump(e.data,label+'.OM');}catch(_){}return om.apply(this,arguments);};
+        p.onmessage=wom;
+      }
+      return 'ok';
+    }catch(e){raw('PORTERR__'+label,''+e);return 'err';}
+  }
+  function describeXweb(){
+    try{
+      var xw=window.xweb;
+      if(!xw){
+        var wt={xweb:typeof window.xweb,
+          global:typeof window.global,
+          globalEqWin:window.global===window,
+          wxjs:document.__wxjsjs__isLoaded,
+          workerPre:typeof window.workerPre,
+          WXJB:typeof window.WeixinJSBridge,
+          wx:typeof window.wx,
+          winMatch:Object.getOwnPropertyNames(window).filter(function(k){return /xweb|worker|^wx/i.test(k);}).slice(0,30)};
+        raw('WORLDTEST',JSON.stringify(wt));
+        raw('XWEBDESC','no window.xweb');
+        return;
+      }
+      var o={xwKeys:Object.keys(xw)};
+      if(xw.worker){
+        o.workerKeys=Object.keys(xw.worker);
+        try{o.connectSrc=(''+xw.worker.connect).slice(0,400);}catch(e){}
+        var p=xw.worker.port;
+        if(p){
+          o.portKeys=Object.keys(p);
+          o.portCtor=p.constructor&&p.constructor.name;
+          var pr=Object.getPrototypeOf(p);
+          o.portProto=pr&&pr.constructor&&pr.constructor.name;
+        }
+      }
+      raw('XWEBDESC',JSON.stringify(o));
+    }catch(e){raw('XWEBDESCERR',''+e);}
+  }
+  function findHookXweb(){
+    try{
+      describeXweb();
+      var xw=window.xweb;
+      if(xw&&xw.worker){
+        if(xw.worker.port) hookPortInstance(xw.worker.port,'MAIN');
+        Object.keys(xw.worker).forEach(function(k){
+          var v;try{v=xw.worker[k];}catch(e){return;}
+          if(v&&typeof v==='object'&&typeof v.postMessage==='function'&&k!=='port'){
+            hookPortInstance(v,'WK_'+k);
+          }
+        });
+      }
+    }catch(e){}
+  }
+  findHookXweb();
+  var xwTries=0;
+  function xwStep(){
+    xwTries++;
+    try{
+      var xw=window.xweb;
+      if(xw&&xw.worker){
+        if(xw.worker.port&&!xw.worker.port.__mpHooked) hookPortInstance(xw.worker.port,'MAIN');
+        Object.keys(xw.worker).forEach(function(k){
+          var v;try{v=xw.worker[k];}catch(e){return;}
+          if(v&&typeof v==='object'&&typeof v.postMessage==='function'&&k!=='port'&&!v.__mpHooked) hookPortInstance(v,'WK_'+k);
+        });
+      }
+      if(xwTries%4===0) describeXweb();
+    }catch(e){}
+    if(xwTries<150) setTimeout(xwStep,100);
+  }
+  setTimeout(xwStep,100);
 
   // ===== Vuex / Pinia 结构枚举 =====
   function gp(){try{return document.querySelector('#app').__vue_app__.config.globalProperties;}catch(e){return null;}}
