@@ -12,6 +12,7 @@
 
 ### 1.1 冷启动（首次接触 / 开新窗口 / 跨阶段切换）
 按序读，不凭文件名猜测、不直接写代码：
+0. **跨体系任务先路由**：属业务意图（发什么/定方向）→ 先读运营仓 `~/Desktop/self-media-ops/docs/SYSTEM_STRATEGY.md`；属运行机制/路由疑问 → 先读本仓 `docs/SYSTEM_ARCHITECTURE.md`（本仓=采集底座+体系运行机制层）
 1. `README.md` — 项目概览与新会话快速恢复
 2. `docs/DOCUMENTATION_MAP.md` — 文档地图（快速入口）
 3. `docs/WORKFLOW.md` — 四阶段流水线（判断当前阶段）
