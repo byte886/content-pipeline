@@ -14,7 +14,7 @@
 | ① 采集底座 | `~/Desktop/multiplatform-content-pipeline` | 知识从哪来 | ✅ 数据引擎：给渠道/博主即采集→转写→知识成品 |
 | ② 调研方法论 | `~/Doubao/skills/web-research-toolkit` | 外部信息怎么查 | ✅ 方法层：行业包/渠道目录/分层路由 |
 | ③ 情报雷达 | `~/Desktop/ai-intel-monitor` | 正在发生什么 | ✅ 定时扫描：主题→情报速递（周/双周/月） |
-| ④ 生产执行 | `~/Desktop/jewelry-ai-video-sop` | 怎么做 | ✅ 接单即产：产品图→成片→门禁 G1-G5 |
+| ④ 生产执行 | `~/Desktop/heritage-ai-video-sop` | 怎么做 | ✅ 接单即产：产品图→成片→门禁 G1-G5 |
 | ⑤ 运营分发 | `~/Desktop/self-media-ops` | 怎么卖（方向） | 🔶 人驱动：定方向/选题/优先级（不阻塞下游） |
 
 ## 2. 核心原则：意图与驱动分离
@@ -42,7 +42,7 @@
 ├─ 采集/知识生成（采某博主/某渠道内容）→ pipeline（WORKFLOW 四阶段）
 ├─ 查外部资料/选工具/行业调研 → web-research-toolkit（分层路由 L1-L3）
 ├─ 盯动态/定时扫描 → ai-intel-monitor（周/双周/月机制）
-├─ 出图/出视频 → jewelry-ai-video-sop（SOP + 门禁 G1-G5）
+├─ 出图/出视频 → heritage-ai-video-sop（SOP + 门禁 G1-G5）
 ├─ 发朋友圈/自媒体内容 → self-media-ops（写作SOP + AI味检查）
 └─ 跨层任务 → 先读本文件路由，再进对应仓；拿不准就高走：先读策略层
 ```
