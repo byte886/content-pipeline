@@ -33,7 +33,7 @@ from pathlib import Path
 # multiplatform-media-fetch 技能路径（可通过环境变量覆盖）
 TRANSCRIBE_SCRIPT = os.environ.get(
     "TRANSCRIBE_SCRIPT",
-    os.path.expanduser("~/Doubao/skills/multiplatform-media-fetch/scripts/transcribe.py")
+    os.path.expanduser("~/Doubao/skills/multiplatform-media-fetch/scripts/process/funasr_transcribe.py")
 )
 
 # 支持的视频格式
