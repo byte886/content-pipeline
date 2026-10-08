@@ -38,7 +38,7 @@
 
 ### ISSUE-010: GitHub仓库未改名（低优先级）
 - **状态**：待处理
-- **问题描述**：本地目录已改名为multiplatform-content-pipeline，但GitHub仓库还是stock-knowledge-base
+- **问题描述**：本地目录已改名为content-pipeline，但GitHub仓库还是stock-knowledge-base
 - **原因**：GitHub API token有问题，无法通过API改名
 - **方案**：手动在GitHub网页改名（Settings → Rename），旧URL会自动重定向，不影响git操作
 
@@ -64,7 +64,7 @@
 - **问题描述**：百度网盘加密凭证 `.secrets/baidu_credentials.enc` 的解密口令（与本机 sudo、GitHub PAT 解密口令相同）曾被硬编码在 `scripts/netdisk/sync_stock.sh`、`sync_library.sh`、`sync_netdisk.sh`、`baidu_upload.py` 示例中，并随多个历史提交推送到 public GitHub；同时 `.enc` 加密件本身也被跟踪入库，另有 3 个视频号捕获 JSON（含真实签名直链）曾入库。
 - **处置（已全部完成）**：
   1. 工作区止血：4 个脚本改为强制从环境变量 `BAIDU_ENC_PASS` 读取（未设置即报错退出）；体检脚本把明文口令/票据列为 ERROR，弱口令检测规则改字面量拼接（规则自身不再含连续明文）。
-  2. 入库策略收紧：`.gitignore` 改为整个 `.secrets/` 目录不入库（含 `.enc`，移除原先对 `*.enc` 的放行）；`.enc` 改为本地持有（工作区保留、仓外备份于 `~/.config/multiplatform-content-pipeline/.secrets/`）。
+  2. 入库策略收紧：`.gitignore` 改为整个 `.secrets/` 目录不入库（含 `.enc`，移除原先对 `*.enc` 的放行）；`.enc` 改为本地持有（工作区保留、仓外备份于 `~/.config/content-pipeline/.secrets/`）。
   3. 全历史重写：`git filter-repo --replace-text`（口令→`***REMOVED***`）+ `--invert-paths` 移除 `.secrets/` 与 3 个捕获 JSON（`capture_result_20260918.json`、`capture_wushi_20260918.json`、`capture_mp_credential.json`），改写全部提交哈希后 `--force` 强推 master（旧 HEAD `146e007` → 新 HEAD `55596ef`）。
   4. 复验：本地与"从 GitHub 全新克隆"双路全历史 `git grep` 口令 / PAT / 私钥 / 真实票据均 0 命中；`py_compile`、`bash -n`、captor `go build`、doc_health_check 全通过（0 ERROR/0 WARN）。
 - **filter-repo 无法消除的残留风险（须知悉）**：

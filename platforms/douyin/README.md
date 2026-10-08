@@ -70,9 +70,26 @@ python3 /Users/wenjiechen/Doubao/skills/multiplatform-media-fetch/scripts/batch_
 
 ---
 
+## 已实现（2026-10-08）
+
+- [x] 抖音UP主主页视频列表采集（浏览器自动化滚动+DOM提取，虚拟滚动容器）
+- [x] 反爬403解决方案：浏览器直读video标签提取视频流，绕过yt-dlp风控
+- [x] 智能关键帧抽取（镜头检测+清晰度评分+dHash去重）
+- [x] 作者全量知识库构建（分类预判+状态追踪Excel增量更新）
+
+## 本目录文件清单
+
+| 文件 | 用途 |
+|---|---|
+| `README.md` | 本文件，平台概览+已实现状态 |
+| `COLLECT_SOP.md` | **详细批量采集SOP**（滚动列表、分类预判、下载、增量更新） |
+| `scripts/collect_video_list.py` | 自动滚动收集全量视频列表+自动分类 |
+| `scripts/generate_excel.py` | 生成状态追踪Excel，支持增量更新 |
+
+---
+
 ## 待接入
 
-- [ ] 抖音UP主主页视频列表采集（需要逆向或浏览器自动化）
 - [ ] PlatformFetcher接口实现（继承platforms/base.py）
 - [ ] 批量采集编排（参考B站batch_build.py）
 
@@ -80,6 +97,5 @@ python3 /Users/wenjiechen/Doubao/skills/multiplatform-media-fetch/scripts/batch_
 
 ## 参考
 
-- 技能路径：`/Users/wenjiechen/Doubao/skills/multiplatform-media-fetch/`
-- 下载脚本：`scripts/media_downloader.py`
-- 批量脚本：`scripts/batch_fetch.py`
+- 通用技能路径：`/Users/wenjiechen/Doubao/skills/multiplatform-media-fetch/`
+- 已废弃方案：yt-dlp直连抖音（返回403 Fresh cookies错误，不要用）

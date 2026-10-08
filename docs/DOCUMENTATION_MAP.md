@@ -19,6 +19,9 @@
 ### 开发环境与 AI 编程工具
 1. `docs/guides/codex-dev-environment.md` — **Codex 安装、模型选型(GPT-5.6 Sol)、算力购买(订阅/中转/国产)、配置与操作步骤**
 
+### 技能编写与优化
+1. `docs/guides/技能编写优化SOP.md` — **技能目录结构、命名规范、文档层级、给AI用的写法**（已实践验证于multiplatform-media-fetch）
+
 ### 网络环境预检（任何改系统代理的采集前）
 1. `docs/guides/network-preflight.md` — 只读网络诊断与上游代理选择（代理翻墙能力实测、Tailscale、跨机器配置）
 
@@ -44,9 +47,19 @@
 1. `docs/guides/audio-transcription.md` — FunASR 本地离线转写：环境搭建、批量脚本用法、输出目录、空稿判定
 2. 批量转写脚本：`platforms/wechat_channels/video-transcribe/batch_transcribe.py`（模型只加载一次、断点续跑）
 3. OCR工具：`processing/ocr/tools/batch_article_images.py`（macOS Vision）
+4. **智能关键帧抽取**（镜头检测+清晰度评分+dHash去重）：`技能路径/multiplatform-media-fetch/scripts/extract_keyframes.py`
+
+### 抖音博主全量采集（2026-10-08新增）
+1. 抖音平台说明：`platforms/douyin/README.md`（浏览器直读video流绕过403方案）
+2. **抖音批量采集详细SOP**：`platforms/douyin/COLLECT_SOP.md`（滚动列表、分类预判、批量下载、增量更新）
+3. 收集列表脚本：`platforms/douyin/scripts/collect_video_list.py`
+4. 生成状态Excel脚本：`platforms/douyin/scripts/generate_excel.py`
+5. 作者知识库构建通用SOP：`技能路径/multiplatform-media-fetch/references/author-video-knowledge-base.md`
+6. 郭颖珠宝库样例：`library/05_knowledge/jewelry/珠宝学者郭颖/`
 
 ### 知识提取与知识库
 1. `docs/design/knowledge-base-organization.md` — 知识库架构设计+内容规范
+2. 行业插件模板（珠宝鉴赏/视频创作）：`技能路径/multiplatform-media-fetch/references/domain-plugins/`
 
 ### 遇到问题/异常
 1. `grep -rn "关键词" docs/` — 搜索相关文档
@@ -100,6 +113,7 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
+| 体系架构与路由 | `docs/SYSTEM_ARCHITECTURE.md` | 跨体系任务路由、运行机制说明 |
 | 新窗口接手SOP | `docs/新窗口接手开场白.md` | 开窗触发词、老窗口收口、标准句、六问验收、换机兜底 |
 | 项目维护SOP | `docs/项目维护SOP.md` | 单一真相源路由、维护节奏、冷启动六问、提交前检查 |
 | 项目日志（HANDOFF） | `docs/HANDOFF.md` | 倒序过程日志（聊了什么→结论→为什么）、当前纠结、产物地图 |

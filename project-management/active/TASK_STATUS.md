@@ -69,7 +69,7 @@
 
 ## 最近完成（2026-09-22）
 
-- 🔐 **ISSUE-014 凭证明文历史清除（filter-repo 全历史重写 + 强推）**：全历史扫描锁定敏感面（明文口令、被跟踪的 `.secrets/baidu_credentials.enc`、3 个含真实签名直链的捕获 JSON；无 PAT/私钥/百度 token 明文，"AKIA" 为 wasm 误报）；`.gitignore` 收紧为**整个 `.secrets/` 不入库**、`.enc` 本地持有（仓外备份 `~/.config/multiplatform-content-pipeline/.secrets/`）；体检弱口令检测改字面量拼接；`git filter-repo --replace-text + --invert-paths` 重写全部提交并 `--force` 强推（旧 HEAD `146e007` → 新 HEAD `55596ef`）；本地与"从 GitHub 全新克隆"双路全历史 grep 口令/PAT/私钥/真实票据均 **0 命中**，py/sh/go 构建与体检全过（0 ERROR/0 WARN）。
+- 🔐 **ISSUE-014 凭证明文历史清除（filter-repo 全历史重写 + 强推）**：全历史扫描锁定敏感面（明文口令、被跟踪的 `.secrets/baidu_credentials.enc`、3 个含真实签名直链的捕获 JSON；无 PAT/私钥/百度 token 明文，"AKIA" 为 wasm 误报）；`.gitignore` 收紧为**整个 `.secrets/` 不入库**、`.enc` 本地持有（仓外备份 `~/.config/content-pipeline/.secrets/`）；体检弱口令检测改字面量拼接；`git filter-repo --replace-text + --invert-paths` 重写全部提交并 `--force` 强推（旧 HEAD `146e007` → 新 HEAD `55596ef`）；本地与"从 GitHub 全新克隆"双路全历史 grep 口令/PAT/私钥/真实票据均 **0 命中**，py/sh/go 构建与体检全过（0 ERROR/0 WARN）。
   - **残留动作（非阻塞）**：①建议重新走百度 OAuth 授权作废旧 token（口令用户选择不改，这是最有效补救；refresh_token 约 10 年，重新授权是否立即作废旧 refresh 未实测）；②确认新仓无误后删除桌面兜底 `mcp-PRE-CLEANUP-20260922.bundle`（含原始敏感历史）；③其他机器的旧克隆需删除重克隆。详见 ISSUE-014。
 - 🧮 **视频号文件盘严格对账 + 全量基准落库（方案 A 离线收尾）**：固化 `parse_capture_log.py`（重组 captor `_api.log` 的整块/分块 payload，产出脱敏 catalog + 含票据 signed 两份分离，复刻 id=md5(md5sum)[:16]）与 `audit_disk.py`（ffprobe 时长+归一化标题+hashtag 消歧，文件盘 vs catalog 对账，带时长缓存）。权威基准落 `library/00_manifest/catalog_交易的游戏.json`（339 短视频/28 回放/1 图文，零签名）、报告落 `audit_交易的游戏.json`。结论：**短视频 339 全有、0 缺、0 游离、71 组各 2 个重复（71 个多余、约 300MB）；回放 28 缺 3、0 重复**。多匹配 short_055/short_311 已用 hashtag 消歧为两条不同视频。修复 incremental_sync.py 三处 `live`→`lives` 键 bug（待 dry-run）。改 replay_list_hook.go slim 增换签字段 + probeSignActions（go build 通过，待刷新验证 → ISSUE-017）。去重/补回放/台账重建方案见 ISSUE-016。
 

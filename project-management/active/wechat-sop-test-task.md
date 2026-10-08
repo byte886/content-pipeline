@@ -2,7 +2,7 @@
 
 > 创建时间：2026-09-20
 > 任务状态：待执行
-> 项目根目录：`/Users/wenjiechen/Desktop/multiplatform-content-pipeline/`
+> 项目根目录：`/Users/wenjiechen/Desktop/content-pipeline/`
 
 ## 前置阅读
 1.  完整阅读`docs/guides/wechat-basic-operations.md`（微信UI自动化基础SOP）

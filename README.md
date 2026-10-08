@@ -1,8 +1,8 @@
-# 多平台内容流水线（multiplatform-content-pipeline）
+# 多平台内容流水线（content-pipeline）
 
 > **项目类型**：多平台内容采集 + 知识库生成 + 文稿/视频创作
 > **维护者**：AI自动维护 + 用户审核
-> **仓库**：`~/Desktop/multiplatform-content-pipeline/` ｜ GitHub `github.com/byte886/multiplatform-content-pipeline`（public，master）
+> **仓库**：`~/Desktop/content-pipeline/` ｜ GitHub `github.com/byte886/content-pipeline`（public，master）
 
 ---
 
@@ -10,7 +10,7 @@
 
 **目标：只要知道仓库位置，新窗口不翻旧聊天即可接手。**
 
-1. 新建任务窗口时，项目文件夹选 `~/Desktop/multiplatform-content-pipeline`（不要用 `~/Doubao/chats` 临时目录）。
+1. 新建任务窗口时，项目文件夹选 `~/Desktop/content-pipeline`（不要用 `~/Doubao/chats` 临时目录）。
 2. 直接发标准句：
 
    ```
@@ -72,7 +72,7 @@
 ## 项目结构概览
 
 ```
-multiplatform-content-pipeline/
+content-pipeline/
 ├── platforms/          # 采集层：平台插件
 ├── processing/         # 处理层：转写/OCR/知识提取
 ├── core/               # 核心框架：流水线编排+水位机制

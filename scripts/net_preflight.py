@@ -22,7 +22,7 @@ Tailscale 状态 / （可选增强）物理网络服务明细，并给出确定�
 
 配置（端口候选/直连域名/测试 URL/超时），后者覆盖前者：
   1. 环境变量 MCP_NET_CONFIG 指定文件
-  2. ~/.config/multiplatform-content-pipeline/network.json（机器级覆盖）
+  2. ~/.config/content-pipeline/network.json（机器级覆盖）
   3. <仓库>/config/network.json（随仓默认）
   4. 本脚本内置 DEFAULT_NET_CONFIG（兜底）
 
@@ -83,7 +83,7 @@ def load_config():
     env = os.environ.get("MCP_NET_CONFIG")
     if env:
         paths.append(Path(env))
-    paths.append(Path.home() / ".config" / "multiplatform-content-pipeline" / "network.json")
+    paths.append(Path.home() / ".config" / "content-pipeline" / "network.json")
     paths.append(REPO_ROOT / "config" / "network.json")
     for p in paths:
         try:

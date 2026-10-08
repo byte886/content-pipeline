@@ -1,6 +1,6 @@
 # Codex 开发环境与模型选型方案（GPT-5.6 Sol）
 
-> 更新：2026-09-27 ｜ 适用：本仓 `multiplatform-content-pipeline`（Go/Python，多平台采集）
+> 更新：2026-09-27 ｜ 适用：本仓 `content-pipeline`（Go/Python，多平台采集）
 > 交接对象：**整个仓库目录**（不是单文档）
 
 ---
@@ -137,7 +137,7 @@ wire_api = "responses"
 3. 二选一：
    - **订阅**：`codex login` 走 ChatGPT Plus（含 Sol）；
    - **中转/国产**：按 6.2 / 6.3 编辑 `~/.codex/config.toml` 并 `export` 对应 key。
-4. `cd ~/Desktop/multiplatform-content-pipeline`。
+4. `cd ~/Desktop/content-pipeline`。
 5. 启动并先让它熟悉仓库与任务：
    ```bash
    codex

@@ -10,7 +10,7 @@
 ## 1. 一条命令
 
 ```bash
-cd ~/Desktop/multiplatform-content-pipeline
+cd ~/Desktop/content-pipeline
 python3 platforms/wechat_channels/collect_channels.py "交易的游戏" --domain stock --quality min
 ```
 

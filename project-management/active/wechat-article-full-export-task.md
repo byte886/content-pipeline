@@ -1,14 +1,14 @@
 # 公众号「顶底之王」全量历史文章导出 · Xcode 智能体交接任务书
 
 > 更新：2026-10-02 ｜ 状态：**已完成：全量 278 篇确认已在本地存档，927 张配图全离线；方案 B（坐标视觉 RPA）最小闭环已验证（见 §3.3、§6）**
-> 仓库根：`~/Desktop/multiplatform-content-pipeline/`（多机用 `$HOME` 派生，勿硬编码）
-> Remote：`git@github.com:byte88/multiplatform-content-pipeline.git`（public）｜ HEAD：`e5da786`（已推送）
+> 仓库根：`~/Desktop/content-pipeline/`（多机用 `$HOME` 派生，勿硬编码）
+> Remote：`git@github.com:byte88/content-pipeline.git`（public）｜ HEAD：`e5da786`（已推送）
 
 ---
 
 ## 0. 给接手智能体的提示词（可直接粘贴到 Xcode 智能体对话）
 
-> 你在本仓 `multiplatform-content-pipeline` 中工作。先完整阅读
+> 你在本仓 `content-pipeline` 中工作。先完整阅读
 > `project-management/active/wechat-article-full-export-task.md`（本文件）与
 > `docs/guides/wechat-official-article.md`。目标：用**自研、不付费**方式，导出微信公众号
 > 「顶底之王」（`__biz=MzUxODM4ODM5Mg==`）的**全量历史文章 `/s/` 链接清单（期望 278+ 篇）**。

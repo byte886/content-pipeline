@@ -69,7 +69,7 @@ python3 scripts/net_preflight.py -o preflight.json  # 同时存档
 配置查找顺序，后者覆盖前者：
 
 1. 环境变量 `MCP_NET_CONFIG` 指定的文件（一次性）；
-2. `~/.config/multiplatform-content-pipeline/network.json`（机器级覆盖）；
+2. `~/.config/content-pipeline/network.json`（机器级覆盖）；
 3. 仓库 `config/network.json`（随仓默认）；
 4. 脚本内置默认值（兜底，无配置也能跑）。
 

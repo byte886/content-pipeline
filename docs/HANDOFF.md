@@ -12,7 +12,7 @@
 - **北极星**：平台可插拔、行业可隔离、采集可增量、过程可无人值守（仅"拿一次 token"需人工触发），最终为个人量化系统与自有公众号/视频号提供知识与文案底座。
 - **当前主战场**：股票行业源——公众号「顶底之王」+ 其视频号「交易的游戏」（finder username 见 `config/sources.json`，不在此写临时票据）。
 - **现在在**：视频号采集 **B 方案（Pinia action 驱动）已端到端验证成功**（不滚 DOM、直接枚举全量列表），正处"把 action 全量接入下载管道 + 用权威值重对账落库"的收尾；公众号文章全量走 HTTP `getmsg` 的方案已调研、待人工激活一次凭证后实测。
-- **仓库**：本地 `~/Desktop/multiplatform-content-pipeline/`；GitHub `github.com/byte886/multiplatform-content-pipeline`（public，master）。
+- **仓库**：本地 `~/Desktop/content-pipeline/`；GitHub `github.com/byte886/content-pipeline`（public，master）。
 
 ---
 
@@ -22,7 +22,7 @@
 
 ### 2026-09-22 · ISSUE-014 凭证明文历史清除（filter-repo 全历史重写并强推）
 - **聊了什么**：用户拍板**口令不更换**、授权清除 public 历史；并强调"不要假设攻击者拿不到密文"——口令与 `.enc` 曾同时公开，需按"百度凭证已等同泄露"处置，不能拿"密文加密了"当安全前提。
-- **结论**：①全历史扫描锁定敏感面 = 明文口令（多个提交）、被跟踪的 `.secrets/baidu_credentials.enc`、3 个含真实签名直链的捕获 JSON；同时排除虚惊（无 GitHub PAT/私钥/百度 token 明文，文档票据全是占位，"AKIA" 命中是 wasm base64 子串误报）。②工作区止血：网盘脚本强制环境变量 `BAIDU_ENC_PASS`、体检拦明文、弱口令检测规则改字面量拼接（规则自身不进历史）。③`.gitignore` 收紧为**整个 `.secrets/` 不入库**（移除 `*.enc` 放行），`.enc` 本地持有 + 仓外备份 `~/.config/multiplatform-content-pipeline/.secrets/`。④`git bundle` 兜底后用 `git filter-repo --replace-text`（口令→`***REMOVED***`）+ `--invert-paths`（移除 `.secrets/` 与 3 个捕获 JSON）重写全部提交并 `--force` 强推（旧 HEAD `146e007` → 新 HEAD `55596ef`）。⑤本地与"从 GitHub 全新克隆"双路全历史 grep 口令/PAT/私钥/真实票据均 0 命中，`py_compile`/`bash -n`/captor `go build`/体检全过（0 ERROR/0 WARN）。
+- **结论**：①全历史扫描锁定敏感面 = 明文口令（多个提交）、被跟踪的 `.secrets/baidu_credentials.enc`、3 个含真实签名直链的捕获 JSON；同时排除虚惊（无 GitHub PAT/私钥/百度 token 明文，文档票据全是占位，"AKIA" 命中是 wasm base64 子串误报）。②工作区止血：网盘脚本强制环境变量 `BAIDU_ENC_PASS`、体检拦明文、弱口令检测规则改字面量拼接（规则自身不进历史）。③`.gitignore` 收紧为**整个 `.secrets/` 不入库**（移除 `*.enc` 放行），`.enc` 本地持有 + 仓外备份 `~/.config/content-pipeline/.secrets/`。④`git bundle` 兜底后用 `git filter-repo --replace-text`（口令→`***REMOVED***`）+ `--invert-paths`（移除 `.secrets/` 与 3 个捕获 JSON）重写全部提交并 `--force` 强推（旧 HEAD `146e007` → 新 HEAD `55596ef`）。⑤本地与"从 GitHub 全新克隆"双路全历史 grep 口令/PAT/私钥/真实票据均 0 命中，`py_compile`/`bash -n`/captor `go build`/体检全过（0 ERROR/0 WARN）。
 - **为什么 / 残留**：filter-repo 清不掉已存在的 fork/clone/第三方缓存，旧哈希可能短时仍可经直链访问；不改口令前提下最有效补救是**重新走百度 OAuth 授权作废旧 access/refresh token**（refresh 约 10 年；重新授权是否立即作废旧 refresh 取决于百度规则，未实测、不确定）；其他机器须重新克隆；桌面兜底 `mcp-PRE-CLEANUP-20260922.bundle` 含原始敏感历史，确认无误后删除。详见 ISSUE-014。
 
 ### 2026-09-21（深夜）· 视频号 B 方案（Pinia action 驱动）验证成功 + 接手体系建成

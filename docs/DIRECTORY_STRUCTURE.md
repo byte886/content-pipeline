@@ -29,7 +29,7 @@
 ## 一、项目仓库目录结构（GitHub）
 
 ```
-multiplatform-content-pipeline/
+content-pipeline/
 ├── README.md                          # 项目概览（快速导航）
 ├── AGENTS.md                          # AI操作手册（命令式、可执行）
 ├── config/
