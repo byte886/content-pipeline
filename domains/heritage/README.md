@@ -2,7 +2,7 @@
 
 > **定位**：鉴宝 + 收藏（appraisal & collection）知识总域。覆盖珠宝、翡翠、古玩古董、家具、以及东西方各文明体系的收藏与鉴赏需求。
 > **命名**：总域英文 `heritage`；子域全英文，各子域独立建包、可独立扩展。
-> **关系**：原 `domains/jewelry/` 归入本总域 `01_jewelry`；调研技能行业包（web-research-toolkit `industry-packs.md`）与监控仓渠道矩阵（ai-intel-monitor `01_渠道矩阵/`）同步按此结构组织。
+> **关系**：原 `domains/jewelry/` 归入本总域 `01_jewelry`。
 
 ## 子域结构
 
@@ -17,15 +17,7 @@
 
 > 状态图例：✅ 已落地 / 🔶 已备方法论待细建 / ⚪ 未启动
 
-## 协作关系（跨仓库指针）
-
-- **采集底座**：本仓库（multiplatform-content-pipeline）——平台插件层 + 四阶段流水线，按"采集渠道"维度合并（B站/抖音/视频号/公众号/YouTube），行业隔离在 domains 层
-- **调研方法论**：`~/Doubao/skills/web-research-toolkit`（行业包 industry-packs.md）——怎么查
-- **情报雷达**：`~/Desktop/ai-intel-monitor`（渠道矩阵）——正在发生什么
-- **生产执行**：`~/Desktop/ai-video-studio`——怎么做（SOP/出片）
-- **运营分发**：`~/Desktop/self-media-ops`——怎么卖（朋友圈/自媒体）
-
-## 建包纪律
+## 本域建包纪律
 
 1. 每个子域独立 `knowledge_base/README.md`（来源表 + 分类 + 采集配置），不合并、不混写
 2. 新子域启用顺序：先建调研技能行业包（词库+查询模板）→ 再补监控仓渠道矩阵 → 最后 pipeline 采集配置

@@ -12,8 +12,7 @@
 
 ### 1.1 冷启动（首次接触 / 开新窗口 / 跨阶段切换）
 按序读，不凭文件名猜测、不直接写代码：
-0. **跨体系任务先路由**：属业务意图（发什么/定方向）→ 先读运营仓 `~/Desktop/self-media-ops/docs/SYSTEM_STRATEGY.md`；属运行机制/路由疑问 → 先读本仓 `docs/SYSTEM_ARCHITECTURE.md`（本仓=采集底座+体系运行机制层）
-1. `README.md` — 项目概览与新会话快速恢复
+1. 先读 `README.md` — 项目概览与新会话快速恢复
 2. `docs/DOCUMENTATION_MAP.md` — 文档地图（快速入口）
 3. `docs/WORKFLOW.md` — 四阶段流水线（判断当前阶段）
 4. `docs/HANDOFF.md` — §1 倒序项目日志（聊了什么→结论→为什么）+ §3 当前纠结
@@ -23,7 +22,10 @@
    - **微信基本操作（前置依赖）**：`docs/guides/wechat-basic-operations.md`
    - 视频号采集：`docs/guides/wechat-channels-capture.md`
    - 公众号采集：`docs/guides/wechat-official-article.md`
+   - 抖音采集（浏览器直读绕403）：`platforms/douyin/README.md`
+   - B站采集：`platforms/bilibili/`
    - 增量采集：`docs/guides/incremental-fetch.md`
+   - 智能关键帧抽取：技能路径 `multiplatform-media-fetch/scripts/extract_keyframes.py`
 
 读完用 `docs/项目维护SOP.md` §5「冷启动六问」自测，把六个答案讲给用户听，**答不上或文档自相矛盾先修文档再动手**。
 开新任务窗口的固定动作（触发词、老窗口收口、标准句、兜底）见 `docs/新窗口接手开场白.md`。
@@ -114,10 +116,13 @@ done
 |------|------|------|
 | GitHub仓库 | 代码+文档+清洗后知识成品 | **禁止**放视频、PDF、逐字转写、原文、凭证 |
 | `library/` | 原始资源 + 知识成品 | 本地唯一权威源 |
+| `library/01_video/<行业>/<博主>/` | 按行业分视频 | 股票/珠宝/视频创作分目录 |
+| `library/05_knowledge/<行业>/<博主>/` | 按行业分知识 | 转写、OCR、知识文档、状态清单 |
 | `workspace/` | 过程件 | gitignore忽略 |
 | 百度网盘 | 成品镜像 | 备份+跨设备访问 |
 
 > 详细目录结构见 `docs/DIRECTORY_STRUCTURE.md`
+> 通用技能路径：`/Users/wenjiechen/Doubao/skills/multiplatform-media-fetch/`
 
 ---
 
@@ -125,11 +130,14 @@ done
 
 | 核心工具 | 位置 |
 |---------|------|
-| 视频捕获（MITM） | `platforms/wechat_channels/video-capture/` |
-| 视频下载+解密 | `platforms/wechat_channels/video-downloader/` |
-| 视频转文字 | `processing/transcription/tools/` |
-| 图文OCR | `processing/ocr/tools/` |
-| 知识库查询 | `processing/knowledge_extraction/tools/` |
+| 视频捕获（MITM，微信系） | `platforms/wechat_channels/video-capture/` |
+| 视频下载+解密（微信系） | `platforms/wechat_channels/video-downloader/` |
+| 抖音浏览器直读（绕403） | `platforms/douyin/` + Chrome自动化 |
+| 视频转文字（FunASR） | `processing/transcription/tools/` |
+| 智能关键帧抽取（镜头检测+清晰度） | 技能 `multiplatform-media-fetch/scripts/extract_keyframes.py` |
+| 图文OCR（macOS Vision） | `processing/ocr/tools/` |
+| 知识库查询（股票） | `processing/knowledge_extraction/tools/` |
+| 行业插件模板（珠宝/视频创作） | 技能 `multiplatform-media-fetch/references/domain-plugins/` |
 
 ---
 
