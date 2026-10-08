@@ -25,8 +25,8 @@
 | 编号 | 标题 | 类型 | 状态 | 说明 |
 |------|------|------|------|------|
 | T-10 | 视频号API研究（方案B） | research | ✅ B方案验证成功 | 列表不走HTTP，走XWEB桥+Pinia；**已验证直接调 `profile.fetchMoreData({username})` 翻页到 noMore、回放切tab首屏即全量，不滚DOM**。实测340视频+1图文/回放29（09-23 增量后）。✅ 2026-09-22 已用 ffprobe 严格对账（audit_disk.py）：短视频339全有/0缺/71重复、回放缺3，权威基准落 `library/00_manifest/catalog_交易的游戏.json`，报告落 `audit_交易的游戏.json` |
-| T-22 | 方法提炼（MethodNote）LLM分析 | feature | blocked | 框架已搭，抖音反爬403，等用户手动下载视频后继续 |
-| T-31 | 指定博主全量采集 | feature | todo | 抖音反爬403，暂时跳过 |
+| T-22 | 方法提炼（MethodNote）LLM分析 | feature | blocked | 框架已搭；郭颖 6 个测试视频已下载转写，LLM 分析可对已转写样本先行；全量待批量下载后继续 |
+| T-31 | 指定博主全量采集（郭颖） | feature | 进行中 | **2026-10-09 恢复**：387 条清单已建，6/387 完成；批次计划落 `project-management/active/guoying-batch-plan.md`（186 条待下 = 高价值科普 140 + 潘家园实战 46 → 34 批，每批 ≤10 条防风控） |
 | T-32 | 艺术/博物馆站点采集 | research | todo | 6个站点，待评估爬虫友好度 |
 | T-33 | 视频提到的书籍收集 | feature | 进行中 | 5本完成，《广义趋势理论》待用户决策 |
 | T-34 | 通用增量采集框架 | feature | ✅ 完成 | B站/YouTube验证通过；视频号 `incremental_sync.py` 已于 09-23 实跑成功（对账补下 live_029） |
