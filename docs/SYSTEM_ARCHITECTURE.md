@@ -7,7 +7,7 @@
 
 ---
 
-> **⚠️ 跨仓体系关系（五仓分层/职责表/任务路由/跨仓纪律）的权威正文在总控仓 `~/Desktop/multi-repo-orchestration/`（README.md + docs/五层现状总表.md）**，本仓不再单独维护分层表 / 对接表 / 路由表 / 纪律全文，避免双写漂移。历史全文（v1）归档见 `docs/archive/SYSTEM_ARCHITECTURE_v1_full_2026-10-08.md`。
+> **⚠️ 跨仓体系关系（五仓分层/职责表/任务路由/跨仓纪律）的权威正文在总控仓 `~/Desktop/control-tower/`（README.md + docs/五层现状总表.md）**，本仓不再单独维护分层表 / 对接表 / 路由表 / 纪律全文，避免双写漂移。历史全文（v1）归档见 `docs/archive/SYSTEM_ARCHITECTURE_v1_full_2026-10-08.md`。
 
 ## 本仓工作流（正文以此为准）
 
