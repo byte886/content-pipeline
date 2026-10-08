@@ -16,7 +16,7 @@
 | ① 采集底座 | `~/Desktop/multiplatform-content-pipeline`（本仓） | 知识从哪来：给渠道/博主即采集→转写→知识成品 |
 | ② 调研方法论 | `~/Doubao/skills/web-research-toolkit` | 外部信息怎么查：行业包/渠道目录/分层路由 |
 | ③ 情报雷达 | `~/Desktop/ai-intel-monitor` | 正在发生什么：定时扫描→情报速递（周/双周/月） |
-| ④ 生产执行 | `~/Desktop/heritage-ai-video-sop` | 怎么做：接单即产→成片→门禁 G1-G5 |
+| ④ 生产执行 | `~/Desktop/ai-video-studio` | 怎么做：接单即产→成片→门禁 G1-G5 |
 | ⑤ 运营分发 | `~/Desktop/self-media-ops` | 怎么卖（方向）：人驱动定选题/优先级，不阻塞下游 |
 
 ## 2. 权威源指针（正文以此为准）
