@@ -100,5 +100,4 @@ export BILI_OUTPUT_DIR="library/00_manifest/bilibili"  # 输出目录
 
 ## 参考
 
-- 珠宝知识库项目：https://github.com/byte886/jewelry-knowledge
 - B站API文档：https://github.com/SocialSisterYi/bilibili-API-collect
