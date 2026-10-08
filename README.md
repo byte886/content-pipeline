@@ -47,7 +47,7 @@
 | 微信视频号 | ✅ 已端到端跑通 | Pinia action 直枚举全量，一键 `collect_channels.py`（人工只开一次窗）；「交易的游戏」已全量下载+转写+台账对账（具体数以 `library/00_manifest/` 台账为准） |
 | 微信公众号 | 🔧 全量方案待实测 | 本地库仅得最近几篇；HTTP `getmsg` 方案待人工激活一次凭证后跑通 |
 | B站 | ✅ 已接入（珠宝源） | 采集量以台账为准；subprocess 环境走代理会 412，须直连 |
-| 抖音 | ⏸ 暂缓 | 网页反爬 403，指定博主任务待用户手动提供视频 |
+| 抖音 | ✅ 已接入（珠宝源） | 浏览器直读video流绕过403风控；郭颖珠宝库已跑通6个测试视频，待批量 |
 | YouTube | 🔧 待接入 | 复用 multiplatform-media-fetch，需代理 |
 
 ---
@@ -66,6 +66,7 @@
 | [docs/ROADMAP.md](docs/ROADMAP.md) | 项目长期规划 |
 | [docs/guides/codex-dev-environment.md](docs/guides/codex-dev-environment.md) | **Codex 环境、模型选型(GPT-5.6 Sol)、算力购买与操作步骤** |
 | [project-management/active/TASK_STATUS.md](project-management/active/TASK_STATUS.md) | 当前进度、下一步（单一进度真相） |
+| 🏛️ [总控仓 system-architecture](../system-architecture/) | 五仓体系总控/跨仓路由权威源（本仓=①采集底座；体系架构见本仓 docs/SYSTEM_ARCHITECTURE.md） |
 
 ---
 
