@@ -1,0 +1,1157 @@
+{
+  "stats": {
+    "total": 192,
+    "success": 186,
+    "skipped": 6,
+    "failed": 0,
+    "errors": []
+  },
+  "details": [
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/128克柿子南红2300/transcript.md",
+      "time": 25.574782133102417,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/128克柿子南红2300.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/2023中国国际珠宝二级市场/transcript.md",
+      "time": 17.9356632232666,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/2023中国国际珠宝二级市场.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/2023中国国际珠宝首饰展览会/transcript.md",
+      "time": 17.828855991363525,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/2023中国国际珠宝首饰展览会.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/2024流行色撞衫宝石/transcript.md",
+      "time": 20.64280605316162,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/2024流行色撞衫宝石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/3D硬金/transcript.md",
+      "time": 15.425459861755371,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/3D硬金.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/3月生辰石海蓝宝/transcript.md",
+      "time": 15.70247483253479,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/3月生辰石海蓝宝.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/8888和田玉三件套开箱/transcript.md",
+      "time": 23.147912979125977,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/8888和田玉三件套开箱.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/一克拉以下算碎钻吗/transcript.md",
+      "time": 16.110612869262695,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/一克拉以下算碎钻吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/一克拉以下都算碎钻/transcript.md",
+      "time": 16.9567289352417,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/一克拉以下都算碎钻.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/一千块买翡翠手镯/transcript.md",
+      "time": 17.71831488609314,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/一千块买翡翠手镯.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/一吨黄金一吨钱/transcript.md",
+      "time": 18.126054048538208,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/一吨黄金一吨钱.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/一步一响叮当镯/transcript.md",
+      "time": 17.605125904083252,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/一步一响叮当镯.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/三招鉴别假黄金/transcript.md",
+      "time": 18.846635103225708,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/三招鉴别假黄金.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/不到1克拉不叫宝石/transcript.md",
+      "time": 18.67727017402649,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/不到1克拉不叫宝石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/中国民间最受欢迎十人物/transcript.md",
+      "time": 26.62535810470581,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/中国民间最受欢迎十人物.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/买彩宝到底要不要看产地/transcript.md",
+      "time": 16.576887130737305,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/买彩宝到底要不要看产地.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/买水晶找郭颖/transcript.md",
+      "time": 25.323681116104126,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/买水晶找郭颖.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/买黄金避坑印记/transcript.md",
+      "time": 19.88111686706543,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/买黄金避坑印记.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/于正买翡翠被骗/transcript.md",
+      "time": 31.16317892074585,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/于正买翡翠被骗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/云逛潘家园海蓝宝/transcript.md",
+      "time": 19.65741205215454,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/云逛潘家园海蓝宝.mp4"
+    },
+    {
+      "status": "skipped",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/什么是翡翠的水/transcript.md",
+      "video": "library/01_video/jewelry/珠宝学者郭颖/什么是翡翠的水.mp4"
+    },
+    {
+      "status": "skipped",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/什么是翡翠的种/transcript.md",
+      "video": "library/01_video/jewelry/珠宝学者郭颖/什么是翡翠的种.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/什么是虚拟首饰/transcript.md",
+      "time": 17.234782934188843,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/什么是虚拟首饰.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/什么是鸽血红/transcript.md",
+      "time": 13.822903633117676,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/什么是鸽血红.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/什么样的翡翠贵什么样的便宜/transcript.md",
+      "time": 18.72439193725586,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/什么样的翡翠贵什么样的便宜.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/价值一套房的和田玉籽料/transcript.md",
+      "time": 23.763159036636353,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/价值一套房的和田玉籽料.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/保利秋拍高货翡翠/transcript.md",
+      "time": 27.861557006835938,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/保利秋拍高货翡翠.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/半山半水琥珀蜜蜡/transcript.md",
+      "time": 24.53384494781494,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/半山半水琥珀蜜蜡.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/南红手串一抹红色/transcript.md",
+      "time": 19.750848054885864,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/南红手串一抹红色.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/同样是翠差价10倍/transcript.md",
+      "time": 23.72026801109314,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/同样是翠差价10倍.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/向太分享80克拉帕拉伊巴碧玺/transcript.md",
+      "time": 16.790174961090088,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/向太分享80克拉帕拉伊巴碧玺.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/和氏璧的原石/transcript.md",
+      "time": 16.102519035339355,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/和氏璧的原石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/和田玉手串适合春天/transcript.md",
+      "time": 31.04075789451599,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/和田玉手串适合春天.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/和田玉新疆料青海料俄料/transcript.md",
+      "time": 14.389461040496826,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/和田玉新疆料青海料俄料.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/和田玉碧玉手镯挑选/transcript.md",
+      "time": 24.590463876724243,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/和田玉碧玉手镯挑选.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/和田玉籽料辨别真假/transcript.md",
+      "time": 18.114353895187378,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/和田玉籽料辨别真假.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/和田玉耳饰学问/transcript.md",
+      "time": 17.733100175857544,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/和田玉耳饰学问.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/和田玉青花料关联区别/transcript.md",
+      "time": 17.696273803710938,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/和田玉青花料关联区别.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/咖钻是天坑/transcript.md",
+      "time": 13.24905014038086,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/咖钻是天坑.mp4"
+    },
+    {
+      "status": "skipped",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/品鉴价值三个亿的翡翠/transcript.md",
+      "video": "library/01_video/jewelry/珠宝学者郭颖/品鉴价值三个亿的翡翠.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/唐僧锦襕袈裟/transcript.md",
+      "time": 22.05775475502014,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/唐僧锦襕袈裟.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/喜欢水晶下次一起选/transcript.md",
+      "time": 29.703577041625977,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/喜欢水晶下次一起选.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/四大贵宝石都有平替/transcript.md",
+      "time": 14.024121761322021,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/四大贵宝石都有平替.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/国际十大珠宝品牌大科普/transcript.md",
+      "time": 16.530175924301147,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/国际十大珠宝品牌大科普.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/在国外买珠宝有哪些坑/transcript.md",
+      "time": 14.837196111679077,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/在国外买珠宝有哪些坑.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/地大珠宝直播间靠谱吗/transcript.md",
+      "time": 15.95243215560913,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/地大珠宝直播间靠谱吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/培育钻石与奥地利钻石区别/transcript.md",
+      "time": 13.867598295211792,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/培育钻石与奥地利钻石区别.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/培育钻石和莫桑钻区别/transcript.md",
+      "time": 14.010658979415894,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/培育钻石和莫桑钻区别.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/培育钻石算钻石吗/transcript.md",
+      "time": 14.58682894706726,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/培育钻石算钻石吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/塔青料产地区别/transcript.md",
+      "time": 21.231663942337036,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/塔青料产地区别.mp4"
+    },
+    {
+      "status": "skipped",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/墨翠和墨玉的区别/transcript.md",
+      "video": "library/01_video/jewelry/珠宝学者郭颖/墨翠和墨玉的区别.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/墨翠挑战失败/transcript.md",
+      "time": 18.591644763946533,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/墨翠挑战失败.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/夏威夷钻石不是钻石/transcript.md",
+      "time": 13.784329891204834,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/夏威夷钻石不是钻石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/大牌珠宝也用便宜材质/transcript.md",
+      "time": 13.969229936599731,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/大牌珠宝也用便宜材质.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/大牌珠宝都会用廉价宝石吗/transcript.md",
+      "time": 14.642353057861328,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/大牌珠宝都会用廉价宝石吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/大英博物馆的中国文物/transcript.md",
+      "time": 18.60405993461609,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/大英博物馆的中国文物.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/大英博物馆零元购/transcript.md",
+      "time": 17.898362159729004,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/大英博物馆零元购.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/天然钻石与培育钻石区别/transcript.md",
+      "time": 15.932862043380737,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/天然钻石与培育钻石区别.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/天花板翡翠蛋面如何选择/transcript.md",
+      "time": 17.05757212638855,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/天花板翡翠蛋面如何选择.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/好碧如翠/transcript.md",
+      "time": 23.267754793167114,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/好碧如翠.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/如何快速区别真假珍珠/transcript.md",
+      "time": 18.204599618911743,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/如何快速区别真假珍珠.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/孔雀石/transcript.md",
+      "time": 24.573717832565308,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/孔雀石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/学生做的珍珠耳环有坑/transcript.md",
+      "time": 17.025865077972412,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/学生做的珍珠耳环有坑.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/宝石之国能捡到漏吗/transcript.md",
+      "time": 15.710509061813354,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/宝石之国能捡到漏吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/家有南红世代不穷/transcript.md",
+      "time": 20.902329921722412,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/家有南红世代不穷.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/家有南红世代不穷2/transcript.md",
+      "time": 26.897176027297974,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/家有南红世代不穷2.mp4"
+    },
+    {
+      "status": "skipped",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/帝王绿/transcript.md",
+      "video": "library/01_video/jewelry/珠宝学者郭颖/帝王绿.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/带大家逛珠宝展/transcript.md",
+      "time": 26.681583642959595,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/带大家逛珠宝展.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/带学生潘家园实习/transcript.md",
+      "time": 16.76392412185669,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/带学生潘家园实习.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/带粉丝选南红水晶/transcript.md",
+      "time": 23.572701930999756,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/带粉丝选南红水晶.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/年底买料子好好看看/transcript.md",
+      "time": 29.20734477043152,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/年底买料子好好看看.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/开箱5000元琥珀/transcript.md",
+      "time": 21.853142023086548,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/开箱5000元琥珀.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/彩宝证书要这么看/transcript.md",
+      "time": 19.002233028411865,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/彩宝证书要这么看.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/心机老爸手镯/transcript.md",
+      "time": 19.573143005371094,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/心机老爸手镯.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/感谢大家喜欢和信任/transcript.md",
+      "time": 21.755038022994995,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/感谢大家喜欢和信任.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/戴金戴银不如戴蜜蜡/transcript.md",
+      "time": 24.209487199783325,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/戴金戴银不如戴蜜蜡.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/手链玉石珠宝寓意/transcript.md",
+      "time": 19.287983179092407,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/手链玉石珠宝寓意.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/收藏界的完美钻石/transcript.md",
+      "time": 18.356416940689087,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/收藏界的完美钻石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/斯里兰卡能捡到宝石吗/transcript.md",
+      "time": 18.25728678703308,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/斯里兰卡能捡到宝石吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/晴水小众赛道/transcript.md",
+      "time": 25.446069955825806,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/晴水小众赛道.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/朱砂常戴好运/transcript.md",
+      "time": 21.061530828475952,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/朱砂常戴好运.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/朱砂的知识/transcript.md",
+      "time": 23.248565912246704,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/朱砂的知识.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/来自地球的限量版礼物/transcript.md",
+      "time": 21.776285886764526,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/来自地球的限量版礼物.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/柿子红南红/transcript.md",
+      "time": 21.51452898979187,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/柿子红南红.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/梵克雅宝是街牌吗/transcript.md",
+      "time": 14.497105121612549,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/梵克雅宝是街牌吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/毕业展览珠宝作品/transcript.md",
+      "time": 15.64851713180542,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/毕业展览珠宝作品.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/水晶球摆件怎么选/transcript.md",
+      "time": 21.73248791694641,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/水晶球摆件怎么选.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/水晶的风还能持续多久/transcript.md",
+      "time": 25.7246572971344,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/水晶的风还能持续多久.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/水晶还能火多久/transcript.md",
+      "time": 19.03929114341736,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/水晶还能火多久.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/水贝抄底黄金靠谱吗/transcript.md",
+      "time": 17.780418872833252,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/水贝抄底黄金靠谱吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/潘多拉施华洛世奇收藏价值/transcript.md",
+      "time": 16.08050799369812,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/潘多拉施华洛世奇收藏价值.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/潘家园偶遇学生/transcript.md",
+      "time": 24.923338890075684,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/潘家园偶遇学生.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/潘家园寻宝招募/transcript.md",
+      "time": 22.189157247543335,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/潘家园寻宝招募.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/潘家园逛翡翠摊/transcript.md",
+      "time": 18.030940294265747,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/潘家园逛翡翠摊.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/独龙玉/transcript.md",
+      "time": 20.863982677459717,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/独龙玉.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/猛犸象牙化石还是象牙/transcript.md",
+      "time": 20.26068925857544,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/猛犸象牙化石还是象牙.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/猛犸象牙小配饰/transcript.md",
+      "time": 24.36795687675476,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/猛犸象牙小配饰.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/猛犸象牙时光诗篇/transcript.md",
+      "time": 23.085904121398926,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/猛犸象牙时光诗篇.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/玉扳指前世今生/transcript.md",
+      "time": 23.917752981185913,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/玉扳指前世今生.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/玉髓和翡翠的区别/transcript.md",
+      "time": 23.688207149505615,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/玉髓和翡翠的区别.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/珍珠该选大还是选小/transcript.md",
+      "time": 15.271687984466553,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/珍珠该选大还是选小.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/珍珠项链匹配度怎么看/transcript.md",
+      "time": 16.59669303894043,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/珍珠项链匹配度怎么看.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/珠宝保养哪些怕水/transcript.md",
+      "time": 17.49403214454651,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/珠宝保养哪些怕水.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/珠宝学院院长办公室宝贝/transcript.md",
+      "time": 17.88133192062378,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/珠宝学院院长办公室宝贝.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/珠宝狂热爱好者海纹石/transcript.md",
+      "time": 20.206620931625366,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/珠宝狂热爱好者海纹石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/珠宝玉石行业小规则/transcript.md",
+      "time": 13.18905520439148,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/珠宝玉石行业小规则.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/珠宝里的花寓意/transcript.md",
+      "time": 17.37524914741516,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/珠宝里的花寓意.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/琥珀大家族/transcript.md",
+      "time": 20.55349612236023,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/琥珀大家族.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/生辰石直播间/transcript.md",
+      "time": 15.172674179077148,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/生辰石直播间.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/用什么珠宝形容妈妈/transcript.md",
+      "time": 20.249969005584717,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/用什么珠宝形容妈妈.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/白垩纪恐龙时代琥珀/transcript.md",
+      "time": 20.20990014076233,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/白垩纪恐龙时代琥珀.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/白月光水晶/transcript.md",
+      "time": 22.911808013916016,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/白月光水晶.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/白钻和彩钻的区分/transcript.md",
+      "time": 18.158676147460938,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/白钻和彩钻的区分.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/白龙马的故事/transcript.md",
+      "time": 29.703606843948364,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/白龙马的故事.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/直播间聊翡翠和田玉/transcript.md",
+      "time": 15.81635594367981,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/直播间聊翡翠和田玉.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/石榴石女人石/transcript.md",
+      "time": 26.582874059677124,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/石榴石女人石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/碧玉猫眼十年前废料/transcript.md",
+      "time": 26.00067925453186,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/碧玉猫眼十年前废料.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/祖母绿原石像筷子/transcript.md",
+      "time": 16.300652027130127,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/祖母绿原石像筷子.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/祖母绿更绿还是帝王绿更绿/transcript.md",
+      "time": 15.833329916000366,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/祖母绿更绿还是帝王绿更绿.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/种水色地工翡翠大货/transcript.md",
+      "time": 14.867239952087402,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/种水色地工翡翠大货.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/第1集海蓝宝手串/transcript.md",
+      "time": 21.999894857406616,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/第1集海蓝宝手串.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/第2集财福绣球/transcript.md",
+      "time": 15.432578802108765,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/第2集财福绣球.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/粉丝满意蜜蜡/transcript.md",
+      "time": 29.11579394340515,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/粉丝满意蜜蜡.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/紫晶晶洞寓意/transcript.md",
+      "time": 15.020240068435669,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/紫晶晶洞寓意.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/紫罗兰蛋面棱玄机/transcript.md",
+      "time": 16.009432077407837,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/紫罗兰蛋面棱玄机.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/紫锂辉石/transcript.md",
+      "time": 20.8868350982666,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/紫锂辉石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/红宝石前世红绿宝/transcript.md",
+      "time": 16.985158920288086,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/红宝石前世红绿宝.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/红宝石太贵了买这些平价/transcript.md",
+      "time": 18.95784616470337,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/红宝石太贵了买这些平价.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/红宝石居然有这样的高端平替/transcript.md",
+      "time": 15.233120918273926,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/红宝石居然有这样的高端平替.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/红宝石高货怎么评估价值/transcript.md",
+      "time": 14.91860580444336,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/红宝石高货怎么评估价值.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/给妈妈挑礼物/transcript.md",
+      "time": 21.108651876449585,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/给妈妈挑礼物.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/绿幽灵聚宝盆/transcript.md",
+      "time": 24.43420386314392,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/绿幽灵聚宝盆.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/绿松石为什么是蓝的/transcript.md",
+      "time": 19.278061151504517,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/绿松石为什么是蓝的.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/绿松石只有绿色/transcript.md",
+      "time": 18.097201824188232,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/绿松石只有绿色.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/绿松石四个级别/transcript.md",
+      "time": 23.523322343826294,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/绿松石四个级别.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/绿松石怎么样/transcript.md",
+      "time": 21.571988105773926,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/绿松石怎么样.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/绿萤石夜明珠原石/transcript.md",
+      "time": 14.963489055633545,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/绿萤石夜明珠原石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/缅甸vs危地马拉翡翠/transcript.md",
+      "time": 22.282191276550293,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/缅甸vs危地马拉翡翠.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/翡翠A货B货C货/transcript.md",
+      "time": 14.327506303787231,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/翡翠A货B货C货.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/翡翠分级体系/transcript.md",
+      "time": 15.767745018005371,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/翡翠分级体系.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/翡翠到底是不是玉/transcript.md",
+      "time": 14.86080002784729,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/翡翠到底是不是玉.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/翡翠原石做什么饰品/transcript.md",
+      "time": 16.072646856307983,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/翡翠原石做什么饰品.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/翡翠手镯没选到喜欢的/transcript.md",
+      "time": 22.80966281890869,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/翡翠手镯没选到喜欢的.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/翡翠棉越少越好吗/transcript.md",
+      "time": 14.89297103881836,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/翡翠棉越少越好吗.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/聊聊玛瑙的故事/transcript.md",
+      "time": 21.040775299072266,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/聊聊玛瑙的故事.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/能把皇上都整绿的绿/transcript.md",
+      "time": 16.341460943222046,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/能把皇上都整绿的绿.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/舒俱来讲透/transcript.md",
+      "time": 19.99258804321289,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/舒俱来讲透.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/葡萄石嫩绿治愈/transcript.md",
+      "time": 23.591719150543213,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/葡萄石嫩绿治愈.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/蜜蜡乌料俄料/transcript.md",
+      "time": 16.289716958999634,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/蜜蜡乌料俄料.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/蜜蜡到底怎么买/transcript.md",
+      "time": 21.03692388534546,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/蜜蜡到底怎么买.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/评判珍珠价值的秘诀/transcript.md",
+      "time": 15.304893970489502,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/评判珍珠价值的秘诀.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/财弥CP/transcript.md",
+      "time": 18.912355184555054,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/财弥CP.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/辐照宝石辐射风险/transcript.md",
+      "time": 23.218495845794678,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/辐照宝石辐射风险.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/迎财神招财珠宝题材/transcript.md",
+      "time": 18.567063093185425,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/迎财神招财珠宝题材.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/送礼物珠宝还是黄金/transcript.md",
+      "time": 14.963039875030518,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/送礼物珠宝还是黄金.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/逆袭Akoya珍珠的国货之光/transcript.md",
+      "time": 14.99981427192688,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/逆袭Akoya珍珠的国货之光.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师砍价/transcript.md",
+      "time": 16.65331721305847,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师砍价.mp4"
+    },
+    {
+      "status": "skipped",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师科普系列-南红手串/transcript.md",
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师科普系列-南红手串.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师科普系列-天山翠/transcript.md",
+      "time": 20.28184700012207,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师科普系列-天山翠.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师科普系列-摩根石/transcript.md",
+      "time": 18.8190279006958,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师科普系列-摩根石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师科普系列-海蓝宝原石/transcript.md",
+      "time": 21.018791913986206,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师科普系列-海蓝宝原石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师科普系列-石榴石/transcript.md",
+      "time": 22.749886989593506,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师科普系列-石榴石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师科普系列-紫云母/transcript.md",
+      "time": 18.368449211120605,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师科普系列-紫云母.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师科普系列-紫龙晶/transcript.md",
+      "time": 19.299374103546143,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师科普系列-紫龙晶.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭老师科普系列-葡萄石/transcript.md",
+      "time": 19.417128801345825,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭老师科普系列-葡萄石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/郭颖入驻抖音/transcript.md",
+      "time": 13.661392211914062,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/郭颖入驻抖音.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/都快成水晶批发/transcript.md",
+      "time": 23.894945859909058,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/都快成水晶批发.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/金绿宝石猫眼怎么看/transcript.md",
+      "time": 15.648815870285034,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/金绿宝石猫眼怎么看.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/鉴别非洲翠/transcript.md",
+      "time": 19.941086053848267,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/鉴别非洲翠.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/钻石为什么比彩宝贵/transcript.md",
+      "time": 16.818434715270996,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/钻石为什么比彩宝贵.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/钻石产业的资本走向/transcript.md",
+      "time": 24.041938066482544,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/钻石产业的资本走向.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/钻石到底多硬/transcript.md",
+      "time": 15.562249898910522,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/钻石到底多硬.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/钻石和彩宝哪个更保值/transcript.md",
+      "time": 16.45267915725708,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/钻石和彩宝哪个更保值.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/钻石是21世纪最大的骗局/transcript.md",
+      "time": 17.134035348892212,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/钻石是21世纪最大的骗局.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/钻石购买的天坑/transcript.md",
+      "time": 17.692200183868408,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/钻石购买的天坑.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/钻石贵在哪儿/transcript.md",
+      "time": 17.72111487388611,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/钻石贵在哪儿.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/院长不知道水线纹/transcript.md",
+      "time": 23.083796977996826,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/院长不知道水线纹.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/院长开课-数据破解宝石密码/transcript.md",
+      "time": 22.202368021011353,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/院长开课-数据破解宝石密码.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/陨石冷门品种/transcript.md",
+      "time": 22.904468059539795,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/陨石冷门品种.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/青金石原石千层糕/transcript.md",
+      "time": 17.832958936691284,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/青金石原石千层糕.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/青金石的故事/transcript.md",
+      "time": 25.338567972183228,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/青金石的故事.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/静谧之蓝青金石/transcript.md",
+      "time": 23.134317874908447,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/静谧之蓝青金石.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/马氏珠做的袖扣/transcript.md",
+      "time": 19.220364093780518,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/马氏珠做的袖扣.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/麒麟纹饰雕刻/transcript.md",
+      "time": 33.55266308784485,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/麒麟纹饰雕刻.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/黄水晶发晶钛晶/transcript.md",
+      "time": 26.64583110809326,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/黄水晶发晶钛晶.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/黄色的是什么白水晶/transcript.md",
+      "time": 23.42071509361267,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/黄色的是什么白水晶.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/黄金万两不如玉有三色/transcript.md",
+      "time": 25.607314348220825,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/黄金万两不如玉有三色.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/黄金万两凝翠一方/transcript.md",
+      "time": 29.212883949279785,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/黄金万两凝翠一方.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/黄铁矿与金子无关/transcript.md",
+      "time": 18.11942219734192,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/黄铁矿与金子无关.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/黑珍珠到底怎么选择/transcript.md",
+      "time": 19.52686834335327,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/黑珍珠到底怎么选择.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/黑神话金箍棒/transcript.md",
+      "time": 32.520408630371094,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/黑神话金箍棒.mp4"
+    },
+    {
+      "status": "success",
+      "output": "library/05_knowledge/jewelry/珠宝学者郭颖/transcripts/黑钻能不能买/transcript.md",
+      "time": 18.838669061660767,
+      "video": "library/01_video/jewelry/珠宝学者郭颖/黑钻能不能买.mp4"
+    }
+  ]
+}
