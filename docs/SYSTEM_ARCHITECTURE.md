@@ -23,10 +23,10 @@
 
 | 主题 | 权威位置 |
 |---|---|
-| 五仓总览 / 职责表 / 调度逻辑（产物驱动对接表） | 总控仓 `~/Desktop/system-architecture/README.md` |
-| 任务路由（接到任务先判断进哪个仓） | 总控仓 `~/Desktop/system-architecture/README.md`（路由段） |
-| 跨仓纪律（来源四档 / OKF / 建包顺序 / 子模块纪律 / 定时更新等） | 总控仓 `~/Desktop/system-architecture/README.md`（纪律段） |
-| 逐仓现状总表（各仓当前产物 / 目录 / 对接状态） | 总控仓 `~/Desktop/system-architecture/docs/五层现状总表.md` |
+| 五仓总览 / 职责表 / 调度逻辑（产物驱动对接表） | 总控仓 `~/Desktop/multi-repo-orchestration/README.md` |
+| 任务路由（接到任务先判断进哪个仓） | 总控仓 `~/Desktop/multi-repo-orchestration/README.md`（路由段） |
+| 跨仓纪律（来源四档 / OKF / 建包顺序 / 子模块纪律 / 定时更新等） | 总控仓 `~/Desktop/multi-repo-orchestration/README.md`（纪律段） |
+| 逐仓现状总表（各仓当前产物 / 目录 / 对接状态） | 总控仓 `~/Desktop/multi-repo-orchestration/docs/五层现状总表.md` |
 | 本仓（①采集底座）内部工作流 | 本仓 `docs/WORKFLOW.md`（四阶段） |
 
 > 详细机制正文以总控仓为准；本文件仅保留定位头注 + 五仓速记 + 指针，不再单独维护。如需查阅降级前的完整分层表 / 产物对接表 / 路由表 / 纪律全文，见归档文件 `docs/archive/SYSTEM_ARCHITECTURE_v1_full_2026-10-08.md`。

@@ -66,7 +66,7 @@
 | [docs/ROADMAP.md](docs/ROADMAP.md) | 项目长期规划 |
 | [docs/guides/codex-dev-environment.md](docs/guides/codex-dev-environment.md) | **Codex 环境、模型选型(GPT-5.6 Sol)、算力购买与操作步骤** |
 | [project-management/active/TASK_STATUS.md](project-management/active/TASK_STATUS.md) | 当前进度、下一步（单一进度真相） |
-| 🏛️ [总控仓 system-architecture](../system-architecture/) | 五仓体系总控/跨仓路由权威源（本仓=①采集底座；体系架构正文以总控仓为准，本仓 docs/SYSTEM_ARCHITECTURE.md 为薄指针） |
+| 🏛️ [总控仓 multi-repo-orchestration](../multi-repo-orchestration/) | 五仓体系总控/跨仓路由权威源（本仓=①采集底座；体系架构正文以总控仓为准，本仓 docs/SYSTEM_ARCHITECTURE.md 为薄指针） |
 
 ---
 
