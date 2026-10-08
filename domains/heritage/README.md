@@ -22,7 +22,7 @@
 - **采集底座**：本仓库（multiplatform-content-pipeline）——平台插件层 + 四阶段流水线，按"采集渠道"维度合并（B站/抖音/视频号/公众号/YouTube），行业隔离在 domains 层
 - **调研方法论**：`~/Doubao/skills/web-research-toolkit`（行业包 industry-packs.md）——怎么查
 - **情报雷达**：`~/Desktop/ai-intel-monitor`（渠道矩阵）——正在发生什么
-- **生产执行**：`~/Desktop/jewelry-ai-video-sop`——怎么做（SOP/出片）
+- **生产执行**：`~/Desktop/ai-video-studio`——怎么做（SOP/出片）
 - **运营分发**：`~/Desktop/self-media-ops`——怎么卖（朋友圈/自媒体）
 
 ## 建包纪律
