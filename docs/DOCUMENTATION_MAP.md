@@ -56,6 +56,8 @@
 4. 生成状态Excel脚本：`platforms/douyin/scripts/generate_excel.py`
 5. 作者知识库构建通用SOP：`技能路径/multiplatform-media-fetch/references/author-video-knowledge-base.md`
 6. 郭颖珠宝库样例：`library/05_knowledge/jewelry/珠宝学者郭颖/`
+7. 郭颖 A 类补采工单（T-38 去重与进度基准）：`library/05_knowledge/jewelry/珠宝学者郭颖/郭颖A类46条补采工单.md` — 46 条待补采分 7 批（彩宝8/钻石11/翡翠6/和田玉5/珍珠6/黄金7/综合3），含浏览器取流、防风控低频串行、转写即验证、归并目标与状态流转
+8. 普通展示 187 条筛查报告：`library/05_knowledge/jewelry/珠宝学者郭颖/普通展示187条筛查报告.md`（A补采46/B可选83/C不采58，分级理由）
 
 ### 知识提取与知识库
 1. `docs/design/knowledge-base-organization.md` — 知识库架构设计+内容规范
