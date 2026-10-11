@@ -34,6 +34,7 @@
 | T-36 | 去重/补3场回放/台账重建 | feature | ✅ 完成 | ISSUE-016 已闭环（09-22）；方案见 `wechat-channels-dedup-and-inventory.md`（ISSUE-016）：刷新换签→补3场回放+转写→用户确认后删71重复视频并同步去重转写→按catalog id重建inventory至audit全0 |
 | T-37 | 郭颖「普通展示」187条逐条复查 + 知识库入口 | feature | ✅ 完成 | 2026-10-11：187 条逐条语义分级并回写台账（新增 review_grade/review_topic/review_note 三列，xlsx 本地）：**A 建议补采 46 / B 可选 83 / C 不采 58**；产出《普通展示187条筛查报告.md》；参照会计知识库范式为郭颖目录建入口《README.md》（17 份文档地图+存储分工+可信度约定+使用指南）。commit 21e93ac |
 | T-38 | 郭颖 A 类 46 条补采与文档归并 | feature | 待开始 | 依 T-37 复查结论，补采 A 类 46 条（钻石11/彩宝8/黄金7/翡翠6/珍珠6/和田玉5/综合3）：浏览器取流→FunASR 转写（转写即内容验证，名不副实降级）→按 review_topic 并入对应品类文档。**待用户拍板后启动**；B 类 83 留档按需取，C 类 58+节日6+广告2 放弃 |
+| T-39 | 全知识源入口导航 + 知识源组织 SOP | feature | ✅ 完成 | 2026-10-11：参照会计知识库治理范式，为 `05_knowledge/` 全部知识源补导航入口（知识层总入口、jewelry 行业入口、老许 OKF concepts 入口、stock 入口），不移动文件/不改成品；新增落地 SOP `docs/guides/knowledge-source-organization.md`（三层解耦/两种成品形态/入口模板/draft→stable/新增博主 Checklist/质检清单）并登记 DOCUMENTATION_MAP；补登记 archive 旧架构消除 1 个历史体检 ERROR；OKF 校验 E=0、新增文件零新增断链。commit 4a9c359。**遗留待拍板**：体检唯一剩余 ERROR＝`platforms/wechat_channels/video-capture/mp_verify_20261002.json` 疑似票据凭证入库（git rm --cached 停止跟踪 / 是否 filter-repo 清历史需用户决定）；老许 10 篇 topics 主题页仍为占位、723 篇 draft 待第二步语义加工 |
 
 ---
 
