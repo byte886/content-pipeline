@@ -59,7 +59,12 @@
 
 ### 知识提取与知识库
 1. `docs/design/knowledge-base-organization.md` — 知识库架构设计+内容规范
-2. 行业插件模板（珠宝鉴赏/视频创作）：`技能路径/multiplatform-media-fetch/references/domain-plugins/`
+2. **知识源组织 SOP（落地操作）**：`docs/guides/knowledge-source-organization.md` — 三层解耦、两种成品形态、目录/入口模板、draft→stable、新增博主 Checklist、交付质检清单
+3. 知识层总入口：`library/05_knowledge/README.md`（珠宝 jewelry / 股票 stock 全知识源导航）
+4. 行业插件模板（珠宝鉴赏/视频创作）：`技能路径/multiplatform-media-fetch/references/domain-plugins/`
+
+### 归档文档（archive/ 只读快照）
+1. `docs/archive/SYSTEM_ARCHITECTURE_v1_full_2026-10-08.md` — 体系架构 v1 全文历史快照（只读、不再更新）；现行权威在总控仓 control-tower，本仓 `docs/SYSTEM_ARCHITECTURE.md` 已降级为薄指针
 
 ### 遇到问题/异常
 1. `grep -rn "关键词" docs/` — 搜索相关文档
