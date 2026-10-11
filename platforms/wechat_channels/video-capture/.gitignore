@@ -39,4 +39,5 @@ finder_*_manifest.json
 mp_articles.json
 mp_articles_*/
 mp_profile_clean.json
+mp_verify_*.json
 test_getmsg.py
