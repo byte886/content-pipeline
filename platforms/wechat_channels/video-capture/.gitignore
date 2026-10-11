@@ -1,4 +1,5 @@
-# 编译产物
+# 编译产物（源码入库，用时在本目录 `go build -o <name> .` 现编，二进制不入库）
+captor
 video-capture
 *.exe
 
