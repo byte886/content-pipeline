@@ -103,8 +103,6 @@ def analyze_audio(src: Path, out: Path):
         if low:
             run.append(s0)
         else:
-            if len(run) >= 1 and (len(r)) >= 1:
-                pass
             if len(run) >= 1:
                 # 0.4s 粒度按秒采样，>=1s 才算明显留白；句读级更短停顿另由差值体现
                 if run[-1] - run[0] + 1 >= 1:
