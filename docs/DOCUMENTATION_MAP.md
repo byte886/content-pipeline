@@ -59,6 +59,12 @@
 7. 郭颖 A 类补采工单（T-38 去重与进度基准）：`library/05_knowledge/jewelry/珠宝学者郭颖/郭颖A类46条补采工单.md` — 46 条待补采分 7 批（彩宝8/钻石11/翡翠6/和田玉5/珍珠6/黄金7/综合3），含浏览器取流、防风控低频串行、转写即验证、归并目标与状态流转
 8. 普通展示 187 条筛查报告：`library/05_knowledge/jewelry/珠宝学者郭颖/普通展示187条筛查报告.md`（A补采46/B可选83/C不采58，分级理由）
 
+### 视频资产台账（元数据入库，2026-10-12 新增）
+1. **视频资产台账规范与价值评级 SOP**：`docs/guides/video-asset-manifest.md` — 大文件留本地、元数据入库；manifest.csv 16 列字段定义、五档价值分级＋A/B/C 评级、新增登记 / 升降级 / 跨设备恢复、xlsx→manifest 同步对账
+2. 同步对账脚本：`scripts/xlsx_to_manifest.py`（xlsx→manifest.csv，自动补 md5 / 时长 / 文稿路径，硬异常非零退出）
+3. 视频资产顶层索引：`library/01_video/README.md`（各来源清单与采集口径）
+4. 郭颖首版入库台账：`library/01_video/jewelry/珠宝学者郭颖/manifest.csv`（387 条，其中 238 已下载并带 md5 / 时长 / 文稿路径）
+
 ### 知识提取与知识库
 1. `docs/design/knowledge-base-organization.md` — 知识库架构设计+内容规范
 2. **知识源组织 SOP（落地操作）**：`docs/guides/knowledge-source-organization.md` — 三层解耦、两种成品形态、目录/入口模板、draft→stable、新增博主 Checklist、交付质检清单
@@ -101,6 +107,7 @@
 | 增量采集SOP | `docs/guides/incremental-fetch.md` | 多平台内容更新发现与下载 |
 | 电子资料转码SOP | `docs/guides/books-extraction.md` | PDF/PPTX等电子资料处理 |
 | 视频转写SOP | `docs/guides/audio-transcription.md` | FunASR本地离线转文字：环境/批量脚本/输出/空稿判定 |
+| 视频资产台账SOP | `docs/guides/video-asset-manifest.md` | 大文件本地/元数据入库：manifest字段、价值分级与A/B/C评级、登记与同步对账、跨设备恢复 |
 
 ### 二、技术研究（research/ — 已验证的结论）
 
