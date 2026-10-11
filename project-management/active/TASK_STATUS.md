@@ -32,6 +32,8 @@
 | T-34 | 通用增量采集框架 | feature | ✅ 完成 | B站/YouTube验证通过；视频号 `incremental_sync.py` 已于 09-23 实跑成功（对账补下 live_029） |
 | T-35 | 视频号短视频换签直链+Isaac64解密闭环 | feature | 进行中 | ✅解密算法与工具链已端到端验证（见 docs/research/wechat-short-video-decryption.md）；slim() 已补 urlToken/decodeKey/cdnFileSize/hlsSpec + 新增 probeSignActions（RLIST_ACTSRC），go build 通过；**ISSUE-017 已闭环（09-22）：一次刷新全量换签、urlToken/decodeKey 全覆盖**，近100%即一次刷新拿全，否则据 ACTSRC 对缺签条目逐条换签；best_format高清md5对账（ISSUE-003）后做 |
 | T-36 | 去重/补3场回放/台账重建 | feature | ✅ 完成 | ISSUE-016 已闭环（09-22）；方案见 `wechat-channels-dedup-and-inventory.md`（ISSUE-016）：刷新换签→补3场回放+转写→用户确认后删71重复视频并同步去重转写→按catalog id重建inventory至audit全0 |
+| T-37 | 郭颖「普通展示」187条逐条复查 + 知识库入口 | feature | ✅ 完成 | 2026-10-11：187 条逐条语义分级并回写台账（新增 review_grade/review_topic/review_note 三列，xlsx 本地）：**A 建议补采 46 / B 可选 83 / C 不采 58**；产出《普通展示187条筛查报告.md》；参照会计知识库范式为郭颖目录建入口《README.md》（17 份文档地图+存储分工+可信度约定+使用指南）。commit 21e93ac |
+| T-38 | 郭颖 A 类 46 条补采与文档归并 | feature | 待开始 | 依 T-37 复查结论，补采 A 类 46 条（钻石11/彩宝8/黄金7/翡翠6/珍珠6/和田玉5/综合3）：浏览器取流→FunASR 转写（转写即内容验证，名不副实降级）→按 review_topic 并入对应品类文档。**待用户拍板后启动**；B 类 83 留档按需取，C 类 58+节日6+广告2 放弃 |
 
 ---
 
