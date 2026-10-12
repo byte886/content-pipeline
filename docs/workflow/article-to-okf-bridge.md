@@ -130,15 +130,15 @@ ocr_chars: 295
 ## 7. 落地步骤与交付门
 
 **落地两步**：
-1. **先接老许 20 篇**（已有 frontmatter）：建 `05_knowledge/jewelry/concepts/articles/` 子目录 + topics 指针 + `fused_into` 回填——低风险、即时闭合孤儿断链。
-2. **再定顶底之王 277 篇是否批量 wrap**（无 frontmatter，需写 wrapper 生成 ArticleNote）——**待主理人拍板**，本桥不擅自批量迁移。
+1. **先接老许 20 篇**（已有 frontmatter）：建 `05_knowledge/jewelry/concepts/articles/` 子目录 + topics 指针 + `fused_into` 回填——低风险、即时闭合孤儿断链。**进度：articles/ 目录已建（本轮）、20 篇 kind 回填完成（本轮）；topics 指针与 fused_into 回填待批量轮执行（需按主题归类判断）。**
+2. **顶底之王 277 篇批量 wrap**：已拍板同意，按"分批 ≤50 篇/批 + 只加头不动正文 + draft + 每批 E0 校验"执行（见文末拍板段），批量执行另起一轮。
 
 **交付门**：`okf_validate E0` + `doc_health_check 0 ERROR` + 数量对账（`fused_into` 数 = topic 引用数）。
 
 ---
 
-## 待主理人拍板
+## 主理人拍板（2026-10-12 已决，三项全部通过）
 
-- [ ] 顶底之王 277 篇公众号文章是否纳入 P3 批量 wrap（本试点只 wrap 1 篇）。
-- [ ] `articles/` 子目录落点：`05_knowledge/<域>/concepts/articles/`（与 videos 平级）是否认可。
-- [ ] `kind:` 新键是否接受（对既有 20 篇老许 ArticleNote 需回填，属 backfill，按 SOP 先试点后批量）。
+- [x] **顶底之王 277 篇批量 wrap**：同意，但**分批执行**（≤50 篇/批，按时间倒序；先建 `05_knowledge/stock/concepts/` 最小骨架：articles/ + topics/ + index.md）。每批只加 frontmatter 不动正文、`status: draft`、description 标注"机器生成待核"、批内 `okf_validate E0` 校验 + 数量对账（wrap 数 = manifest type=article 数）。任一批评验失败即停、修复后继续。**本轮仅定稿设计，批量执行另起一轮。**
+- [x] **`articles/` 子目录落点**：认可 `05_knowledge/<域>/concepts/articles/`（与 videos/ 平级）。理由：ArticleNote 与 VideoNote 同粒度（单篇单来源原子笔记）同生命周期（draft→stable→topic），并列最对称；topics 融合层不变，同时引用 videos/ 与 articles/。jewelry 域已建目录（本轮落地），stock 域随 wrap 建。
+- [x] **`kind:` 新键接受**：OKF v0.2 允许自定义 key（消费方不得因未知字段报错）；试点 E0W0 已验证。**老许 20 篇已批量回填**（src-bili→`bili_opus`、src-ocr→`local_ocr`，逐篇插入 sources 条目，正文不动），校验 0 硬错误。
