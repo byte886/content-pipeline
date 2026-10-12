@@ -16,14 +16,15 @@
 | S1 采集 | 进行中 | 视频号权威全集 **340短视频/29回放/1图文**（catalog 09-23），磁盘 340+29 全有、去重干净（ISSUE-016/017 已闭环）；郭颖 A 类 46 补采 + B 级 73 续采完成；公众号文章待全量导出；**P2 首批 ✅（2026-10-12）：抖音评论实采（6 条入库）+ 音频/PDF/图片/公众号链路验收**；**P2 续 ✅/🔵：B站评论游客 API 实采 3 条入库、小红书接入方案已定（实采待用户提供真实链接）、视频号正文待人工开窗** |
 | S2 内容提取 | ✅ 视频链路完成 / 多模态 ✅ | 转写 **340+29 全齐**（含 09-23 新增 live_029），图文 OCR ✅；郭颖 192+46 转写；多模态提取（音频/PDF/图片/图文）✅ P2 首批验收（中间物样例见规划 §5.4） |
 | S3 多媒体分析 | 进行中 | 视频效果分析判型与双轨 SOP 已沉淀；郭颖 B 级 10 条创作对标已交 video-studio；行业×需求矩阵成文待 P5 |
-| S4 最终文稿 | 部分 | article-pipeline 已沉淀（7 类作者角色），06_articles 298 篇；文稿用途分型（读者/知识/运营/视频创作）已入工作流（ADR-006）；文稿→OKF 融合桥待 P3 |
-| S5 知识化（OKF） | 基本完成 | 郭颖 23 份知识文档 + 吸收对账 193 条零遗漏；老许 744 篇 draft；规则版知识提取完成，LLM 深度提取待接入（T-22）；跨模态归并规则已设计（P3 落地） |
+| S4 最终文稿 | 部分 | article-pipeline 已沉淀（7 类作者角色），06_articles 298 篇；文稿用途分型（读者/知识/运营/视频创作）已入工作流（ADR-006）；**文稿→OKF 融合桥 ✅ P3 完成（278 wrap + 278 原子页 + 老许 20→5 topics + fused_into 298/298）** |
+| S5 知识化（OKF） | 基本完成 | 郭颖 23 份知识文档 + 吸收对账 193 条零遗漏；老许 744 篇 draft；规则版知识提取完成，LLM 深度提取待接入（T-22）；**跨模态归并已落地（P3）：stock 278 原子页 + 老许 20→5 topics** |
 | S6 质检迭代 | 部分 | 机械门可执行（okf_validate / doc_health / 双维查重）；吸收对账固化、人工复核 verified、评估 Agent 待 P4 |
 | S7 云文档发布维护 | 部分 | 组织守则 + 「鉴藏知识库·孵化」容器已落地；残留/过时/重复维护机制待 P6 |
 | 项目治理 | ✅ 完成 | 文档架构、ADR、工程记忆、SOP |
 | 全仓评审与治理维护（2026-10-12） | ✅ 完成 | 白天三层评审闭环（MD 链接 0 断链、.gitignore 合规、ISSUE-018~020 拍板收尾）；晚间独立旁观者评审 A-1~A-6 已修正（见 `project-management/reviews/2026-10-12-evening-independent-audit.md`） |
 | P2 首批（评论采集 + 多模态接入，2026-10-12 晚） | ✅ 首批交付 | 抖音 `collect_douyin_comments.py` 匿名档实采 6 条入库 `library/08_sources/douyin_comments/`；音频（mediakit+FunASR）/ PDF（PyMuPDF）/ 图片（Cloud OCR + ocr_vision 兜底）/ 公众号链路端到端验证；小红书图文 note 采集端待核（规划 §12-⑩）；T05/T06（B 站/视频号评论、小红书评论接入）待续 |
-| P2 续 + P3 先行评估（2026-10-12 晚） | 🔵 部分交付 | T05 ✅：B站 `collect_bilibili_comments.py` 游客 API 实采 3 条入库（BV1kK4y1w7UN），视频号正文待人工开窗+captor hook，YouTube 评估暂缓（⑦）；T06 🔵：小红书 normalize 方案已定（canonical + ≤3 页封顶），实采待用户提供真实链接（⑩）；P3 🔵：`article-to-okf-bridge.md` 方案 + 试点 2 条 E0W0，批量执行待拍板 3 项 |
+| P2 续 + P3 先行评估（2026-10-12 晚，历史） | 🔵 部分交付 | T05 ✅：B站 `collect_bilibili_comments.py` 游客 API 实采 3 条入库（BV1kK4y1w7UN），视频号正文待人工开窗+captor hook，YouTube 评估暂缓（⑦）；T06 🔵：小红书 normalize 方案已定（canonical + ≤3 页封顶），实采按用户原则"只处理已得原数据"保持设计就绪（⑩，2026-10-13 澄清）；P3 🔵 先行评估：`article-to-okf-bridge.md` 方案 + 试点 2 条 E0W0（后续批量执行见上行） |
+| P3 批量执行（2026-10-13） | ✅ 完成 | ①顶底之王 **278 篇 wrap**（wrapper `scripts/wrap_wechat_articles.py`，6 批 50/50/50/50/50/28、幂等、正文一字未动、逐批校验；`article_278` None 条有内容按同规则 wrap；4 条 unknown-date 存量条目按同规则处理）；②stock concepts 骨架 + **278 原子页**（两线并行提炼，正文=编译摘要+要点+来源指针，不复制全文）；③老许 20 篇按实际珠宝主题归入 **5 个既有 topic**（未新建）+ meta.json `fused_into` 回填；④对账：fused_into **298/298 闭合**、stock `okf_validate` **E0·W0·I278**（index 已登记）、jewelry E0（W721 存量孤儿非本次引入）、`doc_health_check` 0 ERROR；仅知识层+文档+脚本入 git，06_articles 留本地不入库 |
 
 > **历史口径**：旧四阶段（① 资源采集 → ② 内容处理 → ③ 知识提取 → ④ 知识库组织）已并入七阶段视角（①≈S1、②≈S2、③≈S3+S5、④≈S5+S7）；各阶段明细见下文工单表与「最近完成」。
 

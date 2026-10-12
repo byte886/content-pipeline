@@ -129,11 +129,12 @@ ocr_chars: 295
 
 ## 7. 落地步骤与交付门
 
-**落地两步**：
-1. **先接老许 20 篇**（已有 frontmatter）：建 `05_knowledge/jewelry/concepts/articles/` 子目录 + topics 指针 + `fused_into` 回填——低风险、即时闭合孤儿断链。**进度：articles/ 目录已建（本轮）、20 篇 kind 回填完成（本轮）；topics 指针与 fused_into 回填待批量轮执行（需按主题归类判断）。**
-2. **顶底之王 277 篇批量 wrap**：已拍板同意，按"分批 ≤50 篇/批 + 只加头不动正文 + draft + 每批 E0 校验"执行（见文末拍板段），批量执行另起一轮。
+**落地两步（P3 批量执行轮 2026-10-13 已完成）**：
+1. ✅ **老许 20 篇**：按实际珠宝主题（读 OCR 正文判定，description 为模板话术不可用）归入 **5 个既有 topic**（品牌与新品动态 10 / 行情价格与选购话术 6 / 行业与商业 2 / 镶嵌工艺与佩戴 1 / 彩色宝石图谱与价值 1，**未新建 topic**）；5 个 topic 页追加 sources 条目 + `[^opus-*]` 脚注（脚注↔sources 对账一致，无 W60）；20 篇 meta.json 全部回填 `fused_into`（20/20）。10 篇 image_only 品类待核（OCR 无有效字，按货盘展示归入，人工看片后可能微调）。
+2. ✅ **顶底之王 278 篇批量 wrap**：wrapper `scripts/wrap_wechat_articles.py` 按时间倒序 6 批（50/50/50/50/50/28）只加头不动正文（逐篇字节断言），278/278 frontmatter 可解析；`article_278`（原 type=None、有内容）按同规则 wrap；4 条 unknown-date 存量条目按同规则处理（`published: unknown-date`）；两线并行提炼 **278 原子页**（`05_knowledge/stock/concepts/articles/`，正文=编译摘要 1-3 句 + 3-5 要点 + 来源指针），采集层 article.json 回填 `fused_into` 278/278。
 
 **交付门**：`okf_validate E0` + `doc_health_check 0 ERROR` + 数量对账（`fused_into` 数 = topic 引用数）。
+**✅ 已达成（2026-10-13）**：stock bundle E0·W0·I278（index 已登记 278 原子页）、jewelry bundle E0（W721 为存量孤儿页非本次引入）、`doc_health_check` 0 ERROR、fused_into 对账 **298/298 闭合**（顶底之王 278 + 老许 20）。
 
 ---
 
