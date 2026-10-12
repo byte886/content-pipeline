@@ -137,6 +137,7 @@
 | 工作流目录说明 | `docs/workflow/README.md` | workflow 目录定位、与 guides/ 分工、使用规范 |
 | 视频知识工作流融合规划 | `docs/workflow/视频知识工作流-融合规划-2026-10-12.md` | 博主视频→知识库→云文档：现状评估 + 目标架构（S0–S7 + 决策门 G0–G6）+ 分阶段计划（P0–P8）+ 待办登记。**后续 AI 接手入口** |
 | 内容工作流主流程（详设） | `docs/workflow/workflow-main.md` | S0–S7 各阶段详设 + 决策门 G0–G6 + 多模态路由表 + 任务卡字段；与 WORKFLOW.md（概览）配套 |
+| 文稿↔知识库融合桥（P3） | `docs/workflow/article-to-okf-bridge.md` | ArticleNote 形态规范 + manifest 双向指针协议 + 跨模态 src 标签协议 + 增量归并原则；试点已跑通 E0W0，批量执行待拍板 |
 
 ### 四、项目治理
 

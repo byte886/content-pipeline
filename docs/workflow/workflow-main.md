@@ -124,9 +124,11 @@ S7 云文档发布与维护 <──G6── S6 质检与迭代 <──G5── S
 ### 4.5 评论采集（矩阵见规划文档 §5.2）
 
 - 抖音：`collect_douyin_comments.py <vid>`（匿名档优先、只读低频串行、单会话 ≤15 条）→ `library/08_sources/douyin_comments/{vid}_comments.json`。✅ 2026-10-12 实采验证（郭颖置顶片 6 条；字段 comment_id / user_name / content / like_count / reply_count / time）。详见技能 `references/platforms/douyin-comments-extract.md`。
-- 小红书：`xiaohongshu_downloader.py comments`（≤3 页风控）→ `{note_id}_comments.json`。
-- B 站 / 视频号：正文抽取待 P2 验证（T05）；计数入台账。
-- 产物归属：`library/08_sources/`；S4 作选题 / FAQ / 验证信号。
+- B 站：`collect_bilibili_comments.py <BV>`（游客 buvid + `x/v2/reply`，纯 API 直连，脚本强制绕代理）→ `library/08_sources/bilibili_comments/{bvid}_comments.json`。✅ 2026-10-12 实采（老许 BV1kK4y1w7UN 顶层 3 条；楼中楼可选 `reply/detail`）。详见技能 `references/platforms/bilibili-comments-extract.md`。
+- 小红书：`xiaohongshu_downloader.py comments` → 产物是**裸数组**，需 **normalize 成 canonical**（补 comment_id / reply_count / meta 信封）后落 `library/08_sources/xiaohongshu_comments/{note_id}_comments.json`；滚动须**封顶 ≤3 页**（脚本现固定 5 轮需参数化）。方案见技能 `references/platforms/xiaohongshu-comments-pipeline.md`；实采待用户提供真实链接。
+- 微信视频号：评论计数已入 catalog 台账；**正文待人工点开评论面板 + captor 新增评论列表 hook** 后抽取（不强攻）。
+- YouTube：待核⑦（yt-dlp `--dump-json` comments 字段，须代理，暂缓）。
+- 产物归属：`library/08_sources/`；S4 作选题 / FAQ / 验证信号（UGC 只提炼引用、不整段搬运）。
 
 ### 4.6 S1 校验门
 
