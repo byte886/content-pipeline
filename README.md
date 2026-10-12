@@ -76,7 +76,7 @@ content-pipeline/
 ├── platforms/          # 采集层：平台插件
 ├── processing/         # 处理层：转写/OCR/知识提取
 ├── core/               # 核心框架：流水线编排+水位机制
-├── domains/            # 行业层：股票/珠宝（隔离）
+├── domains/            # 行业层：股票 stock + 鉴藏 heritage 总域（珠宝/翡翠/古玩/家具/东西方体系 6 子域）
 ├── library/            # 数据层：原始资源+知识成品
 ├── docs/               # 工程文档
 ├── project-management/  # 项目治理

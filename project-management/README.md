@@ -11,7 +11,7 @@ project-management/
 │   ├── TASK_STATUS.md    # 任务状态：当前做什么、到哪了、下一步
 │   └── ISSUES.md         # 开放问题/缺陷清单
 ├── decisions/        # ADR 架构决策记录（只增不改）
-│   ├── ADR-001 ~ ADR-004
+│   ├── ADR-001 ~ ADR-005
 │   └── ...
 ├── memory/           # 工程记忆 bundle（跨会话稳定结论编译层）
 │   ├── index.md          # 记忆入口（新会话先读这个定位）

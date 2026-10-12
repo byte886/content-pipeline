@@ -29,21 +29,6 @@
 - **问题描述**：processing/method_extraction/method_extractor.py框架已创建，但实际的方法提炼需要LLM深度分析
 - **方案**：接入LLM，分析转写稿中的拍摄技巧、AI使用、内容呈现，提炼可复用的生成方法
 
-### ISSUE-018: domains/heritage/ 总域未登记导航（评审发现·待用户拍板）
-- **状态**：待用户拍板（2026-10-12 评审发现）
-- **问题描述**：`domains/heritage/` 已建立 6 个子域（01_jewelry/02_jadeite/03_antiques/04_furniture/05_eastern-heritage/06_western-heritage），各有 README，且 `domains/heritage/README.md` 有完整子域表；但 `README.md` / `docs/DIRECTORY_STRUCTURE.md` / `docs/DOCUMENTATION_MAP.md` 均未收录（grep heritage 命中 0），根 README:79 仍只写"股票/珠宝（隔离）"。
-- **待拍板**：heritage 是否正式登记进三份导航文档，还是暂作实验域、不纳入正式治理导航。
-
-### ISSUE-019: docs/HANDOFF.md 停更于 09-22（评审发现·待用户拍板）
-- **状态**：待用户拍板（2026-10-12 评审发现）
-- **问题描述**：`docs/HANDOFF.md` §0"现在在"与 §3"当前纠结"仍停留在 09-22 收尾状态，10 月重大活动无记录：郭颖 192 条全量采集+知识文档（T-31，10-09）、T-37 187 条逐条复查（10-11）、T-38 郭颖 A 类 46 条补采、T-39 知识源入口（10-11）。
-- **待拍板**：是否补写倒序条目；或宣告 HANDOFF 已由 CHANGELOG / TASK_STATUS 取代、降级为历史快照。
-
-### ISSUE-020: 第二次改名无 ADR 留痕（评审发现·待用户拍板）
-- **状态**：待用户拍板（2026-10-12 评审发现）
-- **问题描述**：第一次改名（stock-knowledge-base→multiplatform-content-pipeline）有 ADR-004；第二次改名（multiplatform-content-pipeline→content-pipeline，2026-10-09）仅 CHANGELOG 记录，无对应 ADR。按 ADR"只增不改"原则应有新 ADR 或在 ADR-004 加演进注记。
-- **待拍板**：是否补 ADR-005 记录二次改名，或在 ADR-004 末尾加演进注记。
-
 ---
 
 ## 已解决问题（Closed）
@@ -123,6 +108,18 @@
 - **备份处置**：重写前全量兜底 `~/Desktop/mcp-PRE-CLEANUP-20260922.bundle`（8MB，**含原始敏感历史**）仅用于回滚；确认新仓无误后应删除，勿长期保留或外传。
 - **关联**：ADR-003 密钥管理；`docs/项目维护SOP.md` 安全红线。
 
+### ISSUE-018: domains/heritage/ 总域未登记导航 ✅
+- **解决时间**：2026-10-12（用户拍板"全部执行，按推荐方案"，正式登记）
+- **结果**：heritage 总域已补登三份导航——根 `README.md` domains 行、`docs/DIRECTORY_STRUCTURE.md` 目录树（补 6 子域段）、`docs/DOCUMENTATION_MAP.md` 新增「行业知识域导航」条目（指向 `domains/heritage/README.md`）。`domains/README.md` 经核实不存在，无需补。
+
+### ISSUE-019: docs/HANDOFF.md 停更于 09-22 ✅
+- **解决时间**：2026-10-12（用户拍板：恢复 HANDOFF 为交接主通道）
+- **结果**：`docs/HANDOFF.md` §0「现在在」刷新为当前态（股票源闭环、郭颖 B 级对标进行中、全仓治理同步收尾），§1 补写 3 条 10 月倒序条目（10-09 T-31+二次改名 / 10-11 T-37+T-38+T-39 / 10-12 台账入库+B级对标+治理同步），内容严格以 git log + TASK_STATUS + CHANGELOG 为准。
+
+### ISSUE-020: 第二次改名无 ADR 留痕 ✅
+- **解决时间**：2026-10-12
+- **结果**：新立 `project-management/decisions/ADR-005-仓库二次改名留痕（multiplatform-content-pipeline→content-pipeline）.md`（Status: Accepted），按"ADR 只增不改"原则留痕；ADR-004 不回溯改写；project-management/README.md ADR 范围更新为 ADR-001~005。
+
 ---
 
-*最后更新：2026-10-12（全仓评审治理同步：关闭 ISSUE-010 GitHub 改名 / ISSUE-011 数据迁移 / ISSUE-015 upload_course.sh 遗留；将已 ✅ 的 ISSUE-001/002/004/014 从 Open 移入 Closed；新增评审待拍板 ISSUE-018 heritage 导航登记 / ISSUE-019 HANDOFF 停更 / ISSUE-020 二次改名无 ADR）*
+*最后更新：2026-10-12（全仓评审治理收尾：ISSUE-018 heritage 三份导航登记 / ISSUE-019 HANDOFF 补 10 月条目恢复交接主通道 / ISSUE-020 ADR-005 新立留痕，三条评审待拍板项全部 resolved 移入 Closed）*

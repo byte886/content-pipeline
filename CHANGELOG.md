@@ -13,6 +13,8 @@
 - ［新增］郭颖 B 级剩余 73 条续采：6 批次方案（拍卖天价/明星品牌/文化寓意/原石猎奇/钻石蓝宝/玉石珍珠南红）→ 全量下载+转写+双轨分析+创作对标完成，台账回写、manifest 对账通过（commit 7b19a77、127c0e8）。
 - ［修复］`scripts/.../video_dual_analysis_prep.py` 第 106 行死代码 bug（随 B 级续采收尾一并修复，commit 127c0e8）。
 - ［维护］全仓评审与治理同步：①P0死链3处修复（architecture-storage-layout→ADR-001实际名 / DOCUMENTATION_MAP移除不存在SOP / project-management README移除legacy）②ISSUES关闭3条（010/011/015）+已✅项移Closed+新增ISSUE-018~020待拍板 ③TASK_STATUS刷新（T-31/37/38/39补登、T-39 mp_verify消解、新增评审行）④CHANGELOG补登10-09以来变更 ⑤旧仓名与迁移阶段修正（memory concept）⑥DIRECTORY_STRUCTURE/ROADMAP/REQUIREMENTS状态刷新 ⑦导航补全（docs README/DOCUMENTATION_MAP/memory index/WORKFLOW日期）⑧domains README 修正。
+- ［新增］新立 `project-management/decisions/ADR-005-仓库二次改名留痕（multiplatform-content-pipeline→content-pipeline）.md`（Status: Accepted），为 2026-10-09 二次改名补 ADR 留痕（ISSUE-020 closed）；project-management/README.md ADR 范围更新为 ADR-001~005。
+- ［维护］评审待拍板三项收尾（用户拍板"全部执行"）：①heritage 总域正式登记——根 README.md domains 行、DIRECTORY_STRUCTURE.md 目录树补 6 子域段、DOCUMENTATION_MAP.md 新增「行业知识域导航」条目（ISSUE-018 closed）；②HANDOFF.md 补 10 月倒序条目（10-09 T-31+二次改名 / 10-11 T-37+T-38+T-39 / 10-12 台账+B级对标+治理同步）、§0「现在在」刷新，恢复交接主通道（ISSUE-019 closed）；③AGENTS.md §1.1 冷启动段加跨体系薄指针（先读总控仓 ~/Desktop/control-tower/README.md）。
 
 ## 2026-10-09
 

@@ -64,8 +64,13 @@ content-pipeline/
 │   │   ├── knowledge_base/            # 股票知识库
 │   │   ├── article_writer/            # 股票文章撰写模板
 │   │   └── article_reviewer/          # 股票文章审稿规则
-│   └── jewelry/                       # 珠宝行业
-│       └── ...
+│   └── heritage/                      # 鉴藏总域（appraisal & collection，6 子域独立建包）
+│       ├── 01_jewelry/               # 珠宝（原 jewelry 域归入）
+│       ├── 02_jadeite/               # 翡翠
+│       ├── 03_antiques/              # 古玩·古董（陶瓷/书画/铜器/杂项/拍卖）
+│       ├── 04_furniture/              # 家具·木作
+│       ├── 05_eastern-heritage/      # 东方体系（中华/印度/日本/东南亚/中东）
+│       └── 06_western-heritage/      # 西方体系（欧美市场/古埃及等古文明）
 ├── library/                           # 数据层（按处理阶段编号）
 │   ├── 00_manifest/                   # 台账（manifest、水位、队列）
 │   ├── 01_video/<平台>/<账号>/        # 原片（gitignore）

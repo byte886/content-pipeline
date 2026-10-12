@@ -67,6 +67,7 @@
 
 - ✅ **T-38 郭颖 A 类 46 条补采与文档归并（全部完成）**：依 T-37 复查结论补采 A 类 46 条（彩宝8/钻石11/翡翠6/和田玉5/珍珠6/黄金7/综合3），浏览器取流改用 currentSrc+__vid 铁证法（修正预加载流串流）→FunASR 转写→按 review_topic 并入对应品类文档；批4-7 共 21 条归并（commit 881494e，T-38 全部完成）。
 - 🗂️ **视频资产台账与普查工具入库**：manifest.csv 元数据入库 + 价值评级 SOP（`docs/guides/video-asset-manifest.md`）+ xlsx→manifest 同步对账脚本；转写近重复普查（作品238/唯一内容234）、视频画面 dHash 普查（文本+画面双维度）；补全来源索引（老许 B站744 / 交易的游戏视频号336）；B级首批10条创作对标 + 剩余73条续采完成，修复 `video_dual_analysis_prep.py:106` 死代码（commit 127c0e8）。
+- ✅ **评审待拍板三项收尾（用户拍板"全部执行"）**：①heritage 总域正式登记三份导航（README/DIRECTORY_STRUCTURE/DOCUMENTATION_MAP，ISSUE-018 closed）；②HANDOFF 补 10 月倒序条目、恢复交接主通道（ISSUE-019 closed）；③新立 ADR-005 为二次改名留痕（ISSUE-020 closed）。
 
 ## 最近完成（2026-10-11）
 

@@ -25,6 +25,17 @@
         "cdp_port": 9223,
         "season_map": "platforms/bilibili/config/season_map.json"
       }
+    },
+    {
+      "platform": "douyin",
+      "account": "珠宝学者郭颖",
+      "domain": "jewelry",
+      "enabled": true,
+      "config": {
+        "collect_script": "platforms/douyin/scripts/collect_video_list.py",
+        "sop": "platforms/douyin/COLLECT_SOP.md",
+        "note": "2026-10-12 补登记：抖音已接入（浏览器直读 video 流绕 403），郭颖珠宝库已跑通（T-31 192条/T-38 A类46条补采）。依据：根 README.md 已接平台表注明『郭颖珠宝库』，但 platforms/douyin/README.md 未具名账号；sec_uid / 抖音主页 URL / chrome_profile / cdp_port 均待真实源数据补录，暂不臆造。"
+      }
     }
   ],
   "domains": [
