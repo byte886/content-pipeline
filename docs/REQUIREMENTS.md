@@ -28,8 +28,9 @@
 |------|------|---------|
 | 微信视频号 | ✅ 已完成 | MITM代理捕获URL + 批量下载解密 |
 | 微信公众号 | ✅ 已完成 | 读取本地数据库 + 正文提取 + 图片OCR |
-| B站 | ⏳ 待接入 | 复用珠宝项目bili_list.py（wbi签名） |
-| 抖音/YouTube | ⏳ 待接入 | 复用multiplatform-media-fetch技能 |
+| B站 | ✅ 已接入 | 复用珠宝项目bili_list.py（wbi签名）；fetcher.py + collect 脚本已就位 |
+| 抖音 | ✅ 已接入 | 浏览器直读video流绕过403；郭颖珠宝库已跑通 |
+| YouTube | ⏳ 待接入 | 复用multiplatform-media-fetch技能（需代理），仅 README 占位 |
 
 **架构要求**：插件化，新平台接入只需实现统一接口（`PlatformFetcher`），配置驱动（`config/sources.json`）。
 
@@ -37,7 +38,7 @@
 
 | 功能 | 状态 | 实现方式 |
 |------|------|---------|
-| 视频转文字 | ✅ 短视频完成，直播待转写 | FunASR本地离线（SenseVoiceSmall） |
+| 视频转文字 | ✅ 已完成（短视频+直播回放 28 场全转写） | FunASR本地离线（SenseVoiceSmall） |
 | 图文OCR | ✅ 已完成 | macOS Vision（编译二进制，1.5秒/张） |
 | 视频解密 | ✅ 已完成 | ISAAC64解密（视频号短视频特有） |
 | 内容去重 | ⏳ 待实现 | 统一格式，按唯一键去重 |
@@ -110,4 +111,4 @@
 
 ---
 
-*最后更新：2026-09-17*
+*最后更新：2026-10-12*

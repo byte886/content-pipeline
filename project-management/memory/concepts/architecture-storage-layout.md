@@ -9,7 +9,7 @@ verified: machine
 
 ## 结论
 
-| 内容 | Git仓库 | 本地data | 百度网盘 | 飞书知识库 |
+| 内容 | Git仓库 | 本地library | 百度网盘 | 飞书知识库 |
 |------|:---:|:---:|:---:|:---:|
 | 规范/模板/SOP/脚本/ADR | ✅ 唯一源 | — | — | — |
 | 原始资源（视频/转写/文章JSON/图片） | ❌ 忽略 | ✅ | ✅ 备份 | ❌ |
@@ -27,4 +27,4 @@ verified: machine
 
 - 目录结构详情：`docs/DIRECTORY_STRUCTURE.md`
 - .gitignore：项目根目录`.gitignore`
-- 存储分工决策：`project-management/decisions/ADR-001-项目存储分工.md`
+- 存储分工决策：`project-management/decisions/ADR-001-项目文档架构与治理规范.md`

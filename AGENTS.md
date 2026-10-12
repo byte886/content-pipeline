@@ -27,6 +27,8 @@
    - 增量采集：`docs/guides/incremental-fetch.md`
    - 智能关键帧抽取：技能路径 `multiplatform-media-fetch/scripts/extract_keyframes.py`
 
+> **跨体系任务**：先读总控仓 `~/Desktop/control-tower/README.md`（如存在）再动手。
+
 读完用 `docs/项目维护SOP.md` §5「冷启动六问」自测，把六个答案讲给用户听，**答不上或文档自相矛盾先修文档再动手**。
 开新任务窗口的固定动作（触发词、老窗口收口、标准句、兜底）见 `docs/新窗口接手开场白.md`。
 

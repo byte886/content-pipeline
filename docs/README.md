@@ -23,7 +23,8 @@
 | 文件 | 用途 | 依赖 |
 |------|------|------|
 | [wechat-basic-operations.md](guides/wechat-basic-operations.md) | **微信基本操作**：窗口管理、搜索操作、鼠标控制最佳实践（所有微信采集的前置依赖） | 无 |
-| [wechat-channels-capture.md](guides/wechat-channels-capture.md) | 视频号采集：捕获→下载→解密→验证（B方案首选） | 基本操作SOP |
+| [wechat-channels-collect-sop.md](guides/wechat-channels-collect-sop.md) | **视频号一键采集（首选）**：collect_channels.py 一键，人工只开一次窗 | 基本操作SOP |
+| [wechat-channels-capture.md](guides/wechat-channels-capture.md) | 视频号采集：捕获→下载→解密→验证（手动原语） | 基本操作SOP |
 | [wechat-official-article.md](guides/wechat-official-article.md) | 公众号文章采集与 OCR | 基本操作SOP |
 
 ### 通用
@@ -33,6 +34,10 @@
 | [incremental-fetch.md](guides/incremental-fetch.md) | 增量采集：多平台内容更新发现与下载（通用框架） |
 | [books-extraction.md](guides/books-extraction.md) | 电子资料采集与转码 |
 | [audio-transcription.md](guides/audio-transcription.md) | FunASR 本地离线转文字：环境/批量脚本/输出/空稿判定 |
+| [network-preflight.md](guides/network-preflight.md) | 采集前只读网络预检：代理翻墙能力实测、Tailscale、跨机器配置 |
+| [codex-dev-environment.md](guides/codex-dev-environment.md) | Codex 安装、模型选型、算力购买与配置操作步骤 |
+| [video-asset-manifest.md](guides/video-asset-manifest.md) | 视频资产台账：manifest.csv 字段、价值分级与 A/B/C 评级、登记与 xlsx 同步对账 |
+| [knowledge-source-organization.md](guides/knowledge-source-organization.md) | 知识源组织：三层解耦、入口模板、draft→stable、新增博主 Checklist、质检清单 |
 
 ## 研究记录（research/）
 

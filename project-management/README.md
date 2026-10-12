@@ -22,8 +22,6 @@ project-management/
 ├── standards/        # 执行标准与规范
 │   ├── BATCH_TASK_EXECUTION.md   # 批量任务执行规范
 │   └── DOC_SYNC_CHECKLIST.md     # 文档同步检查清单
-└── legacy/           # 历史项目文档（珠宝项目合并过来的，仅存档参考）
-    └── jewelry-*.md
 ```
 
 ## 读取优先级
@@ -41,4 +39,3 @@ project-management/
 - **active/** 是唯一进度真相，实时更新，不抄明细
 - **decisions/** 只增不改，被取代的决策在新 ADR 中说明
 - **memory/** 只放稳定结论，易变值（进度、计数）不进记忆
-- **legacy/** 只读存档，不修改、不引用为权威源

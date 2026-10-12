@@ -17,6 +17,7 @@
 | ③ 知识提取 | 进行中 | 规则版已完成，LLM深度提取待接入 |
 | ④ 知识库组织 | 方案就绪 | 待执行 |
 | 项目治理 | ✅ 完成 | 文档架构、ADR、工程记忆、SOP |
+| 全仓评审与治理维护（2026-10-12） | ✅ 完成 | 三层维度评审（治理/文档/状态）：MD链接0断链、.gitignore合规；P1治理台账同步（ISSUES关闭3条+移Closed、TASK_STATUS刷新、导航3处死链修复、平台状态更新、CHANGELOG补登）；heritage/HANDOFF/ADR-005 登记 ISSUE-018~020 待拍板 |
 
 ---
 
@@ -33,8 +34,8 @@
 | T-35 | 视频号短视频换签直链+Isaac64解密闭环 | feature | 进行中 | ✅解密算法与工具链已端到端验证（见 docs/research/wechat-short-video-decryption.md）；slim() 已补 urlToken/decodeKey/cdnFileSize/hlsSpec + 新增 probeSignActions（RLIST_ACTSRC），go build 通过；**ISSUE-017 已闭环（09-22）：一次刷新全量换签、urlToken/decodeKey 全覆盖**，近100%即一次刷新拿全，否则据 ACTSRC 对缺签条目逐条换签；best_format高清md5对账（ISSUE-003）后做 |
 | T-36 | 去重/补3场回放/台账重建 | feature | ✅ 完成 | ISSUE-016 已闭环（09-22）；方案见 `wechat-channels-dedup-and-inventory.md`（ISSUE-016）：刷新换签→补3场回放+转写→用户确认后删71重复视频并同步去重转写→按catalog id重建inventory至audit全0 |
 | T-37 | 郭颖「普通展示」187条逐条复查 + 知识库入口 | feature | ✅ 完成 | 2026-10-11：187 条逐条语义分级并回写台账（新增 review_grade/review_topic/review_note 三列，xlsx 本地）：**A 建议补采 46 / B 可选 83 / C 不采 58**；产出《普通展示187条筛查报告.md》；参照会计知识库范式为郭颖目录建入口《README.md》（17 份文档地图+存储分工+可信度约定+使用指南）。commit 21e93ac |
-| T-38 | 郭颖 A 类 46 条补采与文档归并 | feature | 待开始 | 依 T-37 复查结论，补采 A 类 46 条（钻石11/彩宝8/黄金7/翡翠6/珍珠6/和田玉5/综合3）：浏览器取流→FunASR 转写（转写即内容验证，名不副实降级）→按 review_topic 并入对应品类文档。**待用户拍板后启动**；B 类 83 留档按需取，C 类 58+节日6+广告2 放弃 |
-| T-39 | 全知识源入口导航 + 知识源组织 SOP | feature | ✅ 完成 | 2026-10-11：参照会计知识库治理范式，为 `05_knowledge/` 全部知识源补导航入口（知识层总入口、jewelry 行业入口、老许 OKF concepts 入口、stock 入口），不移动文件/不改成品；新增落地 SOP `docs/guides/knowledge-source-organization.md`（三层解耦/两种成品形态/入口模板/draft→stable/新增博主 Checklist/质检清单）并登记 DOCUMENTATION_MAP；补登记 archive 旧架构消除 1 个历史体检 ERROR；OKF 校验 E=0、新增文件零新增断链。commit 4a9c359。**遗留待拍板**：体检唯一剩余 ERROR＝`platforms/wechat_channels/video-capture/mp_verify_20261002.json` 疑似票据凭证入库（git rm --cached 停止跟踪 / 是否 filter-repo 清历史需用户决定）；老许 10 篇 topics 主题页仍为占位、723 篇 draft 待第二步语义加工 |
+| T-38 | 郭颖 A 类 46 条补采与文档归并 | feature | ✅ 完成 | 2026-10-12：依 T-37 复查结论，补采 A 类 46 条（彩宝8/钻石11/翡翠6/和田玉5/珍珠6/黄金7/综合3）：浏览器取流（currentSrc+__vid 铁证法，修正预加载流串流）→FunASR 转写（转写即内容验证，名不副实降级）→按 review_topic 并入对应品类文档；批4-7 共 21 条归并（commit 881494e，T-38 全部完成）。B 类 83 留档按需取，C 类 58+节日6+广告2 放弃 |
+| T-39 | 全知识源入口导航 + 知识源组织 SOP | feature | ✅ 完成 | 2026-10-11：参照会计知识库治理范式，为 `05_knowledge/` 全部知识源补导航入口（知识层总入口、jewelry 行业入口、老许 OKF concepts 入口、stock 入口），不移动文件/不改成品；新增落地 SOP `docs/guides/knowledge-source-organization.md`（三层解耦/两种成品形态/入口模板/draft→stable/新增博主 Checklist/质检清单）并登记 DOCUMENTATION_MAP；补登记 archive 旧架构消除 1 个历史体检 ERROR；OKF 校验 E=0、新增文件零新增断链。commit 4a9c359。**遗留（非阻塞）**：老许 10 篇 topics 主题页仍为占位、723 篇 draft 待第二步语义加工。（原遗留待拍板项：`platforms/wechat_channels/video-capture/mp_verify_20261002.json` 疑似票据入库——2026-10-12 核实该文件未被 git 跟踪，体检 ERROR 已自动消解，关闭） |
 
 ---
 
@@ -59,6 +60,22 @@
 - **转写工具**：FunASR SenseVoiceSmall（共享venv `~/.venvs/funasr`）→ 见 `docs/guides/audio-transcription.md`，批量脚本 `platforms/wechat_channels/video-transcribe/batch_transcribe.py`
 - **OCR工具**：macOS Vision → 见 `processing/ocr/tools/`
 - **存储分工**：GitHub(代码) / 本地library(数据) / 百度网盘(镜像) → 见 ADR-001
+
+---
+
+## 最近完成（2026-10-12）
+
+- ✅ **T-38 郭颖 A 类 46 条补采与文档归并（全部完成）**：依 T-37 复查结论补采 A 类 46 条（彩宝8/钻石11/翡翠6/和田玉5/珍珠6/黄金7/综合3），浏览器取流改用 currentSrc+__vid 铁证法（修正预加载流串流）→FunASR 转写→按 review_topic 并入对应品类文档；批4-7 共 21 条归并（commit 881494e，T-38 全部完成）。
+- 🗂️ **视频资产台账与普查工具入库**：manifest.csv 元数据入库 + 价值评级 SOP（`docs/guides/video-asset-manifest.md`）+ xlsx→manifest 同步对账脚本；转写近重复普查（作品238/唯一内容234）、视频画面 dHash 普查（文本+画面双维度）；补全来源索引（老许 B站744 / 交易的游戏视频号336）；B级首批10条创作对标 + 剩余73条续采完成，修复 `video_dual_analysis_prep.py:106` 死代码（commit 127c0e8）。
+
+## 最近完成（2026-10-11）
+
+- ✅ **T-37 郭颖「普通展示」187条逐条复查 + 知识库入口**：187 条逐条语义分级并回写台账（新增 review_grade/review_topic/review_note 三列）：**A 补采46 / B 可选83 / C 不采58**；产出《普通展示187条筛查报告.md》；为郭颖目录建入口 README（17 份文档地图+存储分工+可信度约定）。commit 21e93ac。
+- ✅ **T-39 全知识源入口导航 + 知识源组织 SOP**：为 `05_knowledge/` 全部知识源补导航入口（知识层总入口/jewelry 行业入口/老许 OKF concepts 入口/stock 入口）；新增落地 SOP `docs/guides/knowledge-source-organization.md` 并登记 DOCUMENTATION_MAP。commit 4a9c359。
+
+## 最近完成（2026-10-09）
+
+- ✅ **T-31 指定博主全量采集（郭颖）全部完成**：192 视频全部转写零失败（transcript 入库）并完成知识文档化，形成 17 份综合《知识文档》——145 条高价值科普归并 14 份品类文档、46 条潘家园实战归并 3 份实战手册（commit de247d6 转写完成 / 5b60876 T-31 全部完成）。
 
 ---
 
@@ -109,4 +126,4 @@
 
 ---
 
-*最后更新：2026-09-23（视频号 340/29 全量闭环：增量 live_029 补齐转写、台账重建、audit 全 0）*
+*最后更新：2026-10-12（全仓评审治理同步：T-31/T-37/T-38/T-39 10月完成条目补登；T-39 mp_verify 遗留 ERROR 核实未跟踪、自动消解关闭；新增评审与治理维护行）*

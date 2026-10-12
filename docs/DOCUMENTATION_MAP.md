@@ -20,7 +20,7 @@
 1. `docs/guides/codex-dev-environment.md` — **Codex 安装、模型选型(GPT-5.6 Sol)、算力购买(订阅/中转/国产)、配置与操作步骤**
 
 ### 技能编写与优化
-1. `docs/guides/技能编写优化SOP.md` — **技能目录结构、命名规范、文档层级、给AI用的写法**（已实践验证于multiplatform-media-fetch）
+> （2026-10-12 评审：`docs/guides/技能编写优化SOP.md` 该文档不存在，已移除；技能编写规范暂以各技能仓 SKILL.md 为准）
 
 ### 网络环境预检（任何改系统代理的采集前）
 1. `docs/guides/network-preflight.md` — 只读网络诊断与上游代理选择（代理翻墙能力实测、Tailscale、跨机器配置）
@@ -108,6 +108,7 @@
 | 电子资料转码SOP | `docs/guides/books-extraction.md` | PDF/PPTX等电子资料处理 |
 | 视频转写SOP | `docs/guides/audio-transcription.md` | FunASR本地离线转文字：环境/批量脚本/输出/空稿判定 |
 | 视频资产台账SOP | `docs/guides/video-asset-manifest.md` | 大文件本地/元数据入库：manifest字段、价值分级与A/B/C评级、登记与同步对账、跨设备恢复 |
+| 知识源组织SOP | `docs/guides/knowledge-source-organization.md` | 三层解耦、两种成品形态、目录/入口模板、draft→stable、新增博主Checklist、交付质检清单 |
 
 ### 二、技术研究（research/ — 已验证的结论）
 

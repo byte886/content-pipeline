@@ -3,6 +3,17 @@
 > 格式：`YYYY-MM-DD ［类型］一句话（+影响/依据）`；类型 = 新增/变更/修复/废弃/移除。倒序编年（最新在上）。
 > 历史说明：本仓此前无根级 CHANGELOG，变更记录由 `docs/HANDOFF.md`（倒序活日志）承担；自 2026-10-08 起以本文件为根级显著变更台账（HANDOFF 偏接手上下文，职能不同）。
 
+## 2026-10-12
+
+- ［新增］转写近重复普查脚本与全库普查报告：郭颖作品 238 / 唯一内容 234（commit a376236）。
+- ［新增］视频画面 dHash 普查脚本：近重复报告由"文本单维度"升级为"文本+画面双维度"（commit a31ec39）。
+- ［新增］视频资产台账元数据入库：`manifest.csv` 16 列字段定义 + 五档价值分级与 A/B/C 评级 SOP（`docs/guides/video-asset-manifest.md`）+ xlsx→manifest 同步对账脚本 `scripts/xlsx_to_manifest.py`（commit 00993e6）。
+- ［变更］视频资产来源索引补全：登记宝石学家老许 B站 744、交易的游戏视频号 336；注明 json 历史富清单与 csv 新统一台账并存（commit 967c85b）。
+- ［新增］郭颖 B 级首批 10 条创作对标：下载转写完成、双轨预处理脚本入库、台账对账通过（248/248）（commit 4f22a38、3d220e1）。
+- ［新增］郭颖 B 级剩余 73 条续采：6 批次方案（拍卖天价/明星品牌/文化寓意/原石猎奇/钻石蓝宝/玉石珍珠南红）→ 全量下载+转写+双轨分析+创作对标完成，台账回写、manifest 对账通过（commit 7b19a77、127c0e8）。
+- ［修复］`scripts/.../video_dual_analysis_prep.py` 第 106 行死代码 bug（随 B 级续采收尾一并修复，commit 127c0e8）。
+- ［维护］全仓评审与治理同步：①P0死链3处修复（architecture-storage-layout→ADR-001实际名 / DOCUMENTATION_MAP移除不存在SOP / project-management README移除legacy）②ISSUES关闭3条（010/011/015）+已✅项移Closed+新增ISSUE-018~020待拍板 ③TASK_STATUS刷新（T-31/37/38/39补登、T-39 mp_verify消解、新增评审行）④CHANGELOG补登10-09以来变更 ⑤旧仓名与迁移阶段修正（memory concept）⑥DIRECTORY_STRUCTURE/ROADMAP/REQUIREMENTS状态刷新 ⑦导航补全（docs README/DOCUMENTATION_MAP/memory index/WORKFLOW日期）⑧domains README 修正。
+
 ## 2026-10-09
 
 - ［变更］仓库改名 `multiplatform-content-pipeline → content-pipeline`（用户拍板：原名过长；content-pipeline 为英文标准术语、砍掉 multiplatform 隐含属性、与体系 2 词命名风格统一）。GitHub rename + 本地目录 mv + remote set-url + 全链指针同步（含 we-media-ops 子模块 URL）。

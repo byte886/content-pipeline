@@ -8,45 +8,16 @@
 
 ## 开放问题（Open）
 
-### ISSUE-001: 捕获工具证书路径问题 ✅ 已解决
-- **状态**：已修复（2026-09-15）
-- **发现时间**：2026-09-15
-- **问题描述**：捕获工具用相对路径`ca.crt`加载证书，从项目根目录运行时找不到`platforms/wechat_channels/video-capture/ca.crt`，会生成新的未信任证书，导致TLS握手失败、全网阻断。
-- **根因**：`captor.go`的`loadOrGenerateCA()`用相对路径`"ca.crt"`
-- **修复方案**：改为相对于可执行文件的路径（`os.Executable()` + `filepath.Dir()`）
-- **验证**：从项目根目录运行，正确加载`platforms/wechat_channels/video-capture/ca.crt`，根目录不生成新证书
-
-### ISSUE-002: 直播回放尚未转写（中优先级）✅ 已解决
-- **状态**：已解决（2026-09-22）。28 场直播回放全部转写完成，`library/04_transcript/stock/交易的游戏/live/` 下 28 视频/28 转写目录严格一一对应；含最后补齐 3 场（live_026 31331 字、live_027 33796 字、live_028 29777 字，零乱码）。
-- **方案**：FunASR SenseVoiceSmall + fsmn-vad 后台批量转写（rtf≈0.09），transcript.md >50 字断点跳过。
-
 ### ISSUE-003: 高质量URL原始版本未找到（低优先级）
 - **状态**：研究中
 - **问题描述**：当前最大格式xWT111只有3.92MB，而元数据显示原始大小48.5MB
 - **可能方向**：从objectDesc.media[0].spec数组中获取每个格式的独立URL
 - **参考**：`docs/research/video-quality-url.md`
 
-### ISSUE-004: 文章采集脚本目录统一 ✅ 已解决
-- **状态**：已解决（2026-09-15，架构重构）
-- **问题描述**：文章采集脚本在`scripts/article/`，与`tools/`目录分离
-- **解决方案**：架构重构时迁移到`platforms/wechat_official/article/`，统一在平台插件目录下
-
 ### ISSUE-005: 2篇公众号文章无正文（低优先级）
 - **状态**：待重新采集
 - **问题描述**："每年12月哪个板块涨的最好？"和"春去冬来，顶底相伴，祝大家冬至快乐"无正文
 - **方案**：重新采集这两篇
-
-### ISSUE-010: GitHub仓库未改名（低优先级）
-- **状态**：待处理
-- **问题描述**：本地目录已改名为content-pipeline，但GitHub仓库还是stock-knowledge-base
-- **原因**：GitHub API token有问题，无法通过API改名
-- **方案**：手动在GitHub网页改名（Settings → Rename），旧URL会自动重定向，不影响git操作
-
-### ISSUE-011: 数据未迁移到新结构（中优先级）
-- **状态**：待执行（架构重构阶段2）
-- **问题描述**：现有数据还在旧目录（data/videos、data/transcripts、knowledge-base/），新目录library/是空的
-- **方案**：按DIRECTORY_STRUCTURE.md的迁移计划，复制+验证后清理旧目录
-- **影响**：脚本中的默认路径还指向旧目录，迁移完成后需要更新脚本
 
 ### ISSUE-012: 平台插件接口待完善（中优先级）
 - **状态**：待实现
@@ -58,26 +29,20 @@
 - **问题描述**：processing/method_extraction/method_extractor.py框架已创建，但实际的方法提炼需要LLM深度分析
 - **方案**：接入LLM，分析转写稿中的拍摄技巧、AI使用、内容呈现，提炼可复用的生成方法
 
-### ISSUE-014: 百度凭证解密口令曾明文进入 public git 历史（高优先级·安全）✅ 已解决
-- **状态**：✅ 已解决（2026-09-22：工作区止血 + filter-repo 全历史清除并强推，本地与全新克隆双路复验 0 命中）
-- **发现时间**：2026-09-21（doc_health_check 首次扫描命中）
-- **问题描述**：百度网盘加密凭证 `.secrets/baidu_credentials.enc` 的解密口令（与本机 sudo、GitHub PAT 解密口令相同）曾被硬编码在 `scripts/netdisk/sync_stock.sh`、`sync_library.sh`、`sync_netdisk.sh`、`baidu_upload.py` 示例中，并随多个历史提交推送到 public GitHub；同时 `.enc` 加密件本身也被跟踪入库，另有 3 个视频号捕获 JSON（含真实签名直链）曾入库。
-- **处置（已全部完成）**：
-  1. 工作区止血：4 个脚本改为强制从环境变量 `BAIDU_ENC_PASS` 读取（未设置即报错退出）；体检脚本把明文口令/票据列为 ERROR，弱口令检测规则改字面量拼接（规则自身不再含连续明文）。
-  2. 入库策略收紧：`.gitignore` 改为整个 `.secrets/` 目录不入库（含 `.enc`，移除原先对 `*.enc` 的放行）；`.enc` 改为本地持有（工作区保留、仓外备份于 `~/.config/content-pipeline/.secrets/`）。
-  3. 全历史重写：`git filter-repo --replace-text`（口令→`***REMOVED***`）+ `--invert-paths` 移除 `.secrets/` 与 3 个捕获 JSON（`capture_result_20260918.json`、`capture_wushi_20260918.json`、`capture_mp_credential.json`），改写全部提交哈希后 `--force` 强推 master（旧 HEAD `146e007` → 新 HEAD `55596ef`）。
-  4. 复验：本地与"从 GitHub 全新克隆"双路全历史 `git grep` 口令 / PAT / 私钥 / 真实票据均 0 命中；`py_compile`、`bash -n`、captor `go build`、doc_health_check 全通过（0 ERROR/0 WARN）。
-- **filter-repo 无法消除的残留风险（须知悉）**：
-  1. 强推不保证已泄露副本消失：旧提交哈希在 GitHub 侧可能短时仍可经直接 URL/缓存访问，**已存在的 fork / 他人 clone / 第三方抓取不受影响、无法收回**。要彻底抹除 GitHub 侧残留需联系 GitHub Support 或删仓重建（会丢 issue/star，本次未做）。
-  2. 用户决定**口令不更换**。鉴于口令与 `.enc` 曾同时公开，应按"百度凭证已等同泄露"处置：建议重新走一次百度网盘 OAuth 授权，使旧 access_token/refresh_token 失效（access_token 约 30 天自然过期，refresh_token 约 10 年；**重新授权是否立即作废旧 refresh_token 取决于百度规则，尚未实测、不确定**）。这是不改口令前提下最有效的补救。
-  3. 其他机器/历史克隆无法 fast-forward，必须删除后重新克隆。
-- **备份处置**：重写前全量兜底 `~/Desktop/mcp-PRE-CLEANUP-20260922.bundle`（8MB，**含原始敏感历史**）仅用于回滚；确认新仓无误后应删除，勿长期保留或外传。
-- **关联**：ADR-003 密钥管理；`docs/项目维护SOP.md` 安全红线。
+### ISSUE-018: domains/heritage/ 总域未登记导航（评审发现·待用户拍板）
+- **状态**：待用户拍板（2026-10-12 评审发现）
+- **问题描述**：`domains/heritage/` 已建立 6 个子域（01_jewelry/02_jadeite/03_antiques/04_furniture/05_eastern-heritage/06_western-heritage），各有 README，且 `domains/heritage/README.md` 有完整子域表；但 `README.md` / `docs/DIRECTORY_STRUCTURE.md` / `docs/DOCUMENTATION_MAP.md` 均未收录（grep heritage 命中 0），根 README:79 仍只写"股票/珠宝（隔离）"。
+- **待拍板**：heritage 是否正式登记进三份导航文档，还是暂作实验域、不纳入正式治理导航。
 
-### ISSUE-015: sync_netdisk.sh 疑为高顿项目遗留脚本（低优先级）
-- **状态**：待确认是否退役
-- **问题描述**：`scripts/netdisk/sync_netdisk.sh` 引用 `data/_workspace/...`、`scripts/upload_course.sh`、`GAODUN_COURSE_PROFILE`，是高顿课程同步脚本复制而来，在本仓目录结构下疑似 0 引用、不可直接运行。
-- **方案**：确认无引用后删除或迁入归档；当前仅已去除其中明文口令。
+### ISSUE-019: docs/HANDOFF.md 停更于 09-22（评审发现·待用户拍板）
+- **状态**：待用户拍板（2026-10-12 评审发现）
+- **问题描述**：`docs/HANDOFF.md` §0"现在在"与 §3"当前纠结"仍停留在 09-22 收尾状态，10 月重大活动无记录：郭颖 192 条全量采集+知识文档（T-31，10-09）、T-37 187 条逐条复查（10-11）、T-38 郭颖 A 类 46 条补采、T-39 知识源入口（10-11）。
+- **待拍板**：是否补写倒序条目；或宣告 HANDOFF 已由 CHANGELOG / TASK_STATUS 取代、降级为历史快照。
+
+### ISSUE-020: 第二次改名无 ADR 留痕（评审发现·待用户拍板）
+- **状态**：待用户拍板（2026-10-12 评审发现）
+- **问题描述**：第一次改名（stock-knowledge-base→multiplatform-content-pipeline）有 ADR-004；第二次改名（multiplatform-content-pipeline→content-pipeline，2026-10-09）仅 CHANGELOG 记录，无对应 ADR。按 ADR"只增不改"原则应有新 ADR 或在 ADR-004 加演进注记。
+- **待拍板**：是否补 ADR-005 记录二次改名，或在 ADR-004 末尾加演进注记。
 
 ---
 
@@ -117,6 +82,47 @@
 - **根因**：swift解释执行每次都要编译
 - **方案**：先用`swiftc -O`编译为二进制，速度提升10倍（1.5秒/张）
 
+### ISSUE-001: 捕获工具证书路径问题 ✅
+- **解决时间**：2026-09-15
+- **问题描述**：捕获工具用相对路径`ca.crt`加载证书，从项目根目录运行时找不到`platforms/wechat_channels/video-capture/ca.crt`，会生成新的未信任证书，导致TLS握手失败、全网阻断。
+- **根因**：`captor.go`的`loadOrGenerateCA()`用相对路径`"ca.crt"`
+- **修复方案**：改为相对于可执行文件的路径（`os.Executable()` + `filepath.Dir()`）
+- **验证**：从项目根目录运行，正确加载`platforms/wechat_channels/video-capture/ca.crt`，根目录不生成新证书
+
+### ISSUE-002: 直播回放尚未转写 ✅
+- **解决时间**：2026-09-22。28 场直播回放全部转写完成，`library/04_transcript/stock/交易的游戏/live/` 下 28 视频/28 转写目录严格一一对应；含最后补齐 3 场（live_026 31331 字、live_027 33796 字、live_028 29777 字，零乱码）。
+- **方案**：FunASR SenseVoiceSmall + fsmn-vad 后台批量转写（rtf≈0.09），transcript.md >50 字断点跳过。
+
+### ISSUE-004: 文章采集脚本目录统一 ✅
+- **解决时间**：2026-09-15（架构重构）
+- **问题描述**：文章采集脚本在`scripts/article/`，与`tools/`目录分离
+- **解决方案**：架构重构时迁移到`platforms/wechat_official/article/`，统一在平台插件目录下
+
+### ISSUE-010: GitHub仓库未改名 ✅
+- **解决时间**：2026-10-12（`git remote -v` 核实：远端已为 `git@github.com:byte886/content-pipeline.git`，本地与远端同步；改名已于 CHANGELOG 2026-10-09 登记）。原"GitHub 仍为 stock-knowledge-base"已不成立。
+
+### ISSUE-011: 数据未迁移到新结构 ✅
+- **解决时间**：2026-10-12（根目录 `data/`、`knowledge-base/` 均已不存在，`library/` 下已有完整 00_manifest/01_video/04_transcript/05_knowledge 数据，迁移已完成）。
+
+### ISSUE-015: sync_netdisk.sh 疑为高顿项目遗留脚本 ✅
+- **解决时间**：2026-10-12（`scripts/upload_course.sh` 已删除，所引用的高顿课程同步遗留点已不存在；脚本中明文口令此前已去除）。原"待确认是否退役"状态关闭。
+
+### ISSUE-014: 百度凭证解密口令曾明文进入 public git 历史（高优先级·安全）✅
+- **解决时间**：2026-09-22：工作区止血 + filter-repo 全历史清除并强推，本地与全新克隆双路复验 0 命中
+- **发现时间**：2026-09-21（doc_health_check 首次扫描命中）
+- **问题描述**：百度网盘加密凭证 `.secrets/baidu_credentials.enc` 的解密口令（与本机 sudo、GitHub PAT 解密口令相同）曾被硬编码在 `scripts/netdisk/sync_stock.sh`、`sync_library.sh`、`sync_netdisk.sh`、`baidu_upload.py` 示例中，并随多个历史提交推送到 public GitHub；同时 `.enc` 加密件本身也被跟踪入库，另有 3 个视频号捕获 JSON（含真实签名直链）曾入库。
+- **处置（已全部完成）**：
+  1. 工作区止血：4 个脚本改为强制从环境变量 `BAIDU_ENC_PASS` 读取（未设置即报错退出）；体检脚本把明文口令/票据列为 ERROR，弱口令检测规则改字面量拼接（规则自身不再含连续明文）。
+  2. 入库策略收紧：`.gitignore` 改为整个 `.secrets/` 目录不入库（含 `.enc`，移除原先对 `*.enc` 的放行）；`.enc` 改为本地持有（工作区保留、仓外备份于 `~/.config/content-pipeline/.secrets/`）。
+  3. 全历史重写：`git filter-repo --replace-text`（口令→`***REMOVED***`）+ `--invert-paths` 移除 `.secrets/` 与 3 个捕获 JSON（`capture_result_20260918.json`、`capture_wushi_20260918.json`、`capture_mp_credential.json`），改写全部提交哈希后 `--force` 强推 master（旧 HEAD `146e007` → 新 HEAD `55596ef`）。
+  4. 复验：本地与"从 GitHub 全新克隆"双路全历史 `git grep` 口令 / PAT / 私钥 / 真实票据均 0 命中；`py_compile`、`bash -n`、captor `go build`、doc_health_check 全通过（0 ERROR/0 WARN）。
+- **filter-repo 无法消除的残留风险（须知悉）**：
+  1. 强推不保证已泄露副本消失：旧提交哈希在 GitHub 侧可能短时仍可经直接 URL/缓存访问，**已存在的 fork / 他人 clone / 第三方抓取不受影响、无法收回**。要彻底抹除 GitHub 侧残留需联系 GitHub Support 或删仓重建（会丢 issue/star，本次未做）。
+  2. 用户决定**口令不更换**。鉴于口令与 `.enc` 曾同时公开，应按"百度凭证已等同泄露"处置：建议重新走一次百度网盘 OAuth 授权，使旧 access_token/refresh_token 失效（access_token 约 30 天自然过期，refresh_token 约 10 年；**重新授权是否立即作废旧 refresh_token 取决于百度规则，尚未实测、不确定**）。这是不改口令前提下最有效的补救。
+  3. 其他机器/历史克隆无法 fast-forward，必须删除后重新克隆。
+- **备份处置**：重写前全量兜底 `~/Desktop/mcp-PRE-CLEANUP-20260922.bundle`（8MB，**含原始敏感历史**）仅用于回滚；确认新仓无误后应删除，勿长期保留或外传。
+- **关联**：ADR-003 密钥管理；`docs/项目维护SOP.md` 安全红线。
+
 ---
 
-*最后更新：2026-09-22（ISSUE-016/017 闭环：视频号 339 短视频+28 回放全量下载转写、去重、inventory 重建全 0；ISSUE-014 历史清除完成）*
+*最后更新：2026-10-12（全仓评审治理同步：关闭 ISSUE-010 GitHub 改名 / ISSUE-011 数据迁移 / ISSUE-015 upload_course.sh 遗留；将已 ✅ 的 ISSUE-001/002/004/014 从 Open 移入 Closed；新增评审待拍板 ISSUE-018 heritage 导航登记 / ISSUE-019 HANDOFF 停更 / ISSUE-020 二次改名无 ADR）*

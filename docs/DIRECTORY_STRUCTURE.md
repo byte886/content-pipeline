@@ -4,7 +4,7 @@
 > **更新频率**：目录结构变更时
 > **维护者**：AI自动维护 + 用户审核
 > **读者**：AI代理 + 人类
-> **最近更新**：2026-09-22（`.secrets/` 整个目录改为不入库，含 `.enc`，凭证本地持有，见 ISSUE-014；2026-09-15 架构重构为多平台通用框架）
+> **最近更新**：2026-10-12（平台状态刷新：bilibili/douyin 标 ✅已接入、YouTube 仍待接入；旧 data/ 与 knowledge-base/ 迁移标为已完成历史；`.secrets/` 整个目录改为不入库，见 ISSUE-014）
 
 本文档说明四类存储的目录结构与分工：**GitHub仓库（工程）、本地数据（library/）、百度网盘（备份）、飞书知识库（成品知识系统）**。
 
@@ -42,9 +42,9 @@ content-pipeline/
 │   │   ├── video-capture/             # MITM代理捕获工具（Go）
 │   │   ├── video-downloader/          # 下载+解密（Python+Node）
 │   │   └── auto-capture/              # 自动化采集（Python）
-│   ├── bilibili/                      # B站采集（待接入）
-│   ├── douyin/                        # 抖音采集（待接入）
-│   └── youtube/                       # YouTube采集（待接入）
+│   ├── bilibili/                      # B站采集（✅已接入：fetcher.py + collect 脚本）
+│   ├── douyin/                        # 抖音采集（✅已接入：README + COLLECT_SOP + 采集脚本）
+│   └── youtube/                       # YouTube采集（🔧待接入，仅 README 占位）
 ├── processing/                        # 处理层：公共SOP
 │   ├── transcription/                 # FunASR转写
 │   │   └── tools/
@@ -111,8 +111,8 @@ content-pipeline/
 │   ├── tmp/                           # 临时文件
 │   └── capture/                       # 采集相关
 ├── .secrets/                          # 凭证（gitignore）
-├── data/                              # 旧数据（待迁移到library/）
-└── knowledge-base/                    # 旧知识库（待迁移到library/05_knowledge/）
+├── data/                              # 旧数据（已完成：2026-10 迁移至 library/，原目录已移除，保留作历史说明）
+└── knowledge-base/                     # 旧知识库（已完成：2026-10 迁移至 library/05_knowledge/，原目录已移除）
 ```
 
 ---
@@ -195,20 +195,22 @@ class PlatformFetcher(ABC):
 
 ---
 
-## 六、旧数据迁移计划
+## 六、旧数据迁移计划（已完成历史）
 
-当前 `data/` 和 `knowledge-base/` 是旧结构，待迁移到 `library/`：
+> （2026-10-12 评审：`data/` 与 `knowledge-base/` 已不存在，迁移已完成，下表保留为历史记录，不再维护。）
+
+原 `data/` 和 `knowledge-base/` 旧结构已迁移到 `library/`：
 
 | 旧路径 | 新路径 | 状态 |
 |--------|--------|:---:|
-| data/videos/短视频/ | library/01_video/stock/交易的游戏/short/ | 待迁移 |
-| data/videos/直播回放/ | library/01_video/stock/交易的游戏/live/ | 待迁移 |
-| data/transcripts/短视频/ | library/04_transcript/stock/交易的游戏/ | 待迁移 |
-| knowledge-base/02-公众号文章/正文/ | library/06_articles/stock/顶底之王/ | 待迁移 |
-| knowledge-base/02-公众号文章/图片/ | library/06_articles/stock/顶底之王/images/ | 待迁移 |
-| knowledge-base/01-视频号内容/ | library/05_knowledge/concepts/videos/ | 待迁移 |
+| data/videos/短视频/ | library/01_video/stock/交易的游戏/short/ | ✅ 已迁移（2026-10） |
+| data/videos/直播回放/ | library/01_video/stock/交易的游戏/live/ | ✅ 已迁移（2026-10） |
+| data/transcripts/短视频/ | library/04_transcript/stock/交易的游戏/ | ✅ 已迁移（2026-10） |
+| knowledge-base/02-公众号文章/正文/ | library/06_articles/stock/顶底之王/ | ✅ 已迁移（2026-10） |
+| knowledge-base/02-公众号文章/图片/ | library/06_articles/stock/顶底之王/images/ | ✅ 已迁移（2026-10） |
+| knowledge-base/01-视频号内容/ | library/05_knowledge/concepts/videos/ | ✅ 已迁移（2026-10） |
 
-迁移原则：复制+验证，不是剪切；验证通过后再清理旧目录。
+迁移原则：复制+验证，不是剪切；验证通过后再清理旧目录。（已按此执行完毕。）
 
 ---
 

@@ -9,9 +9,9 @@
 | 来源类型 | 平台/账号 | 数量 | 位置 |
 |---|---|---|---|
 | 公众号文章 | 顶底之王 | 277篇 | `library/06_articles/wechat_official/` |
-| 视频号短视频 | 交易的游戏 | 313个 | `library/01_video/wechat_channels/短视频/` |
-| 视频号直播回放 | 交易的游戏 | 23个 | `library/01_video/wechat_channels/直播回放/` |
-| 视频转写稿 | 交易的游戏 | 336个 | `library/04_transcript/wechat_channels/` |
+| 视频号短视频 | 交易的游戏 | 340个 | `library/01_video/stock/交易的游戏/short/` |
+| 视频号直播回放 | 交易的游戏 | 29个 | `library/01_video/stock/交易的游戏/live/` |
+| 视频转写稿 | 交易的游戏 | 369个（340短+29回放） | `library/04_transcript/stock/交易的游戏/{short,live}/` |
 | 视频知识提取 | 交易的游戏 | 340篇 | `library/05_knowledge/extracted/` |
 | 书籍精华 | 4本核心交易书 | 4篇 | `library/07_books/精华/` |
 | 书籍全文转码 | 10本 | 进行中 | `library/07_books/extracted/stock/` |

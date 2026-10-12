@@ -15,7 +15,7 @@ sources:
 
 ## 核心结论
 
-项目从"A股投资知识库"重构为"多平台内容流水线"（multiplatform-content-pipeline），采用五层架构，支持多平台采集、多行业隔离、方法提炼。
+项目从"A股投资知识库"重构为"多平台内容流水线"（现名 content-pipeline；multiplatform-content-pipeline 于 2026-10-09 二次改名），采用五层架构，支持多平台采集、多行业隔离、方法提炼。
 
 ## 五层架构
 
@@ -58,15 +58,15 @@ sources:
 | 阶段 | 内容 | 状态 |
 |------|------|:---:|
 | 阶段1 | 改名+新目录结构+代码迁移+文档更新 | ✅ 完成（commit bd45204） |
-| 阶段2 | 数据迁移到library/新结构 | 待开始 |
-| 阶段3 | 接入B站采集 | 待开始 |
-| 阶段4 | 接入抖音/YouTube | 待开始 |
+| 阶段2 | 数据迁移到library/新结构 | ✅ 完成（2026-10 迁移至 library/，ISSUE-011 闭环） |
+| 阶段3 | 接入B站采集 | ✅ 完成（bilibili 已有 fetcher/collect 脚本，已接入） |
+| 阶段4 | 接入抖音/YouTube | ✅ 完成（抖音采集管道已跑通；YouTube 仍待接入） |
 
 ## 与旧架构的关键差异
 
 | 维度 | 旧架构 | 新架构 |
 |------|--------|--------|
-| 项目名 | stock-knowledge-base | multiplatform-content-pipeline |
+| 项目名 | stock-knowledge-base | content-pipeline（2026-10-09 二次改名，原 multiplatform-content-pipeline） |
 | 采集层 | tools/（按功能分） | platforms/（按平台分，插件化） |
 | 处理层 | 散落在tools/ | processing/（公共SOP） |
 | 数据层 | data/ + knowledge-base/ | library/00-08编号 |

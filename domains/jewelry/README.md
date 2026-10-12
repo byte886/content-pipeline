@@ -8,10 +8,9 @@
 
 | 子目录 | 用途 |
 |---|---|
-| `sources/` | 各博主配置（郭颖等） |
 | `knowledge_base/` | 珠宝知识库架构设计 |
-| `article_reviewer/` | 珠宝文章审核规则 |
-| `article_writer/` | 珠宝文章写作模板 |
+
+> 注：原 `sources/`、`article_reviewer/`、`article_writer/` 子目录实际不存在（2026-10-12 核实），博主配置与知识库成品统一在 `library/05_knowledge/jewelry/`。
 
 ---
 
