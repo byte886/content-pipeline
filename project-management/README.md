@@ -21,7 +21,8 @@ project-management/
 │   └── REVIEW-governance-summary.md
 ├── standards/        # 执行标准与规范
 │   ├── BATCH_TASK_EXECUTION.md   # 批量任务执行规范
-│   └── DOC_SYNC_CHECKLIST.md     # 文档同步检查清单
+│   ├── DOC_SYNC_CHECKLIST.md     # 文档同步检查清单
+│   └── DOCUMENTATION_PRINCIPLES.md # 文档治理操作规范（类型词典/落位决策表/README防则，写文档前必读）
 ```
 
 ## 读取优先级

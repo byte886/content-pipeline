@@ -146,7 +146,8 @@
 | 项目日志（HANDOFF） | `docs/HANDOFF.md` | 倒序过程日志（聊了什么→结论→为什么）、当前纠结、产物地图 |
 | 任务状态 | `project-management/active/TASK_STATUS.md` | 当前进度、下一步（单一进度真相） |
 | 问题清单 | `project-management/active/ISSUES.md` | 已知问题、阻塞项 |
-| ADR决策 | `project-management/decisions/` | 架构决策记录（只增不改） |
+| ADR决策 | `project-management/decisions/` | 架构决策记录（只增不改）；最新：ADR-006 文稿用途分型 |
+| 文档治理规范 | `project-management/standards/DOCUMENTATION_PRINCIPLES.md` | 文档类型词典 + 新增内容落位决策表 + README 防则（写文档前必读） |
 | 工程记忆 | `project-management/memory/` | 跨会话稳定结论编译层 |
 | 文档体检脚本 | `scripts/doc_health_check.py` | 核心文件/断链/登记/禁入内容检查，0 ERROR 才提交 |
 
