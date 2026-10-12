@@ -21,6 +21,7 @@
 - ［维护］workflow/README 补登记 workflow-main 并写明三层文档分工（概览/详设/SOP）与 AI 接手顺序（commit dabc6fa）。
 - ［变更］文稿用途分型入工作流：读者/知识/运营/视频创作四型，同步 G0 目标形态 + G4 成文决策 + S4 校验门（commit c78bc5b）。
 - ［新增］文档治理补强：ADR-006 文稿用途分型决策 + `project-management/standards/DOCUMENTATION_PRINCIPLES.md`（类型词典/落位决策表/README 防则），ADR-001 加演进注记（commit 5281516）。
+- ［维护］晚间独立旁观者评审 A-1~A-6 修正（commit 51a6d86，评审报告见 `project-management/reviews/2026-10-12-evening-independent-audit.md`）：①新增 `library/README.md`（编号体系表 00_manifest~08_sources + 03 跳号说明 + 各目录一句话用途）②`TASK_STATUS.md` 当前进度总览改七阶段视角（对齐 WORKFLOW.md S0–S7，四阶段降为历史口径，信息保留）③`AGENTS.md` §2.4 补 `DOCUMENTATION_PRINCIPLES.md` 必读指针 ④新增 `domains/README.md`（jewelry 过渡保留 / stock 旧域仍活跃去留待用户拍板 / heritage 总域 6 子域）⑤`docs/guides/wechat-official-article.md` data URI 占位词改述——doc_health_check 0 ERROR / 0 WARN。
 
 ## 2026-10-09
 
