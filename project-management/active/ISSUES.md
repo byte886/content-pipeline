@@ -36,14 +36,14 @@
 ### ISSUE-016: 短视频去重、缺回放补齐、inventory 台账重建 ✅
 - **解决时间**：2026-09-22
 - **结果**：短视频去重后 **339/339**、直播回放补齐后 **28/28**，两类均缺/重/游离/歧义全 0，367 个视频全部有合格转写。
-- **执行**：①删除 71 组冗余短视频 + 71 个同名转写目录（释放约 319.5MB，删除前逐组校验 keep 已解密可播放且有转写，0 冲突）；②补齐 3 场缺回放（live_026/027/028，ffprobe 时长零误差）并转写（31331/33796/29777 字）；③新增 `rebuild_inventory.py`，以 catalog 16hex id 为主键、复用 audit_disk 严格匹配重建台账，过校验门（无缺/重/游离/歧义、转写一一对应）。
-- **产物**：`library/00_manifest/交易的游戏_inventory.json`（339 shorts + 28 lives，含相对路径/实测时长/md5/转写路径）、`audit_交易的游戏.json`（全 0）、`dedup_plan_交易的游戏.json`、`short-dedup-checklist.md`。
+- **执行**：①删除 71 组冗余短视频 + 71 个同名转写目录（释放约 319.5MB，删除前逐组校验 keep 已解密可播放且有转写，0 冲突）；②补齐 3 场缺回放（live_026/027/028，ffprobe 时长零误差）并转写（31331/33796/29777 字）；③新增 `platforms/wechat_channels/video-downloader/rebuild_inventory.py`，以 catalog 16hex id 为主键、复用 audit_disk 严格匹配重建台账，过校验门（无缺/重/游离/歧义、转写一一对应）。
+- **产物**：`library/00_manifest/交易的游戏_inventory.json`（339 shorts + 28 lives，含相对路径/实测时长/md5/转写路径）、`library/00_manifest/audit_交易的游戏.json`（全 0）、`library/00_manifest/dedup_plan_交易的游戏.json`、`project-management/active/short-dedup-checklist.md`。
 
 ### ISSUE-017: 新 hook 一次刷新全量换签覆盖率验证 ✅
 - **解决时间**：2026-09-22
 - **结论**：方案 A（Pinia action 驱动，不滚 DOM、零播放）一次刷新即拿全全部可播放直链，**无需逐条播放或主动调 getObjectAsyncLoadInfo 换签**（RLIST_ACTSRC 作为备用手段保留）。
 - **实测数据**（用户重进「交易的游戏」主页，新二进制 captor，日志 `/tmp/cap_iss017b_api.log`）：`all-done {short:340, live:28}`；parse 后 signed_coverage = 短视频 urlToken 339/339、decodeKey 339/339、回放 28/28。
-- **关键修正**：回放对象是 slim 扁平结构，token 直接内嵌在顶层 `url`（`?encfilekey=…&token=…`），`urlToken` 字段留空、无 decodeKey（明文 MP4）；parse_capture_log.py 原用空 urlToken 误判回放未签名，已改为统一以最终 URL 是否含 `token=` 判定（commit a078a79）。
+- **关键修正**：回放对象是 slim 扁平结构，token 直接内嵌在顶层 `url`（`?encfilekey=…&token=…`），`urlToken` 字段留空、无 decodeKey（明文 MP4）；`platforms/wechat_channels/video-capture/parse_capture_log.py` 原用空 urlToken 误判回放未签名，已改为统一以最终 URL 是否含 `token=` 判定（commit a078a79）。
 - **直链抽测**：短视频 HTTP 206 + 加密头 + decodeKey；3 场缺回放全 206、`ftyp` 明文头（适中档约 207–213MB/场，非 700MB 高清）。回放 id 经 `md5(md5)[:16]` 28/28 命中权威 catalog，缺的 3 场（1fb195bc/6ea0215f/bdfd5f9f）均在。
 - **产物**：脱敏 catalog 刷新为全 has_signed（零票据，安全扫描 0 命中）；含票据清单落 `workspace/signed/`（gitignore，不入库）。
 

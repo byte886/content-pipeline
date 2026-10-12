@@ -47,14 +47,14 @@
 1. `docs/guides/audio-transcription.md` — FunASR 本地离线转写：环境搭建、批量脚本用法、输出目录、空稿判定
 2. 批量转写脚本：`platforms/wechat_channels/video-transcribe/batch_transcribe.py`（模型只加载一次、断点续跑）
 3. OCR工具：`processing/ocr/tools/batch_article_images.py`（macOS Vision）
-4. **智能关键帧抽取**（镜头检测+清晰度评分+dHash去重）：`技能路径/multiplatform-media-fetch/scripts/extract_keyframes.py`
+4. **智能关键帧抽取**（镜头检测+清晰度评分+dHash去重）：`~/Doubao/skills/multiplatform-media-fetch/scripts/extract_keyframes.py`（路径待核实：本仓外该 skill 内当前未定位到此文件）
 
 ### 抖音博主全量采集（2026-10-08新增）
 1. 抖音平台说明：`platforms/douyin/README.md`（浏览器直读video流绕过403方案）
 2. **抖音批量采集详细SOP**：`platforms/douyin/COLLECT_SOP.md`（滚动列表、分类预判、批量下载、增量更新）
 3. 收集列表脚本：`platforms/douyin/scripts/collect_video_list.py`
 4. 生成状态Excel脚本：`platforms/douyin/scripts/generate_excel.py`
-5. 作者知识库构建通用SOP：`技能路径/multiplatform-media-fetch/references/author-video-knowledge-base.md`
+5. 作者知识库构建通用SOP：`~/Doubao/skills/multiplatform-media-fetch/references/pipeline/author-video-knowledge-base.md`
 6. 郭颖珠宝库样例：`library/05_knowledge/jewelry/珠宝学者郭颖/`
 7. 郭颖 A 类补采工单（T-38 去重与进度基准）：`library/05_knowledge/jewelry/珠宝学者郭颖/郭颖A类46条补采工单.md` — 46 条待补采分 7 批（彩宝8/钻石11/翡翠6/和田玉5/珍珠6/黄金7/综合3），含浏览器取流、防风控低频串行、转写即验证、归并目标与状态流转
 8. 普通展示 187 条筛查报告：`library/05_knowledge/jewelry/珠宝学者郭颖/普通展示187条筛查报告.md`（A补采46/B可选83/C不采58，分级理由）
@@ -69,7 +69,7 @@
 1. `docs/design/knowledge-base-organization.md` — 知识库架构设计+内容规范
 2. **知识源组织 SOP（落地操作）**：`docs/guides/knowledge-source-organization.md` — 三层解耦、两种成品形态、目录/入口模板、draft→stable、新增博主 Checklist、交付质检清单
 3. 知识层总入口：`library/05_knowledge/README.md`（珠宝 jewelry / 股票 stock 全知识源导航）
-4. 行业插件模板（珠宝鉴赏/视频创作）：`技能路径/multiplatform-media-fetch/references/domain-plugins/`
+4. 行业插件模板（珠宝鉴赏/视频创作）：`~/Doubao/skills/multiplatform-media-fetch/references/domain-plugins/`
 
 ### 行业知识域导航
 1. **鉴藏（Heritage）总域**：`domains/heritage/README.md` — 珠宝/翡翠/古玩古董/家具/东方体系/西方体系 6 子域总表（各子域独立建包、可独立扩展；原 `domains/jewelry/` 已归入 `01_jewelry`）

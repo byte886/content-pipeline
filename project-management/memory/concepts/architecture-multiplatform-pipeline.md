@@ -4,7 +4,7 @@ title: 多平台内容流水线架构
 type: Architecture
 status: stable
 verified: ai
-last_updated: 2026-09-15
+last_updated: 2026-10-12
 sources:
   - {id: ADR-004, resource: "../../decisions/ADR-004-架构重构为多平台内容流水线.md", title: "ADR-004: 架构重构为多平台内容流水线"}
   - {id: DIRECTORY_STRUCTURE, resource: "../../DIRECTORY_STRUCTURE.md", title: "目录结构详细说明"}

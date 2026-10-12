@@ -25,12 +25,12 @@
 
 | 编号 | 标题 | 类型 | 状态 | 说明 |
 |------|------|------|------|------|
-| T-10 | 视频号API研究（方案B） | research | ✅ B方案验证成功 | 列表不走HTTP，走XWEB桥+Pinia；**已验证直接调 `profile.fetchMoreData({username})` 翻页到 noMore、回放切tab首屏即全量，不滚DOM**。实测340视频+1图文/回放29（09-23 增量后）。✅ 2026-09-22 已用 ffprobe 严格对账（audit_disk.py）：短视频339全有/0缺/71重复、回放缺3，权威基准落 `library/00_manifest/catalog_交易的游戏.json`，报告落 `audit_交易的游戏.json` |
+| T-10 | 视频号API研究（方案B） | research | ✅ B方案验证成功 | 列表不走HTTP，走XWEB桥+Pinia；**已验证直接调 `profile.fetchMoreData({username})` 翻页到 noMore、回放切tab首屏即全量，不滚DOM**。实测340视频+1图文/回放29（09-23 增量后）。✅ 2026-09-22 已用 ffprobe 严格对账（`platforms/wechat_channels/video-downloader/audit_disk.py`）：短视频339全有/0缺/71重复、回放缺3，权威基准落 `library/00_manifest/catalog_交易的游戏.json`，报告落 `library/00_manifest/audit_交易的游戏.json` |
 | T-22 | 方法提炼（MethodNote）LLM分析 | feature | blocked | 框架已搭；郭颖 6 个测试视频已下载转写，LLM 分析可对已转写样本先行；全量待批量下载后继续 |
 | T-31 | 指定博主全量采集（郭颖） | feature | ✅ 完成 | **2026-10-09 全部完成**：**192 视频全部转写（transcript 入库）并完成知识文档化，形成 17 份综合《知识文档》**——145 条高价值科普归并为 **14 份品类文档**（钻石、翡翠、和田玉、彩色宝石×2〔贵重/常见与平替〕、综合文化、水晶、珍珠、黄金贵金属、南红玛瑙、绿松石、蜜蜡琥珀、有机宝石化石、青金石）；46 条潘家园实战归并为 **3 份实战手册**（淘货方法论与案例、分品类玉石类、分品类宝石与有机宝石类）；另 1 条《品鉴价值三个亿的翡翠》即早期《翡翠组配用料溢价》源视频，内容已并入《翡翠-知识文档》。早期 6 份单主题文档保留、内容已并入综合稿。均已 commit/push |
 | T-32 | 艺术/博物馆站点采集 | research | todo | 6个站点，待评估爬虫友好度 |
 | T-33 | 视频提到的书籍收集 | feature | 进行中 | 5本完成，《广义趋势理论》待用户决策 |
-| T-34 | 通用增量采集框架 | feature | ✅ 完成 | B站/YouTube验证通过；视频号 `incremental_sync.py` 已于 09-23 实跑成功（对账补下 live_029） |
+| T-34 | 通用增量采集框架 | feature | ✅ 完成 | B站/YouTube验证通过；视频号 `platforms/wechat_channels/video-downloader/incremental_sync.py` 已于 09-23 实跑成功（对账补下 live_029） |
 | T-35 | 视频号短视频换签直链+Isaac64解密闭环 | feature | 进行中 | ✅解密算法与工具链已端到端验证（见 docs/research/wechat-short-video-decryption.md）；slim() 已补 urlToken/decodeKey/cdnFileSize/hlsSpec + 新增 probeSignActions（RLIST_ACTSRC），go build 通过；**ISSUE-017 已闭环（09-22）：一次刷新全量换签、urlToken/decodeKey 全覆盖**，近100%即一次刷新拿全，否则据 ACTSRC 对缺签条目逐条换签；best_format高清md5对账（ISSUE-003）后做 |
 | T-36 | 去重/补3场回放/台账重建 | feature | ✅ 完成 | ISSUE-016 已闭环（09-22）；方案见 `wechat-channels-dedup-and-inventory.md`（ISSUE-016）：刷新换签→补3场回放+转写→用户确认后删71重复视频并同步去重转写→按catalog id重建inventory至audit全0 |
 | T-37 | 郭颖「普通展示」187条逐条复查 + 知识库入口 | feature | ✅ 完成 | 2026-10-11：187 条逐条语义分级并回写台账（新增 review_grade/review_topic/review_note 三列，xlsx 本地）：**A 建议补采 46 / B 可选 83 / C 不采 58**；产出《普通展示187条筛查报告.md》；参照会计知识库范式为郭颖目录建入口《README.md》（17 份文档地图+存储分工+可信度约定+使用指南）。commit 21e93ac |
@@ -83,8 +83,8 @@
 ## 最近完成（2026-09-23）
 
 - ✅ **视频号「交易的游戏」增量收尾（全量闭环）**：重跑全量捕获（action 驱动翻页 + 换签），catalog = 340 短视频 / 29 回放 / 1 图文（mediaType=2 已过滤）。脚本现算对齐 inventory/catalog/磁盘：短视频 340 磁盘/转写全有（台账文字 339 为滞后口径）；唯一新增为回放 live_029。
-- ⬇️ incremental_sync.py 实跑：补下载 live_029「上涨中继」（2182s、190.3MB 明文 MP4，ftyp 校验通过，md5 `6eecb32403c1`，直连），FunASR 转写 28646 字。
-- 🧮 audit_disk：短视频 340/340、回放 29/29，缺/重/游离/歧义全 0；rebuild_inventory 重建台账（short 1804MB / live 6296MB，转写 340+29 全齐）。原料（视频/转写）按 .gitignore 不入库，仅台账（catalog/audit/inventory）入库。
+- ⬇️ `platforms/wechat_channels/video-downloader/incremental_sync.py` 实跑：补下载 live_029「上涨中继」（2182s、190.3MB 明文 MP4，ftyp 校验通过，md5 `6eecb32403c1`，直连），FunASR 转写 28646 字。
+- 🧮 audit_disk：短视频 340/340、回放 29/29，缺/重/游离/歧义全 0；`platforms/wechat_channels/video-downloader/rebuild_inventory.py` 重建台账（short 1804MB / live 6296MB，转写 340+29 全齐）。原料（视频/转写）按 .gitignore 不入库，仅台账（catalog/audit/inventory）入库。
 
 ---
 
@@ -92,7 +92,7 @@
 
 - 🔐 **ISSUE-014 凭证明文历史清除（filter-repo 全历史重写 + 强推）**：全历史扫描锁定敏感面（明文口令、被跟踪的 `.secrets/baidu_credentials.enc`、3 个含真实签名直链的捕获 JSON；无 PAT/私钥/百度 token 明文，"AKIA" 为 wasm 误报）；`.gitignore` 收紧为**整个 `.secrets/` 不入库**、`.enc` 本地持有（仓外备份 `~/.config/content-pipeline/.secrets/`）；体检弱口令检测改字面量拼接；`git filter-repo --replace-text + --invert-paths` 重写全部提交并 `--force` 强推（旧 HEAD `146e007` → 新 HEAD `55596ef`）；本地与"从 GitHub 全新克隆"双路全历史 grep 口令/PAT/私钥/真实票据均 **0 命中**，py/sh/go 构建与体检全过（0 ERROR/0 WARN）。
   - **残留动作（非阻塞）**：①建议重新走百度 OAuth 授权作废旧 token（口令用户选择不改，这是最有效补救；refresh_token 约 10 年，重新授权是否立即作废旧 refresh 未实测）；②确认新仓无误后删除桌面兜底 `mcp-PRE-CLEANUP-20260922.bundle`（含原始敏感历史）；③其他机器的旧克隆需删除重克隆。详见 ISSUE-014。
-- 🧮 **视频号文件盘严格对账 + 全量基准落库（方案 A 离线收尾）**：固化 `parse_capture_log.py`（重组 captor `_api.log` 的整块/分块 payload，产出脱敏 catalog + 含票据 signed 两份分离，复刻 id=md5(md5sum)[:16]）与 `audit_disk.py`（ffprobe 时长+归一化标题+hashtag 消歧，文件盘 vs catalog 对账，带时长缓存）。权威基准落 `library/00_manifest/catalog_交易的游戏.json`（339 短视频/28 回放/1 图文，零签名）、报告落 `audit_交易的游戏.json`。结论：**短视频 339 全有、0 缺、0 游离、71 组各 2 个重复（71 个多余、约 300MB）；回放 28 缺 3、0 重复**。多匹配 short_055/short_311 已用 hashtag 消歧为两条不同视频。修复 incremental_sync.py 三处 `live`→`lives` 键 bug（待 dry-run）。改 replay_list_hook.go slim 增换签字段 + probeSignActions（go build 通过，待刷新验证 → ISSUE-017）。去重/补回放/台账重建方案见 ISSUE-016。
+- 🧮 **视频号文件盘严格对账 + 全量基准落库（方案 A 离线收尾）**：固化 `platforms/wechat_channels/video-capture/parse_capture_log.py`（重组 captor `_api.log` 的整块/分块 payload，产出脱敏 catalog + 含票据 signed 两份分离，复刻 id=md5(md5sum)[:16]）与 `platforms/wechat_channels/video-downloader/audit_disk.py`（ffprobe 时长+归一化标题+hashtag 消歧，文件盘 vs catalog 对账，带时长缓存）。权威基准落 `library/00_manifest/catalog_交易的游戏.json`（339 短视频/28 回放/1 图文，零签名）、报告落 `library/00_manifest/audit_交易的游戏.json`。结论：**短视频 339 全有、0 缺、0 游离、71 组各 2 个重复（71 个多余、约 300MB）；回放 28 缺 3、0 重复**。多匹配 short_055/short_311 已用 hashtag 消歧为两条不同视频。修复 `platforms/wechat_channels/video-downloader/incremental_sync.py` 三处 `live`→`lives` 键 bug（待 dry-run）。改 `platforms/wechat_channels/video-capture/replay_list_hook.go` slim 增换签字段 + probeSignActions（go build 通过，待刷新验证 → ISSUE-017）。去重/补回放/台账重建方案见 ISSUE-016。
 
 ---
 
@@ -112,7 +112,7 @@
 
 - ✅ 视频号短视频解密闭环端到端验证：Isaac64 算法确认（非AES、仅前128KB加密）；仓内自包含 `decrypt_node.js` 与官方 wasm 密钥流逐字节一致；完整样本解密后 h264 1080x1920+aac、时长134.86s 与记录吻合
 - ✅ 下载编排 `batch_download_v4.py` 修复（解密器同目录路径、可选代理 WC_PROXY、WC_LIMIT、md5 对账、规格差异标注）
-- ✅ 捕获代理 `-short-probe` 静默探针落库换签直链+decode_key（captor.go/main.go/short_probe_hook.go，go vet/build 通过）
+- ✅ 捕获代理 `-short-probe` 静默探针落库换签直链+decode_key（`platforms/wechat_channels/video-capture/` 下 captor.go/main.go/short_probe_hook.go，go vet/build 通过）
 - ✅ 安全：含签名票据的捕获产物加入 video-capture/.gitignore，旧 capture_*.json 停止跟踪；其历史痕迹已于 2026-09-22 随 ISSUE-014 一并 filter-repo 清除
 - 📄 新增权威技术文档 docs/research/wechat-short-video-decryption.md，采集SOP同步更新
 
