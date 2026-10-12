@@ -81,7 +81,7 @@ S7 云文档发布与维护 <──G6── S6 质检与迭代 <──G5── S
 | video | §4.1 平台策略 | §5.1 视频提取 | transcript / ocr / 关键帧 | §5.1–§5.3 |
 | audio | §4.2 音频采集 | FunASR 转写（语音边界 / 人声分离用 byted-mediakit-audio） | transcript.md | §5.4 |
 | pdf | §4.3 PDF 采集 | extract_pdf_text.py（`--structured` JSON）；版面重要渲染 PNG；扫描件 OCR | pdf 文本 / JSON / PNG | §5.4 |
-| image | §4.4 图片采集 | image-ocr / macos_vision_ocr_pipeline + 元数据探测 | OCR 文本 + 元数据 | §5.4 |
+| image | §4.4 图片采集 | image-ocr（Cloud，实测免额外 env）/ ocr_vision（本地兜底）+ 元数据探测 | OCR 文本 + 元数据 | §5.4 |
 | text / 网页 | 公众号采集 SOP / article-pipeline | 直接取文 / 清洗 | 文章文本 | §5.4 |
 | 线上图文 | xiaohongshu note | 逐张 OCR / 视觉理解 + 元数据入库 | webp 集 + 元数据 + 评论 | §5.4 |
 
@@ -105,25 +105,27 @@ S7 云文档发布与维护 <──G6── S6 质检与迭代 <──G5── S
 ### 4.2 音频采集
 
 - 入口：本地音频文件 / 播客 RSS / 录音。先用 `byted-mediakit-audio`（probe-audio-metadata 探测、detect-voice-activity 定位语音、separate-voice 人声分离），再 `funasr_transcribe.py` 转写。
-- 产物：`library/02_audio/<行业>/<主题>/` + transcript.md。
+- ✅ 2026-10-12 已验证：mediakit 为 Cloud **异步**（submit 后需 `query-task` 取结果），本环境免额外 env；样例 `library/02_audio/jewelry/_pipeline验证/`（probe / detect / FunASR 转写全链路跑通）。
+- 产物：`library/02_audio/<行业>/<主题>/` + transcript.md / transcript.json。
 
 ### 4.3 PDF 采集
 
 - 入口：.skills/pdf（extract_pdf_text.py 提取文本 / `--structured` 出 JSON；版面重要时渲染 PNG 复查；扫描件走 OCR）。电子资料批量转码另见 `../guides/books-extraction.md`。
+- ✅ 2026-10-12 已验证（有文本层）：PyMuPDF 提取 txt / JSON，样例 `library/07_books/stock/extracted/`；**扫描件（无文本层）**走渲染 PNG → 多模态识读，可检索文本层需外挂 OCR 后端（分支待真实扫描样例复核）。
 - 产物：`library/07_books/` 或按主题归入 `library/08_sources/` + 提取文本。
 
 ### 4.4 图片 / 线上图文采集
 
-- 图片：byted-mediakit-image（image-ocr、probe-image-metadata、evaluate-image-quality）+ macos_vision_ocr_pipeline.py。
-- 小红书图文：`xiaohongshu_downloader.py note "<带 xsec_token 的笔记 URL>"` → 图文 webp 集 + 元数据 + 评论 JSON。
-- 公众号文章：公众号采集 SOP（`../guides/wechat-official-article.md`）。
+- 图片：byted-mediakit-image（image-ocr、probe-image-metadata、evaluate-image-quality，Cloud 本环境免额外 env，✅ 2026-10-12 实测）。单图 OCR 兜底用 `processing/ocr/ocr_vision <图>`（本地离线）；**勿对单图跑 macos_vision_ocr_pipeline.py（那是视频抽帧流水线）**。艺术字识别需置信度阈值 + 抽检。
+- 小红书图文：`xiaohongshu_downloader.py note "<带 xsec_token 的笔记 URL>"` → 图文 webp 集 + 元数据 + 评论 JSON（⚠️ 采集端待核：需真实笔记 URL 实采；下游逐图 OCR 已用抖音图集 7 图 120 块实证）。
+- 公众号文章：公众号采集 SOP（`../guides/wechat-official-article.md`）。真实样例在 `06_articles/<行业>/<公众号名>/`（`wechat_official/` 为空目录勿用）；content.md 需二次去除头尾模板；区分 B 站图文（hdslb/bilibili opus）与公众号（mp.weixin）来源。
 - 产物：`library/08_sources/` + OCR 文本 + 元数据。
 
 ### 4.5 评论采集（矩阵见规划文档 §5.2）
 
-- 抖音：浏览器直读评论列表（低频串行、单会话 ≤15 条）→ `{vid}_comments.json`。
+- 抖音：`collect_douyin_comments.py <vid>`（匿名档优先、只读低频串行、单会话 ≤15 条）→ `library/08_sources/douyin_comments/{vid}_comments.json`。✅ 2026-10-12 实采验证（郭颖置顶片 6 条；字段 comment_id / user_name / content / like_count / reply_count / time）。详见技能 `references/platforms/douyin-comments-extract.md`。
 - 小红书：`xiaohongshu_downloader.py comments`（≤3 页风控）→ `{note_id}_comments.json`。
-- B 站 / 视频号：正文抽取待 P2 验证；计数入台账。
+- B 站 / 视频号：正文抽取待 P2 验证（T05）；计数入台账。
 - 产物归属：`library/08_sources/`；S4 作选题 / FAQ / 验证信号。
 
 ### 4.6 S1 校验门
@@ -139,12 +141,12 @@ S7 云文档发布与维护 <──G6── S6 质检与迭代 <──G5── S
 | 素材 | 提取动作 | 标准中间物 |
 |---|---|---|
 | 字幕 | clean_subtitle.py 清洗 | clean.txt |
-| 音频 / 视频音轨 | funasr_transcribe.py（`--lang auto`，日语 `--lang ja`） | transcript.md |
+| 音频 / 视频音轨 | funasr_transcribe.py（`--lang auto`，日语 `--lang ja`）✅ 2026-10-12 | transcript.md / transcript.json |
 | 视频画面 | macos_vision_ocr_pipeline.py + opencv_keyframe_extractor.py | ocr 文本 + 关键帧 |
-| PDF | extract_pdf_text.py（`--structured`） | pdf 文本 / JSON |
-| 图片 | image-ocr / Vision OCR | OCR 文本 + 元数据 |
-| 图文 | 逐张 OCR + 元数据 | webp 集 + 文本 + 元数据 |
-| 文本 / 网页 | 直接取文 / 清洗 | 文章文本 |
+| PDF | extract_pdf_text.py（`--structured`）✅ 2026-10-12（有文本层） | pdf 文本 / JSON |
+| 图片 | image-ocr（Cloud）/ ocr_vision（本地兜底）✅ 2026-10-12 | OCR 文本 + 元数据 |
+| 图文 | 图集逐图 OCR 合并 md + 元数据 ✅ 2026-10-12（下游实证） | webp 集 + 文本 + 元数据 |
+| 文本 / 网页 | 直接取文 / 清洗 ✅ 2026-10-12（公众号链路） | 文章文本 |
 
 - 翻译：非中文默认译中（贴合中文同类作者口吻，不是硬译）。
 - 校验门：转写覆盖率（全部已下载素材都有中间物）、空稿判定（有中间物且字数与素材时长相称，中文约 250–320 字/分钟）、manifest 路由与实际产物一致。
@@ -193,6 +195,8 @@ S7 云文档发布与维护 <──G6── S6 质检与迭代 <──G5── S
 ### 7.2 多源融合清单
 
 字幕 / 转写文本 + OCR 文本 + 评论信号 + 视频分析报告 + PDF 章节 + 图文要点 → 按作者角色（教学 / 新闻评论 / 测评 / 经验分享 / 访谈口播 / 宣传带货…）套结构成文（article-pipeline，权威源 `~/Doubao/skills/multiplatform-media-fetch/references/pipeline/article-pipeline.md`）。
+
+评论信号样例（P2 首批）：`library/08_sources/douyin_comments/7474846772968426811_comments.json`——"去哪鉴定证书？""手串怎么样？有泡过吗"等观众关切可作文稿 FAQ / 选题信号 / 需求验证素材，引用时标注来源评论条目。
 
 ### 7.3 双写决策（G4）
 

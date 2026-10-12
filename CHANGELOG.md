@@ -22,6 +22,7 @@
 - ［变更］文稿用途分型入工作流：读者/知识/运营/视频创作四型，同步 G0 目标形态 + G4 成文决策 + S4 校验门（commit c78bc5b）。
 - ［新增］文档治理补强：ADR-006 文稿用途分型决策 + `project-management/standards/DOCUMENTATION_PRINCIPLES.md`（类型词典/落位决策表/README 防则），ADR-001 加演进注记（commit 5281516）。
 - ［维护］晚间独立旁观者评审 A-1~A-6 修正（commit 51a6d86，评审报告见 `project-management/reviews/2026-10-12-evening-independent-audit.md`）：①新增 `library/README.md`（编号体系表 00_manifest~08_sources + 03 跳号说明 + 各目录一句话用途）②`TASK_STATUS.md` 当前进度总览改七阶段视角（对齐 WORKFLOW.md S0–S7，四阶段降为历史口径，信息保留）③`AGENTS.md` §2.4 补 `DOCUMENTATION_PRINCIPLES.md` 必读指针 ④新增 `domains/README.md`（jewelry 过渡保留 / stock 旧域仍活跃去留待用户拍板 / heritage 总域 6 子域）⑤`docs/guides/wechat-official-article.md` data URI 占位词改述——doc_health_check 0 ERROR / 0 WARN。
+- ［新增］P2 首批交付（2026-10-12 晚）：①抖音评论采集——脚本 `collect_douyin_comments.py`（匿名档优先、只读低频串行、单会话 ≤15 条）+ 参考文档 `references/platforms/douyin-comments-extract.md`（均落技能仓 multiplatform-media-fetch），实采郭颖置顶片 6 条入库 `library/08_sources/douyin_comments/7474846772968426811_comments.json`；②四类多模态素材接入端到端验收——音频（byted-mediakit-audio Cloud 鉴权实测可用、异步需 query-task，+ FunASR 转写样例 `library/02_audio/jewelry/_pipeline验证/`）、PDF（PyMuPDF 提取 txt/JSON，`library/07_books/stock/extracted/`；扫描件分支待真实扫描样例）、图片（image-ocr Cloud + 本地 `ocr_vision` 兜底，单图勿用视频流水线脚本）、公众号正文链路（`06_articles/<行业>/<公众号名>/` 现成产物复核，`wechat_official/` 空目录勿用）；③小红书图文 note 采集端待核（规划 §12-⑩，需真实带 xsec_token 笔记 URL）；④规划 §5.4 路由表状态列、§11 待办（T04/T20–T23）、§12 待核（⑧销号、新增⑩）、workflow-main 相应小节、TASK_STATUS S1/S2 全部更新。
 
 ## 2026-10-09
 
