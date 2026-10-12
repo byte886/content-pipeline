@@ -42,6 +42,7 @@
 
 ### 电子资料处理
 1. `docs/guides/books-extraction.md` — PDF/PPTX等电子资料转码与精华提取
+2. **桌面书籍知识源盘点（2026-10-13）**：盘点报告 `docs/reviews/2026-10-13-桌面书籍知识源盘点.md`；分批执行方案 `docs/reviews/2026-10-13-桌面书籍分批执行方案.md`；采集台账 `library/00_manifest/桌面书籍采集台账_2026-10-13.json`（股票书籍/顶底之王/鉴藏 Y0068 三源：文件→中间物→状态）；提取产物本地持有（`library/07_books/*/extracted/`，不入 git）
 
 ### 视频转文字 / 图文OCR
 1. `docs/guides/audio-transcription.md` — FunASR 本地离线转写：环境搭建、批量脚本用法、输出目录、空稿判定

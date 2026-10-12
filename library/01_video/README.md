@@ -23,6 +23,8 @@ library/01_video/<平台或内容大类>/<账号>/
 | douyin | 珠宝学者郭颖（jewelry） | [manifest.csv](jewelry/珠宝学者郭颖/manifest.csv) | 387 | 已下载 / 转写 238 | 高价值科普 145 · 潘家园实战 46 · 普通展示 188（A 46 / B 83 / C 58）· 节日 6 · 广告 2；已归并 17 份知识文档（在 `library/05_knowledge`） |
 | bilibili | 宝石学家老许（jewelry） | [manifest.json](jewelry/宝石学家老许/manifest.json) | 744 | 已转写 743 | B 站 UP 主全量投稿清单（含播放量 / 分区 / 合集 / 状态，历史采集器富清单） |
 | wechat_channels | 交易的游戏（stock） | [manifest.json](stock/交易的游戏/manifest.json) | 336 | 本地文件清单 | 股票 / 财经视频号：短视频 313 ＋ 直播回放 23（含文件名 / 大小 / 路径，历史采集器富清单） |
+| desktop_local | 顶底之王（stock） | [manifest.json](stock/顶底之王/manifest.json) | 11 | 已转写 11 | 广义趋势理论 11 讲视频课程（2026-10-13 桌面采集，视频留桌面）；同博主关联 `06_articles/stock/顶底之王`（278 篇文稿） |
+| desktop_local | 中国地质大学宝石学（jewelry） | [manifest.json](jewelry/中国地质大学宝石学/manifest.json) | 94 | 已核验 94 / 抽样转写 3 | 宝石学 82 集课程 ＋ 翡翠物语 11 集（2026-10-13 桌面采集，flv 留桌面，待全量转码+转写，见 `docs/reviews/2026-10-13-桌面书籍分批执行方案.md`） |
 
 > **台账两种形态**：新来源统一用 16 列 `manifest.csv`（见 SOP，可由 xlsx 同步、含 md5 指纹与价值评级）；
 > 早期采集器产出的 `manifest.json` 字段更贴合各平台（B 站播放量、视频号文件大小等），为历史富清单、继续有效、暂不迁移。
