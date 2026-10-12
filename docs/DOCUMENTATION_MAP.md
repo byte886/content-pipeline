@@ -70,10 +70,12 @@
 2. **知识源组织 SOP（落地操作）**：`docs/guides/knowledge-source-organization.md` — 三层解耦、两种成品形态、目录/入口模板、draft→stable、新增博主 Checklist、交付质检清单
 3. 知识层总入口：`library/05_knowledge/README.md`（珠宝 jewelry / 股票 stock 全知识源导航）
 4. 行业插件模板（珠宝鉴赏/视频创作）：`~/Doubao/skills/multiplatform-media-fetch/references/domain-plugins/`
+5. **数据层总入口**：`library/README.md` — library 编号体系表（00_manifest ~ 08_sources）+ 03 跳号说明 + 各目录一句话用途
 
 ### 行业知识域导航
 1. **鉴藏（Heritage）总域**：`domains/heritage/README.md` — 珠宝/翡翠/古玩古董/家具/东方体系/西方体系 6 子域总表（各子域独立建包、可独立扩展；原 `domains/jewelry/` 已归入 `01_jewelry`）
 2. 股票行业域：`domains/stock/knowledge_base/README.md`；珠宝成品：`library/05_knowledge/jewelry/`
+3. **行业域总说明**：`domains/README.md` — jewelry（过渡保留）/ stock（旧域，仍活跃，去留待用户拍板）/ heritage（总域 6 子域）三者关系与维护纪律
 
 ### 归档文档（archive/ 只读快照）
 1. `docs/archive/SYSTEM_ARCHITECTURE_v1_full_2026-10-08.md` — 体系架构 v1 全文历史快照（只读、不再更新）；现行权威在总控仓 control-tower，本仓 `docs/SYSTEM_ARCHITECTURE.md` 已降级为薄指针

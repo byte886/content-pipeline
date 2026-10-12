@@ -18,6 +18,7 @@ project-management/
 │   └── concepts/         # 各领域 concept（结论+相对指针，不复制正文）
 ├── reviews/          # 评审报告
 │   ├── 2026-09-15-post-refactor-review.md
+│   ├── 2026-10-12-evening-independent-audit.md  # 2026-10-12 晚间独立旁观者评审（A-1~A-6 修正源）
 │   └── REVIEW-governance-summary.md
 ├── standards/        # 执行标准与规范
 │   ├── BATCH_TASK_EXECUTION.md   # 批量任务执行规范

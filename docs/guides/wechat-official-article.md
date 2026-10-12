@@ -47,7 +47,7 @@ AppleWebKit/605.1.15 MicroMessenger/8.0.34" -o article.html "<文章URL>"
 解析锚点：
 - 标题：`<h1 class="rich_media_title">`
 - 正文：`<div id="js_content">`
-- 正文图片：用 `data-src`（不是 `src`）；`data:image/...` 是占位符，无需下载。
+- 正文图片：用 `data-src`（不是 `src`）；`data:image/...` 为内联数据 URI（非真实图片 URL），无需下载。
 
 ---
 

@@ -78,6 +78,7 @@ done
 ### 2.4 写文档前必须检查文档组织（强制）
 
 遇到需要写文档时，必须先检查项目文档组织和分工：
+0. **必读** `project-management/standards/DOCUMENTATION_PRINCIPLES.md`（文档类型词典 / 新增内容落位决策表 / README 防则）
 1. `grep -r "关键词" docs/` 查找是否已有相关内容
 2. 确认文档分工（见 `docs/DOCUMENTATION_MAP.md`）
 3. WORKFLOW.md只放概览和链接，详细内容放各SOP

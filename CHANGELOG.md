@@ -16,6 +16,11 @@
 - ［新增］新立 `project-management/decisions/ADR-005-仓库二次改名留痕（multiplatform-content-pipeline→content-pipeline）.md`（Status: Accepted），为 2026-10-09 二次改名补 ADR 留痕（ISSUE-020 closed）；project-management/README.md ADR 范围更新为 ADR-001~005。
 - ［维护］评审待拍板三项收尾（用户拍板"全部执行"）：①heritage 总域正式登记——根 README.md domains 行、DIRECTORY_STRUCTURE.md 目录树补 6 子域段、DOCUMENTATION_MAP.md 新增「行业知识域导航」条目（ISSUE-018 closed）；②HANDOFF.md 补 10 月倒序条目（10-09 T-31+二次改名 / 10-11 T-37+T-38+T-39 / 10-12 台账+B级对标+治理同步）、§0「现在在」刷新，恢复交接主通道（ISSUE-019 closed）；③AGENTS.md §1.1 冷启动段加跨体系薄指针（先读总控仓 ~/Desktop/control-tower/README.md）。
 - ［维护］文档层遗留项清理（评审 D-P2-3 / S-P2-1）：①`docs/DOCUMENTATION_MAP.md` 三处「技能路径/」占位精确化为 `~/Doubao/skills/multiplatform-media-fetch/…`（author-video-knowledge-base.md 校正到 references/pipeline/；extract_keyframes.py 本仓外 skill 内未定位到，标注路径待核实）；②裸 basename 引用补全仓库相对路径——TASK_STATUS.md（audit_disk.py/incremental_sync.py/rebuild_inventory.py/parse_capture_log.py/audit_交易的游戏.json/captor.go 等）、ISSUES.md（rebuild_inventory.py/parse_capture_log.py/audit_交易的游戏.json/dedup_plan_交易的游戏.json/short-dedup-checklist.md）、wechat-channels-dedup-and-inventory.md（inventory/audit_交易的游戏.json/audit_disk.py/batch_download_v4.py/incremental_sync.py）；③本轮改正文的 memory concept `architecture-multiplatform-pipeline.md` frontmatter `last_updated` 滚至 2026-10-12（另两篇无该字段，按"字段名以既有为准"不新增）；④`config/sources.json` 新增 douyin 源条目（珠宝学者郭颖，sec_uid/URL/chrome_profile 等待真实源数据补录，不臆造）。
+- ［新增］鉴藏知识库云文档组织落地：云盘归档与组织规则（AI 工作守则）+「鉴藏知识库·孵化」容器（00_组织方法 / 01_鉴藏知识·郭颖 23 份 / 02_内容方法 / 03_案例对标）+ 珠宝电商 00_索引挂载（commit 9e1799d）。
+- ［新增］视频知识工作流融合规划 + P1 工作流骨架：七阶段 S0–S7 + 决策门 G0–G6 + 多模态路由（视频/音频/PDF/图片/文本/图文）+ 待办登记（commit 8a730e8）。
+- ［维护］workflow/README 补登记 workflow-main 并写明三层文档分工（概览/详设/SOP）与 AI 接手顺序（commit dabc6fa）。
+- ［变更］文稿用途分型入工作流：读者/知识/运营/视频创作四型，同步 G0 目标形态 + G4 成文决策 + S4 校验门（commit c78bc5b）。
+- ［新增］文档治理补强：ADR-006 文稿用途分型决策 + `project-management/standards/DOCUMENTATION_PRINCIPLES.md`（类型词典/落位决策表/README 防则），ADR-001 加演进注记（commit 5281516）。
 
 ## 2026-10-09
 
