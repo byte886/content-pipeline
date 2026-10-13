@@ -13,7 +13,7 @@ sources:
     last_modified: 2026-10-13
 generated: { by: "doubao/okf-wiki", at: "2026-10-13T12:00:00+08:00" }
 status: draft
-clean: false
+clean: true
 ---
 # 首饰用金属及首饰工艺（四）金属鉴定方法与仪器
 

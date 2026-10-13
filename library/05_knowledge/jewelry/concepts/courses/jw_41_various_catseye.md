@@ -13,7 +13,7 @@ sources:
     last_modified: 2026-10-13
 generated: { by: "doubao/okf-wiki", at: "2026-10-13T12:00:00+08:00" }
 status: draft
-clean: false
+clean: true
 ---
 # 人工、优化处理宝石（五）各种猫眼
 

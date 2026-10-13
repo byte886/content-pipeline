@@ -13,7 +13,7 @@ sources:
     last_modified: 2026-10-13
 generated: { by: "doubao/okf-wiki", at: "2026-10-13T12:00:00+08:00" }
 status: draft
-clean: false
+clean: true
 ---
 # 珠宝首饰鉴赏及评价（四）猫眼石命名陷阱
 
