@@ -143,7 +143,7 @@
 | verified/stale_after 回填规则 | `docs/workflow/verified-stale-rule.md` | 只在真实人工/来源核验处标注 verified；行情/点位类必设 stale_after；只增不删、吃不准标待核（K4 成文） |
 | 评估 Agent 复查模板 | `docs/workflow/evaluation-agent-template.md` | 五维复查清单（事实/来源/一致性/覆盖/待核）+ verified/stale_after 速查表 + 规定输出格式（K4 成文，供评估轮复用） |
 | P5 方法提炼规划（MethodNote） | `docs/workflow/方法提炼规划-2026-10-13.md` | 第二类知识：MethodNote 元层方法知识（怎么做内容/运营/为何受欢迎）——类型定义（content_type: trust_building/content_strategy/audience_building/monetization/selection_method）、来源协议（src-transcript/src-comments/src-cloud-research）、独立 methods 容器建议、S1-S6 提炼流程（≥2 源升 stable）、首批 5 候选（M1/M2 附 draft）；只规划未执行 |
-| 278 篇 AI 核验试点报告 | `workspace/K6_278核验试点报告.md`（本地，workspace 不入 git） | 26 篇试点：事实性误判率 0%、根因 OCR 折行切词、2 篇升 stable/3 篇修复/21 篇留 draft；核验方法与铺开策略（先修抽取器、9 批×30） |
+| 278 篇 AI 核验报告（全量完成） | `workspace/K6_phase1_重编译完成报告.md`、`workspace/K6_phase2_全量核验完成报告.md`、`workspace/K6_278核验试点报告.md`（本地，workspace 不入 git） | 全量 278 篇：0 编造/0 数字造假；14 篇重编译、6 异常处置、unknown 回填 3 留 1；stable=2/draft=276；2 篇 stable 已同步云盘；配套脚本 `scripts/recompile_article_atoms.py`、`scripts/verify_article_atoms.py` |
 
 ### 四、项目治理
 

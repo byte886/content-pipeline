@@ -21,7 +21,7 @@ sources:
 generated: { by: "doubao/article-to-okf-p3", at: "2026-10-13T00:31:19+08:00" }
 status: draft
 stale_after: 2027-01-01T23:59:59+08:00
-published: unknown-date
+published: '2022-12-13'  # AI回填: mid序列框定+标题月日互证
 article_id: wechat_unknown_2247485737
 ---
 
