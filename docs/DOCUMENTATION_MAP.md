@@ -139,7 +139,7 @@
 | 视频知识工作流融合规划 | `docs/workflow/视频知识工作流-融合规划-2026-10-12.md` | 博主视频→知识库→云文档：现状评估 + 目标架构（S0–S7 + 决策门 G0–G6）+ 分阶段计划（P0–P8）+ 待办登记。**后续 AI 接手入口** |
 | 内容工作流主流程（详设） | `docs/workflow/workflow-main.md` | S0–S7 各阶段详设 + 决策门 G0–G6 + 多模态路由表 + 任务卡字段；与 WORKFLOW.md（概览）配套 |
 | 文稿↔知识库融合桥（P3） | `docs/workflow/article-to-okf-bridge.md` | ArticleNote 形态规范 + manifest 双向指针协议 + 跨模态 src 标签协议 + 增量归并原则；**P3 批量执行完成（278 wrap + 278 原子页 + 老许 20→5 topics + fused_into 298/298，stock E0W0 / jewelry E0）** |
-| 知识化统一规划（K 线） | `docs/workflow/知识化总规划-2026-10-13.md` | 博主线+书籍线统一知识化：concepts 类型词表（新增 BookNote/CourseNote）+ frontmatter 规范 + 批量 OKF 化流程 + 课程清洗门 G7 + 云同步顺序（K5）+ 任务重排（K2–K5 替代原 P4/P6；P5/P7/P8 保留）。**K2/K3/K4 已交付（2026-10-13）：books/ 220 BookNote＋课件 419 索引、courses/ 107 CourseNote、课程清洗 84 true/23 待核、fused_into 298/298、278 篇 stale_after** |
+| 知识化统一规划（K 线） | `docs/workflow/知识化总规划-2026-10-13.md` | 博主线+书籍线统一知识化：concepts 类型词表（新增 BookNote/CourseNote）+ frontmatter 规范 + 批量 OKF 化流程 + 课程清洗门 G7 + 云同步顺序（K5）+ 任务重排（K2–K5 替代原 P4/P6；P5/P7/P8 保留）。**K2–K4 已交付（2026-10-13）：books/ 220 BookNote＋课件 419 索引、courses/ 107 CourseNote、课程清洗 84 true/23 待核、fused_into 298/298、278 篇 stale_after**；**K5 云同步（2026-10-13）已交付：老许 topics 11 页→`01_鉴藏知识/宝石学家老许`、郭颖 23 份核验一致、stock 容器+278 索引（draft 不同步）、精选书卡 4 本、README-鉴藏知识库更新（详见 CHANGELOG K5 条目与云盘链接登记）** |
 | verified/stale_after 回填规则 | `docs/workflow/verified-stale-rule.md` | 只在真实人工/来源核验处标注 verified；行情/点位类必设 stale_after；只增不删、吃不准标待核（K4 成文） |
 | 评估 Agent 复查模板 | `docs/workflow/evaluation-agent-template.md` | 五维复查清单（事实/来源/一致性/覆盖/待核）+ verified/stale_after 速查表 + 规定输出格式（K4 成文，供评估轮复用） |
 
