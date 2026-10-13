@@ -1,7 +1,7 @@
 ---
 type: MethodNote
-title: "情景剧开场+N步清单口播结构（draft 待核）"
-description: "郭颖口播常用'现场情景剧/考试互动'开场（'发财了赚大发金镯子''考试结束拿回去吧'），再收拢成 N 步清单；老许以悬念式提问标题开场；作为可复用口播结构模板，证据初步充分，暂留 draft。"
+title: "情景剧开场+N步清单口播结构"
+description: "郭颖口播常用'现场情景剧/考试互动'开场（'发财了赚大发金镯子''考试结束拿回去吧'），再收拢成 N 步清单；老许以悬念式提问标题开场。2026-10-13 经 AI 逐条溯源核验（2 转写+1 视频 meta 三源、跨博主）升 stable；郭颖侧播放数据仍待采集。"
 tags: [method, jewelry, content_strategy, 珠宝学者郭颖, 宝石学家老许]
 domain: jewelry
 content_type: content_strategy
@@ -19,7 +19,8 @@ sources:
     resource: "https://www.bilibili.com/video/BV1kK4y1w7UN"
     title: "老许：你买的珠宝到底成本是多少？是如何定价的？（悬念提问开场，3.5万播放）"
 generated: { by: "doubao/method-note", at: "2026-10-13T16:00:00+08:00" }
-status: draft
+status: stable
+verified: { by: "ai:doubao", at: "2026-10-13T16:30:00+08:00" }
 method_id: skit-opening-n-step-structure
 applicable_to: ["珠宝学者郭颖", "宝石学家老许"]
 evidence:
@@ -29,7 +30,7 @@ evidence:
 ---
 # 情景剧开场+N步清单口播结构
 
-> **【draft · 待核】** 一句话定义：口播不直接讲知识点，先演一段现场情景剧（粉丝拿来宝问真假）或做一次考试互动，再把结论收拢成 N 步清单——开场留人，清单留料。
+> **【stable · ai:doubao 已溯源核验 2026-10-13】** 一句话定义：口播不直接讲知识点，先演一段现场情景剧（粉丝拿来宝问真假）或做一次考试互动，再把结论收拢成 N 步清单——开场留人，清单留料。
 
 ## 模式（原则）
 

@@ -5,6 +5,12 @@
 
 ## 2026-10-13
 
+- ［新增］P7 多智能体编排试点（编排设计＋干跑验证，用户授权；不新采集）：
+  - **固化编排 SOP** `docs/workflow/multi-agent-orchestration.md`：§0 一页速览/§1 全链路 S0–S7（输入·动作·产物路径）/§2 七角色分工（组织者·采集·提取·知识化·质检·云同步·审查，附真实脚本路径）/§3 六张标准任务卡模板/§4 决策门 G0–G7 与 draft→stable 信任三级流转/§5 批量参数（≤50/批、E0、fused_into 对账、不复制全文、串行导入）/§6 错误回退·待核挂起·人工介入（自动重试 vs 待核 vs 人工＋备份回滚）/§7 新博主冷启动七步/§8 云同步要点/附录 A 上云人读模板·附录 B 干跑记录。
+  - **干跑验证（M3/M5 升级核验）**：逐句对源（转写全文＋评论 JSON），9 处断言全部可回溯、无编造，各 3 独立源、跨博主、脚注↔sources 闭合 → M3 避坑争议借势、M5 情景剧开场+N步清单**真实升 stable**（`verified: {by: ai:doubao, at: 2026-10-13T16:30:00+08:00}`），methods/index 登记转 ✅；methods bundle **E=0·W=0**（M3/M5 由 unverified→machine-confirmed，零新增 W60/I11/W80）。
+  - **干跑发现并回写 SOP 缺口 3 条**：①`verified` 缩进块式映射会被校验器容错解析器静默丢弃、必须行内 map（否则永远 unverified 不报错，§4.1 警示）；②效果数据 source 应指本地 JSON 而非远端 URL（否则本地不可复算）；③云文档 block_replace 后 block-id 失效须重新 fetch（§8.4）。
+  - **云同步**：M3 `L8esdRUb0ovg3FxYizwcrFqanIh`、M5 `ZWGDd0w1eoIL4GxLTNMchbpSnUe` 串行导入云盘博主研究文件夹（未删移既有文件），02_内容方法 README 补 M3/M5 条目并删旧 draft 注；备份 `workspace/P7_orchestration_dryrun_20261013/backup/`。
+
 - ［新增］P5 试点执行（方法提炼落地，用户授权）：新建 **`library/05_knowledge/jewelry/concepts/methods/`** 容器（index.md 无 frontmatter，独立容器不喂 topics；MethodNote 类型/五类 content_type/来源协议 src-transcript·src-comments·src-cloud-research）；**M1 权威+接地气双轨信任（trust_building）、M2 数字口诀化选题（content_strategy）达 stable**——M1 三独立源（置顶片评论 JSON 251 赞＋潘家园招募转写＋云盘研究稿降权），M2 四独立源（买黄金话术/三招鉴别/网购避坑 3 转写＋老许 BV1W64y1s72M 旁证）；**M3 避坑争议借势、M5 情景剧开场+N步清单落 draft**（各 3 源、I10 待核）；**M4 评论征集→线下栏目仅 index 候选登记**（招募转写与手册同源非独立、无效果数据，不凑数）；`okf_validate` **E=0·W=0·I=4**（I 均预期 unverified，零新增 W60/I11/W80）；M1/M2 已同步云盘 `02_内容方法/博主研究`（复用既有文件夹未新建；M1 `I4tedYw1EotZboxHIRkcQY0qnFe`、M2 `EvrjdO1W0oqjZixDevLcUlCHnjf`），02_内容方法 README 补条目；效果数据（逐条播放/涨粉）未采集，文中如实标〔待核〕。
 
 - ［新增］K6 全量铺开（阶段一/二/三，用户授权自主推进；试点误判率 0% 后的三阶段闭环）：

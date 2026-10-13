@@ -37,8 +37,8 @@
 
 * [authority-plus-grounded-trust](./authority-plus-grounded-trust.md) - ✅ stable：权威身份+接地气双轨信任建立法（trust_building · 郭颖 · 3 源）
 * [numbered-formula-topics](./numbered-formula-topics.md) - ✅ stable：数字口诀化选题与韵文记忆点（content_strategy · 郭颖+老许 · 4 源）
-* [pitfall-topic-from-hot-take](./pitfall-topic-from-hot-take.md) - 🔵 draft 待核：避坑/争议话题借势选题（audience_building · 郭颖+老许 · 3 源）
-* [skit-opening-n-step-structure](./skit-opening-n-step-structure.md) - 🔵 draft 待核：情景剧开场+N步清单口播结构（content_strategy · 郭颖+老许 · 3 源）
+* [pitfall-topic-from-hot-take](./pitfall-topic-from-hot-take.md) - ✅ stable（ai:doubao 核验 2026-10-13）：避坑/争议话题借势选题（audience_building · 郭颖+老许 · 3 源）
+* [skit-opening-n-step-structure](./skit-opening-n-step-structure.md) - ✅ stable（ai:doubao 核验 2026-10-13）：情景剧开场+N步清单口播结构（content_strategy · 郭颖+老许 · 3 源）
 
 ## 五、候选登记（证据不足，暂不立页）
 

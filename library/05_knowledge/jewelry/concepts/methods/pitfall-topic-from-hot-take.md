@@ -1,7 +1,7 @@
 ---
 type: MethodNote
-title: "避坑/争议话题借势选题（draft 待核）"
-description: "郭颖借'直播间翡翠翻车''银镀金骗典当行'等社会热点做避坑选题，老许评论区'钻石算不算骗局'引发长期争论——把行业争议转成选题入口；证据初步充分，效果数据待补，暂留 draft。"
+title: "避坑/争议话题借势选题"
+description: "郭颖借'直播间翡翠翻车''银镀金骗典当行'等社会热点做避坑选题，老许评论区'钻石算不算骗局'引发长期争论——把行业争议转成选题入口。2026-10-13 经 AI 逐条溯源核验（2 转写+1 评论 JSON 三源、跨博主）升 stable；效果数据（播放/点赞）仍待采集。"
 tags: [method, jewelry, audience_building, 珠宝学者郭颖, 宝石学家老许]
 domain: jewelry
 content_type: audience_building
@@ -19,7 +19,8 @@ sources:
     resource: "../../../../08_sources/bilibili_comments/BV1kK4y1w7UN_comments.json"
     title: "老许《珠宝成本与定价》B站评论（'钻石算不算骗局'15 楼争论，68 条评论）"
 generated: { by: "doubao/method-note", at: "2026-10-13T16:00:00+08:00" }
-status: draft
+status: stable
+verified: { by: "ai:doubao", at: "2026-10-13T16:30:00+08:00" }
 method_id: pitfall-topic-from-hot-take
 applicable_to: ["珠宝学者郭颖", "宝石学家老许"]
 evidence:
@@ -29,7 +30,7 @@ evidence:
 ---
 # 避坑/争议话题借势选题
 
-> **【draft · 待核】** 一句话定义：把行业里正在发生的翻车新闻、舆论争议（翡翠直播翻车、银镀金骗典当行、钻石是不是骗局）直接拿来当选题入口，借观众已有情绪做科普。
+> **【stable · ai:doubao 已溯源核验 2026-10-13】** 一句话定义：把行业里正在发生的翻车新闻、舆论争议（翡翠直播翻车、银镀金骗典当行、钻石是不是骗局）直接拿来当选题入口，借观众已有情绪做科普。
 
 ## 模式（原则）
 
