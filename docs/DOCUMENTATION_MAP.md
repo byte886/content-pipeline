@@ -141,6 +141,7 @@
 | 文稿↔知识库融合桥（P3） | `docs/workflow/article-to-okf-bridge.md` | ArticleNote 形态规范 + manifest 双向指针协议 + 跨模态 src 标签协议 + 增量归并原则；**P3 批量执行完成（278 wrap + 278 原子页 + 老许 20→5 topics + fused_into 298/298，stock E0W0 / jewelry E0）** |
 | 知识化统一规划（K 线） | `docs/workflow/知识化总规划-2026-10-13.md` | 博主线+书籍线统一知识化：concepts 类型词表（新增 BookNote/CourseNote）+ frontmatter 规范 + 批量 OKF 化流程 + 课程清洗门 G7 + 云同步顺序（K5）+ 任务重排（K2–K5 替代原 P4/P6；P5/P7/P8 保留）。**K2–K4 已交付（2026-10-13）：books/ 220 BookNote＋课件 419 索引、courses/ 107 CourseNote、课程清洗 84 true/23 待核、fused_into 298/298、278 篇 stale_after**；**K5 云同步（2026-10-13）已交付：老许 topics 11 页→`01_鉴藏知识/宝石学家老许`、郭颖 23 份核验一致、stock 容器+278 索引（draft 不同步）、精选书卡 4 本、README-鉴藏知识库更新（详见 CHANGELOG K5 条目与云盘链接登记）** |
 | verified/stale_after 回填规则 | `docs/workflow/verified-stale-rule.md` | 只在真实人工/来源核验处标注 verified；行情/点位类必设 stale_after；只增不删、吃不准标待核（K4 成文） |
+| 评估 Agent 复查模板 | `docs/workflow/evaluation-agent-template.md` | 五维复查清单（事实/来源/一致性/覆盖/待核）+ verified/stale_after 速查表 + 规定输出格式（K4 成文，供评估轮复用） |
 | P5 方法提炼规划（MethodNote） | `docs/workflow/方法提炼规划-2026-10-13.md` | 第二类知识：MethodNote 元层方法知识（怎么做内容/运营/为何受欢迎）——类型定义（content_type: trust_building/content_strategy/audience_building/monetization/selection_method）、来源协议（src-transcript/src-comments/src-cloud-research）、独立 methods 容器建议、S1-S6 提炼流程（≥2 源升 stable）、首批 5 候选（M1/M2 附 draft）；只规划未执行 |
 | 278 篇 AI 核验试点报告 | `workspace/K6_278核验试点报告.md`（本地，workspace 不入 git） | 26 篇试点：事实性误判率 0%、根因 OCR 折行切词、2 篇升 stable/3 篇修复/21 篇留 draft；核验方法与铺开策略（先修抽取器、9 批×30） |
 
