@@ -5,6 +5,8 @@
 
 ## 2026-10-13
 
+- ［新增］P5 试点执行（方法提炼落地，用户授权）：新建 **`library/05_knowledge/jewelry/concepts/methods/`** 容器（index.md 无 frontmatter，独立容器不喂 topics；MethodNote 类型/五类 content_type/来源协议 src-transcript·src-comments·src-cloud-research）；**M1 权威+接地气双轨信任（trust_building）、M2 数字口诀化选题（content_strategy）达 stable**——M1 三独立源（置顶片评论 JSON 251 赞＋潘家园招募转写＋云盘研究稿降权），M2 四独立源（买黄金话术/三招鉴别/网购避坑 3 转写＋老许 BV1W64y1s72M 旁证）；**M3 避坑争议借势、M5 情景剧开场+N步清单落 draft**（各 3 源、I10 待核）；**M4 评论征集→线下栏目仅 index 候选登记**（招募转写与手册同源非独立、无效果数据，不凑数）；`okf_validate` **E=0·W=0·I=4**（I 均预期 unverified，零新增 W60/I11/W80）；M1/M2 已同步云盘 `02_内容方法/博主研究`（复用既有文件夹未新建；M1 `I4tedYw1EotZboxHIRkcQY0qnFe`、M2 `EvrjdO1W0oqjZixDevLcUlCHnjf`），02_内容方法 README 补条目；效果数据（逐条播放/涨粉）未采集，文中如实标〔待核〕。
+
 - ［新增］K6 全量铺开（阶段一/二/三，用户授权自主推进；试点误判率 0% 后的三阶段闭环）：
   - **阶段一·抽取器修复＋重编译**：`scripts/recompile_article_atoms.py`（scan/apply/dry-run，幂等；备份 `workspace/_backup_recompile_20261013/`）；扫描 278 篇原文检出折行 42 篇——新模板（`>` blockquote）28 篇折行已在引用块内拼好、数字完整（不动），**旧模板（`## 编译摘要` bullet）14 篇重编译**，折行处丢失数字全部还原（沪深300跌33%/定投26%·60%/3700点、8%货币发行/3000个股、2016-18 共9次加息、A50 90%·2%→低开1% 等，抽样 0 未命中）；**修正试点误判**：「5 篇空摘要」实为解析器漏读新模板 blockquote，非真缺陷。
   - **阶段二·全量核验**：`scripts/verify_article_atoms.py`（全量机械核验，幂等只读）；**272 通过 / 6 异常全处置**——2 篇模板语泄漏已修（20220910 删 Mid-AutumnFestival/签名、20230130 删 3 条微信引导语），3 篇 blockquote 句式压缩经 AI 确认数字一致无编造（可接受），1 篇脚本字段误报（publish_time vs date）；**全量结论 0 编造/0 数字与原文不符/0 结构硬错误**；howto 9 篇逐篇判定：**新增升 stable=0**——除试点 2 篇外 7 篇均含时点行情框定（3000支撑/4400阻力/股息6%/估值百分位/3155底部等），保守留 draft；unknown 4 篇：3 篇 mid 序列框定回填（2022-07-07/2022-08-05/2022-12-13），1 篇无法确证保留（2247484138，候选 2021-11-27/28 不猜）；最终分层 **stable=2 / draft=276 / 待核=1**，`okf_validate` **E=0、零新增 W60/I11**。
